@@ -1,0 +1,2 @@
+module EndpointAssociatedAttrsHelper
+end

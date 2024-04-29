@@ -1,0 +1,2 @@
+json.extract! endpoint_associated_attr, :id, :endpoint_id, :attr_id, :endpoint_create, :endpoint_update, :endpoint_show, :endpoint_index, :endpoint_delete, :attr_create_request, :attr_create_response, :attr_delete_request, :attr_delete_response, :attr_index_request, :attr_index_response, :attr_show_request, :attr_show_response, :attr_update_request, :attr_update_response, :attr_type, :associated_ui_info, :associated_product_info, :created_at, :updated_at
+json.url endpoint_associated_attr_url(endpoint_associated_attr, format: :json)

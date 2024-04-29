@@ -1,0 +1,45 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  endpoint: one
+  attr: one
+  endpoint_create: false
+  endpoint_update: false
+  endpoint_show: false
+  endpoint_index: false
+  endpoint_delete: false
+  attr_create_request: false
+  attr_create_response: false
+  attr_delete_request: false
+  attr_delete_response: false
+  attr_index_request: false
+  attr_index_response: false
+  attr_show_request: false
+  attr_show_response: false
+  attr_update_request: false
+  attr_update_response: false
+  attr_type: MyString
+  associated_ui_info: MyString
+  associated_product_info: MyString
+
+two:
+  endpoint: two
+  attr: two
+  endpoint_create: false
+  endpoint_update: false
+  endpoint_show: false
+  endpoint_index: false
+  endpoint_delete: false
+  attr_create_request: false
+  attr_create_response: false
+  attr_delete_request: false
+  attr_delete_response: false
+  attr_index_request: false
+  attr_index_response: false
+  attr_show_request: false
+  attr_show_response: false
+  attr_update_request: false
+  attr_update_response: false
+  attr_type: MyString
+  associated_ui_info: MyString
+  associated_product_info: MyString

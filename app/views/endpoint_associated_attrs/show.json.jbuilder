@@ -1,0 +1,1 @@
+json.partial! "endpoint_associated_attrs/endpoint_associated_attr", endpoint_associated_attr: @endpoint_associated_attr

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Attrs</h1>
+
+<div id="attrs">
+  <% @attrs.each do |attr| %>
+    <%= render attr %>
+    <p>
+      <%= link_to "Show this attr", attr %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New attr", new_attr_path %>

@@ -1,0 +1,37 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Endpoint associated attrs</h1>
+
+<div id="endpoint_associated_attrs">
+  <% @endpoint_associated_attrs.each do |endpoint_associated_attr| %>
+    <p>
+      <%= link_to endpoint_associated_attr, endpoint_associated_attr %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New endpoint associated attr", new_endpoint_associated_attr_path %>
+
+<h1>Attrs</h1>
+
+<div id="attrs">
+  <% @attrs.each do |attr| %>
+    <p>
+      <%= link_to attr.attr_title, attr.attr_title %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New attr", new_attr_path %>
+
+<h1>Endpoints</h1>
+
+<div id="endpoints">
+  <% @endpoints.each do |endpoint| %>
+    <p>
+      <%= link_to endpoint.endpoint_title, endpoint.endpoint_title %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New endpoint", new_endpoint_path %>

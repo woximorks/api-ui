@@ -1,0 +1,22 @@
+<%= form_with(model: endpoint) do |form| %>
+  <% if endpoint.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(endpoint.errors.count, "error") %> prohibited this endpoint from being saved:</h2>
+
+      <ul>
+        <% endpoint.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :endpoint_title, style: "display: block" %>
+    <%= form.text_field :endpoint_title %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

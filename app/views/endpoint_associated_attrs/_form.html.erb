@@ -1,0 +1,117 @@
+<%= form_with(model: endpoint_associated_attr) do |form| %>
+  <% if endpoint_associated_attr.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(endpoint_associated_attr.errors.count, "error") %> prohibited this endpoint_associated_attr from being saved:</h2>
+
+      <ul>
+        <% endpoint_associated_attr.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :endpoint_id, style: "display: block" %>
+    <%= form.text_field :endpoint_id %>
+  </div>
+
+  <div>
+    <%= form.label :attr_id, style: "display: block" %>
+    <%= form.text_field :attr_id %>
+  </div>
+
+  <div>
+    <%= form.label :endpoint_create, style: "display: block" %>
+    <%= form.check_box :endpoint_create %>
+  </div>
+
+  <div>
+    <%= form.label :endpoint_update, style: "display: block" %>
+    <%= form.check_box :endpoint_update %>
+  </div>
+
+  <div>
+    <%= form.label :endpoint_show, style: "display: block" %>
+    <%= form.check_box :endpoint_show %>
+  </div>
+
+  <div>
+    <%= form.label :endpoint_index, style: "display: block" %>
+    <%= form.check_box :endpoint_index %>
+  </div>
+
+  <div>
+    <%= form.label :endpoint_delete, style: "display: block" %>
+    <%= form.check_box :endpoint_delete %>
+  </div>
+
+  <div>
+    <%= form.label :attr_create_request, style: "display: block" %>
+    <%= form.check_box :attr_create_request %>
+  </div>
+
+  <div>
+    <%= form.label :attr_create_response, style: "display: block" %>
+    <%= form.check_box :attr_create_response %>
+  </div>
+
+  <div>
+    <%= form.label :attr_delete_request, style: "display: block" %>
+    <%= form.check_box :attr_delete_request %>
+  </div>
+
+  <div>
+    <%= form.label :attr_delete_response, style: "display: block" %>
+    <%= form.check_box :attr_delete_response %>
+  </div>
+
+  <div>
+    <%= form.label :attr_index_request, style: "display: block" %>
+    <%= form.check_box :attr_index_request %>
+  </div>
+
+  <div>
+    <%= form.label :attr_index_response, style: "display: block" %>
+    <%= form.check_box :attr_index_response %>
+  </div>
+
+  <div>
+    <%= form.label :attr_show_request, style: "display: block" %>
+    <%= form.check_box :attr_show_request %>
+  </div>
+
+  <div>
+    <%= form.label :attr_show_response, style: "display: block" %>
+    <%= form.check_box :attr_show_response %>
+  </div>
+
+  <div>
+    <%= form.label :attr_update_request, style: "display: block" %>
+    <%= form.check_box :attr_update_request %>
+  </div>
+
+  <div>
+    <%= form.label :attr_update_response, style: "display: block" %>
+    <%= form.check_box :attr_update_response %>
+  </div>
+
+  <div>
+    <%= form.label :attr_type, style: "display: block" %>
+    <%= form.text_field :attr_type %>
+  </div>
+
+  <div>
+    <%= form.label :associated_ui_info, style: "display: block" %>
+    <%= form.text_field :associated_ui_info %>
+  </div>
+
+  <div>
+    <%= form.label :associated_product_info, style: "display: block" %>
+    <%= form.text_field :associated_product_info %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
