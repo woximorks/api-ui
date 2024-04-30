@@ -6,6 +6,7 @@ class EndpointAssociatedAttrsController < ApplicationController
     @endpoint_associated_attrs = EndpointAssociatedAttr.all
     @endpoints = Endpoint.all
     @attrs = Attr.all
+    @sers = User.all
   end
 
   # GET /endpoint_associated_attrs/1 or /endpoint_associated_attrs/1.json

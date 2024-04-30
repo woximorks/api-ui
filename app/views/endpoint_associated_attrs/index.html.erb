@@ -17,7 +17,7 @@
 <div id="attrs">
   <% @attrs.each do |attr| %>
     <p>
-      <%= link_to attr.attr_title, attr.attr_title %>
+      <%= link_to attr.attr_title, attr %>
     </p>
   <% end %>
 </div>
@@ -29,7 +29,7 @@
 <div id="endpoints">
   <% @endpoints.each do |endpoint| %>
     <p>
-      <%= link_to endpoint.endpoint_title, endpoint.endpoint_title %>
+      <%= link_to endpoint.endpoint_title, endpoint %>
     </p>
   <% end %>
 </div>
