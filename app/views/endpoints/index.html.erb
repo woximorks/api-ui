@@ -4,9 +4,8 @@
 
 <div id="endpoints">
   <% @endpoints.each do |endpoint| %>
-    <%= render endpoint %>
     <p>
-      <%= link_to "Show this endpoint", endpoint %>
+      <%= link_to endpoint.endpoint_title, endpoint %>
     </p>
   <% end %>
 </div>

@@ -8,4 +8,14 @@
     <%= endpoint.id %>
   </p>
 
+  <div>
+    <% @endpoint_associated_attrs.each do |endpoint_associated_attr| %>
+      <p>
+        <% if endpoint_associated_attr.endpoint.id == endpoint.id %>
+          <%= link_to endpoint_associated_attr.attr.attr_title, endpoint_associated_attr %>
+        <% end %>
+      </p>
+    <% end %>
+  </div>
+
 </div>

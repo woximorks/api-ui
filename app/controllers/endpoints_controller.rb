@@ -4,11 +4,12 @@ class EndpointsController < ApplicationController
   # GET /endpoints or /endpoints.json
   def index
     @endpoints = Endpoint.all
-  
+    @endpoint_associated_attrs = EndpointAssociatedAttr.all
   end
 
   # GET /endpoints/1 or /endpoints/1.json
   def show
+    @endpoint_associated_attrs = EndpointAssociatedAttr.all
   end
 
   # GET /endpoints/new
