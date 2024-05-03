@@ -7,4 +7,15 @@
     <strong>Attribute ID:</strong>
     <%= attr.id %>
   </p>
+
+  <div>
+    <p><strong>Endpoint association(s):</strong></p>
+    <% @endpoint_associated_attrs.each do |endpoint_associated_attr| %>
+      <p>
+        <% if endpoint_associated_attr.attr.id == attr.id %>
+          <%= link_to endpoint_associated_attr.endpoint.endpoint_title, endpoint_associated_attr %>
+        <% end %>
+      </p>
+    <% end %>
+  </div>
 </div>

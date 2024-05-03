@@ -35,3 +35,21 @@
 </div>
 
 <%= link_to "New endpoint", new_endpoint_path %>
+</div>
+
+<h1>User info</h1>
+<div>
+  <% if user_signed_in? %>
+    <div id="users">
+    <% @users.each do |user| %>
+      <p>
+        <%= link_to user.email, edit_user_registration_path %>
+      </p>
+    <% end %>
+    </div>
+    <%= link_to "Profile", edit_user_registration_path %>
+    <%= button_to "Log out", destroy_user_session_path, method: :delete %>
+    <% else %>
+    <%= link_to "Log in", new_user_session_path %>
+  <% end %>
+</div>

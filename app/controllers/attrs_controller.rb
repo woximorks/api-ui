@@ -1,13 +1,15 @@
 class AttrsController < ApplicationController
   before_action :set_attr, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!, except: [:index, :show]
   # GET /attrs or /attrs.json
   def index
     @attrs = Attr.all
+    @endpoint_associated_attrs = EndpointAssociatedAttr.all
   end
 
   # GET /attrs/1 or /attrs/1.json
   def show
+    @endpoint_associated_attrs = EndpointAssociatedAttr.all
   end
 
   # GET /attrs/new

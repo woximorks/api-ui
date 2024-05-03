@@ -4,9 +4,8 @@
 
 <div id="attrs">
   <% @attrs.each do |attr| %>
-    <%= render attr %>
     <p>
-      <%= link_to "Show this attribute", attr %>
+      <%= link_to attr.attr_title, attr %>
     </p>
   <% end %>
 </div>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :endpoint_associated_attrs
   resources :endpoints
   resources :attrs

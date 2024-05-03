@@ -1,6 +1,6 @@
 class EndpointsController < ApplicationController
   before_action :set_endpoint, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!, except: [:index, :show]
   # GET /endpoints or /endpoints.json
   def index
     @endpoints = Endpoint.all
