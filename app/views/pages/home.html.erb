@@ -1,0 +1,11 @@
+<div id="endpoints">
+  <% @endpoints.each do |endpoint| %>
+    <b><%= endpoint.endpoint_title %></b>
+  <% end %>
+</div>
+<hr>
+<div id="attrs">
+  <% @attrs.each do |attr| %>
+    <%= attr.attr_title %>,
+  <% end %>
+</div>
