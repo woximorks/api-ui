@@ -28,3 +28,6 @@
     - db/backups folder and commands file created
         - This folder will contain the database backup, which can be generated with the listed command within the commands file
         - There is also an insert command that'll populate a test endpoint_associated_attr if necessary
+
+3. Refactoring the seed data
+    - https://medium.com/@ethanryan/split-your-rails-seeds-file-into-separate-files-in-different-folders-3c57be765818
