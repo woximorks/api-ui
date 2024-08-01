@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_01_144141) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_01_172307) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,10 +20,39 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_01_144141) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "endpoint_associated_attrs", force: :cascade do |t|
+    t.bigint "endpoint_id", null: false
+    t.boolean "endpoint_create"
+    t.boolean "endpoint_update"
+    t.boolean "endpoint_show"
+    t.boolean "endpoint_index"
+    t.boolean "endpoint_delete"
+    t.bigint "attr_id", null: false
+    t.boolean "attr_create_request"
+    t.boolean "attr_create_response"
+    t.boolean "attr_delete_request"
+    t.boolean "attr_delete_response"
+    t.boolean "attr_index_request"
+    t.boolean "attr_index_response"
+    t.boolean "attr_show_request"
+    t.boolean "attr_show_response"
+    t.boolean "attr_update_request"
+    t.boolean "attr_update_response"
+    t.string "attr_type"
+    t.string "associated_ui_info"
+    t.string "associated_product_info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attr_id"], name: "index_endpoint_associated_attrs_on_attr_id"
+    t.index ["endpoint_id"], name: "index_endpoint_associated_attrs_on_endpoint_id"
+  end
+
   create_table "endpoints", force: :cascade do |t|
     t.string "endpoint_title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "endpoint_associated_attrs", "attrs"
+  add_foreign_key "endpoint_associated_attrs", "endpoints"
 end
