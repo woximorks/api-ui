@@ -31,3 +31,6 @@
 
 3. Refactoring the seed data
     - https://medium.com/@ethanryan/split-your-rails-seeds-file-into-separate-files-in-different-folders-3c57be765818
+    - rails g model ActionlogAssociatedAttr attr:references attr_title endpoint:references endpoint_title
+
+4. Cleanup
