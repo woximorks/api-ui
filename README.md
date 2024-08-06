@@ -34,3 +34,5 @@
     - rails g model ActionlogAssociatedAttr attr:references attr_title endpoint:references endpoint_title
 
 4. Cleanup
+
+5. Some more seed data added, using ChatGPT to pull this data slowly because I don't want to pay for unlimited chat data
