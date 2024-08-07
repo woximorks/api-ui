@@ -1,17 +1,16 @@
 email_campaign_attrs = [
-    # Index
-    # Request
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
-    "source_agent_id", #* #"String"
-    "moxi_works_contact_id", #† #"String"
-    "partner_contact_id", #† #"String"
+#Index
+    #--Request
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
+    "source_agent_id", #"String"
+    "moxi_works_contact_id", #"String"
+    "partner_contact_id", #"String"
     "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
-
-    # Response
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
+    #--Response
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
     "subscription_type", #"String"
     "email_address", #"String"
     "subscribed_at", #"Integer"

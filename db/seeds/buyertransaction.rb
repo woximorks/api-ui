@@ -1,11 +1,11 @@
 buyertransaction_attrs = [
-    #Create
-    #Request
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
-    "source_agent_id", #* #"String"
-    "moxi_works_contact_id", #† #"String"
-    "partner_contact_id", #† #"String"
+#Create
+    #--Request
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
+    "source_agent_id", #"String"
+    "moxi_works_contact_id", #"String"
+    "partner_contact_id", #"String"
     "transaction_name", #"String"
     "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
@@ -32,9 +32,9 @@ buyertransaction_attrs = [
     "min_price", #"Integer"
     "max_price", #"Integer"
     "stage", #"Integer or String"
-    #Response
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
+    #--Response
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
     "moxi_works_transaction_id", #"String"
     "moxi_works_contact_id", #"String"
     "partner_contact_id", #"String"
@@ -67,11 +67,11 @@ buyertransaction_attrs = [
     "closing_timestamp", #"Integer or null"
     "state_changed_at", #"Integer or null"
 
-    # Update
-    # Request
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
-    "source_agent_id", #* #"String"
+#Update
+    #--Request
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
+    "source_agent_id", #"String"
     "moxi_works_transaction_id", #"String"
     "transaction_name", #"String"
     "moxi_works_company_id", #"String"
@@ -101,9 +101,9 @@ buyertransaction_attrs = [
     "closing_price", #"Integer"
     "closing_timestamp", #"Integer"
     "promote_transaction", #"Boolean"
-    # Response
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
+    #--Response
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
     "moxi_works_transaction_id", #"String"
     "moxi_works_contact_id", #"String"
     "partner_contact_id", #"String"
@@ -136,17 +136,17 @@ buyertransaction_attrs = [
     "closing_timestamp", #"Integer or null"
     "state_changed_at", #"Integer or null"
 
-    # Show
-    # Request
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
-    "source_agent_id", #* #"String"
+#Show
+    #--Request
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
+    "source_agent_id", #"String"
     "moxi_works_transaction_id", #"String"
     "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
-    # Response
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
+    #--Response
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
     "moxi_works_transaction_id", #"String"
     "moxi_works_contact_id", #"String"
     "partner_contact_id", #"String"
@@ -179,20 +179,20 @@ buyertransaction_attrs = [
     "closing_timestamp", #"Integer or null"
     "state_changed_at", #"Integer or null"
 
-    # Index
-    # Request
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
-    "source_agent_id", #* #"String"
+#Index
+    #--Request
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
+    "source_agent_id", #"String"
     "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
-    "moxi_works_contact_id", #† #"String"
-    "partner_contact_id", #† #"String"
+    "moxi_works_contact_id", #"String"
+    "partner_contact_id", #"String"
     "page_number", #"Integer"
     "timestamps_only", #"Boolean"
-    # Response
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
+    #--Response
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
     "moxi_works_transaction_id", #"String"
     "moxi_works_contact_id", #"String"
     "partner_contact_id", #"String"
@@ -224,7 +224,6 @@ buyertransaction_attrs = [
     "closing_price", #"Integer or null"
     "closing_timestamp", #"Integer or null"
     "state_changed_at" #"Integer or null"
-
 ]
 
 buyertransaction_attrs.each do |attr_title|

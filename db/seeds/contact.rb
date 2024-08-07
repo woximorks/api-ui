@@ -1,17 +1,15 @@
 contact_attrs = [
-    # ---------ContactCreate---------
-
-    # Create
-    # Request
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
-    "source_agent_id", #* #"String"
+#Create
+    #--Request
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
+    "source_agent_id", #"String"
     "partner_contact_id", #"String"
-    "contact_name", #† #"String"
-    "primary_email_address", #† #"String"
-    "secondary_email_address", #† #"String"
-    "primary_phone_number", #† #"String"
-    "secondary_phone_number", #† #"String"
+    "contact_name", #"String"
+    "primary_email_address", #"String"
+    "secondary_email_address", #"String"
+    "primary_phone_number", #"String"
+    "secondary_phone_number", #"String"
     "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
     "moxi_works_lead_source_id", #"String"
@@ -59,10 +57,9 @@ contact_attrs = [
     "company", #"String"
     "spouse_or_partner", #"String"
     "category_names", #"String"
-
-    # Response
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
+    #--Response
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
     "moxi_works_lead_source_id", #"String"
     "original_lead_source", #"String or null"
     "is_deleted", #"Boolean"
@@ -125,11 +122,11 @@ contact_attrs = [
     "category_names", #"String or null"
     "groups", #"Array"
 
-    # Update
-    # Request
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
-    "source_agent_id", #* #"String"
+#Update
+    #--Request
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
+    "source_agent_id", #"String"
     "partner_contact_id", #"String"
     "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
@@ -179,10 +176,9 @@ contact_attrs = [
     "company", #"String"
     "spouse_or_partner", #"String"
     "category_names", #"String"
-
-    # Response
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
+    #--Response
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
     "partner_contact_id", #"String"
     "moxi_works_contact_id", #"String"
     "moxi_works_lead_source_id", #"String"
@@ -246,19 +242,18 @@ contact_attrs = [
     "category_names", #"String or null"
     "groups", #"Array"
 
-    # Show
-    # Request
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
-    "source_agent_id", #* #"String"
-    "partner_contact_id", #† #"String"
-    "moxi_works_contact_id", #† #"String"
+#Show
+    #--Request
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
+    "source_agent_id", #"String"
+    "partner_contact_id", #"String"
+    "moxi_works_contact_id", #"String"
     "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
-
-    # Response
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
+    #--Response
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
     "partner_contact_id", #"String"
     "moxi_works_contact_id", #"String"
     "moxi_works_lead_source_id", #"String"
@@ -326,11 +321,11 @@ contact_attrs = [
     "category_names", #"String or null"
     "groups", #"Array"
 
-    # Index
-    # Request
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
-    "source_agent_id", #* #"String"
+#Index
+    #--Request
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
+    "source_agent_id", #"String"
     "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
     "contact_name", #"String"
@@ -340,22 +335,20 @@ contact_attrs = [
     "page_number", #"Integer"
     "only_business_contacts", #"Boolean"
     "timestamps_only", #"Boolean"
-
-    # Response
+    #--Response
     "page_number", #"Integer"
     "total_pages", #"Integer"
     "contacts", #"Array"
 
-    # Delete
-    # Request
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
-    "source_agent_id", #* #"String"
+#Delete
+    #--Request
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
+    "source_agent_id", #"String"
     "partner_contact_id", #"String"
     "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
-
-    # Response
+    #--Response
     "status", #"String"
     "deleted", #"Boolean"
     "messages", #"Array"

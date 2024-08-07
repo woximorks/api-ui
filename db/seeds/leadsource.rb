@@ -1,10 +1,7 @@
 lead_source_attrs = [
-    #---------LeadSource---------
-    
-    # Index
-    # Request (no data)
-
-    # Response
+#Index
+    #--Request (no data)
+    #--Response
     "moxi_works_lead_source_id", #"String"
     "name", #"String"
     "is_partner_alias", #"Boolean"

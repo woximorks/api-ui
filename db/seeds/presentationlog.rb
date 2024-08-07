@@ -1,9 +1,7 @@
 presentation_log_attrs = [
-    # ---------PresentationLog---------
-
-    # Index
-    # Request
-    "moxi_works_company_id", #* #"String"
+#Index
+    #--Request
+    "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
     "moxi_works_agent_id", #"String"
     "agent_uuid", #"String"
@@ -15,8 +13,7 @@ presentation_log_attrs = [
     "page_number", #"Integer"
     "include_times", #"Boolean"
     "type", #"String"
-
-    # Response
+    #--Response
     "page_number", #"Integer"
     "total_pages", #"Integer"
     "presentations" #"Array"

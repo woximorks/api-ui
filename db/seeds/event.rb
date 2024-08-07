@@ -1,10 +1,10 @@
 event_attrs = [
-    # Create
-    # Request
+#Create
+    #--Request
     "partner_event_id", #"String"
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
-    "source_agent_id", #* #"String"
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
+    "source_agent_id", #"String"
     "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
     "event_subject", #"String"
@@ -16,11 +16,10 @@ event_attrs = [
     "event_end", #"Integer"
     "all_day", #"Boolean"
     "attendees", #"String"
-
-    # Response
+    #--Response
     "partner_event_id", #"String"
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
     "event_subject", #"String"
     "event_location", #"String"
     "note", #"String"
@@ -32,12 +31,12 @@ event_attrs = [
     "event_end", #"Integer"
     "attendees", #"String"
 
-    # Update
-    # Request
+#Update
+    #--Request
     "partner_event_id", #"String"
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
-    "source_agent_id", #* #"String"
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
+    "source_agent_id", #"String"
     "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
     "event_subject", #"String"
@@ -49,11 +48,10 @@ event_attrs = [
     "event_end", #"Integer"
     "all_day", #"Boolean"
     "attendees", #"String"
-
-    # Response
+    #--Response
     "partner_event_id", #"String"
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
     "event_subject", #"String"
     "event_location", #"String"
     "note", #"String"
@@ -64,30 +62,28 @@ event_attrs = [
     "event_end", #"Integer"
     "attendees", #"String"
 
-    # Index
-    # Request
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
-    "source_agent_id", #* #"String"
+#Index
+    #--Request
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
+    "source_agent_id", #"String"
     "date_start", #"Integer"
     "date_end", #"Integer"
     "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
-
-    # Response
+    #--Response
     "date", #"String"
     "events", #"Array"
 
-    # Delete
-    # Request
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
-    "source_agent_id", #* #"String"
+#Delete
+    #--Request
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
+    "source_agent_id", #"String"
     "partner_event_id", #"String"
     "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
-
-    # Response
+    #--Response
     "status", #"String"
     "deleted" #"Boolean"
 ]

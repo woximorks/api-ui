@@ -1,11 +1,10 @@
 team_attrs = [
-    # Show
-    # Request
+#Show
+    #--Request
     "moxi_works_team_id", #"String"
     "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
-
-    # Response
+    #--Response
     "uuid", #"String"
     "name", #"String or null"
     "email", #"String or null"
@@ -24,12 +23,11 @@ team_attrs = [
     "website_url", #"String or null"
     "active", #"Boolean"
 
-    # Index
-    # Request
+#Index
+    #--Request
     "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
-
-    # Response
+    #--Response
     "uuid", #"String"
     "name", #"String or null"
     "email", #"String or null"

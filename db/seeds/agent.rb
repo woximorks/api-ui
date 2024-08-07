@@ -1,19 +1,16 @@
 agent_attrs = [
-    # ---------Agent---------
-    #http://moxiworks-platform.github.io/api.html#agent
-
-    #http://moxiworks-platform.github.io/api.html#agent-show
-    #Request
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
-    "source_agent_id", #* #"String"
+#Show
+    #--Request
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
+    "source_agent_id", #"String"
     "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
     "include_access_level", #"Boolean"
     "include_gci_goals", #"Boolean"
     "include_partners", #"Boolean"
     "include_reviews", #"Boolean"
-    #Response
+    #--Response
     "moxi_works_agent_id", #"String"
     "client_agent_id", #"String"
     "mls_agent_id", #"String or null"
@@ -81,8 +78,8 @@ agent_attrs = [
     "profile_visible_online", #"Boolean"
     "user_reviews", #"Array"
 
-    #http://moxiworks-platform.github.io/api.html#agent-index
-    #Request
+#Index
+    #--Request
     "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
     "moxi_works_office_id", #"String"
@@ -98,7 +95,7 @@ agent_attrs = [
     "include_reviews", #"Boolean"
     "timestamps_only", #"Boolean"
     "include_bio", #"Boolean"
-    #Response
+    #--Response
     "moxi_works_agent_id", #"String"
     "client_agent_id", #"String"
     "mls_agent_id", #"String or null"

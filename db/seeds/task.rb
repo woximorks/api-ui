@@ -1,9 +1,9 @@
 task_attrs = [
-    # Create
-    # Request
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
-    "source_agent_id", #* #"String"
+#Create
+    #--Request
+    "agent_uuid", "String"
+    "moxi_works_agent_id", "String"
+    "source_agent_id", "String"
     "partner_task_id", #"String"
     "partner_contact_id", #"String"
     "name", #"String"
@@ -12,8 +12,7 @@ task_attrs = [
     "parent_company_id", #"String"
     "duration", #"Integer"
     "description", #"String"
-
-    # Response
+    #--Response
     "agent_uuid", #"String"
     "moxi_works_agent_id", #"String"
     "partner_contact_id", #"String"
@@ -25,11 +24,11 @@ task_attrs = [
     "created_at", #"Integer"
     "completed_at", #"Integer or null"
 
-    # Update
-    # Request
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
-    "source_agent_id", #* #"String"
+#Update
+    #--Request
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
+    "source_agent_id", #"String"
     "partner_task_id", #"String"
     "partner_contact_id", #"String"
     "name", #"String"
@@ -38,8 +37,7 @@ task_attrs = [
     "parent_company_id", #"String"
     "duration", #"Integer"
     "description", #"String"
-
-    # Response
+    #--Response
     "agent_uuid", #"String"
     "moxi_works_agent_id", #"String"
     "partner_contact_id", #"String"
@@ -51,17 +49,16 @@ task_attrs = [
     "created_at", #"Integer"
     "completed_at", #"Integer or null"
 
-    # Show
-    # Request
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
-    "source_agent_id", #* #"String"
+#Show
+    #--Request
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
+    "source_agent_id", #"String"
     "partner_task_id", #"String"
     "partner_contact_id", #"String"
     "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
-
-    # Response
+    #--Response
     "agent_uuid", #"String"
     "moxi_works_agent_id", #"String"
     "partner_contact_id", #"String"
@@ -74,19 +71,18 @@ task_attrs = [
     "created_at", #"Integer"
     "completed_at", #"Integer or null"
 
-    # Index
-    # Request
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
-    "source_agent_id", #* #"String"
+#Index
+    #--Request
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
+    "source_agent_id", #"String"
     "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
     "due_date_start", #"Integer"
     "due_date_end", #"Integer"
     "partner_contact_id", #"String"
     "page_number", #"Integer"
-
-    # Response
+    #--Response
     "page_number", #"Integer"
     "total_pages", #"Integer"
     "tasks" #"Array"

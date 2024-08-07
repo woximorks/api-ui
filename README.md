@@ -37,3 +37,4 @@
 
 5. ChatGPT assisted seed files are populated
     - This data was pulled from the API documentation (https://moxiworks-platform.github.io/api.html)
+    - Cleaned up and organized all seed files, structured comments, etc.

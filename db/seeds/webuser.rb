@@ -1,10 +1,10 @@
 web_user_attrs = [
-    #Index
-    #Request
+#Index
+    #--Request
     "moxi_works_company_id", #"String"
-    "agent_uuid", #† #"String"
-    "moxi_works_agent_id", #† #"String"
-    "source_agent_id", #† #"String"
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
+    "source_agent_id", #"String"
     "parent_company_id", #"String"
     "has_agent_association", #"Boolean"
     "has_web_data", #"Boolean"
@@ -13,8 +13,7 @@ web_user_attrs = [
     "page_number", #"Integer"
     "updated_after", #"Integer"
     "updated_before", #"Integer"
-
-    #Response
+    #--Response
     "moxi_works_user_id", #"String"
     "first_name", #"String or null"
     "last_name", #"String or null"

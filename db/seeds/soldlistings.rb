@@ -1,14 +1,11 @@
-sold_listings_attrs = [   
-    #--------SoldListings--------
-
-    #Show
-    # Request
-    "moxi_works_listing_id", #* #"String"
-    "moxi_works_company_id", #* #"String"
+sold_listings_attrs = [
+#Show
+    #--Request
+    "moxi_works_listing_id", #"String"
+    "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
     "underscore_response", #"Boolean"
-
-    # Response
+    #--Response
     "LotSizeAcres", #"Float or null"
     "BathroomsFull", #"Integer or null"
     "BathroomsHalf", #"Integer or null"
@@ -82,9 +79,9 @@ sold_listings_attrs = [
     "BuyerAgentOfficeID", #"String"
     "BuyerAgentMoxiWorksOfficeID", #"String"
 
-    #Index
-    # Request
-    "moxi_works_company_id", #* #"String"
+#Index
+    #--Request
+    "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
     "sold_since", #"Integer"
     "sold_before", #"Integer"
@@ -95,8 +92,7 @@ sold_listings_attrs = [
     "last_moxi_works_listing_id", #"String"
     "include_buyer_listings", #"String"
     "underscore_response", #"Boolean"
-
-    # Response
+    #--Response
     "FinalPage", #"Boolean"
     "Listings" #"Array"
 ]

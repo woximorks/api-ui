@@ -1,12 +1,11 @@
 listing_attrs = [
-    #Update
-    # Request
-    "moxi_works_listing_id", #* #"String"
-    "moxi_works_company_id", #* #"String"
+#Update
+    #--Request
+    "moxi_works_listing_id", #"String"
+    "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
     "underscore_response", #"Boolean"
-
-    # Response
+    #--Response
     "LotSizeAcres", #"Float or null"
     "BathroomsFull", #"Integer or null"
     "BathroomsHalf", #"Integer or null"
@@ -77,14 +76,13 @@ listing_attrs = [
     "BuyerCommissionType", #"String or null"
     "BuyerCommissionValue", #"String or null"
 
-    #Show
-    # Request
-    "moxi_works_listing_id", #* #"String"
-    "moxi_works_company_id", #* #"String"
+#Show
+    #--Request
+    "moxi_works_listing_id", #"String"
+    "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
     "underscore_response", #"Boolean"
-
-    # Response
+    #--Response
     "LotSizeAcres", #"Float or null"
     "BathroomsFull", #"Integer or null"
     "BathroomsHalf", #"Integer or null"
@@ -155,9 +153,9 @@ listing_attrs = [
     "BuyerCommissionType", #"String or null"
     "BuyerCommissionValue", #"String or null"
 
-    #Index
-    # Request
-    "moxi_works_company_id", #* #"String"
+#Index
+    #--Request
+    "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
     "updated_since", #"Integer"
     "agent_uuid", #"String"
@@ -172,8 +170,7 @@ listing_attrs = [
     "coming_soon", #"Boolean"
     "underscore_response", #"Boolean"
     "timestamps_only", #"Boolean"
-
-    # Response
+    #--Response
     "FinalPage", #"Boolean"
     "Listings" #"Array"
 ]

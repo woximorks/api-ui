@@ -1,12 +1,9 @@
 brand_attrs = [
-    # ---------Brand---------
-    #http://moxiworks-platform.github.io/api.html#brand
-
-    #http://moxiworks-platform.github.io/api.html#brand-show
-    #Request
-    "moxi_works_company_id", #* #"String"
+#Show
+    #--Request
+    "moxi_works_company_id", #"String"
     "parent_company_id", #String
-    #Response
+    #--Response
     "image_logo", #"String"
     "cma_authoring_color", #"String"
     "background_color", #"String"
@@ -24,16 +21,16 @@ brand_attrs = [
     "pres_block_background_color", #"String"
     "pres_block_text_color", #"String"
 
-    #http://moxiworks-platform.github.io/api.html#brand-index
-    #Request
+#Index
+    #--Request
     "moxi_works_company_id", #"String"
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
-    "source_agent_id", #* #"String"
-    "moxi_works_office_id", #† #"String"
-    "office_id", #† #"String"
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
+    "source_agent_id", #"String"
+    "moxi_works_office_id", #"String"
+    "office_id", #"String"
     "parent_company_id", #"String"
-    #Response
+    #--Response
     "name", #"String"
     "image_logo", #"String"
     "cma_authoring_color", #"String"

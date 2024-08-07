@@ -1,15 +1,13 @@
 gallery_attrs = [
-    # ---------Gallery---------
-
-    # Show
-    # Request
-    "agent_uuid", #* #"String"
-    "moxi_works_agent_id", #* #"String"
-    "source_agent_id", #* #"String"
+#Show
+    #--Request
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
+    "source_agent_id", #"String"
     "moxi_works_company_id", #"String"
     "parent_company_id", #"String"
 
-    # Response
+    #--Response
     "ListingID", #"String"
     "ListOfficeAOR", #"String or null"
     "ListingImages" #"Array"

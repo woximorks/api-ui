@@ -1,8 +1,8 @@
 company_attrs = [
-    #Show
-    #Request
+#Show
+    #--Request
     "moxi_works_company_id", #*
-    # Response
+    #--Response
     "moxi_works_company_id", #"String"
     "name", #"String"
     "numeric_id", #"String"
@@ -10,22 +10,22 @@ company_attrs = [
     "partners", #"Array"
     "public_partner_attrs", #"Hash or null"
 
-    #Index
-    #Request (no content)
-    # Response
+#Index
+    #--Request (no content)
+    #--Response
     "moxi_works_company_id", #"String"
     "name", #"String"
     "numeric_id", #"String"
     "client_company_id", #"String"
     "public_partner_attrs", #"Hash or null"
 
-    #Search
-    #Request
+#Search
+    #--Request
     "per_page", #"Integer"
     "page_number", #"Integer"
     "parent_company_id", #"String"
     "show_paging_totals", #"Boolean"
-    # Response
+    #--Response
     "name", #"String"
     "numeric_id", #"String"
     "client_company_id", #"String"
