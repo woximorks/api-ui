@@ -38,5 +38,4 @@
 5. Some more seed data added, using ChatGPT to pull this data slowly because I don't want to pay for unlimited chat data
     - Some notes about this data
         - It doesn't incorporate endpoints that are array or object type at this time
-    - ActionLog - EmailCampaign is now populated into the seed files, along with some of Event data
-        - event show, index, and delete stil need to be ran through GPT, hit processing limit again
+    - ActionLog - LeadSource is now populated into the seed files

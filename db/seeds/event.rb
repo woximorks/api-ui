@@ -63,4 +63,35 @@ event_attrs = [
     "event_start", #"Integer"
     "event_end", #"Integer"
     "attendees", #"String"
+
+    # Index
+    # Request
+    "agent_uuid", #* #"String"
+    "moxi_works_agent_id", #* #"String"
+    "source_agent_id", #* #"String"
+    "date_start", #"Integer"
+    "date_end", #"Integer"
+    "moxi_works_company_id", #"String"
+    "parent_company_id", #"String"
+
+    # Response
+    "date", #"String"
+    "events", #"Array"
+
+    # Delete
+    # Request
+    "agent_uuid", #* #"String"
+    "moxi_works_agent_id", #* #"String"
+    "source_agent_id", #* #"String"
+    "partner_event_id", #"String"
+    "moxi_works_company_id", #"String"
+    "parent_company_id", #"String"
+
+    # Response
+    "status", #"String"
+    "deleted" #"Boolean"
 ]
+
+event_attrs.each do |attr_title|
+    Attr.find_or_create_by!(attr_title: attr_title)
+end
