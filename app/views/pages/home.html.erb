@@ -1,13 +1,14 @@
 
 <ul id="endpoints">
-<h3>Each endpoint currently available within the API</h3>
+<h3>Endpoints in the API</h3>
   <% @endpoints.each do |endpoint| %>
     <b><li><%= endpoint.endpoint_title %></li></b>
   <% end %>
 </ul>
 <hr>
 <ul id="attrs">
-<h3>Every attribute available within the API</h3>
+<h3 style="margin-bottom: 0;">Attributes in the API</h3>
+<h5 style="margin-top: 0;">(these are associated with one or more Endpoint)</h5>
   <% @attrs.each do |attr| %>
     <li><%= attr.attr_title %></li>
   <% end %>

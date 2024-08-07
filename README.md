@@ -35,8 +35,5 @@
 
 4. Cleanup
 
-5. Some more seed data added, using ChatGPT to pull this data slowly because I don't want to pay for unlimited chat data
-    - Some notes about this data
-        - It doesn't incorporate endpoints that are array or object type at this time
-    - ActionLog - PresentationLog is now populated into the seed files
-        - SoldListings still needs Index
+5. ChatGPT assisted seed files are populated
+    - This data was pulled from the API documentation (https://moxiworks-platform.github.io/api.html)

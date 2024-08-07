@@ -80,7 +80,25 @@ sold_listings_attrs = [
     "BuyerAgentUUID", #"String"
     "BuyerAgentOfficeName", #"String"
     "BuyerAgentOfficeID", #"String"
-    "BuyerAgentMoxiWorksOfficeID" #"String"
+    "BuyerAgentMoxiWorksOfficeID", #"String"
+
+    #Index
+    # Request
+    "moxi_works_company_id", #* #"String"
+    "parent_company_id", #"String"
+    "sold_since", #"Integer"
+    "sold_before", #"Integer"
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
+    "source_agent_id", #"String"
+    "moxi_works_office_id", #"String"
+    "last_moxi_works_listing_id", #"String"
+    "include_buyer_listings", #"String"
+    "underscore_response", #"Boolean"
+
+    # Response
+    "FinalPage", #"Boolean"
+    "Listings" #"Array"
 ]
 
 sold_listings_attrs.each do |attr_title|
