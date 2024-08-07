@@ -84,7 +84,7 @@ task_attrs = [
     "page_number", #"Integer"
     #--Response
     "page_number", #"Integer"
-    "total_pages", #"Integer"
+    "total_pages" #"Integer"
     "tasks" #"Array"
 ]
 
