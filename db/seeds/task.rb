@@ -1,9 +1,9 @@
 task_attrs = [
 #Create
     #--Request
-    "agent_uuid", "String"
-    "moxi_works_agent_id", "String"
-    "source_agent_id", "String"
+    "agent_uuid", #"String"
+    "moxi_works_agent_id", #"String"
+    "source_agent_id", #"String"
     "partner_task_id", #"String"
     "partner_contact_id", #"String"
     "name", #"String"
@@ -84,7 +84,7 @@ task_attrs = [
     "page_number", #"Integer"
     #--Response
     "page_number", #"Integer"
-    "total_pages" #"Integer"
+    "total_pages", #"Integer"
     "tasks" #"Array"
 ]
 
