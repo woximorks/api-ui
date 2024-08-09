@@ -228,4 +228,5 @@ buyertransaction_attrs = [
 
 buyertransaction_attrs.each do |attr_title|
     Attr.find_or_create_by!(attr_title: attr_title)
+    BuyerTransactionAttr.find_or_create_by!(buyer_transaction_attr_title: attr_title)
 end

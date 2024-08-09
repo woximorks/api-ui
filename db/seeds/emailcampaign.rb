@@ -37,4 +37,5 @@ email_campaign_attrs = [
 
 email_campaign_attrs.each do |attr_title|
     Attr.find_or_create_by!(attr_title: attr_title)
+    EmailCampaignAttr.find_or_create_by!(email_campaign_attr_title: attr_title)
 end

@@ -1,0 +1,2 @@
+class CompanyAttr < ApplicationRecord
+end

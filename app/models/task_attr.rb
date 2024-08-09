@@ -1,0 +1,2 @@
+class TaskAttr < ApplicationRecord
+end

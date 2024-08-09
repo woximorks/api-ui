@@ -1,0 +1,2 @@
+class AgentAttr < ApplicationRecord
+end

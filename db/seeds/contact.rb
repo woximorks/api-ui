@@ -357,4 +357,5 @@ contact_attrs = [
 
 contact_attrs.each do |attr_title|
     Attr.find_or_create_by!(attr_title: attr_title)
+    ContactAttr.find_or_create_by!(contact_attr_title: attr_title)
 end

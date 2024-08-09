@@ -34,4 +34,5 @@ company_attrs = [
 
 company_attrs.each do |attr_title|
     Attr.find_or_create_by!(attr_title: attr_title)
+    CompanyAttr.find_or_create_by!(company_attr_title: attr_title)
 end

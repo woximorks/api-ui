@@ -1,4 +1,4 @@
-actionlog_attrs = [
+action_log_attrs = [
 #Create
     #--Request
     "agent_uuid", #"String"
@@ -63,6 +63,7 @@ actionlog_attrs = [
     "actions", #"Array"
 ]
 
-actionlog_attrs.each do |attr_title|
+action_log_attrs.each do |attr_title|
     Attr.find_or_create_by!(attr_title: attr_title)
+    ActionLogAttr.find_or_create_by!(action_log_attr_title: attr_title)
 end

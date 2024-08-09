@@ -1,0 +1,2 @@
+class LeadSourceAttr < ApplicationRecord
+end

@@ -10,12 +10,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_01_172307) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_09_173354) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "action_log_attrs", force: :cascade do |t|
+    t.string "action_log_attr_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "agent_attrs", force: :cascade do |t|
+    t.string "agent_attr_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "attrs", force: :cascade do |t|
     t.string "attr_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "brand_attrs", force: :cascade do |t|
+    t.string "brand_attr_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "buyer_transaction_attrs", force: :cascade do |t|
+    t.string "buyer_transaction_attr_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "company_attrs", force: :cascade do |t|
+    t.string "company_attr_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "company_transaction_attrs", force: :cascade do |t|
+    t.string "company_attr_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contact_attrs", force: :cascade do |t|
+    t.string "contact_attr_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "email_campaign_attrs", force: :cascade do |t|
+    t.string "email_campaign_attr_title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -49,6 +97,72 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_01_172307) do
 
   create_table "endpoints", force: :cascade do |t|
     t.string "endpoint_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "event_attrs", force: :cascade do |t|
+    t.string "event_attr_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "gallery_attrs", force: :cascade do |t|
+    t.string "gallery_attr_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "group_attrs", force: :cascade do |t|
+    t.string "group_attr_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "lead_source_attrs", force: :cascade do |t|
+    t.string "lead_source_attr_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "listing_attrs", force: :cascade do |t|
+    t.string "listing_attr_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "office_attrs", force: :cascade do |t|
+    t.string "office_attr_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "presentation_log_attrs", force: :cascade do |t|
+    t.string "presentation_log_attr_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sold_listings_attrs", force: :cascade do |t|
+    t.string "sold_listings_attr_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "task_attrs", force: :cascade do |t|
+    t.string "task_attr_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "team_attrs", force: :cascade do |t|
+    t.string "team_attr_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "web_user_attrs", force: :cascade do |t|
+    t.string "web_user_attr_title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

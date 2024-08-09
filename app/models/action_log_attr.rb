@@ -1,0 +1,2 @@
+class ActionLogAttr < ApplicationRecord
+end

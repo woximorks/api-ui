@@ -1,0 +1,2 @@
+class GroupAttr < ApplicationRecord
+end

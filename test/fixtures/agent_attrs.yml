@@ -1,0 +1,7 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  agent_attr_title: MyString
+
+two:
+  agent_attr_title: MyString

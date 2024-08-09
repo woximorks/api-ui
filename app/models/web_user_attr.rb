@@ -1,0 +1,2 @@
+class WebUserAttr < ApplicationRecord
+end

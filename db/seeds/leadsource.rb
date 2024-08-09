@@ -10,4 +10,5 @@ lead_source_attrs = [
 
 lead_source_attrs.each do |attr_title|
     Attr.find_or_create_by!(attr_title: attr_title)
+    LeadSourceAttr.find_or_create_by!(lead_source_attr_title: attr_title)
 end

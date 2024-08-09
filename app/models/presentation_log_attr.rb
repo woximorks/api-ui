@@ -1,0 +1,2 @@
+class PresentationLogAttr < ApplicationRecord
+end

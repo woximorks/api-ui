@@ -25,4 +25,5 @@ web_user_attrs = [
 
 web_user_attrs.each do |attr_title|
     Attr.find_or_create_by!(attr_title: attr_title)
+    WebUserAttr.find_or_create_by!(web_user_attr_title: attr_title)
 end

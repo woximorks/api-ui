@@ -1,0 +1,2 @@
+class EmailCampaignAttr < ApplicationRecord
+end

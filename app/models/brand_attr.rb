@@ -1,0 +1,2 @@
+class BrandAttr < ApplicationRecord
+end

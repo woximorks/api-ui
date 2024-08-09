@@ -1,0 +1,2 @@
+class CompanyTransactionAttr < ApplicationRecord
+end

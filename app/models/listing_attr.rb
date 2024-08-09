@@ -1,0 +1,2 @@
+class ListingAttr < ApplicationRecord
+end

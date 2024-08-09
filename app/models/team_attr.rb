@@ -1,0 +1,2 @@
+class TeamAttr < ApplicationRecord
+end

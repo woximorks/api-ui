@@ -1,0 +1,2 @@
+class GalleryAttr < ApplicationRecord
+end

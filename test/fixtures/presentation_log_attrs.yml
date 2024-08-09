@@ -1,0 +1,7 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  presentation_log_attr_title: MyString
+
+two:
+  presentation_log_attr_title: MyString

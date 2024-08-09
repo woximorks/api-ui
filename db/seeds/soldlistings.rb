@@ -99,4 +99,5 @@ sold_listings_attrs = [
 
 sold_listings_attrs.each do |attr_title|
     Attr.find_or_create_by!(attr_title: attr_title)
+    SoldListingsAttr.find_or_create_by!(sold_listings_attr_title: attr_title)
 end

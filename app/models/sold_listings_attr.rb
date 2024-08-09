@@ -1,0 +1,2 @@
+class SoldListingsAttr < ApplicationRecord
+end

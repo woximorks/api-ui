@@ -38,3 +38,9 @@
 5. ChatGPT assisted seed files are populated
     - This data was pulled from the API documentation (https://moxiworks-platform.github.io/api.html)
     - Cleaned up and organized all seed files, structured comments, etc.
+
+6. Making individual attribute tables
+    - rails g model ActionLogAttr action_log_attr_title
+    - Added ActionLogAttr.find_or_create_by!(action_log_attr_title: attr_title) to the actionlog seed file
+    - https://www.youtube.com/watch?v=-zQdVV7D4w8
+    - Followed these same steps for the other endpoints

@@ -1,0 +1,2 @@
+class EventAttr < ApplicationRecord
+end
