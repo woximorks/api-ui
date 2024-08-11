@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  endpoint: one
+  attr: one
+  product: one
+  request_type: MyString
+  ui_info: MyString
+
+two:
+  endpoint: two
+  attr: two
+  product: two
+  request_type: MyString
+  ui_info: MyString
