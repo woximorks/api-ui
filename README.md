@@ -1,2 +1,5 @@
 # README
-Seed files added, Devise gem for authentication
+
+Seeds file updated to include Products
+Dummy user added
+Included UI info on the home view
