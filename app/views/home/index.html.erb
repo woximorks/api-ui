@@ -22,6 +22,7 @@
     <% end %>
 </ul>
 
+
 <ul id="agent_associated_attrs">
     <h3>Agent Associated Attributes</h3>
     <% @associated_attrs.where(endpoint_id: 2).each do |associated_attr| %>
@@ -30,3 +31,138 @@
     <% end %>
 </ul>
 
+<ul id="brand_associated_attrs">
+    <h3>Brand Associated Attributes</h3>
+    <% @associated_attrs.where(endpoint_id: 3).each do |associated_attr| %>
+    <li><%= associated_attr.attr.attr_title %></li>
+    <li><%= associated_attr.ui_info %></li>
+    <% end %>
+</ul>
+
+<ul id="buyer_transaction_associated_attrs">
+    <h3>BuyerTransaction Associated Attributes</h3>
+    <% @associated_attrs.where(endpoint_id: 4).each do |associated_attr| %>
+    <li><%= associated_attr.attr.attr_title %></li>
+    <li><%= associated_attr.ui_info %></li>
+    <% end %>
+</ul>
+
+<ul id="company_associated_attrs">
+    <h3>Company Associated Attributes</h3>
+    <% @associated_attrs.where(endpoint_id: 5).each do |associated_attr| %>
+    <li><%= associated_attr.attr.attr_title %></li>
+    <li><%= associated_attr.ui_info %></li>
+    <% end %>
+</ul>
+
+<ul id="contact_associated_attrs">
+    <h3>Contact Associated Attributes</h3>
+    <% @associated_attrs.where(endpoint_id: 6).each do |associated_attr| %>
+    <li><%= associated_attr.attr.attr_title %></li>
+    <li><%= associated_attr.ui_info %></li>
+    <% end %>
+</ul>
+
+<ul id="email_campaign_associated_attrs">
+    <h3>EmailCampaign Associated Attributes</h3>
+    <% @associated_attrs.where(endpoint_id: 7).each do |associated_attr| %>
+    <li><%= associated_attr.attr.attr_title %></li>
+    <li><%= associated_attr.ui_info %></li>
+    <% end %>
+</ul>
+
+<ul id="event_associated_attrs">
+    <h3>Event Associated Attributes</h3>
+    <% @associated_attrs.where(endpoint_id: 8).each do |associated_attr| %>
+    <li><%= associated_attr.attr.attr_title %></li>
+    <li><%= associated_attr.ui_info %></li>
+    <% end %>
+</ul>
+
+<ul id="gallery_associated_attrs">
+    <h3>Gallery Associated Attributes</h3>
+    <% @associated_attrs.where(endpoint_id: 9).each do |associated_attr| %>
+    <li><%= associated_attr.attr.attr_title %></li>
+    <li><%= associated_attr.ui_info %></li>
+    <% end %>
+</ul>
+
+<ul id="group_associated_attrs">
+    <h3>Group Associated Attributes</h3>
+    <% @associated_attrs.where(endpoint_id: 10).each do |associated_attr| %>
+    <li><%= associated_attr.attr.attr_title %></li>
+    <li><%= associated_attr.ui_info %></li>
+    <% end %>
+</ul>
+
+<ul id="lead_source_associated_attrs">
+    <h3>LeadSource Associated Attributes</h3>
+    <% @associated_attrs.where(endpoint_id: 11).each do |associated_attr| %>
+    <li><%= associated_attr.attr.attr_title %></li>
+    <li><%= associated_attr.ui_info %></li>
+    <% end %>
+</ul>
+
+<ul id="listing_associated_attrs">
+    <h3>Listing Associated Attributes</h3>
+    <% @associated_attrs.where(endpoint_id: 12).each do |associated_attr| %>
+    <li><%= associated_attr.attr.attr_title %></li>
+    <li><%= associated_attr.ui_info %></li>
+    <% end %>
+</ul>
+
+<ul id="office_associated_attrs">
+    <h3>Office Associated Attributes</h3>
+    <% @associated_attrs.where(endpoint_id: 13).each do |associated_attr| %>
+    <li><%= associated_attr.attr.attr_title %></li>
+    <li><%= associated_attr.ui_info %></li>
+    <% end %>
+</ul>
+
+<ul id="presentation_log_associated_attrs">
+    <h3>PresentationLog Associated Attributes</h3>
+    <% @associated_attrs.where(endpoint_id: 14).each do |associated_attr| %>
+    <li><%= associated_attr.attr.attr_title %></li>
+    <li><%= associated_attr.ui_info %></li>
+    <% end %>
+</ul>
+
+<ul id="seller_transaction_associated_attrs">
+    <h3>Seller Transaction Associated Attributes</h3>
+    <% @associated_attrs.where(endpoint_id: 15).each do |associated_attr| %>
+    <li><%= associated_attr.attr.attr_title %></li>
+    <li><%= associated_attr.ui_info %></li>
+    <% end %>
+</ul>
+
+<ul id="sold_listing_associated_attrs">
+    <h3>Sold Listing Associated Attributes</h3>
+    <% @associated_attrs.where(endpoint_id: 16).each do |associated_attr| %>
+    <li><%= associated_attr.attr.attr_title %></li>
+    <li><%= associated_attr.ui_info %></li>
+    <% end %>
+</ul>
+
+<ul id="task_associated_attrs">
+    <h3>Task Associated Attributes</h3>
+    <% @associated_attrs.where(endpoint_id: 17).each do |associated_attr| %>
+    <li><%= associated_attr.attr.attr_title %></li>
+    <li><%= associated_attr.ui_info %></li>
+    <% end %>
+</ul>
+
+<ul id="team_associated_attrs">
+    <h3>Team Associated Attributes</h3>
+    <% @associated_attrs.where(endpoint_id: 18).each do |associated_attr| %>
+    <li><%= associated_attr.attr.attr_title %></li>
+    <li><%= associated_attr.ui_info %></li>
+    <% end %>
+</ul>
+
+<ul id="web_user_associated_attrs">
+    <h3>WebUser Associated Attributes</h3>
+    <% @associated_attrs.where(endpoint_id: 19).each do |associated_attr| %>
+    <li><%= associated_attr.attr.attr_title %></li>
+    <li><%= associated_attr.ui_info %></li>
+    <% end %>
+</ul>
