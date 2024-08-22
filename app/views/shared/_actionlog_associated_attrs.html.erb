@@ -3,8 +3,7 @@
     <div id="test">
     <h5>Test</h5>
     <%= image_tag("test.png") %>
-    <% @associated_attrs.joins(:product).where(endpoint_id: 1, products: { product_title: "test" }).each do |associated_attr| %>
-    <ul>
+    <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "test" }, endpoints: { endpoint_title: "ActionLog" }).each do |associated_attr| %>    <ul>
         <li><%= associated_attr.attr.attr_title %></li>
         <li><hr></li>
         <li><%= associated_attr.ui_info %>Associated UI information goes here</li>
