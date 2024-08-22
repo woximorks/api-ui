@@ -1,0 +1,7 @@
+<ul id="seller_transaction_associated_attrs">
+    <h3>Seller Transaction Associated Attributes</h3>
+    <% @associated_attrs.where(endpoint_id: 15).each do |associated_attr| %>
+    <li><%= associated_attr.attr.attr_title %></li>
+    <li><%= associated_attr.ui_info %></li>
+    <% end %>
+</ul>

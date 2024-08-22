@@ -1,0 +1,7 @@
+<ul id="web_user_associated_attrs">
+    <h3>WebUser Associated Attributes</h3>
+    <% @associated_attrs.where(endpoint_id: 19).each do |associated_attr| %>
+    <li><%= associated_attr.attr.attr_title %></li>
+    <li><%= associated_attr.ui_info %></li>
+    <% end %>
+</ul>

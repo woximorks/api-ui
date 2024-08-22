@@ -1,0 +1,7 @@
+<ul id="task_associated_attrs">
+    <h3>Task Associated Attributes</h3>
+    <% @associated_attrs.where(endpoint_id: 17).each do |associated_attr| %>
+    <li><%= associated_attr.attr.attr_title %></li>
+    <li><%= associated_attr.ui_info %></li>
+    <% end %>
+</ul>

@@ -1,0 +1,34 @@
+<%= render "shared/actionlog_associated_attrs" %>
+<%= render "shared/agent_associated_attrs" %>
+<%= render "shared/brand_associated_attrs" %>
+<%= render "shared/buyertransaction_associated_attrs" %>
+<%= render "shared/company_associated_attrs" %>
+<%= render "shared/contact_associated_attrs" %>
+<%= render "shared/emailcampaign_associated_attrs" %>
+<%= render "shared/event_associated_attrs" %>
+<%= render "shared/gallery_associated_attrs" %>
+<%= render "shared/group_associated_attrs" %>
+<%= render "shared/leadsource_associated_attrs" %>
+<%= render "shared/listing_associated_attrs" %>
+<%= render "shared/office_associated_attrs" %>
+<%= render "shared/presentationlog_associated_attrs" %>
+<%= render "shared/sellertransaction_associated_attrs" %>
+<%= render "shared/soldlisting_associated_attrs" %>
+<%= render "shared/task_associated_attrs" %>
+<%= render "shared/team_associated_attrs" %>
+<%= render "shared/webuser_associated_attrs" %>
+<hr>
+<ul id="endpoints">
+  <h3>Endpoints in the API</h3>
+    <% @endpoints.each do |endpoint| %>
+      <b><li><%= endpoint.endpoint_title %></li></b>
+    <% end %>
+</ul>
+<hr>
+<ul id="attrs">
+  <h3 style="margin-bottom: 0;">Attributes in the API</h3>
+  <h5 style="margin-top: 0;">(these are associated with one or more Endpoint)</h5>
+    <% @attrs.each do |attr| %>
+      <li><%= attr.attr_title %></li>
+    <% end %>
+</ul>
