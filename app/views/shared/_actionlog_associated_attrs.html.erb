@@ -3,7 +3,7 @@
     <div id="test">
     <h5>Test</h5>
     <%= image_tag("test.png") %>
-    <% @associated_attrs.where(endpoint_id: 1, product_id: 1).each do |associated_attr| %>
+    <% @associated_attrs.joins(:product).where(endpoint_id: 1, products: { product_title: "test" }).each do |associated_attr| %>
     <ul>
         <li><%= associated_attr.attr.attr_title %></li>
         <li><hr></li>
