@@ -17,6 +17,7 @@
  #actionlog_associated_attrs {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
  }
  .product_association {
     width: 50%;
