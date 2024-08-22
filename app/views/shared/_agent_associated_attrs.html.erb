@@ -38,7 +38,7 @@
 <div class="product_association" id="websites">
     <h5>Websites</h5>
     <%= image_tag("websites.png") %>
-    <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Websites" }, endpoints: { endpoint_title: "Websites" }).each do |associated_attr| %>
+    <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Websites" }, endpoints: { endpoint_title: "Agent" }).each do |associated_attr| %>
     <ul>
         <li><%= associated_attr.attr.attr_title %></li>
         <li><hr></li>
@@ -50,7 +50,7 @@
 <div class="product_association" id="unassociated">
     <h5>Unassociated</h5>
     <%= image_tag("unassociated.png") %>
-    <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Unassociated" }, endpoints: { endpoint_title: "ActionLog" }).each do |associated_attr| %>
+    <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Unassociated" }, endpoints: { endpoint_title: "Agent" }).each do |associated_attr| %>
     <ul>
         <li><%= associated_attr.attr.attr_title %></li>
         <li><hr></li>
