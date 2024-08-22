@@ -1,8 +1,28 @@
-<ul id="actionlog_associated_attrs">
-    <h3>ActionLog Associated Attributes</h3>
-    <% @associated_attrs.where(endpoint_id: 1).each do |associated_attr| %>
-    <li><%= associated_attr.attr.attr_title %></li>
-    <li><%= associated_attr.ui_info %></li>
-    <li><%= associated_attr.product.product_title %></li>
+<h3 style="text-align:center;">ActionLog Associated Attributes</h3>
+<div id="actionlog_associated_attrs">
+    <div id="test">
+    <h5>Test</h5>
+    <%= image_tag("test.png") %>
+    <% @associated_attrs.where(endpoint_id: 1, product_id: 1).each do |associated_attr| %>
+    <ul>
+        <li><%= associated_attr.attr.attr_title %></li>
+        <li><hr></li>
+        <li><%= associated_attr.ui_info %>Associated UI information goes here</li>
+    </ul>
     <% end %>
-</ul>
+    </div>
+
+    <div id="test">
+    <h5>Test2</h5>
+    <%= image_tag("test2.png") %>
+    <% @associated_attrs.where(endpoint_id: 1, product_id: 1).each do |associated_attr| %>
+    <ul>
+        <li><%= associated_attr.attr.attr_title %></li>
+        <li><hr></li>
+        <li><%= associated_attr.ui_info %>Associated UI information goes here</li>
+    </ul>
+    <% end %>
+    </div>   
+
+</div>
+

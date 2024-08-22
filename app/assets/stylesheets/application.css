@@ -13,3 +13,25 @@
  *= require_tree .
  *= require_self
  */
+
+ #actionlog_associated_attrs {
+    display: flex;
+ }
+ #test {
+    width: 50%;
+    text-align: center;
+ }
+ ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-evenly;
+    li {
+        padding: 1em;
+        width: 100%;
+        hr {
+            width: 100%;
+        }
+    }
+ }
