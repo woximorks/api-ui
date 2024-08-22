@@ -16,17 +16,19 @@
 
  #actionlog_associated_attrs {
     display: flex;
+    flex-wrap: wrap;
  }
- #test {
+ .product_association {
     width: 50%;
     text-align: center;
  }
- ul {
+ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: space-evenly;
+    
     li {
         padding: 1em;
         width: 100%;
@@ -34,4 +36,4 @@
             width: 100%;
         }
     }
- }
+}

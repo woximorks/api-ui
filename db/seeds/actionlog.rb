@@ -70,5 +70,6 @@ end
 actionlog_attrs.each do |attr_title|
     attr = Attr.find_by(attr_title: attr_title)
     endpoint = Endpoint.find_by(endpoint_title: "ActionLog")
-    associated_attr = AssociatedAttr.find_or_create_by!(attr_id: attr.id, endpoint_id: endpoint.id, product_id: 1)
+    product = Product.find_by(product_title: "Unassociated")
+    associated_attr = AssociatedAttr.find_or_create_by!(attr_id: attr.id, endpoint_id: endpoint.id, product_id: product.id)
 end
