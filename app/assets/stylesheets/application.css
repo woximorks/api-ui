@@ -14,7 +14,7 @@
  *= require_self
  */
 
- #actionlog_associated_attrs {
+ .associated_attrs {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
