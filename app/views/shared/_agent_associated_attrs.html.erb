@@ -1,7 +1,61 @@
-<ul id="agent_associated_attrs">
-    <h3>Agent Associated Attributes</h3>
-    <% @associated_attrs.where(endpoint_id: 2).each do |associated_attr| %>
-    <li><%= associated_attr.attr.attr_title %></li>
-    <li><%= associated_attr.ui_info %></li>
+<h3 style="text-align:center;">Agent</h3>
+<div class="product_association" id="roster">
+    <h5>Roster</h5>
+    <%= image_tag("roster.png") %>
+    <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Roster" }, endpoints: { endpoint_title: "Agent" }).each do |associated_attr| %>
+    <ul>
+        <li><%= associated_attr.attr.attr_title %></li>
+        <li><hr></li>
+        <li><%= associated_attr.ui_info %>Associated UI information goes here</li>
+    </ul>
     <% end %>
-</ul>
+</div>
+
+<div class="product_association" id="api">
+    <h5>API</h5>
+    <%= image_tag("API.png") %>
+    <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "API" }, endpoints: { endpoint_title: "Agent" }).each do |associated_attr| %>
+    <ul>
+        <li><%= associated_attr.attr.attr_title %></li>
+        <li><hr></li>
+        <li><%= associated_attr.ui_info %>Associated UI information goes here</li>
+    </ul>
+    <% end %>
+</div>
+
+<div class="product_association" id="engage">
+    <h5>Engage</h5>
+    <%= image_tag("engage.png") %>
+    <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Engage" }, endpoints: { endpoint_title: "Agent" }).each do |associated_attr| %>
+    <ul>
+        <li><%= associated_attr.attr.attr_title %></li>
+        <li><hr></li>
+        <li><%= associated_attr.ui_info %>Associated UI information goes here</li>
+    </ul>
+    <% end %>
+</div>
+
+<div class="product_association" id="websites">
+    <h5>Websites</h5>
+    <%= image_tag("websites.png") %>
+    <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Websites" }, endpoints: { endpoint_title: "Websites" }).each do |associated_attr| %>
+    <ul>
+        <li><%= associated_attr.attr.attr_title %></li>
+        <li><hr></li>
+        <li><%= associated_attr.ui_info %>Associated UI information goes here</li>
+    </ul>
+    <% end %>
+</div>
+
+<div class="product_association" id="unassociated">
+    <h5>Unassociated</h5>
+    <%= image_tag("unassociated.png") %>
+    <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Unassociated" }, endpoints: { endpoint_title: "ActionLog" }).each do |associated_attr| %>
+    <ul>
+        <li><%= associated_attr.attr.attr_title %></li>
+        <li><hr></li>
+        <li><%= associated_attr.ui_info %>Associated UI information goes here</li>
+    </ul>
+    <% end %>
+</div>
+
