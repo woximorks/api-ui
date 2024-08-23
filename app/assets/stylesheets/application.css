@@ -13,17 +13,12 @@
  *= require_tree .
  *= require_self
  */
-
- .associated_attrs {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
- }
- .product_association {
-    width: 40%;
-    text-align: center;
- }
-ul {
+body {
+    margin: 0;
+    padding: 0;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -31,10 +26,34 @@ ul {
     justify-content: space-evenly;
     align-items: center;
     li {
-        padding: 1em;
+        padding: .25em;
         width: 100%;
         hr {
             width: 100%;
+            color: #5392d7;
+            border-style: solid;
         }
     }
 }
+
+.associated_attrs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+ }
+ .endpoint_title {
+    padding-left: 12%;
+    color: white;
+    background-color: #5392d7;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    h1 {
+        margin-top: 0;
+    }
+ }
+
+ .product_association {
+    width: 40%;
+    text-align: center;
+ }
