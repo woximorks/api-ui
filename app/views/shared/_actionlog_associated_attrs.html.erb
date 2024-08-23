@@ -7,9 +7,9 @@
     <%= image_tag("roster.png") %>
     <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Roster" }, endpoints: { endpoint_title: "ActionLog" }).each do |associated_attr| %>
     <ul>
-        <li><%= associated_attr.attr.attr_title %></li>
-        <li><hr></li>
         <li><%= associated_attr.ui_info %></li>
+        <li><hr></li>
+        <li><%= associated_attr.attr.id %> - <%= associated_attr.attr.attr_title %></li>
     </ul>
     <% end %>
     </div>
@@ -19,7 +19,7 @@
     <%= image_tag("API.png") %>
     <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "API" }, endpoints: { endpoint_title: "ActionLog" }).each do |associated_attr| %>
     <ul>
-        <li><%= associated_attr.attr.attr_title %></li>
+        <li><%= associated_attr.attr.id %> - <%= associated_attr.attr.attr_title %></li>
         <li><hr></li>
         <li><%= associated_attr.ui_info %></li>
     </ul>
@@ -31,9 +31,9 @@
     <%= image_tag("engage.png") %>
     <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Engage" }, endpoints: { endpoint_title: "ActionLog" }).each do |associated_attr| %>
     <ul>
-        <li><%= associated_attr.attr.attr_title %></li>
-        <li><hr></li>
         <li><%= associated_attr.ui_info %></li>
+        <li><hr></li>
+        <li><%= associated_attr.attr.id %> - <%= associated_attr.attr.attr_title %></li>
     </ul>
     <% end %>
     </div>
@@ -43,7 +43,7 @@
     <%= image_tag("unassociated.png") %>
     <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Unassociated" }, endpoints: { endpoint_title: "ActionLog" }).each do |associated_attr| %>
     <ul>
-        <li><%= associated_attr.attr.attr_title %></li>
+        <li><%= associated_attr.attr.id %> - <%= associated_attr.attr.attr_title %></li>
         <li><hr></li>
         <li><%= associated_attr.ui_info %></li>
     </ul>

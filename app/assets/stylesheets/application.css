@@ -20,7 +20,7 @@
     justify-content: space-evenly;
  }
  .product_association {
-    width: 50%;
+    width: 40%;
     text-align: center;
  }
 ul {
@@ -29,7 +29,7 @@ ul {
     padding: 0;
     display: flex;
     justify-content: space-evenly;
-    
+    align-items: center;
     li {
         padding: 1em;
         width: 100%;
