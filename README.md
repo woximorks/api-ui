@@ -8,3 +8,6 @@
     - Using 'Unassociated' as a product type for now to allow the DB to seed with the current associations in place between product and associated_attr
     - Making the final changes to start adding information to the prod DB for ActionLog
     - Updating front end to display the content appropriately
+        - Bootstrap and related libraries implemented
+        - Added "Open Sans" font from Google library, set some basic styling to more closely match our help center
+        - Replaced the images with those from the help center
