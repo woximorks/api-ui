@@ -3,7 +3,7 @@
 -- Update to Engage product
 UPDATE associated_attrs
 SET product_id = 4
-WHERE attr_id in (10, 11, 12, 13, 14, 15);
+WHERE attr_id in (4, 7, 10, 11, 12, 13, 14, 15);
 
 -- Update to Roster product (change attr_id) -
 UPDATE associated_attrs
@@ -13,7 +13,7 @@ WHERE attr_id in (1, 2, 8, 9);
 -- Update to API product
 UPDATE associated_attrs
 SET product_id = 11
-WHERE attr_id in (2, 3, 5, 6);
+WHERE attr_id in (2, 3, 5, 6, 16, 17, 18, 19, 20, 21, 22, 23);
 
 -- ************************************ Agent
 
@@ -80,23 +80,23 @@ SET ui_info = 'This is the human readable plain-text string which will be presen
 WHERE attr_id = 10;
 
 UPDATE associated_attrs
-SET ui_info = 'If creating an agent_action that has a location component (inperson / other etc) use this field to denote the street address of the agent_action.'
+SET ui_info = 'agent_action location component (inperson / other etc) uses this field to denote the street address of the agent_action.'
 WHERE attr_id = 11;
 
 UPDATE associated_attrs
-SET ui_info = 'If creating an agent_action that has a location component (inperson / other etc) use this field to denote the additonal street address info of the agent_action.'
+SET ui_info = 'agent_action location component (inperson / other etc) uses this field to denote the additonal street address info of the agent_action.'
 WHERE attr_id = 12;
 
 UPDATE associated_attrs
-SET ui_info = 'If creating an agent_action that has a location component (inperson / other etc) use this field to denote the city or locale of the agent_action.'
+SET ui_info = 'agent_action location component (inperson / other etc) uses this field to denote the city or locale of the agent_action.'
 WHERE attr_id = 13;
 
 UPDATE associated_attrs
-SET ui_info = 'If creating an agent_action that has a location component (inperson / other etc) use this field to denote the state or province of the agent_action..'
+SET ui_info = 'agent_action location component (inperson / other etc) uses this field to denote the state or province of the agent_action..'
 WHERE attr_id = 14;
 
 UPDATE associated_attrs
-SET ui_info = 'If creating an agent_action that has a location component (inperson / other etc) use this field to denote the postal code of the agent_action.'
+SET ui_info = 'agent_action location component (inperson / other etc) uses this field to denote the postal code of the agent_action.'
 WHERE attr_id = 15;
 
 UPDATE associated_attrs
