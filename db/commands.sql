@@ -30,7 +30,7 @@ WHERE attr_id in (28, 29, 30, 31, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44
 -- Update to API product
 UPDATE associated_attrs
 SET product_id = 11
-WHERE attr_id in (26, 27, 85, 91);
+WHERE attr_id in (24, 26, 27, 85, 91);
 
 -- Update to Websites product
 UPDATE associated_attrs
@@ -130,3 +130,314 @@ WHERE attr_id = 22;
 UPDATE associated_attrs
 SET ui_info = 'The actions array contains Dictionary objects representing endpoint entries.'
 WHERE attr_id = 23;
+
+UPDATE associated_attrs
+SET ui_info = 'To include access level information for the agent in the response'
+WHERE attr_id = 24;
+
+UPDATE associated_attrs
+SET ui_info = 'Whether to include agent’s GCI goals and commissions data in the response data.'
+WHERE attr_id = 25;
+
+UPDATE associated_attrs
+SET ui_info = 'To include affiliate data associated with the agent in the response, pass true.'
+WHERE attr_id = 26;
+
+UPDATE associated_attrs
+SET ui_info = 'To include ratings and reviews associated with the agent in the response, pass true.'
+WHERE attr_id = 27;
+
+UPDATE associated_attrs
+SET ui_info = 'This is the ID of the Agent utilized by their company.'
+WHERE attr_id = 28;
+
+UPDATE associated_attrs
+SET ui_info = 'This is the ID of the Agent utilized by their primary MLS.'
+WHERE attr_id = 29;
+
+UPDATE associated_attrs
+SET ui_info = 'This is the number of the license granted to the agent.'
+WHERE attr_id = 30;
+
+UPDATE associated_attrs
+SET ui_info = 'This is the name of the primary MLS for the agent.'
+WHERE attr_id = 31;
+
+UPDATE associated_attrs
+SET ui_info = 'This is the standard abbreviation of the primary MLS utilized by the agent.'
+WHERE attr_id = 32;
+
+UPDATE associated_attrs
+SET ui_info = 'This is the ID of this Agent. This will be an integer.'
+WHERE attr_id = 33;
+
+UPDATE associated_attrs
+SET ui_info = 'This is the MoxiWorks Platform ID of the office for this Agent. This will be an RFC 4122 compliant UUID.'
+WHERE attr_id = 34;
+
+UPDATE associated_attrs
+SET ui_info = 'This is the ID of the office for this Agent. This will be an integer.'
+WHERE attr_id = 35;
+
+UPDATE associated_attrs
+SET ui_info = 'This is the ID of the office for this Agent utilized by their company.'
+WHERE attr_id = 36;
+
+UPDATE associated_attrs
+SET ui_info = 'This is the ID of the company for this Agent. This will be an integer.'
+WHERE attr_id = 37;
+
+UPDATE associated_attrs
+SET ui_info = 'This is the ID of the Company utilized by their company.'
+WHERE attr_id = 38;
+
+UPDATE associated_attrs
+SET ui_info = 'The street address of the agent’s office. This can be null if there is no data for this attribute.'
+WHERE attr_id = 39;
+
+UPDATE associated_attrs
+SET ui_info = 'The suite or office number of the agent’s office. This can be null if there is no data for this attribute.'
+WHERE attr_id = 40;
+
+UPDATE associated_attrs
+SET ui_info = 'The city the agent’s office is in. This can be null if there is no data for this attribute.'
+WHERE attr_id = 41;
+
+UPDATE associated_attrs
+SET ui_info = 'The state or provice the agent’s office is in. This can be null if there is no data for this attribute.'
+WHERE attr_id = 42;
+
+UPDATE associated_attrs
+SET ui_info = 'The postal code the agent’s office is in. This can be null if there is no data for this attribute.'
+WHERE attr_id = 43;
+
+UPDATE associated_attrs
+SET ui_info = 'The street address of the agent’s office’s mailing address. This can be null if there is no data for this attribute.'
+WHERE attr_id = 44;
+
+UPDATE associated_attrs
+SET ui_info = 'The suite or office number of the agent’s office’s mailing address. This can be null if there is no data for this attribute.'
+WHERE attr_id = 45;
+
+UPDATE associated_attrs
+SET ui_info = 'The city the agent’s office’s mailing address is in. This can be null if there is no data for this attribute.'
+WHERE attr_id = 46;
+
+UPDATE associated_attrs
+SET ui_info = 'The state or provice the agent’s office’s mailing address is in. This can be null if there is no data for this attribute.'
+WHERE attr_id = 47;
+
+UPDATE associated_attrs
+SET ui_info = 'The postal code the agent’s office’s mailing address is in. This can be null if there is no data for this attribute.'
+WHERE attr_id = 48;
+
+UPDATE associated_attrs
+SET ui_info = 'The full name of the agent. This can be null if there is no data for this attribute.'
+WHERE attr_id = 49;
+
+UPDATE associated_attrs
+SET ui_info = 'The first name of the agent. This can be null if there is no data for this attribute.'
+WHERE attr_id = 50;
+
+UPDATE associated_attrs
+SET ui_info = 'The last name of the agent. This can be null if there is no data for this attribute.'
+WHERE attr_id = 51;
+
+UPDATE associated_attrs
+SET ui_info = 'The nickname of the agent. This can be null if there is no data for this attribute.'
+WHERE attr_id =52;
+
+UPDATE associated_attrs
+SET ui_info = 'This is the agent’s main phone number. This number should be considered the number the agent would like to be contacted by. This can be null if there is no data for this attribute.'
+WHERE attr_id = 53;
+
+UPDATE associated_attrs
+SET ui_info = 'Mobile phone number of the agent. main_phone_number should be considered higher priority, if not the same. This can be null if there is no data for this attribute.'
+WHERE attr_id = 54;
+
+UPDATE associated_attrs
+SET ui_info = 'Alternate phone number for the agent. This should be considered second in priority to main_phone_number. This can be null if there is no data for this attribute.'
+WHERE attr_id = 55;
+
+UPDATE associated_attrs
+SET ui_info = 'This is the agent’s fax phone number. This can be null if there is no data for this attribute.'
+WHERE attr_id = 56;
+
+UPDATE associated_attrs
+SET ui_info = 'This is the agent’s office phone number. This can be null if there is no data for this attribute.'
+WHERE attr_id = 57;
+
+UPDATE associated_attrs
+SET ui_info = 'This is the agent’s main email address. This email address should be considered the email address the agent would prefer to be contacted by. This can be null if there is no data for this attribute.'
+WHERE attr_id = 58;
+
+UPDATE associated_attrs
+SET ui_info = 'This is the agent’s alternate email address. This email address should be considered the email address the agent would want to be contacted by only if the address in primary_email_address is not functional. This can be null if there is no data for this attribute.'
+WHERE attr_id = 59;
+
+UPDATE associated_attrs
+SET ui_info = 'The email_addresses Hash is a Dictionary object holding the email addresses associated with the Agent record. The structure of the object is shown below.'
+WHERE attr_id = 60;
+
+UPDATE associated_attrs
+SET ui_info = 'This is the agent’s lead routing email address. This can be null if there is no data for this attribute.'
+WHERE attr_id = 61;
+
+UPDATE associated_attrs
+SET ui_info = 'This is the bio of the agent. Array of key/value pairs. Each has a body and header, both strings, which can be null or blank.'
+WHERE attr_id =62;
+
+UPDATE associated_attrs
+SET ui_info = 'This is a string that contains the agent’s designation(s), if any. This can be null if there is no data for this attribute.'
+WHERE attr_id = 63;
+
+UPDATE associated_attrs
+SET ui_info = 'This is an RFC 4122 compliant UUID associated with the agent. This UUID can be used as a unique identifier in determining associations between Agent objects and Listing objects.'
+WHERE attr_id = 64;
+
+UPDATE
+    associated_attrs
+SET
+    ui_info = 'Indicates whether the agent has access to MoxiWorks Products.'
+WHERE
+    attr_id = 65;
+
+UPDATE associated_attrs
+SET ui_info = 'Indicates whether the agent has access to MoxiWorks Engage.'
+WHERE attr_id = 66;
+
+UPDATE associated_attrs
+SET ui_info = 'The access level of the agent. If include_access_level was passed as true, this can return one of the possible access levels: company-admin, manager, office-admin, office-owner, region-admin, user.'
+WHERE attr_id = 67;
+
+UPDATE associated_attrs
+SET ui_info = 'The view level of the agent. This will return one of the possible view levels: COMPANY_ADMIN, OFFICE_ADMIN, USER.'
+WHERE attr_id = 68;
+
+UPDATE associated_attrs
+SET ui_info = 'The teams array contains Dictionary objects representing Team entries. The structure of each Team entry is shown below.'
+WHERE attr_id = 69;
+
+UPDATE associated_attrs
+SET ui_info = 'The base url of the agent’s MoxiWorks agent website.'
+WHERE attr_id = 70;
+
+UPDATE associated_attrs
+SET ui_info = 'Agent’s Twitter URL. This can be null if there is no data available for this attribute.'
+WHERE attr_id = 71;
+
+UPDATE associated_attrs
+SET ui_info = 'DEPRICATED'
+WHERE attr_id =72;
+
+UPDATE associated_attrs
+SET ui_info = 'Agent’s Facebook page url. This can be null if there is no data for this attribute.'
+WHERE attr_id = 73;
+
+UPDATE associated_attrs
+SET ui_info = 'Agent’s website domain. This will be returned without the HTTP(S) prefix. You’ll need to prefix the domain with protocol if using this attribute for an href. This can be null if there is no data for this attribute.'
+WHERE attr_id = 74;
+
+UPDATE associated_attrs 
+SET ui_info = 'This is a valid URL for a larger size image for the agent. If no agent image has been uploaded for this agent a default image url will be provided.'
+WHERE attr_id = 75;
+
+UPDATE associated_attrs
+SET ui_info = 'This is a valid URL for a thumbnail size image for the agent. If no agent image has been uploaded for this agent a default image url will be provided.'
+WHERE attr_id = 76;
+
+UPDATE associated_attrs
+SET ui_info = 'The region the agent’s office is in. This can be null if there is no data for this attribute.'
+WHERE attr_id = 77;
+
+UPDATE associated_attrs
+SET ui_info = 'The agent’s stated gross commission income goal.'
+WHERE attr_id = 78;
+
+UPDATE associated_attrs
+SET ui_info = 'Percentage commission rate for the agent when acting as a buyer’s agent.'
+WHERE attr_id = 79;
+
+UPDATE associated_attrs
+SET ui_info = 'Percentage commission rate for the agent when acting as a seller’s agent.'
+WHERE attr_id = 80;
+
+UPDATE associated_attrs
+SET ui_info = 'A list of the lead service area zip codes covered by the agent.'
+WHERE attr_id = 81;
+
+UPDATE associated_attrs
+SET ui_info = 'This includes the base_url and bio_page_slug of the agent MoxiWorks website.'
+WHERE attr_id = 82;
+
+UPDATE associated_attrs
+SET ui_info = 'The alternate_offices array contains Dictionary objects representing AlternateOffice entries. The structure of each AlternateOffice entry is shown below.'
+WHERE attr_id = 83;
+
+UPDATE associated_attrs
+SET ui_info = 'The available_mls Array contains Dictionary objects representing MLS entries. The structure of each MLS entry is shown below.'
+WHERE attr_id = 84;
+
+UPDATE associated_attrs 
+SET ui_info = 'Existence of objects in the partners data structure is dependent upon external relationships existing between the agent represented by this Agent and the affiliate.'
+WHERE attr_id = 85;
+
+UPDATE associated_attrs
+SET ui_info = 'A list of the company specific program names in which the agent participates or is a member.'
+WHERE attr_id = 86;
+
+UPDATE associated_attrs
+SET ui_info = 'A list of the source-specific user identifiers.'
+WHERE attr_id = 87;
+
+UPDATE associated_attrs
+SET ui_info = 'This is the Unix timestamp representing the date that this Agent was created in the MoxiWorks system.'
+WHERE attr_id = 88;
+
+UPDATE associated_attrs
+SET ui_info = 'This is the Unix timestamp representing the date that this Agent was deactivated in the MoxiWorks system. This will be returned null if the agent is still active.'
+WHERE attr_id = 89;
+
+UPDATE associated_attrs
+SET ui_info = 'Indicates the “Profile Visible Online” value in Roster for this Agent. True corresponds to Yes (visible online); false corresponds to No (not visible online).'
+WHERE attr_id = 90;
+
+UPDATE associated_attrs
+SET ui_info = 'Existence of objects in the user_reviews data structure is dependent upon external sources, i.e. Zillow, Testimonial Tree.'
+WHERE attr_id = 91;
+
+UPDATE associated_attrs
+SET ui_info = 'any Agent objects updated after this Unix timestamp will be returned in the response. If no updated_since parameter is included in the request, only Agent objects updated in the last seven days will be returned.'
+WHERE attr_id = 92;
+
+UPDATE associated_attrs
+SET ui_info = 'For queries with multi-page responses, use the page_number parameter to return data for specific pages. Data for page 1 is returned if this parameter is not included. Use this parameter if total_pages indicates that there is more than one page of data available.'
+WHERE attr_id = 93;
+
+UPDATE associated_attrs
+SET ui_info = 'To find Agent accounts deactivated within the specified timeframe, pass true for this boolean parameter.'
+WHERE attr_id = 94;
+
+UPDATE associated_attrs 
+SET ui_info = 'any Agent objects deactivated after this Unix timestamp will be returned in the response. If no deactivated_since parameter is included in the request, only Agent objects deactivated in the last seven days will be returned.'
+WHERE attr_id = 95;
+
+UPDATE associated_attrs
+SET ui_info = 'To include company specific programs associated with the agent in the response, pass true.'
+WHERE attr_id = 96;
+
+UPDATE associated_attrs
+SET ui_info = 'To include the base url (website_base_url) of the agent’s MoxiWorks website pass true.'
+WHERE attr_id = 97;
+
+UPDATE associated_attrs
+SET ui_info = 'To include only Agent objects associated with company specific programs pass true.'
+WHERE attr_id = 98;
+
+UPDATE associated_attrs
+SET ui_info = 'If supplied then the results will exclude all data except primary identifiers and a unix timestamp (last_updated) & iso8601 timestamp (modification_timestamp) of the last time this record was updated.'
+WHERE attr_id = 99;
+
+UPDATE associated_attrs
+SET ui_info = 'To include bio associated with the agent in the response, pass true.'
+WHERE attr_id = 100;
