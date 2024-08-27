@@ -16,7 +16,7 @@
     <h3>Roster</h3>
     <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Roster" }, endpoints: { endpoint_title: "ActionLog" }).each do |associated_attr| %>
     <ul>
-        <li style="font-weight: lighter;"><%= associated_attr.ui_info %></li>
+        <li style="font-weight: lighter;"><h6><%= associated_attr.ui_info %></h6></li>
         <li><hr></li>
         <li style="font-weight: bold;"><%= associated_attr.attr.attr_title %></li>
     </ul>
@@ -30,7 +30,7 @@
     <ul>
         <li style="font-weight: bold;"><%= associated_attr.attr.attr_title %></li>
         <li><hr></li>
-        <li style="font-weight: lighter;"><%= associated_attr.ui_info %></li>
+        <li style="font-weight: lighter;"><h6><%= associated_attr.ui_info %></h6></li>
     </ul>
     <% end %>
     </div>
@@ -42,7 +42,7 @@
     <ul>
         <li style="font-weight: bold;"><%= associated_attr.attr.attr_title %></li>
         <li><hr></li>
-        <li style="font-weight: lighter;"><%= associated_attr.ui_info %></li>
+        <li style="font-weight: lighter;"><h6><%= associated_attr.ui_info %></h6></li>
     </ul>
     <% end %>
     </div>
