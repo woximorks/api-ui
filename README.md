@@ -12,3 +12,4 @@
         - Added "Open Sans" font from Google library, set some basic styling to more closely match our help center
         - Replaced the images with those from the help center
     - ActionLog, Agent, and Brand pages display all appropriate information
+        - Front end updates and refactoring
