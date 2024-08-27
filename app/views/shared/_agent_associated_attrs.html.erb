@@ -12,9 +12,9 @@
     <div class="product_associated_attrs">
         <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "API" }, endpoints: { endpoint_title: "Agent" }).each do |associated_attr| %>
         <ul>
-            <li style="font-weight: lighter;"><h6><%= associated_attr.ui_info %></h6></li>
+            <li><h6><%= associated_attr.ui_info %></h6></li>
             <li><hr></li>
-            <li style="font-weight: bold;"><%= associated_attr.attr.attr_title %></li>
+            <li><%= associated_attr.attr.attr_title %></li>
         </ul>
         <% end %>
         </div>
@@ -30,9 +30,9 @@
         <div class="product_associated_attrs">
             <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Roster" }, endpoints: { endpoint_title: "Agent" }).each do |associated_attr| %>
             <ul>
-                <li style="font-weight: bold;"><%= associated_attr.attr.attr_title %></li>
+                <li><%= associated_attr.attr.attr_title %></li>
                 <li><hr></li>
-                <li style="font-weight: lighter;"><h6><%= associated_attr.ui_info %></h6></li>
+                <li><h6><%= associated_attr.ui_info %></h6></li>
             </ul>
             <% end %>
         </div>
@@ -49,9 +49,9 @@
         <div class="product_associated_attrs">
             <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Engage" }, endpoints: { endpoint_title: "Agent" }).each do |associated_attr| %>
             <ul>
-                <li style="font-weight: lighter;"><h6><%= associated_attr.ui_info %></h6></li>
+                <li><h6><%= associated_attr.ui_info %></h6></li>
                 <li><hr></li>
-                <li style="font-weight: bold;"><%= associated_attr.attr.attr_title %></li>
+                <li><%= associated_attr.attr.attr_title %></li>
             </ul>
         <% end %>
         </div>
