@@ -36,9 +36,6 @@ body {
             color: #5392d7;
             border-style: solid;
         }
-        h6 {
-            font-size: .75em;
-        }
     }
 }
 
@@ -61,10 +58,13 @@ body {
  }
 
  .product_association {
-    width: 40%;
+    width: 45%;
     text-align: center;
     h3 {
         color: #5392d7;
         font-weight: 300;
+    }
+    h6 {
+        font-size: .75em;
     }
  }

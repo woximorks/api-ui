@@ -22,10 +22,10 @@
     <% end %>
     </div>
 
-    <div class="product_association" id="engage">
-    <%= image_tag("engage.png") %>
-    <h3>Engage</h3>
-    <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Engage" }, endpoints: { endpoint_title: "Agent" }).each do |associated_attr| %>
+    <div class="product_association" id="roster">
+    <%= image_tag("roster.png") %>
+    <h3>Roster</h3>
+    <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Roster" }, endpoints: { endpoint_title: "Agent" }).each do |associated_attr| %>
     <ul>
         <li style="font-weight: bold;"><%= associated_attr.attr.attr_title %></li>
         <li><hr></li>
@@ -34,10 +34,10 @@
     <% end %>
     </div>
 
-    <div class="product_association" id="roster">
-    <%= image_tag("roster.png") %>
-    <h3>Roster</h3>
-    <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Roster" }, endpoints: { endpoint_title: "Agent" }).each do |associated_attr| %>
+    <div class="product_association" id="engage">
+    <%= image_tag("engage.png") %>
+    <h3>Engage</h3>
+    <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Engage" }, endpoints: { endpoint_title: "Agent" }).each do |associated_attr| %>
     <ul>
         <li style="font-weight: lighter;"><h6><%= associated_attr.ui_info %></h6></li>
         <li><hr></li>
@@ -45,16 +45,5 @@
     </ul>
     <% end %>
     </div>
-    
-    <div class="product_association" id="unassociated">
-    <%= image_tag("unassociated.png") %>
-    <h3>Unassociated</h3>
-    <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Unassociated" }, endpoints: { endpoint_title: "Agent" }).each do |associated_attr| %>
-    <ul>
-        <li style="font-weight: bold;"><%= associated_attr.attr.attr_title %></li>
-        <li><hr></li>
-        <li style="font-weight: lighter;"><h6><%= associated_attr.ui_info %></h6></li>
-    </ul>
-    <% end %>
-    </div>
+
 </div>

@@ -25,17 +25,34 @@ WHERE attr_id in (25, 78);
 -- Update to Roster product -
 UPDATE associated_attrs
 SET product_id = 3
-WHERE attr_id in (28, 29, 30, 31, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 48, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 69, 70, 71, 73, 74, 76, 77, 79, 80, 81, 88, 89, 90);
+WHERE attr_id in (28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 79, 80, 81, 83, 84, 86, 88, 89, 90, 100);
 
 -- Update to API product
 UPDATE associated_attrs
 SET product_id = 11
-WHERE attr_id in (24, 26, 27, 85, 91);
+WHERE attr_id in (24, 26, 27, 85, 87, 91, 92, 93, 94, 95, 96, 98, 99);
 
 -- Update to Websites product
 UPDATE associated_attrs
 SET product_id = 5
-WHERE attr_id = 82;
+WHERE attr_id in (82, 97);
+
+-- ************************************ Brand
+-- Update to Engage product
+UPDATE associated_attrs
+SET product_id = 4
+WHERE attr_id in (109, 110, 112);
+
+-- Update to Roster product (change attr_id) -
+UPDATE associated_attrs
+SET product_id = 3
+WHERE attr_id in (101, 113);
+
+-- Update to Present product -
+
+UPDATE associated_attrs
+SET product_id = 7
+WHERE attr_id in (102, 103, 104, 105, 106, 107, 108, 111, 114, 115, 116);
 
 -- ************************************ Adding UI Information
 
@@ -276,7 +293,7 @@ SET ui_info = 'This is the agent’s alternate email address. This email address
 WHERE attr_id = 59;
 
 UPDATE associated_attrs
-SET ui_info = 'The email_addresses Hash is a Dictionary object holding the email addresses associated with the Agent record. The structure of the object is shown below.'
+SET ui_info = 'The email_addresses Hash is a Dictionary object holding the email addresses associated with the Agent record.'
 WHERE attr_id = 60;
 
 UPDATE associated_attrs
@@ -315,7 +332,7 @@ SET ui_info = 'The view level of the agent. This will return one of the possible
 WHERE attr_id = 68;
 
 UPDATE associated_attrs
-SET ui_info = 'The teams array contains Dictionary objects representing Team entries. The structure of each Team entry is shown below.'
+SET ui_info = 'The teams array contains Dictionary objects representing Team entries.'
 WHERE attr_id = 69;
 
 UPDATE associated_attrs
@@ -370,13 +387,7 @@ UPDATE associated_attrs
 SET ui_info = 'This includes the base_url and bio_page_slug of the agent MoxiWorks website.'
 WHERE attr_id = 82;
 
-UPDATE associated_attrs
-SET ui_info = 'The alternate_offices array contains Dictionary objects representing AlternateOffice entries. The structure of each AlternateOffice entry is shown below.'
-WHERE attr_id = 83;
-
-UPDATE associated_attrs
-SET ui_info = 'The available_mls Array contains Dictionary objects representing MLS entries. The structure of each MLS entry is shown below.'
-WHERE attr_id = 84;
+z
 
 UPDATE associated_attrs 
 SET ui_info = 'Existence of objects in the partners data structure is dependent upon external relationships existing between the agent represented by this Agent and the affiliate.'
@@ -441,3 +452,67 @@ WHERE attr_id = 99;
 UPDATE associated_attrs
 SET ui_info = 'To include bio associated with the agent in the response, pass true.'
 WHERE attr_id = 100;
+
+UPDATE associated_attrs
+SET ui_info = 'Company Logo'
+WHERE attr_id = 101;
+
+UPDATE associated_attrs
+SET ui_info = 'Presentation accent color'
+WHERE attr_id = 102;
+
+UPDATE associated_attrs
+SET ui_info = 'background color'
+WHERE attr_id = 103;
+
+UPDATE associated_attrs
+SET ui_info = 'font color intended to overlay background_color'
+WHERE attr_id = 104;
+
+UPDATE associated_attrs 
+SET ui_info = 'background color of buttons'
+WHERE attr_id = 105;
+
+UPDATE associated_attrs
+SET ui_info = 'font color intended to overlay button_background_color'
+WHERE attr_id = 106;
+
+UPDATE associated_attrs
+SET ui_info = 'copyright notice – this may contain embedded HTML'
+WHERE attr_id = 107;
+
+UPDATE associated_attrs
+SET ui_info = 'name of company as displayed to consumer'
+WHERE attr_id = 108;
+
+UPDATE associated_attrs
+SET ui_info = 'background color of email elements outside body'
+WHERE attr_id = 109;
+
+UPDATE associated_attrs
+SET ui_info = 'font color intended to overlay email_background_font_color'
+WHERE attr_id = 110;
+
+UPDATE associated_attrs
+SET ui_info = 'company logo shown in pdf version of presentations'
+WHERE attr_id = 111;
+
+UPDATE associated_attrs
+SET ui_info = 'company logo as shown in email header'
+WHERE attr_id = 112;
+
+UPDATE associated_attrs
+SET ui_info = 'favicon of company'
+WHERE attr_id = 113;
+
+UPDATE associated_attrs
+SET ui_info = 'company logo shown in the online version of presentations'
+WHERE attr_id = 114;
+
+UPDATE associated_attrs
+SET ui_info = 'block element background color shown in online version of presentations'
+WHERE attr_id = 115;
+
+UPDATE associated_attrs
+SET ui_info = 'font color intended to overlay pres_block_background_color'
+WHERE attr_id = 116;
