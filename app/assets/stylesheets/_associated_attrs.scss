@@ -33,7 +33,7 @@ ul {
  .associated_attrs {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
     .product_association {
         width: 45%;
         text-align: center;
