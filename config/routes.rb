@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   get 'pages/index'
-  get 'pages/home'
+  get 'home', to: 'pages#home'
+  get 'actionlog', to: 'pages#actionlog'
+  get 'agent', to: 'pages#agent'
+  get 'brand', to: 'pages#brandg'
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -1,21 +1,4 @@
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    li {
-        padding: .25em;
-        width: 100%;
-        hr {
-            width: 100%;
-            color: #5392d7;
-            border-style: solid;
-        }
-    }
-}
- 
+
  .endpoint_title {
     padding-left: 12%;
     color: white;
@@ -42,38 +25,49 @@ ul {
         max-height: 80vh;
         overflow-y: scroll;
         margin: 1em;
-        .associated_product {
+        .associated_product {//image
             width: 45%;
             position: absolute;
             z-index: 1;
             background-color: #5392d7;
             height: 175px;
-            border-bottom: 8px solid #51d8cf;
-            
+            border-bottom: 8px solid #51d8cf;  
             h3 {
                 color: white;
-                font-weight: 300;
             }
         }
         .product_associated_attrs {
-            margin-top: 185px;
-            
-        }
-        h6 {
-            font-size: .75em;
+            margin-top: 175px;
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                li {
+                    padding: .25em;
+                    width: 100%;
+                    hr {
+                        width: 100%;
+                        color: #5392d7;
+                        border-style: solid;
+                    }
+                    h6 {
+                        font-size: .75em;
+                    }
+                }
+            }
         }
      }
      ::-webkit-scrollbar {
         width: 4px;
-        
       }
-      
       ::-webkit-scrollbar-track {
         border-radius: 0;
         background: rgb(240,240,240);
         margin-top: 175px;
       }
-      
       ::-webkit-scrollbar-thumb {
         border-radius: 0;
         background: #b0b0b0;
