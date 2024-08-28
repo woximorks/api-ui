@@ -387,10 +387,16 @@ UPDATE associated_attrs
 SET ui_info = 'This includes the base_url and bio_page_slug of the agent MoxiWorks website.'
 WHERE attr_id = 82;
 
-z
+UPDATE associated_attrs
+SET ui_info = 'The alternate_offices array contains Dictionary objects representing AlternateOffice entries.'
+WHERE attr_id = 83;
 
-UPDATE associated_attrs 
-SET ui_info = 'Existence of objects in the partners data structure is dependent upon external relationships existing between the agent represented by this Agent and the affiliate.'
+UPDATE associated_attrs
+SET ui_info = 'The available_mls Array contains Dictionary objects representing MLS entries.'
+WHERE attr_id = 84;
+
+UPDATE associated_attrs
+SET ui_info = 'Existence of objects in the partners data structure is dependent upon external relationships existing between the agent represented by this Agent and the affiliate. Documented entities in the `partners` data structure may or may not be returned based on agent relationship. Your logic should be engineered to handle cases where the entity you are interested in is returned and where an empty data structure is returned.'
 WHERE attr_id = 85;
 
 UPDATE associated_attrs
