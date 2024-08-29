@@ -13,3 +13,4 @@
         - Replaced the images with those from the help center
     - ActionLog, Agent, and Brand pages display all appropriate information
         - Front end updates and refactoring
+        - Updates to commands.sql to include information about associations within the UI, where available

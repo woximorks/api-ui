@@ -57,15 +57,15 @@ WHERE attr_id in (102, 103, 104, 105, 106, 107, 108, 111, 114, 115, 116);
 -- ************************************ Adding UI Information
 
 UPDATE associated_attrs
-SET ui_info = 'Agent UUID, found on profile page, seen as an RFC 4122 compliant UUID'
+SET ui_info = 'Agent UUID, found on profile page, seen as an RFC 4122 compliant UUID. This will be seen within Roster/Client Manager and is the user account level UUID'
 WHERE attr_id = 1; -- agent_uuid
 
 UPDATE associated_attrs
-SET ui_info = 'Intended for use cases where integration is managed by end-user interaction'
+SET ui_info = 'Roster upload, user external key field. Intended for use cases where integration is managed by end-user interaction.'
 WHERE attr_id = 2; -- moxi_works_agent_id
 
 UPDATE associated_attrs
-SET ui_info = 'DEPRECATED'
+SET ui_info = 'DEPRECATED field related to Roster Feed'
 WHERE attr_id = 3; -- source_agent_id
 
 UPDATE associated_attrs
@@ -73,11 +73,11 @@ SET ui_info = 'Human readable string which would be presented to the Agent as th
 WHERE attr_id = 4; -- body
 
 UPDATE associated_attrs
-SET ui_info = 'Platform ID the action is associated with'
+SET ui_info = 'API related data, the Platform ID the action is associated with'
 WHERE attr_id = 5; -- moxi_works_contact_id
 
 UPDATE associated_attrs
-SET ui_info = 'The unique identifer in the system utilized by the user, that has been associated with the entry'
+SET ui_info = 'ID partner passed when creating a contact through the API, the unique identifer in the system utilized by the user that has been associated with the entry'
 WHERE attr_id = 6; -- partner_contact_id
 
 UPDATE associated_attrs
@@ -85,63 +85,63 @@ SET ui_info = 'Human readable string which would be presented to the Agent as th
 WHERE attr_id = 7; -- title
 
 UPDATE associated_attrs
-SET ui_info = 'A valid MoxiWorks Company ID. Use Company Endpoint to determine what moxi_works_company_id you can use.'
+SET ui_info = 'Seen within Roster/Client Manager as the associated Company level UUID. A valid MoxiWorks Company ID. Use Company Endpoint to determine what moxi_works_company_id you can use.'
 WHERE attr_id = 8; -- moxi_works_company_id
 
 UPDATE associated_attrs
-SET ui_info = 'This is the numeric_id or moxi_works_company_id of a company that is considered to be a parent company in the MoxiWorks Platform.'
+SET ui_info = 'Seen within Roster/Client Manager as the associated Parent Company level UUID. This is the numeric_id or moxi_works_company_id of a company that is considered to be a parent company in the MoxiWorks Platform.'
 WHERE attr_id = 9; -- parent_company_id
 
 UPDATE associated_attrs
-SET ui_info = 'This is the human readable plain-text string which will be presented to the Agent as the heading of the ActionLog entry. This can be any short, descriptive sentence which would be practical for the agent to see in the history of events associated with a Contact.'
+SET ui_info = 'Activity Stream content, this is the human readable plain-text string which will be presented to the Agent as the heading of the ActionLog entry. This can be any short, descriptive sentence which would be practical for the agent to see in the history of events associated with a Contact.'
 WHERE attr_id = 10; -- agent_action
 
 UPDATE associated_attrs
-SET ui_info = 'agent_action location component (inperson / other etc) uses this field to denote the street address of the agent_action.'
+SET ui_info = 'Location related to activity stream content, the agent_action location component (inperson / other etc) uses this field to denote the street address of the agent_action.'
 WHERE attr_id = 11; -- agent_action_address
 
 UPDATE associated_attrs
-SET ui_info = 'agent_action location component (inperson / other etc) uses this field to denote the additonal street address info of the agent_action.'
+SET ui_info = 'Location related to activity stream content, the agent_action location component (inperson / other etc) uses this field to denote the additonal street address info of the agent_action.'
 WHERE attr_id = 12; -- agent_action_address2
 
 UPDATE associated_attrs
-SET ui_info = 'agent_action location component (inperson / other etc) uses this field to denote the city or locale of the agent_action.'
+SET ui_info = 'Location related to activity stream content, the agent_action location component (inperson / other etc) uses this field to denote the city or locale of the agent_action.'
 WHERE attr_id = 13; -- agent_action_city
 
 UPDATE associated_attrs
-SET ui_info = 'agent_action location component (inperson / other etc) uses this field to denote the state or province of the agent_action..'
+SET ui_info = 'Location related to activity stream content, the agent_action location component (inperson / other etc) uses this field to denote the state or province of the agent_action..'
 WHERE attr_id = 14; -- agent_action_state
 
 UPDATE associated_attrs
-SET ui_info = 'agent_action location component (inperson / other etc) uses this field to denote the postal code of the agent_action.'
+SET ui_info = 'Location related to activity stream content, the agent_action location component (inperson / other etc) uses this field to denote the postal code of the agent_action.'
 WHERE attr_id = 15; -- agent_action_zip
 
 UPDATE associated_attrs
-SET ui_info = 'This is the Unix timestamp for the creation time of the ActionLog entry.'
+SET ui_info = 'API and database related information, this is the Unix timestamp for the creation time of the ActionLog entry.'
 WHERE attr_id = 16; -- timestamp
 
 UPDATE associated_attrs
-SET ui_info = 'This is the MoxiWorks Platform ID of the ActionLog entry to be deleted. This will be an RFC 4122 compliant UUID.'
+SET ui_info = 'API and database related information, this is the MoxiWorks Platform ID of the ActionLog entry to be deleted. This will be an RFC 4122 compliant UUID.'
 WHERE attr_id = 17; -- moxi_works_action_log_id
 
 UPDATE associated_attrs
-SET ui_info = 'This will indicate what the status of the request is.'
+SET ui_info = 'API related information referencing the call submitted, which will indicate what the status of the request is.'
 WHERE attr_id = 18; -- status
 
 UPDATE associated_attrs
-SET ui_info = 'This will indicate whether the delete request was successful or not.'
+SET ui_info = 'API related information referencing the call submitted, which will indicate whether the delete request was successful or not.'
 WHERE attr_id = 19; -- deleted
 
 UPDATE associated_attrs
-SET ui_info = 'This is an arrray of strings. Any messages associated with the delete request status will be contained in this array.'
+SET ui_info = 'API related information referencing the call submitted, an object (array of strings). Any messages associated with the delete request status will be contained in this array.'
 WHERE attr_id = 20; -- messages
 
 UPDATE associated_attrs
-SET ui_info = 'Only records created later than this Unix timestamp will be included in the query. The upper bound of the time slice will be the 90 days higher than date_min value or the value of the the date_max; whichever is lower. If no timestamps are provided, records from the last 90 days will be retrieved.'
+SET ui_info = 'API related information referencing the call submitted, only records created later than this Unix timestamp will be included in the query. The upper bound of the time slice will be the 90 days higher than date_min value or the value of the the date_max; whichever is lower. If no timestamps are provided, records from the last 90 days will be retrieved.'
 WHERE attr_id = 21; -- date_min
 
 UPDATE associated_attrs
-SET ui_info = 'Only records created before this Unix timestamp will be included in the query. The upper bound of the time slice will be the 90 days higher than date_min value or the value of the the date_max; whichever is lower. If no timestamps are provided, records from the last 90 days will be retrieved.'
+SET ui_info = 'API related information referencing the call submitted, only records created before this Unix timestamp will be included in the query. The upper bound of the time slice will be the 90 days higher than date_min value or the value of the the date_max; whichever is lower. If no timestamps are provided, records from the last 90 days will be retrieved.'
 WHERE attr_id = 22; -- date_max
 
 UPDATE associated_attrs
@@ -149,27 +149,27 @@ SET ui_info = 'The actions array contains Dictionary objects representing endpoi
 WHERE attr_id = 23; -- actions
 
 UPDATE associated_attrs
-SET ui_info = 'To include access level information for the agent in the response'
+SET ui_info = 'To include access level information for the agent in the response, pass true.'
 WHERE attr_id = 24; -- include_access_level
 
 UPDATE associated_attrs
-SET ui_info = 'Whether to include agent’s GCI goals and commissions data in the response data.'
+SET ui_info = 'Related to the agent’s GCI goal set within Engage, Pass true to include the agent’s GCI goals and commissions data in the response.'
 WHERE attr_id = 25; -- include_gci_goals
 
 UPDATE associated_attrs
-SET ui_info = 'To include affiliate data associated with the agent in the response, pass true.'
+SET ui_info = 'To include affiliate data associated with the agent in the response, pass true. Likely not used at all?'
 WHERE attr_id = 26; -- include_partners
 
 UPDATE associated_attrs
-SET ui_info = 'To include ratings and reviews associated with the agent in the response, pass true.'
+SET ui_info = 'These will populate into Roster, and include reviews from Zillow and Testimonial Tree. To include these ratings and reviews associated with the agent in the response, pass true.'
 WHERE attr_id = 27; -- include_reviews
 
 UPDATE associated_attrs
-SET ui_info = 'This is the ID of the Agent utilized by their company.'
+SET ui_info = 'This is an external ID for the Agent in question. This ID will be utilized by the agent’s company or brokerage externally.'
 WHERE attr_id = 28; -- client_agent_id
 
 UPDATE associated_attrs
-SET ui_info = 'This is the ID of the Agent utilized by their primary MLS.'
+SET ui_info = 'Found within Roster under the Manage MLS Associations section of an agent account, This is the MLS ID of the Agent as utilized and provided by the MLS.'
 WHERE attr_id = 29; -- mls_agent_id
 
 UPDATE associated_attrs
@@ -177,7 +177,7 @@ SET ui_info = 'This is the number of the license granted to the agent.'
 WHERE attr_id = 30; -- license
 
 UPDATE associated_attrs
-SET ui_info = 'This is the name of the primary MLS for the agent.'
+SET ui_info = 'As seen within listings under the MLS field as an example?, this is the name of the primary MLS for the agent.'
 WHERE attr_id = 31; -- mls_name
 
 UPDATE associated_attrs
@@ -185,67 +185,67 @@ SET ui_info = 'This is the standard abbreviation of the primary MLS utilized by 
 WHERE attr_id = 32; -- mls_abbreviation
 
 UPDATE associated_attrs
-SET ui_info = 'This is the ID of this Agent. This will be an integer.'
+SET ui_info = 'This is the UUID (agent_uuid) of the user in question. This will be an integer. Displays within Roster under personal info > UUID.'
 WHERE attr_id = 33; -- agent_id
 
 UPDATE associated_attrs
-SET ui_info = 'This is the MoxiWorks Platform ID of the office for this Agent. This will be an RFC 4122 compliant UUID.'
+SET ui_info = 'Within Roster associated with the Public Key field, this is the MoxiWorks Platform ID of the Office for this Agent. This will be an RFC 4122 compliant UUID.'
 WHERE attr_id = 34; -- moxi_works_office_id
 
 UPDATE associated_attrs
-SET ui_info = 'This is the ID of the office for this Agent. This will be an integer.'
+SET ui_info = 'Within Roster associated with the ID field, this is the ID of the Office for this Agent. This will be an integer.'
 WHERE attr_id = 35; -- office_id
 
 UPDATE associated_attrs
-SET ui_info = 'This is the ID of the office for this Agent utilized by their company.'
+SET ui_info = 'Within Roster associated with the Internal Office ID field, this is the ID of the Office for this Agent as utilized by their company.'
 WHERE attr_id = 36; -- client_office_id
 
 UPDATE associated_attrs
-SET ui_info = 'This is the ID of the company for this Agent. This will be an integer.'
+SET ui_info = 'Within Roster associated with the Company UUID field, this is the ID of the Company for this Agent. This will be an integer.'
 WHERE attr_id = 37; -- company_id
 
 UPDATE associated_attrs
-SET ui_info = 'This is the ID of the Company utilized by their company.'
+SET ui_info = 'Within Roster associated with the Company ID field, this is the ID of the Company utilized by the brokerage.'
 WHERE attr_id = 38; -- client_company_id
 
 UPDATE associated_attrs
-SET ui_info = 'The street address of the agent’s office. This can be null if there is no data for this attribute.'
+SET ui_info = 'The street address of the agent’s office. This can be null if there is no data for this attribute. Displays within Roster under the office address section.'
 WHERE attr_id = 39; -- office_address_street
 
 UPDATE associated_attrs
-SET ui_info = 'The suite or office number of the agent’s office. This can be null if there is no data for this attribute.'
+SET ui_info = 'The suite or office number of the agent’s office. This can be null if there is no data for this attribute. Displays within Roster under the office address section.'
 WHERE attr_id = 40; -- office_address_street2
 
 UPDATE associated_attrs
-SET ui_info = 'The city the agent’s office is in. This can be null if there is no data for this attribute.'
+SET ui_info = 'The city the agent’s office is in. This can be null if there is no data for this attribute. Displays within Roster under the office address section.'
 WHERE attr_id = 41; -- office_address_city
 
 UPDATE associated_attrs
-SET ui_info = 'The state or provice the agent’s office is in. This can be null if there is no data for this attribute.'
+SET ui_info = 'The state or provice the agent’s office is in. This can be null if there is no data for this attribute. Displays within Roster under the office address section.'
 WHERE attr_id = 42; -- office_address_state
 
 UPDATE associated_attrs
-SET ui_info = 'The postal code the agent’s office is in. This can be null if there is no data for this attribute.'
+SET ui_info = 'The postal code the agent’s office is in. This can be null if there is no data for this attribute. Displays within Roster under the office address section.'
 WHERE attr_id = 43; -- office_address_zip
 
 UPDATE associated_attrs
-SET ui_info = 'The street address of the agent’s office’s mailing address. This can be null if there is no data for this attribute.'
+SET ui_info = 'The street address of the agent’s office’s mailing address. This can be null if there is no data for this attribute. Displays within Roster under the office address section.'
 WHERE attr_id = 44; -- office_mailing_address_street
 
 UPDATE associated_attrs
-SET ui_info = 'The suite or office number of the agent’s office’s mailing address. This can be null if there is no data for this attribute.'
+SET ui_info = 'The suite or office number of the agent’s office’s mailing address. This can be null if there is no data for this attribute. Displays within Roster under the office address section.'
 WHERE attr_id = 45; -- office_mailing_address_street2
 
 UPDATE associated_attrs
-SET ui_info = 'The city the agent’s office’s mailing address is in. This can be null if there is no data for this attribute.'
+SET ui_info = 'The city the agent’s office’s mailing address is in. This can be null if there is no data for this attribute. Displays within Roster under the office address section.'
 WHERE attr_id = 46; -- office_mailing_address_city
 
 UPDATE associated_attrs
-SET ui_info = 'The state or provice the agent’s office’s mailing address is in. This can be null if there is no data for this attribute.'
+SET ui_info = 'The state or provice the agent’s office’s mailing address is in. This can be null if there is no data for this attribute. Displays within Roster under the office address section.'
 WHERE attr_id = 47; -- office_mailing_address_state
 
 UPDATE associated_attrs
-SET ui_info = 'The postal code the agent’s office’s mailing address is in. This can be null if there is no data for this attribute.'
+SET ui_info = 'The postal code the agent’s office’s mailing address is in. This can be null if there is no data for this attribute. Displays within Roster under the office address section.'
 WHERE attr_id = 48; -- office_mailing_address_zip
 
 UPDATE associated_attrs
@@ -253,11 +253,11 @@ SET ui_info = 'The full name of the agent. This can be null if there is no data 
 WHERE attr_id = 49; -- name
 
 UPDATE associated_attrs
-SET ui_info = 'The first name of the agent. This can be null if there is no data for this attribute.'
+SET ui_info = 'The first name of the agent. This can be null if there is no data for this attribute. Displays within Roster under the personal info > first name field.'
 WHERE attr_id = 50; -- first_name
 
 UPDATE associated_attrs
-SET ui_info = 'The last name of the agent. This can be null if there is no data for this attribute.'
+SET ui_info = 'The last name of the agent. This can be null if there is no data for this attribute. Displays within Roster under the personal info > last name field.'
 WHERE attr_id = 51; -- last_name
 
 UPDATE associated_attrs
@@ -265,19 +265,19 @@ SET ui_info = 'The nickname of the agent. This can be null if there is no data f
 WHERE attr_id =52; -- nickname
 
 UPDATE associated_attrs
-SET ui_info = 'This is the agent’s main phone number. This number should be considered the number the agent would like to be contacted by. This can be null if there is no data for this attribute.'
+SET ui_info = 'This is the agent’s main phone number. This number should be considered the number the agent would like to be contacted by. This can be null if there is no data for this attribute. Displays within Roster under the contact info > direct phone.'
 WHERE attr_id = 53; -- main_phone_number
 
 UPDATE associated_attrs
-SET ui_info = 'Mobile phone number of the agent. main_phone_number should be considered higher priority, if not the same. This can be null if there is no data for this attribute.'
+SET ui_info = 'Mobile phone number of the agent. main_phone_number should be considered higher priority, if not the same. This can be null if there is no data for this attribute. Displays within Roster under the contact info > mobile phone.'
 WHERE attr_id = 54; -- mobile_phone_number
 
 UPDATE associated_attrs
-SET ui_info = 'Alternate phone number for the agent. This should be considered second in priority to main_phone_number. This can be null if there is no data for this attribute.'
+SET ui_info = 'Alternate phone number for the agent. This should be considered second in priority to main_phone_number. This can be null if there is no data for this attribute. Displays within Roster under the contact info > alternate phone.'
 WHERE attr_id = 55; -- alt_phone_number
 
 UPDATE associated_attrs
-SET ui_info = 'This is the agent’s fax phone number. This can be null if there is no data for this attribute.'
+SET ui_info = 'This is the agent’s fax phone number. This can be null if there is no data for this attribute. Displays within Roster under the contact info > fax.'
 WHERE attr_id = 56; -- fax_phone_number
 
 UPDATE associated_attrs
@@ -285,7 +285,7 @@ SET ui_info = 'This is the agent’s office phone number. This can be null if th
 WHERE attr_id = 57; -- office_phone_number
 
 UPDATE associated_attrs
-SET ui_info = 'This is the agent’s main email address. This email address should be considered the email address the agent would prefer to be contacted by. This can be null if there is no data for this attribute.'
+SET ui_info = 'This is the agent’s main email address. This email address should be considered the email address the agent would prefer to be contacted by. This can be null if there is no data for this attribute. Displays within Roster under the contact info > primary email.'
 WHERE attr_id = 58; -- primary_email_address
 
 UPDATE associated_attrs
@@ -301,7 +301,7 @@ SET ui_info = 'This is the agent’s lead routing email address. This can be nul
 WHERE attr_id = 61; -- lead_routing_email_address
 
 UPDATE associated_attrs
-SET ui_info = 'This is the bio of the agent. Array of key/value pairs. Each has a body and header, both strings, which can be null or blank.'
+SET ui_info = 'This is the bio of the agent. Array of key/value pairs. Each has a body and header, both strings, which can be null or blank. Displays within Roster under the web info > About Me'
 WHERE attr_id =62; -- bio
 
 UPDATE associated_attrs
@@ -309,11 +309,11 @@ SET ui_info = 'This is a string that contains the agent’s designation(s), if a
 WHERE attr_id = 63; -- designations
 
 UPDATE associated_attrs
-SET ui_info = 'This is an RFC 4122 compliant UUID associated with the agent. This UUID can be used as a unique identifier in determining associations between Agent objects and Listing objects.'
+SET ui_info = 'This is an RFC 4122 compliant UUID associated with the agent. This UUID can be used as a unique identifier in determining associations between Agent objects and Listing objects. Displays within Roster under personal info > UUID.'
 WHERE attr_id = 64; -- uuid
 
 UPDATE associated_attrs
-SET ui_info = 'Indicates whether the agent has access to MoxiWorks Products.'
+SET ui_info = 'Indicates whether the agent has access to MoxiWorks Products. Displays within Roster under Products & Permissions'
 WHERE attr_id = 65; -- has_product_access
 
 UPDATE associated_attrs
@@ -321,7 +321,7 @@ SET ui_info = 'Indicates whether the agent has access to MoxiWorks Engage.'
 WHERE attr_id = 66; -- has_engage_access
 
 UPDATE associated_attrs
-SET ui_info = 'The access level of the agent. If include_access_level was passed as true, this can return one of the possible access levels: company-admin, manager, office-admin, office-owner, region-admin, user.'
+SET ui_info = 'The access level of the agent. If include_access_level was passed as true, this can return one of the possible access levels: company-admin, manager, office-admin, office-owner, region-admin, user. Displays within Roster under Products & Permissions > Permission Levels.'
 WHERE attr_id = 67; -- access_level
 
 UPDATE associated_attrs
@@ -329,35 +329,35 @@ SET ui_info = 'The view level of the agent. This will return one of the possible
 WHERE attr_id = 68; -- view_level
 
 UPDATE associated_attrs
-SET ui_info = 'The teams array contains Dictionary objects representing Team entries.'
+SET ui_info = 'The teams array contains Dictionary objects representing Team entries. Roster > Management Tools > Agent Teams.'
 WHERE attr_id = 69; -- teams
 
 UPDATE associated_attrs
-SET ui_info = 'The base url of the agent’s MoxiWorks agent website.'
+SET ui_info = 'The base url of the agent’s MoxiWorks agent website. Displays within Roster under Web Info.'
 WHERE attr_id = 70; -- website_base_url
 
 UPDATE associated_attrs
-SET ui_info = 'Agent’s Twitter URL. This can be null if there is no data available for this attribute.'
+SET ui_info = 'Agent’s Twitter URL. This can be null if there is no data available for this attribute. Displays within Roster under Web Info > Social Media'
 WHERE attr_id = 71; -- twitter
 
 UPDATE associated_attrs
-SET ui_info = 'DEPRICATED'
+SET ui_info = 'DEPRICATED. Displays within Roster under Web Info > Social Media.'
 WHERE attr_id =72; -- google_plus
 
 UPDATE associated_attrs
-SET ui_info = 'Agent’s Facebook page url. This can be null if there is no data for this attribute.'
+SET ui_info = 'Agent’s Facebook page url. This can be null if there is no data for this attribute. Displays within Roster under Web Info > Social Media.'
 WHERE attr_id = 73; -- facebook
 
 UPDATE associated_attrs
-SET ui_info = 'Agent’s website domain. This will be returned without the HTTP(S) prefix. You’ll need to prefix the domain with protocol if using this attribute for an href. This can be null if there is no data for this attribute.'
+SET ui_info = 'Agent’s website domain. This will be returned without the HTTP(S) prefix. You’ll need to prefix the domain with protocol if using this attribute for an href. This can be null if there is no data for this attribute. Displays within Roster under Web Info'
 WHERE attr_id = 74; -- home_page
 
 UPDATE associated_attrs 
-SET ui_info = 'This is a valid URL for a larger size image for the agent. If no agent image has been uploaded for this agent a default image url will be provided.'
+SET ui_info = 'This is a valid URL for a larger size image for the agent. If no agent image has been uploaded for this agent a default image url will be provided. Displays within Roster under agent info page.'
 WHERE attr_id = 75; -- profile_image_url
 
 UPDATE associated_attrs
-SET ui_info = 'This is a valid URL for a thumbnail size image for the agent. If no agent image has been uploaded for this agent a default image url will be provided.'
+SET ui_info = 'This is a valid URL for a thumbnail size image for the agent. If no agent image has been uploaded for this agent a default image url will be provided. Displays within Roster under agent info page.'
 WHERE attr_id = 76; -- profile_thumb_url
 
 UPDATE associated_attrs
@@ -365,15 +365,15 @@ SET ui_info = 'The region the agent’s office is in. This can be null if there 
 WHERE attr_id = 77; -- region
 
 UPDATE associated_attrs
-SET ui_info = 'The agent’s stated gross commission income goal.'
+SET ui_info = 'The agent’s stated gross commission income goal. Displays within Engage in various places as the Gross Commission Income (GCI) Goal.'
 WHERE attr_id = 78; -- gci_goal
 
 UPDATE associated_attrs
-SET ui_info = 'Percentage commission rate for the agent when acting as a buyer’s agent.'
+SET ui_info = 'Percentage commission rate for the agent when acting as a buyer’s agent. Displays within Roster under listing Manager. Also displays on websites.'
 WHERE attr_id = 79; -- buyer_commission_rate
 
 UPDATE associated_attrs
-SET ui_info = 'Percentage commission rate for the agent when acting as a seller’s agent.'
+SET ui_info = 'Percentage commission rate for the agent when acting as a seller’s agent. Displays within Roster under listing Manager. Also displays on websites.'
 WHERE attr_id = 80; -- seller_commission_rate
 
 UPDATE associated_attrs
