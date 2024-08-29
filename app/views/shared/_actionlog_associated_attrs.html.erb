@@ -17,7 +17,7 @@
         <ul>
             <li><h6><%= associated_attr.ui_info %></h6></li>
             <li><hr></li>
-            <li><%= associated_attr.attr.attr_title %></li>
+            <li><h5><%= associated_attr.attr.attr_title %></h5></li>
         </ul>
         
         <% end %>
@@ -35,7 +35,7 @@
         <div class="product_associated_attrs">
             <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "API" }, endpoints: { endpoint_title: "ActionLog" }).each do |associated_attr| %>
             <ul>
-                <li><%= associated_attr.attr.attr_title %></li>
+                <li><h5><%= associated_attr.attr.attr_title %></h5></li>
                 <li><hr style="z-index: 0;"></li>
                 <li><h6><%= associated_attr.ui_info %></h6></li>
             </ul>
@@ -54,12 +54,13 @@
         <div class="product_associated_attrs">
         <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Engage" }, endpoints: { endpoint_title: "ActionLog" }).each do |associated_attr| %>
             <ul>
-                <li><%= associated_attr.attr.attr_title %></li>
+                <li><h5><%= associated_attr.attr.attr_title %></h5></li>
                 <li><hr></li>
                 <li><h6><%= associated_attr.ui_info %></h6></li>
             </ul>
             <% end %>
         </div>
+        
     </div>
 
 </div>
