@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'actionlog', to: 'pages#actionlog'
   get 'agent', to: 'pages#agent'
   get 'brand', to: 'pages#brand'
+  get 'index', to: 'pages#index'
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -42,9 +42,10 @@
             padding-right: 1em;
             padding-top: .5em;
             max-height: 50vh;
+            min-height: 50vh;
             overflow-y: scroll;
             scrollbar-width: thin;
-            ul {
+            ul {//each individual attribute, and it's associated info
                 list-style-type: none;
                 margin: 0;
                 padding: 0;

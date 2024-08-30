@@ -25,4 +25,5 @@ class PagesController < ApplicationController
     @attrs = Attr.all
     @associated_attrs = AssociatedAttr.all
 end
+
 end
