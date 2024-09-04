@@ -19,3 +19,4 @@
     - Added pg_search gem
         - https://github.com/Casecommons/pg_search
         - https://www.youtube.com/watch?v=ZRpXAY21t28
+        - associated_attr model is updated to include search params for 'keyword'. It checks 'endpoint.endpoint_title, attr.attr_title, and ui_info'.
