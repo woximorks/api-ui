@@ -60,7 +60,7 @@ actionlog_attrs = [
     "moxi_works_agent_id", #"String"
     "moxi_works_contact_id", #"String"
     "partner_contact_id", #"String"
-    "actions", #"Array"
+    "actions", #Array {moxi_works_action_log_id, type, timestamp, log_data}
 ]
 
 actionlog_attrs.each do |attr_title|

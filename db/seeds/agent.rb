@@ -44,7 +44,7 @@ agent_attrs = [
     "office_phone_number", #"String or null"
     "primary_email_address", #"String or null"
     "secondary_email_address", #"String or null"
-    "email_addresses", #"Hash"
+    "email_addresses", #"Hash" {primary, display, alternate, moxi_sync, lead_routing, zillow}
     "lead_routing_email_address", #"String or null"
     "title", #"String or null"
     "bio", #"Array"
@@ -54,7 +54,7 @@ agent_attrs = [
     "has_engage_access", #"Boolean"
     "access_level", #"String"
     "view_level", #"String"
-    "teams", #"Array"
+    "teams", #"Array" {name, uuid, member_category}
     "website_base_url", #"String or null"
     "twitter", #"String or null"
     "google_plus", #"String or null"
@@ -68,15 +68,15 @@ agent_attrs = [
     "seller_commission_rate", #"Float"
     "service_area_zip_codes", #"Array"
     "agent_website", #"Array"
-    "alternate_offices", #"Array"
-    "available_mls", #"Array"
+    "alternate_offices", #"Array" {moxi_works_office_id, office_id, office_address_street, office_address_street2, office_address_city, office_address_state, office_address_zip, office_phone_number}
+    "available_mls", #"Array" {name, display_name, mls_abbreviation, agent_id}
     "partners", #"Array"
     "company_programs", #"Array"
     "source_metadata", #"Array"
     "created_timestamp", #"Integer"
     "deactivated_timestamp", #"Integer or null"
     "profile_visible_online", #"Boolean"
-    "user_reviews", #"Array"
+    "user_reviews", #"Array" {source_name, agg_rating, reviews_count}
 
 #Index
     #--Request
@@ -129,7 +129,7 @@ agent_attrs = [
     "office_phone_number", #"String or null"
     "primary_email_address", #"String or null"
     "secondary_email_address", #"String or null"
-    "email_addresses", #"Hash"
+    "email_addresses", #"Hash" {primary, display, alternate, moxi_sync, lead_routing, zillow}
     "lead_routing_email_address", #"String or null"
     "title", #"String or null"
     "bio", #"Array"
@@ -139,7 +139,7 @@ agent_attrs = [
     "has_engage_access", #"Boolean"
     "access_level", #"String"
     "view_level", #"String"
-    "teams", #"Array"
+    "teams", #"Array" {name, uuid, member_category}
     "website_base_url", #"String or null"
     "twitter", #"String or null"
     "google_plus", #"String or null"
@@ -150,15 +150,15 @@ agent_attrs = [
     "region", #"String or null"
     "service_area_zip_codes", #"Array"
     "agent_website", #"Array"
-    "alternate_offices", #"Array"
-    "available_mls", #"Array"
+    "alternate_offices", #"Array" {moxi_works_office_id, office_id, office_address_street, office_address_street2, office_address_city, office_address_state, office_address_zip, office_phone_number}
+    "available_mls", #"Array" {name, display_name, mls_abbreviation, agent_id}
     "partners", #"Array"
     "company_programs", #"Array"
     "source_metadata", #"Array"
     "created_timestamp", #"Integer"
     "deactivated_timestamp", #"Integer or null"
     "profile_visible_online", #"Boolean"
-    "user_reviews", #"Array"
+    "user_reviews", #"Array" {source_name, agg_rating, reviews_count}
 ]
 
 agent_attrs.each do |attr_title|

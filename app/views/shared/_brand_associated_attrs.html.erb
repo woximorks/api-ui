@@ -71,6 +71,23 @@
         </div>
     </div>
 
+    <div class="product_association" id="roster">
+        <div class="associated_product">
+            <%= image_tag("websites.png") %>
+            <h3>Websites</h3>
+        </div>
+    
+        <div class="product_associated_attrs">
+            <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Websites" }, endpoints: { endpoint_title: "Brand" }).each do |associated_attr| %>
+            <ul>
+                <li><h5><%= associated_attr.attr.attr_title %></h5></li>
+                <li><hr></li>
+                <li><h6><%= associated_attr.ui_info %></h6></li>                
+            </ul>
+            <% end %>
+        </div>
+    </div>
+
     
 </div>
 
