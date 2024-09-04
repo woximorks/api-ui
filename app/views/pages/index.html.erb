@@ -10,7 +10,10 @@
   
   <% if @results.present? %>
     <% @results.each do |result| %>
-      <p><%= [result.attr.attr_title, result.ui_info] %></p>
+        <p>Endpoint: <%= result.endpoint.endpoint_title %></p>
+        <p>Attribute: <%= result.attr.attr_title %></p>
+        <p>UI Info: <%=  result.ui_info %></p>
+        <hr>
     <% end %>
   <% else %>
     <p>No results to display</p>
