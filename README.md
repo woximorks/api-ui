@@ -15,3 +15,7 @@
     - 'Unassociated' is a placeholder product type to allow the DB to seed with current associations in place between product and associated_attr
     - ActionLog, Agent, and Brand are completed. I've double checked against the existing documentation and all of the associated attributes are listed.
         - It's worth noting that this entire project 'working' relies on the current structure of the seed file (and referenced files in the seeds folder). The IDs for endpoints and attrs that are assigned are referenced in the commmands.sql file to populate the DB in the event that a complete reset needs to happen. Further changes to the seed files for ActionLog, Agent, Brand, or the root seed file at this point could break the application. As such, an SQL backup file has been created and added to db/backups folder.
+
+    - Added pg_search gem
+        - https://github.com/Casecommons/pg_search
+        - https://www.youtube.com/watch?v=ZRpXAY21t28

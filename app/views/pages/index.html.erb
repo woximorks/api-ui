@@ -1,3 +1,22 @@
+<%= form_tag(index_path, method: :get) do %>
+    <%= label_tag(:keyword, "Search for:") %>
+    <%= text_field_tag(:keyword) %>
+    <%= submit_tag("Search") %>
+  <% end %>
+  
+  <% if flash[:alert].present? %>
+    <p><%= flash[:alert] %></p>
+  <% end %>
+  
+  <% if @results.present? %>
+    <% @results.each do |result| %>
+      <p><%= [result.attr.attr_title, result.ui_info] %></p>
+    <% end %>
+  <% else %>
+    <p>No results to display</p>
+  <% end %>
+
+
 <%= link_to "ActionLog", "actionlog" %>
 <%= link_to "Agent", "agent" %>
 <%= link_to "Brand", "brand" %>

@@ -4,6 +4,11 @@ class PagesController < ApplicationController
       @endpoints = Endpoint.all
       @attrs = Attr.all
       @associated_attrs = AssociatedAttr.all
+      if params[:keyword].present?
+        @results = @associated_attrs.search(params[:keyword])
+      else
+        @results = []
+      end
   end
   def home
       @endpoints = Endpoint.all
