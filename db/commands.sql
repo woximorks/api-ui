@@ -578,3 +578,153 @@ UPDATE associated_attrs
 SET product_id = 7,
 	ui_info = 'font color intended to overlay pres_block_background_color'
 WHERE attr_id = 116; -- pres_block_text_color
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'A brief, human readable title that will be shown to the agent as the subject of the BuyerTransaction that you are creating.'
+WHERE attr_id = 117; -- transaction_name
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'Brief, human readable content that will be shown to the agent as notes about the BuyerTransaction that you are creating.'
+WHERE attr_id = 118; -- notes
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The street address of the property being purchased. This should be populated if this BuyerTransaction - is_mls_transaction attribute is false.'
+WHERE attr_id = 119; -- address
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The city or township of the property being purchased. This should be populated if this BuyerTransaction - is_mls_transaction attribute is false.'
+WHERE attr_id = 120; -- city
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The state or province of the property being purchased. This should be populated if this BuyerTransaction - is_mls_transaction attribute is false.'
+WHERE attr_id = 121; -- state
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The postal code of the property being purchased. This should be populated if this BuyerTransaction - is_mls_transaction attribute is false.'
+WHERE attr_id = 122; -- zip_code
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The minimum desired living area for prospective properties.'
+WHERE attr_id = 123; -- min_sqft
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The maximum desired living area for prospective properties.'
+WHERE attr_id = 124; -- max_sqft
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The minimum number of bedrooms for prospective properties.'
+WHERE attr_id = 125; -- min_beds
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The maximum number of bedrooms for prospective properties.'
+WHERE attr_id = 126; -- max_beds
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The minimum number of bathrooms for prospective properties.'
+WHERE attr_id = 127; -- min_baths
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The maximum number of bathrooms for prospective properties.'
+WHERE attr_id = 128; -- max_baths
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The name of a locality representing an area of interest for prospective properties.'
+WHERE attr_id = 129; -- area_of_interest
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'Whether the property being purchased is being listed on an MLS. This should be false for paperwork-only, for sale by owner, off-market, or pocket listing type transactions or any transactions that will not be tracked through an MLS.'
+WHERE attr_id = 130; -- is_mls_transaction
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The MLS number of the the property being purchased. mls_number should be populated only if is_mls_transaction is true.'
+WHERE attr_id = 131; -- mls_number
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'This is the Unix timestamp representing the date that the agent initiated transaction discussions with the client.'
+WHERE attr_id = 132; -- start_timestamp
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'Commission for the transaction. If the commission for the transaction is based on a percentage of the purchase amount, use this attribute. Use either this or commission_flat_fee depending on how the transaction is structured, both attributes cannot be populated. If no commission (either commission_percentage or commission_flat_fee) is supplied during creation, commission_percentage is set to the default commission_percentage for the associated Agent.'
+WHERE attr_id = 133; -- commission_percentage
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'Commission for the transaction. If the commission for the transaction is based on a flat dollar amount, use this attribute. Use either this or commission_percentage, both cannot be populated.'
+WHERE attr_id = 134; -- commission_flat_fee
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'If the payment for the transaction is based on percentage of sales volume, use this attribute. Use either this or sales_volume_flat_fee depending on how the transaction is structured, both attributes cannot be populated.'
+WHERE attr_id = 135; -- sales_volume_percentage
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'If payment for the transaction is based on a flat fee derived from sales volume, use this attribute. Use either this or sales_volume_percentage depending on how the transaction is structured, both attributes cannot be populated.'
+WHERE attr_id = 136; -- sales_volume_flat_fee
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The desired purchase price for a property if using target rather than range.'
+WHERE attr_id = 137; -- target_price
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The minimum price range for a property if using a price range rather than target price.'
+WHERE attr_id = 138; -- min_price
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The maximum price range for a property if using a price range rather than target price.'
+WHERE attr_id = 139; -- max_price
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The stage that the BuyerTransaction should be placed into (see section header).'
+WHERE attr_id = 140; -- stage
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'This is the MoxiWorks Platform ID of the BuyerTransaction which you have created. This will be an RFC 4122 compliant UUID. This ID should be recorded on response as it is the key ID for updating the BuyerTransaction.'
+WHERE attr_id = 141; -- moxi_works_transaction_id
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'This attribute displays a human readable stage name that is associated with the current stage attribute. When created through the MoxiWorks Platform BuyerTransaction objects will automatically be configured as active transactions. For more information about BuyerTransaction stages, see BuyerTransaction Stages.'
+WHERE attr_id = 142; -- stage_name
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'This is the closing price for the transaction . This should be null if the BuyerTransaction is not yet in complete state.'
+WHERE attr_id = 143; -- closing_price
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'A Unix timestamp representing the point in time when the transaction for this BuyerTransaction object was completed. This should be null if the BuyerTransaction is not yet in complete state.'
+WHERE attr_id = 144; -- closing_timestamp
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'A Unix timestamp representing the point in time when the transaction for this BuyerTransaction object entered into its current state.'
+WHERE attr_id = 145; -- state_changed_at
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'If this is set to true then The MoxiWorks Platform will promote this transaction to the next stage.'
+WHERE attr_id = 146; -- promote_transaction

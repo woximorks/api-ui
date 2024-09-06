@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   get 'pages/index'
   get 'home', to: 'pages#home'
+  get 'search', to: 'pages#index'
   get 'actionlog', to: 'pages#actionlog'
   get 'agent', to: 'pages#agent'
   get 'brand', to: 'pages#brand'
+  get 'buyertransaction', to: 'pages#buyertransaction'
   get 'index', to: 'pages#index'
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -13,5 +15,5 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  root "pages#home"
+  root "pages#index"
 end

@@ -20,3 +20,8 @@
         - https://github.com/Casecommons/pg_search
         - https://www.youtube.com/watch?v=ZRpXAY21t28
         - associated_attr model is updated to include search params for 'keyword'. It checks 'endpoint.endpoint_title, attr.attr_title, product.product_title, and ui_info'.
+
+    - BuyerTransaction added
+        - nav shared view created and added to all pages
+            - Changes to some routes
+        - commands.sql contains all documentation related info
