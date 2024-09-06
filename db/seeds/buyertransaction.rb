@@ -127,8 +127,8 @@ buyertransaction_attrs = [
     "start_timestamp", #"Integer or null"
     "commission_percentage", #"Float or null"
     "commission_flat_fee", #"Integer or null"
-    "sales_volume_percentage", #"Float or null"
-    "sales_volume_flat_fee", #"Integer or null"
+    "sales_volume_percentage", #"Float or null" This doesn't show up in the documentation under Update response
+    "sales_volume_flat_fee", #"Integer or null" This doesn't show up in the documentation under Update response
     "target_price", #"Integer or null"
     "min_price", #"String or null"
     "max_price", #"Integer or null"
