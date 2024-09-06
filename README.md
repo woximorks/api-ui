@@ -25,3 +25,11 @@
         - nav shared view created and added to all pages
             - Changes to some routes
         - commands.sql contains all documentation related info
+    
+    - Company added
+        - associated commands added to commands.sql file
+        - shared company associated attrs file updated to display the appropriate product cards
+        - nav updated to include links to the company view
+        - routes updated
+        - action refereneced in the pages controller
+        - actual company page within the pages folder added

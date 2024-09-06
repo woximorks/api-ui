@@ -35,5 +35,10 @@ class PagesController < ApplicationController
     @attrs = Attr.all
     @associated_attrs = AssociatedAttr.all
   end
+  def company
+    @endpoints = Endpoint.all
+    @attrs = Attr.all
+    @associated_attrs = AssociatedAttr.all
+  end
 
 end

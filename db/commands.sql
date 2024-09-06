@@ -728,3 +728,23 @@ UPDATE associated_attrs
 SET product_id = 4,
 	ui_info = 'If this is set to true then The MoxiWorks Platform will promote this transaction to the next stage.'
 WHERE attr_id = 146; -- promote_transaction
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = 'This is the numeric company id that is interchangeable with the moxi_works_agent_id in all request scenarios'
+WHERE attr_id = 147; -- numeric_id
+
+UPDATE associated_attrs
+SET product_id = 11,
+	ui_info = 'Exposed company attributes'
+WHERE attr_id = 148; -- public_partner_attrs
+
+UPDATE associated_attrs
+SET product_id = 11,
+	ui_info = 'This is related to the Company endpoint, search action, and refers to the number of records to return per page.'
+WHERE attr_id = 149; -- per_page
+
+UPDATE associated_attrs
+SET product_id = 11,
+	ui_info = 'Displays two additional attributes on response payload. Use for troubleshooting purposes only. Paging should be performed again the provided paging_complete attribute.'
+WHERE attr_id = 150; -- show_paging_totals
