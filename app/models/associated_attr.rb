@@ -7,6 +7,7 @@ class AssociatedAttr < ApplicationRecord
   against: :ui_info,
   associated_against: {
     endpoint: :endpoint_title,
-    attr: :attr_title
+    attr: :attr_title,
+    product: :product_title
   }
 end
