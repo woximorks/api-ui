@@ -37,4 +37,7 @@
     - Followed same steps above for other endpoints.
         - Contact
             - 49-60 on commands file, alongside other shared attrs. Descriptions will need to be updated, idea is to eventually split into json objects based on the endpoint associated.
-        - 
+            
+    - Converted ui_info model to jsonb type
+        - made necessary updates to the front end files to display the content appropriately.
+        - threw everything into a 'general' category but the option to add other json objects is there for now.

@@ -18,8 +18,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_11_204211) do
     t.bigint "endpoint_id", null: false
     t.bigint "attr_id", null: false
     t.bigint "product_id", null: false
-    t.jsonb "request_type", default: "{}", null: false
-    t.string "ui_info"
+    t.jsonb "request_type", default: {}, null: false
+    t.jsonb "ui_info", default: {}, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["attr_id"], name: "index_associated_attrs_on_attr_id"
