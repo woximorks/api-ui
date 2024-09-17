@@ -31,5 +31,10 @@
         - shared company associated attrs file updated to display the appropriate product cards
         - nav updated to include links to the company view
         - routes updated
-        - action refereneced in the pages controller
+        - action referenced in the pages controller
         - actual company page within the pages folder added
+
+    - Followed same steps above for other endpoints.
+        - Contact
+            - 49-60 on commands file, alongside other shared attrs. Descriptions will need to be updated, idea is to eventually split into json objects based on the endpoint associated.
+        - 

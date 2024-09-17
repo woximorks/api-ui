@@ -241,62 +241,62 @@ WHERE attr_id = 48; -- office_mailing_address_zip
 
 UPDATE associated_attrs
 SET product_id = 3,
-	ui_info = 'The full name of the agent. This can be null if there is no data for this attribute.'
+	ui_info = 'The full name of the agent, contact, or other entity in question, depending on the endpoint selected.'
 WHERE attr_id = 49; -- name
 
 UPDATE associated_attrs
 SET product_id = 3,
-	ui_info = 'The first name of the agent. This can be null if there is no data for this attribute. Displays within Roster under the personal info > first name field.'
+	ui_info = 'The first name of the agent, contact, or other entity in question, depending on the endpoint selected.'
 WHERE attr_id = 50; -- first_name
 
 UPDATE associated_attrs
 SET product_id = 3,
-	ui_info = 'The last name of the agent. This can be null if there is no data for this attribute. Displays within Roster under the personal info > last name field.'
+	ui_info = 'The last name of the agent, contact, or other entity in question, depending on the endpoint selected.'
 WHERE attr_id = 51; -- last_name
 
 UPDATE associated_attrs
 SET product_id = 3,
-	ui_info = 'The nickname of the agent. This can be null if there is no data for this attribute.'
+	ui_info = 'The nickname of the agent, contact, or other entity in question, depending on the endpoint selected.'
 WHERE attr_id =52; -- nickname
 
 UPDATE associated_attrs
 SET product_id = 3,
-	ui_info = 'This is the agent’s main phone number. This number should be considered the number the agent would like to be contacted by. This can be null if there is no data for this attribute. Displays within Roster under the contact info > direct phone.'
+	ui_info = 'This is the main associated phone number. This number should be considered the number to be contacted by, in relation to the endpoint selected.'
 WHERE attr_id = 53; -- main_phone_number
 
 UPDATE associated_attrs
 SET product_id = 3,
-	ui_info = 'Mobile phone number of the agent. main_phone_number should be considered higher priority, if not the same. This can be null if there is no data for this attribute. Displays within Roster under the contact info > mobile phone.'
+	ui_info = 'Associated mobile phone number. main_phone_number should be considered higher priority, if not the same, in relation to the endpoint selected.'
 WHERE attr_id = 54; -- mobile_phone_number
 
 UPDATE associated_attrs
 SET product_id = 3,
-	ui_info = 'Alternate phone number for the agent. This should be considered second in priority to main_phone_number. This can be null if there is no data for this attribute. Displays within Roster under the contact info > alternate phone.'
+	ui_info = 'Alternate phone number. This should be considered second in priority to main_phone_number, in relation to the endpoint selected.'
 WHERE attr_id = 55; -- alt_phone_number
 
 UPDATE associated_attrs
 SET product_id = 3,
-	ui_info = 'This is the agent’s fax phone number. This can be null if there is no data for this attribute. Displays within Roster under the contact info > fax.'
+	ui_info = 'This is the fax phone number, in relation to the endpoint selected.'
 WHERE attr_id = 56; -- fax_phone_number
 
 UPDATE associated_attrs
 SET product_id = 3,
-	ui_info = 'This is the agent’s office phone number. This can be null if there is no data for this attribute.'
+	ui_info = 'This is the office phone number, in relation to the endpoint selected.'
 WHERE attr_id = 57; -- office_phone_number
 
 UPDATE associated_attrs
 SET product_id = 3,
-	ui_info = 'This is the agent’s main email address. This email address should be considered the email address the agent would prefer to be contacted by. This can be null if there is no data for this attribute. Displays within Roster under the contact info > primary email.'
+	ui_info = 'This is the main email address. This email address should be considered the email address with preference to be contacted by, in relation to the endpoint selected.'
 WHERE attr_id = 58; -- primary_email_address
 
 UPDATE associated_attrs
 SET product_id = 3,
-	ui_info = 'This is the agent’s alternate email address. This email address should be considered the email address the agent would want to be contacted by only if the address in primary_email_address is not functional. This can be null if there is no data for this attribute.'
+	ui_info = 'This is the agent’s alternate email address. This email address should be considered a backup email to be contacted by, in the event that the primary_email_address is not functional, in relation to the endpoint selected.'
 WHERE attr_id = 59; -- secondary_email_address
 
 UPDATE associated_attrs
 SET product_id = 3,
-	ui_info = 'The email_addresses Hash is a Dictionary object holding the email addresses associated with the Agent record.'
+	ui_info = 'The email_addresses Hash is a Dictionary object holding the email addresses associated with the record, in relation to the endpoint selected.'
 WHERE attr_id = 60; -- email_addresses
 
 UPDATE associated_attrs
@@ -748,3 +748,325 @@ UPDATE associated_attrs
 SET product_id = 11,
 	ui_info = 'Displays two additional attributes on response payload. Use for troubleshooting purposes only. Paging should be performed again the provided paging_complete attribute.'
 WHERE attr_id = 150; -- show_paging_totals
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'This is the full name of the contact you are creating a Contact record for - first middle last'
+WHERE attr_id = 151; -- contact_name
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'This is the phone number that should be used first. It should be a 10 digit phone number.'
+WHERE attr_id = 152; -- primary_phone_number
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'This is the phone number that should be used as an alternate. It should be a 10 digit phone number.'
+WHERE attr_id = 153; -- secondary_phone_number
+
+UPDATE associated_attrs
+SET product_id = 11,
+	ui_info = 'The Contact will be created in MoxiEngage as a lead sourced from the LeadSource associated with this moxi_works_lead_source_id. Send a LeadSource index request to determine which lead sources your organization has permission to impersonate during lead generation.'
+WHERE attr_id = 154; -- moxi_works_lead_source_id
+
+UPDATE associated_attrs
+SET product_id = 11,
+	ui_info = 'This is used to keep track of the original lead source for this Contact record, if different than the lead source associated with the moxi_works_lead_source_id.'
+WHERE attr_id = 155; -- original_lead_source
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The gender of the contact. This can be male, female, m or f. No matter what is provided in the request, the response payload will return m or f.'
+WHERE attr_id = 156; -- gender
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'This is the name used to address the contact when creating mailing labels for the contact associated with this Contact record. It should be a human readable string.'
+WHERE attr_id = 157; -- label_name
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The contact’s home address street, including number and any suite / apartment number information.'
+WHERE attr_id = 158; -- home_street_address
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The city of the contact’s home address.'
+WHERE attr_id = 159; -- home_city
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The state of the contact’s home address.'
+WHERE attr_id = 160; -- home_state
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The zip code of the contact’s home address.'
+WHERE attr_id = 161; -- home_zip
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The country of the contact’s home address.'
+WHERE attr_id = 162; -- home_country
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'If the created Contact record is not for a lead set this to true. By default this is false.'
+WHERE attr_id = 163; -- is_not_lead
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'If the created Contact record should be treated as a lead but it is not desired that the agent should receive an email or text that they have received a lead.'
+WHERE attr_id = 164; -- skip_agent_notification
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The contact’s professional job title.'
+WHERE attr_id = 165; -- job_title
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The contact’s profession.'
+WHERE attr_id = 166; -- occupation
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'This should be a valid URL for a property of interest in your system that can be viewed by the agent.'
+WHERE attr_id = 167; -- property_url
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'Use this if you have data about a property that this contact has shown interest in (property of interest); this should be the MLS ID of the property of interest.'
+WHERE attr_id = 168; -- property_mls_id
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'Use this if you have data about a property that this contact has shown interest in (property of interest); this should be the street address of the property of interest, including number and suite/apartment number information.'
+WHERE attr_id = 169; -- property_street_address
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'Use this if you have data about a property that this contact has shown interest in (property of interest); this should be the city in which the property of interest exists.'
+WHERE attr_id = 170; -- property_city
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'Use this if you have data about a property that this contact has shown interest in (property of interest); this should be the state or province in which the property of interest exists.'
+WHERE attr_id = 171; -- property_state
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'Use this if you have data about a property that this contact has shown interest in (property of interest); this should be the postal code in which the property of interest exists.'
+WHERE attr_id = 172; -- property_zip
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'Use this if you have data about a property that this contact has shown interest in (property of interest); this should be the number of bedrooms in the property of interest.'
+WHERE attr_id = 173; -- property_beds
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'Use this if you have data about a property that this contact has shown interest in (property of interest); this should be the number of bathrooms in the property of interest.'
+WHERE attr_id = 174; -- property_baths
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'Use this if you have data about a property that this contact has shown interest in (property of interest); this should be the list price of the property of interest.'
+WHERE attr_id = 175; -- property_list_price
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'Use this if you have data about a property that this contact has shown interest in (property of interest); this should be the listing status of the property of interest. This can be any arbitrary string, but for best results, this should be a state like Active, Pending, Sold, Cancelled or any other human readable state that would be useful when presented to the agent.'
+WHERE attr_id = 176; -- property_listing_status
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'Use this if you have data about a property that this contact has shown interest in (property of interest); this should be a valid URL to an image of the property of interest.'
+WHERE attr_id = 177; -- property_photo_url
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'Use this if you have data about listing searches that this contact has performed; this should be the city / locale used in the listing search criteria.'
+WHERE attr_id = 178; -- search_city
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'Use this if you have data about listing searches that this contact has performed; this should be the state / region used in the listing search criteria.'
+WHERE attr_id = 179; -- search_state
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'Use this if you have data about listing searches that this contact has performed; this should be the zip / postal code used in the listing search criteria.'
+WHERE attr_id = 180; -- search_zip
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'Use this if you have data about listing searches that this contact has performed; this should be the minimum bathrooms used in the listing search criteria.'
+WHERE attr_id = 181; -- search_min_baths
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'Use this if you have data about listing searches that this contact has performed; this should be the minimum bedrooms used in the listing search criteria.'
+WHERE attr_id = 182; -- search_min_beds
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'Use this if you have data about listing searches that this contact has performed; this should be the minimum price used in the listing search criteria.'
+WHERE attr_id = 183; -- search_min_price
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'Use this if you have data about listing searches that this contact has performed; this should be the maximum price used in the listing search criteria.'
+WHERE attr_id = 184; -- search_max_price
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'Use this if you have data about listing searches that this contact has performed; this should be the minimum square feet of the total living area used in the listing search criteria.'
+WHERE attr_id = 185; -- search_min_sq_ft
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'Use this if you have data about listing searches that this contact has performed; this should be the maximum square feet of the total living area used in the listing search criteria.'
+WHERE attr_id = 186; -- search_max_sq_ft
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'Use this if you have data about listing searches that this contact has performed; this should be the minimum lot size used in the listing search criteria.'
+WHERE attr_id = 187; -- search_min_lot_size
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'Use this if you have data about listing searches that this contact has performed; this should be the maximum lot size used in the listing search criteria.'
+WHERE attr_id = 188; -- search_max_lot_size
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'Use this if you have data about listing searches that this contact has performed; this should be the minimum allowable year built used in the listing search criteria.'
+WHERE attr_id = 189; -- search_min_year_built
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'Use this if you have data about listing searches that this contact has performed; this should be the maximum allowable year built used in the listing search criteria.'
+WHERE attr_id = 190; -- search_max_year_built
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = 'This will be the property types used in the listing search criteria. This can be any arbitrary human readable string, but using recognized property types such as Condo, Single-Family, Townhouse, Land, Multifamily will provide more value to the agent. This value will be null if no data is available for this attribute.'
+WHERE attr_id = 191; -- search_property_types
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'This is a string which reflects the partner created notes. Agent created notes are not reflected in this attribute. Any Notes added here will be displayed to the agent in an Activity Log record. Any HTML formatting included will be stripped from the note attribute’s data. This value will be null if no data is available for this attribute. This text field is limited to 3k.'
+WHERE attr_id = 192; -- note
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'Websites should be submitted as a json array of objects. Each object should include website prioritized ‘rank’ and ‘value’. The number of website fields available for update for a given Contact record depends on the agent email client type.'
+WHERE attr_id = 193; -- websites
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'A unix timestamps representing the birthday for the Contact record.'
+WHERE attr_id = 194; -- birthday
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'A comma separated list of unix timestamps representing the house-iversary dates for the Contact record.'
+WHERE attr_id = 195; -- home_purchase_anniversaries
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The name of the company to be associated with the Contact record.'
+WHERE attr_id = 196; -- company
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'The spouse or partner name to be associated with the Contact record.'
+WHERE attr_id = 197; -- spouse_or_partner
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'A comma separated string of the agent’s mail server categories / groups into which the Contact will be placed. If a supplied group / category name doesn’t already exist for the Agent record, a new category / group will be created and the contact will be added to it.'
+WHERE attr_id = 198; -- category_names
+
+UPDATE associated_attrs
+SET product_id = 11,
+	ui_info = 'A comma separated string of the agent’s mail server categories / groups into which the Contact will be placed. If a supplied group / category name doesn’t already exist for the Agent record, a new category / group will be created and the contact will be added to it.'
+WHERE attr_id = 199; -- is_deleted
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'This is the middle name of the contact associated with this Contact record. This value will be null if no data is available for this attribute. '
+WHERE attr_id = 200; -- middle_name
+
+--49-60 updated
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'This is the generational suffix of the name of the contact associated with this Contact record. This value will be null if no data is available for this attribute. Supported suffixes are II III IV JR JR.. SR SR.'
+WHERE attr_id = 201; -- suffix
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'These phone numbers correspond to agent created Contact entities. Only phone fields present in this Contact record will be returned.'
+WHERE attr_id = 202; -- phone_numbers
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'Whether the contact was recently added to the Agent’s database.'
+WHERE attr_id = 203; -- is_new_contact
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'Wedding anniversary of the contact represented as a Unix Timestamp.'
+WHERE attr_id = 204; -- anniversary
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'Anniversary of the contact’s home purchase represented as a Unix Timestamp.'
+WHERE attr_id = 205; -- home_purchase_anniversary
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'Array representing all associated social media profiles'
+WHERE attr_id = 206; -- social_media_profiles
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'An array of the agent’s mail server groups / categories to which this contact belongs.'
+WHERE attr_id = 207; -- groups
+
+UPDATE associated_attrs
+SET product_id = 11,
+	ui_info = 'This is used to keep track of the original lead source for this Contact record. This field will not be displayed in MoxiEngage, and is for the parter’s own tracking purposes. This key will be associated with valid moxi_works_lead_source_id. Send a LeadSource index request for a full list of applicable lead sources and their ids.'
+WHERE attr_id = 208; -- moxi_works_origin_lead_source_id
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'This array of email addresses correspond to agent created Contact entities. Only email fields present in this record will be returned.'
+WHERE attr_id = 209; -- email_addresses
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = 'Array of phone numbers correspond to agent created Contact entities. Only phone fields present in this record will be returned.'
+WHERE attr_id = 210; -- phone_numbers
+
+UPDATE associated_attrs
+SET product_id = 11,
+	ui_info = 'Whether to only include Contact records for contacts that are neither considered personal contacts nor work collaborators in the payload response.'
+WHERE attr_id = 211; -- only_business_contacts
+
+UPDATE associated_attrs
+SET product_id = 11,
+	ui_info = 'If there is more than one page of Contact objects to return, total_pages will denote how many pages of Contact objects there are to be returned fo the current query. Subsequent pages can be returned by including the page_number parameter in your API request.'
+WHERE attr_id = 212; -- total_pages
+
+UPDATE associated_attrs
+SET product_id = 11,
+	ui_info = 'This array contains the payload from the request query. Any found Contact objects matching the query will be returned as Contact objects in the response.'
+WHERE attr_id = 213; -- contacts
+
+UPDATE associated_attrs
+SET product_id = 11,
+	ui_info = 'This is the result of the delete action – whether the Contact object was actually deleted.'
+WHERE attr_id = 214; -- result
