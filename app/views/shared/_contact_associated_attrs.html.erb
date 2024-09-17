@@ -47,9 +47,9 @@
         <div class="product_associated_attrs">
             <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Websites" }, endpoints: { endpoint_title: "Contact" }).each do |associated_attr| %>
             <ul>
-                <li><h6><%= associated_attr.ui_info %></h6></li>
-                <li><hr></li>
                 <li><h5><%= associated_attr.attr.attr_title %></h5></li>
+                <li><hr></li>
+                <li><h6><%= associated_attr.ui_info %></h6></li>
             </ul>
             <% end %>
         </div>
