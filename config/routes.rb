@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'buyertransaction', to: 'pages#buyertransaction'
   get 'company', to: 'pages#company'
   get 'contact', to: 'pages#contact'
+  get 'emailcampaign', to: 'pages#emailcampaign'
   get 'index', to: 'pages#index'
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

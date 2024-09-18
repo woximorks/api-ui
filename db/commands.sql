@@ -1043,8 +1043,8 @@ WHERE attr_id = 208; -- moxi_works_origin_lead_source_id
 
 UPDATE associated_attrs
 SET product_id = 4,
-	ui_info = jsonb_set(ui_info, '{general}', '"This array of email addresses correspond to agent created Contact entities. Only email fields present in this record will be returned."')
-WHERE attr_id = 209; -- email_addresses
+	ui_info = jsonb_set(ui_info, '{general}', '"An email address associated with the endpoint."')
+WHERE attr_id = 209; -- email_address
 
 UPDATE associated_attrs
 SET product_id = 4,
@@ -1070,3 +1070,108 @@ UPDATE associated_attrs
 SET product_id = 11,
 	ui_info = jsonb_set(ui_info, '{general}', '"This is the result of the delete action – whether the Contact object was actually deleted."')
 WHERE attr_id = 214; -- result
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"A string representing the type of EmailSubscription is associated with the Contact for the supplied partner_contact_id. This is a unique, internally defined string per EmailSubscription type. Documentation of available subscription_type responses is outside the scope of this documentation. If you need help determining available types, please email partners@moxiworks.com."')
+WHERE attr_id = 215; -- subscription_type
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"Unix timestamp representing when the EmailSubscription that is associated with the Contact for the supplied partner_contact_id was initiated."')
+WHERE attr_id = 216; -- subscribed_at
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"This is a string representing the actor responsible for the subscription initiation."')
+WHERE attr_id = 217; -- created_by
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"A string representing a geographic area that the EmailSubscription regards."')
+WHERE attr_id = 218; -- area
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"This is a Unix timestamp representing the point in time that the last EmailSubscription message was sent."')
+WHERE attr_id = 219; -- last_sent
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"This is a Unix timestamp representing the point in time that the next EmailSubscription message will be sent."')
+WHERE attr_id = 220; -- next_scheduled
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"Unix timestamp representing when the EmailSubscription was created."')
+WHERE attr_id = 221; -- created_at
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"Unix timestamp representing when the EmailSubscription that is associated with the Contact for the supplied partner_contact_id was unsubscribed."')
+WHERE attr_id = 222; -- unsubscribed_at
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"Who unsubcribed the EmailSubscription."')
+WHERE attr_id = 223; -- unsubscribed_by
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"boolean representing whether email subscription is a listing announcement for listed homes"')
+WHERE attr_id = 224; -- listed 
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"boolean representing whether email subscription is a listing announcement for sold homes"')
+WHERE attr_id = 225; -- sold 
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"Zipcode"')
+WHERE attr_id = 226; -- zipcode 
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"Type of neighborhood email subscription. This can either be “quick” or “custom”"')
+WHERE attr_id = 227; -- nn_subscription_type
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"For “custom” neighborhood email subscription , search filter with min price"')
+WHERE attr_id = 228; -- nn_min_price
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"For “custom” neighborhood email subscription , search filter with max price"')
+WHERE attr_id = 229; -- nn_max_price
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"For “custom” neighborhood email subscription , search filter with min number of bedrooms."')
+WHERE attr_id = 230; -- nn_min_beds
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"For “custom” neighborhood email subscription , search filter with max number of bedrooms."')
+WHERE attr_id = 231; -- nn_max_beds
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"For “custom” neighborhood email subscription , search filter with min number of bathrooms."')
+WHERE attr_id = 232; -- nn_min_baths
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"For “custom” neighborhood email subscription , search filter with min square feet"')
+WHERE attr_id = 233; -- nn_min_sqft
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"For “custom” neighborhood email subscription , search filter with max square feet"')
+WHERE attr_id = 234; -- nn_max_sqft
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"For “custom” neighborhood email subscription, property_tye selected in the search filter. This value can be either Residential, Condominium, Manufactured Homes, Multi-family, Townhouse"')
+WHERE attr_id = 235; -- nn_property_type

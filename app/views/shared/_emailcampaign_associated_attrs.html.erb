@@ -1,7 +1,60 @@
-<ul id="email_campaign_associated_attrs">
-    <h3>EmailCampaign Associated Attributes</h3>
-    <% @associated_attrs.where(endpoint_id: 7).each do |associated_attr| %>
-    <li><%= associated_attr.attr.attr_title %></li>
-    <li><%= associated_attr.ui_info %></li>
-    <% end %>
-</ul>
+<div class="endpoint_title">
+    <h1>EmailCampaign</h1>
+</div>
+
+<div class="associated_attrs">
+    
+    <div class="product_association" id="api">
+        <div class="associated_product">
+            <%= image_tag("API.png") %>
+            <h3>API</h3>
+        </div>
+
+        <div class="product_associated_attrs">
+            <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "API" }, endpoints: { endpoint_title: "EmailCampaign" }).each do |associated_attr| %>
+            <ul>
+                <li><h6><%= associated_attr.ui_info['general'] %></h6></li>
+                <li><hr></li>
+                <li><h5><%= associated_attr.attr.attr_title %></h5></li>
+            </ul>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="product_association" id="engage">
+        <div class="associated_product">
+            <%= image_tag("engage.png") %>
+            <h3>Engage</h3>
+        </div>
+    
+        <div class="product_associated_attrs">
+            <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Engage" }, endpoints: { endpoint_title: "EmailCampaign" }).each do |associated_attr| %>
+            <ul>
+                <li><h5><%= associated_attr.attr.attr_title %></h5></li>
+                <li><hr></li>
+                <li><h6><%= associated_attr.ui_info['general'] %></h6></li>
+            </ul>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="product_association" id="roster">
+        <div class="associated_product">
+            <%= image_tag("roster.png") %>
+            <h3>Roster</h3>
+        </div>
+
+        <div class="product_associated_attrs">
+            <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Roster" }, endpoints: { endpoint_title: "EmailCampaign" }).each do |associated_attr| %>
+            <ul>
+                <li><h5><%= associated_attr.attr.attr_title %></h5></li>
+                <li><hr></li>
+                <li><h6><%= associated_attr.ui_info['general'] %></h6></li>
+            </ul>
+            <% end %>
+        </div>
+    </div>
+
+</div>
+
+<%= render 'shared/nav' %>
