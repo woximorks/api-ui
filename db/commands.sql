@@ -1285,3 +1285,13 @@ UPDATE associated_attrs
 SET product_id = 3,
 	ui_info = jsonb_set(ui_info, '{general}', '"This is a list of contact id hashes representing Contact objects that were successfully added to the Group during creation. The contact hash will be composed of the partner_contact_id and moxi_works_contact_id associated with the contact."')
 WHERE attr_id = 257; -- updated_contacts
+
+UPDATE associated_attrs
+SET product_id = 11,
+	ui_info = jsonb_set(ui_info, '{general}', '"This is a list of contact id hashes representing Contact objects that were successfully added to the Group during creation. The contact hash will be composed of the partner_contact_id and moxi_works_contact_id associated with the contact."')
+WHERE attr_id = 258; -- is_partner_alias
+
+UPDATE associated_attrs
+SET product_id = 11,
+	ui_info = jsonb_set(ui_info, '{general}', '"This is a list of contact id hashes representing Contact objects that were successfully added to the Group during creation. The contact hash will be composed of the partner_contact_id and moxi_works_contact_id associated with the contact."')
+WHERE attr_id = 259; -- is_partner_default

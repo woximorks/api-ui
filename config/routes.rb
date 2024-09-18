@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'event', to: 'pages#event'
   get 'gallery', to: 'pages#gallery'
   get 'group', to: 'pages#group'
+  get 'leadsource', to: 'pages#leadsource'
   get 'index', to: 'pages#index'
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
