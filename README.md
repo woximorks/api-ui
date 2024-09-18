@@ -35,8 +35,9 @@
         - actual company page within the pages folder added
 
     - Followed same steps within the 'Company added' section above for other endpoints.
-        - Contact, EmailCampaign, Event, Gallery, Group, LeadSource, Listing
+        - Contact, EmailCampaign, Event, Gallery, Group, LeadSource, Listing, Office, 
             
     - Converted ui_info model to jsonb type
         - made necessary updates to the front end files to display the content appropriately.
         - threw everything into a 'general' category but the option to add other json objects is there for now.
+        - Will absolutely need to revisit the Office endpoint, among others. Many of these attributes are incorrectly associated with Engage and, for example, the address related descriptions display related to Engage > transactions.

@@ -1674,3 +1674,88 @@ UPDATE associated_attrs
 SET product_id = 11,
 	ui_info = jsonb_set(ui_info, '{general}', '"This is the payload object for the query. Any Listing object that matches the request query will be returned here."')
 WHERE attr_id = 335; -- Listings
+
+UPDATE associated_attrs
+SET product_id = 11,
+	ui_info = jsonb_set(ui_info, '{general}', '"An alternate integer ID of the office. If you are integrating with MoxiWorks Authentication services, you should use this ID."')
+WHERE attr_id = 336; -- id
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '"The commonly known name of the office. This can be null if there is no data for this attribute."')
+WHERE attr_id = 337; -- common_name
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '"URL to an image of the office. This can be null if there is no data for this attribute."')
+WHERE attr_id = 338; -- image_url
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '"The suite or office number of the office. This can be null if there is no data for this attribute."')
+WHERE attr_id = 339; -- address2
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '"The county the office is in. This can be null if there is no data for this attribute."')
+WHERE attr_id = 340; -- county
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '"Alternate phone number for the office. This should be considered second in priority to phone_number. This can be null if there is no data for this attribute."')
+WHERE attr_id = 341; -- alt_phone
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '"This is the office’s main email address. This email address should be considered the email address the office would prefer to be contacted by. This can be null if there is no data for this attribute."')
+WHERE attr_id = 342; -- email
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '""')
+WHERE attr_id = 343; -- phone
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '"Timezone the office is in."')
+WHERE attr_id = 344; -- timezone
+
+UPDATE associated_attrs
+SET product_id = 5,
+	ui_info = jsonb_set(ui_info, '{general}', '"Office’s website URL. This can be null if there is no data available for this attribute."')
+WHERE attr_id = 345; -- office_website
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '"The street address where the office accepts mail. This can be null if there is no data for this attribute."')
+WHERE attr_id = 346; -- mailing_address
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '"The suite or office number of the office’s mailing address. This can be null if there is no data for this attribute."')
+WHERE attr_id = 347; -- mailing_address2
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '"The city the office mailing address is in. This can be null if there is no data for this attribute."')
+WHERE attr_id = 348; -- mailing_city
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '"The postal code the office mailing addressis in. This can be null if there is no data for this attribute."')
+WHERE attr_id = 349; -- mailing_zip
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '"The state or provice the office mailing address is in. This can be null if there is no data for this attribute."')
+WHERE attr_id = 350; -- mailing_state
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '"URL of the office logo image. This can be null if there is no data for this attribute."')
+WHERE attr_id = 351; -- logo_url
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '"The offices array contains Dictionary objects representing Office entries."')
+WHERE attr_id = 352; -- offices
