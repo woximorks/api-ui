@@ -35,7 +35,7 @@
         - actual company page within the pages folder added
 
     - Followed same steps within the 'Company added' section above for other endpoints.
-        - Contact, EmailCampaign, Event
+        - Contact, EmailCampaign, Event, Gallery, Group, 
             
     - Converted ui_info model to jsonb type
         - made necessary updates to the front end files to display the content appropriately.

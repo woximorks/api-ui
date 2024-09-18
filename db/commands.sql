@@ -1240,3 +1240,48 @@ UPDATE associated_attrs
 SET product_id = 4,
 	ui_info = jsonb_set(ui_info, '{general}', '"This is the payload of Event objects that fall on this day. If no Event objects span this duration, then the events array will be emtpy."')
 WHERE attr_id = 248; -- events
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '"The MLS number for the listing."')
+WHERE attr_id = 249; -- ListingID
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '"The name of the MLS which this listing is listed with."')
+WHERE attr_id = 250; -- ListOfficeAOR
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '"Any images in the gallery, this is an object."')
+WHERE attr_id = 251; -- ListingImages
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '"This is the unique identifer you use in your system that will be associated with the Group that you are creating. This data is required and must be a unique ID for your Group Create request to be accepted."')
+WHERE attr_id = 252; -- partner_group_id 
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '"This is a human readable string meaningful to the agent about what kind of Contact objects are in this Group."')
+WHERE attr_id = 253; -- moxi_works_group_name
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '"This is the unique identifier for this Group."')
+WHERE attr_id = 254; -- moxi_works_group_id
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '"Whether the group ID exists beyond name change."')
+WHERE attr_id = 255; -- transient
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '"How to determine if contacts were removed or added in this request (always false for create requests)."')
+WHERE attr_id = 256; -- is_contact_removal
+
+UPDATE associated_attrs
+SET product_id = 3,
+	ui_info = jsonb_set(ui_info, '{general}', '"This is a list of contact id hashes representing Contact objects that were successfully added to the Group during creation. The contact hash will be composed of the partner_contact_id and moxi_works_contact_id associated with the contact."')
+WHERE attr_id = 257; -- updated_contacts
