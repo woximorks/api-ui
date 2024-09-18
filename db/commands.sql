@@ -3,7 +3,7 @@
 UPDATE associated_attrs 
 SET product_id = 3,
 	ui_info = jsonb_set(ui_info, '{general}', '"Agent UUID, found on profile page, seen as an RFC 4122 compliant UUID. This will be seen within Roster/Client Manager and is the user account level UUID"')
-WHERE attr_id = 1;
+WHERE attr_id = 1; -- agent_uuid
 
 UPDATE associated_attrs
 SET product_id = 3,
@@ -1175,3 +1175,68 @@ UPDATE associated_attrs
 SET product_id = 4,
 	ui_info = jsonb_set(ui_info, '{general}', '"For “custom” neighborhood email subscription, property_tye selected in the search filter. This value can be either Residential, Condominium, Manufactured Homes, Multi-family, Townhouse"')
 WHERE attr_id = 235; -- nn_property_type
+
+UPDATE associated_attrs
+SET product_id = 11,
+	ui_info = jsonb_set(ui_info, '{general}', '"This is the unique identifer you use in your system that has been associated with the Event that you are creating. This data is required and must be a unique key."')
+WHERE attr_id = 236; -- partner_event_id
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"This is a short, descriptive, human readable phrase to be displayed to the agent which lets them know what this Event regards."')
+WHERE attr_id = 237; -- event_subject
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"This is a human readable locatition reference regarding where the event is located that will be meaningful to the agent."')
+WHERE attr_id = 238; -- event_location
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"Whether to send a reminder about the event to attendees before the event starts."')
+WHERE attr_id = 239; -- send_reminder
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"If send_reminder is true, this is how many minutes before the start of the event to send the reminder. Default is 15 minutes before."')
+WHERE attr_id = 240; -- remind_minutes_before
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"This is the Unix timestamp representing the start time of the Event that you are creating. This data is required and must be a valid Unix timestamp."')
+WHERE attr_id = 241; -- event_start
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"This is the Unix timestamp representing the end time of the Event that you are creating. This data is required and must be a valid Unix timestamp."')
+WHERE attr_id = 242; -- event_end
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"Whether the event is an all day event."')
+WHERE attr_id = 243; -- all_day
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"This is a comma separated list of contacts that have already been added through the MoxiWorks Platform API who will be present at the referenced event. (Use IDs from your system – i.e. partner_contact_id from Contact Create)."')
+WHERE attr_id = 244; -- attendees
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"This is the earliest time that you are searching for an Event to be in. This data is required and must be a Unix timestamp before date_end."')
+WHERE attr_id = 245; -- date_start
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"This is the latest time that you are searching for an Event to be in. This data is required and must be a Unix timestamp after date_start."')
+WHERE attr_id = 246; -- date_end
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"This is a string representing a date in MM/DD/YYYY format. Any event Event whose duration spans or falls within this day will be included in the results for this day."')
+WHERE attr_id = 247; -- date
+
+UPDATE associated_attrs
+SET product_id = 4,
+	ui_info = jsonb_set(ui_info, '{general}', '"This is the payload of Event objects that fall on this day. If no Event objects span this duration, then the events array will be emtpy."')
+WHERE attr_id = 248; -- events
