@@ -1,19 +1,24 @@
--- ************************************ Adding UI Information
+-- ************************************ Adding or updating UI Information
 
-=begin
+-- Single Key / Value
 UPDATE associated_attrs
-SET product_id = ,
-    ui_info = jsonb_set(
+SET ui_info = jsonb_set(ui_info, '{general}', '"general info"')
+WHERE attr_id = #; -- attribute
+
+-- Multiple Key / Values
+UPDATE associated_attrs 
+SET ui_info = jsonb_set(
         jsonb_set(
             ui_info, 
             '{general}', 
-            '"general info"',
-			ui_info,
-			'{specific product}', 
-			'"product related info"',
+            '"general info"'
         ),
+        '{product}', 
+        '"product info"'
     )
-WHERE attr_id = ; -- 
+WHERE attr_id = #; -- attribute
+
+-- ************************************
 
 UPDATE associated_attrs 
 SET product_id = 3,
