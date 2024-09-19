@@ -1,8 +1,25 @@
 -- ************************************ Adding UI Information
 
+=begin
+UPDATE associated_attrs
+SET product_id = ,
+    ui_info = jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{general}', 
+            '"general info"',
+			ui_info,
+			'{specific product}', 
+			'"product related info"',
+        ),
+    )
+WHERE attr_id = ; -- 
+
 UPDATE associated_attrs 
 SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"Agent UUID, found on profile page, seen as an RFC 4122 compliant UUID. This will be seen within Roster/Client Manager and is the user account level UUID"')
+	ui_info = jsonb_set(ui_info, 
+	'{general}', '"Agent UUID, found on profile page, seen as an RFC 4122 compliant UUID. This will be seen within Roster/Client Manager and is the user account level UUID"',),
+	'{ActionLog}', '"test"'
 WHERE attr_id = 1; -- agent_uuid
 
 UPDATE associated_attrs
