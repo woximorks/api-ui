@@ -45,3 +45,6 @@
     - Refactoring after database restructure
         - Product association is now set within ui_info, specifically as a key value. i.e. {'Roster': 'some info, very specific to the roster associated attribute', 'Engage': 'engage info that doesn't apply to the roster specific attribute'}
             - commands.sql file also contains an update statement to fix the related descriptions as necessary
+        - Check for 2 conditions on the front end
+            - Endpoint association, and if the endpoint is associated, display the corresponding Product association info.
+            - This is useful because there are attributes that share the same name (address, phone_number), but might correlate to Engage in one instance, and Roster in another depending on the associated Endpoint.

@@ -1,30 +1,37 @@
 -- ************************************ Adding or updating UI Information
 
--- Single Key / Value
 UPDATE associated_attrs
-SET ui_info = jsonb_set(ui_info, '{general}', '"general info"')
-WHERE attr_id = #; -- attribute
-
--- Multiple Key / Values
-UPDATE associated_attrs 
 SET ui_info = jsonb_set(
+    jsonb_set(
         jsonb_set(
             ui_info, 
-            '{general}', 
-            '"general info"'
-        ),
-        '{product}', 
-        '"product info"'
-    )
-WHERE attr_id = #; -- attribute
+            '{General}', 
+            '"General attribute info that could apply to ANY of the products and endpoints."'
+        ), 
+        '{Product}', 
+        '"This would be specific information that pertains to a product relationship."'
+    ), 
+    '{Products}', 
+    '["These", "Are", "The", "Associated", "Products"]'
+)
+WHERE attr_id = #; -- specific_attribute
 
 -- ************************************
 
-UPDATE associated_attrs 
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, 
-	'{general}', '"Agent UUID, found on profile page, seen as an RFC 4122 compliant UUID. This will be seen within Roster/Client Manager and is the user account level UUID"',),
-	'{ActionLog}', '"test"'
+UPDATE associated_attrs
+SET ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{General}', 
+            '"An RFC 4122 compliant UUID"'
+        ), 
+        '{Roster}', 
+        '"Agent UUID, found on profile page within Roster/Client Manager and is the user account level UUID"'
+    ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 1; -- agent_uuid
 
 UPDATE associated_attrs
