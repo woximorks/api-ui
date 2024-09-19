@@ -24,10 +24,10 @@ SET ui_info = jsonb_set(
         jsonb_set(
             ui_info, 
             '{General}', 
-            '"An RFC 4122 compliant UUID"'
+            '"This will be an RFC 4122 compliant UUID. If data is being pulled from The MoxiWorks Platform and integrating with your own system in a managed or automated fashion, then using agent_uuid request attribute is preferable. It is guaranteed to be unique and to never change for the lifetime of the account."'
         ), 
         '{Roster}', 
-        '"Agent UUID, found on profile page within Roster/Client Manager and is the user account level UUID"'
+        '"Agent UUID, found on profile page within Roster/Client Manager and is the user account level UUID."'
     ), 
     '{Products}', 
     '["Roster"]'
@@ -35,19 +35,56 @@ SET ui_info = jsonb_set(
 WHERE attr_id = 1; -- agent_uuid
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"Roster upload, user external key field. Intended for use cases where integration is managed by end-user interaction."')
+SET ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{General}', 
+            '"If you have already existing agent data, agent accounts and your own user interface that agents can use to integrate your account with their MoxiWorks Platform account then you should use the moxi_works_agent_id request attribute. This identifier is guaranteed to be unique, but may be either an alphanumeric string or an email address. It is intended for use cases where integration is managed by end-user interaction."'
+        ), 
+        '{Roster}', 
+        '"This will be the MoxiWorks Platform ID for the agent in question. It may take the form of an email address, or a unique identification string."'
+    ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 2; -- moxi_works_agent_id
 
 UPDATE associated_attrs
-SET product_id = 11,
-	ui_info = jsonb_set(ui_info, '{general}', '"DEPRECATED field related to Roster Feed."')
+SET ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{General}', 
+            '"DEPRECATED"'
+        ), 
+        '{Roster}', 
+        '"N/A Deprecated."'
+    ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 3; -- source_agent_id
 
+
+
 UPDATE associated_attrs
-SET product_id = 4,
-	ui_info = jsonb_set(ui_info, '{general}', '"Human readable string which would be presented to the Agent as the content of the ActionLog entry."')
+SET ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{General}', 
+            '""'
+        ), 
+        '{Engage}', 
+        '"Human readable string which would be presented to the Agent as the content of the ActionLog entry."'
+    ), 
+    '{Products}', 
+    '["Engage"]'
+)
 WHERE attr_id = 4; -- body
+
+-- ***********
 
 UPDATE associated_attrs
 SET product_id = 11,
