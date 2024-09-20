@@ -36,17 +36,13 @@ WHERE attr_id = 1; -- agent_uuid
 
 UPDATE associated_attrs
 SET ui_info = jsonb_set(
-    jsonb_set(
         jsonb_set(
             ui_info, 
             '{API}', 
-            '"If you have already existing agent data, agent accounts and your own user interface that agents can use to integrate your account with their MoxiWorks Platform account then you should use the moxi_works_agent_id request attribute. This identifier is guaranteed to be unique, but may be either an alphanumeric string or an email address. It is intended for use cases where integration is managed by end-user interaction."'
-        ), 
-        '{Roster}', 
-        '"This will be the MoxiWorks Platform ID for the agent in question. It may take the form of an email address, or a unique identification string."'
+            '"This will be the MoxiWorks Platform ID for the agent in question. It may take the form of an email address, or a unique identification string. If you have already existing agent data, agent accounts and your own user interface that agents can use to integrate your account with their MoxiWorks Platform account then you should use the moxi_works_agent_id request attribute. This identifier is guaranteed to be unique, but may be either an alphanumeric string or an email address. It is intended for use cases where integration is managed by end-user interaction."'
     ), 
     '{Products}', 
-    '["API", "Roster"]'
+    '["API"]'
 )
 WHERE attr_id = 2; -- moxi_works_agent_id
 
@@ -76,13 +72,17 @@ WHERE attr_id = 4; -- body
 
 UPDATE associated_attrs
 SET ui_info = jsonb_set(
+    jsonb_set(
         jsonb_set(
             ui_info, 
             '{API}', 
-            '"This will be an RFC 4122 compliant UUID. This data is required and must reference a valid MoxiWorks Contact ID for your ActionLog Create request to be accepted. This is the same as the moxi_works_contact_id attribute of the Contact response."'
-        ),
+            '"This will be an RFC 4122 compliant UUID."'
+        ), 
+        '{ActionLog}', 
+        '"This data is required and must reference a valid MoxiWorks Contact ID for your ActionLog Create request to be accepted. This is the same as the moxi_works_contact_id attribute of the Contact response."'
+    ), 
     '{Products}', 
-    '["API"]'
+    '["API", "ActionLog"]'
 )
 WHERE attr_id = 5; -- moxi_works_contact_id
 
@@ -91,7 +91,7 @@ SET ui_info = jsonb_set(
         jsonb_set(
             ui_info,
 	        '{API}', 
-    	    '"This ID will be associated with a contact, and can be submitted as part of an API call to do things like create ActionLog entries for that contact. The contact record on the MoxiWorks platform should already exist, or can be created using the Contact Create action before attempting to use this contact ID. Failure to do so will result in an error."'
+    	    '"The contact record on the MoxiWorks platform can be created using the Contact Create action, and needs to exist prior to using this attribute. Attempting to use this Partner Contact ID without a contact association in place will result in an error."'
     ), 
     '{Products}', 
     '["API"]'
@@ -166,67 +166,152 @@ SET ui_info = jsonb_set(
 )
 WHERE attr_id = 11; -- agent_action_address
 
--- **********
-
 UPDATE associated_attrs
-SET product_id = 4,
-	ui_info = jsonb_set(ui_info, '{general}', '"Location related to activity stream content, the agent_action location component (inperson / other etc) uses this field to denote the additonal street address info of the agent_action."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{ActionLog}', 
+            '"If creating an agent_action that has a location component (‘inperson’ ‘other’) use this field to denote the additonal street address info of the agent_action."'
+        ),
+    '{Products}', 
+    '["ActionLog"]'
+)
 WHERE attr_id = 12; -- agent_action_address2
 
 UPDATE associated_attrs
-SET product_id = 4,
-	ui_info = jsonb_set(ui_info, '{general}', '"Location related to activity stream content, the agent_action location component (inperson / other etc) uses this field to denote the city or locale of the agent_action."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{ActionLog}', 
+            '"If creating an agent_action that has a location component (‘inperson’ ‘other’) use this field to denote the city or locale of the agent_action."'
+        ),
+    '{Products}', 
+    '["ActionLog"]'
+)
 WHERE attr_id = 13; -- agent_action_city
 
 UPDATE associated_attrs
-SET product_id = 4,
-	ui_info = jsonb_set(ui_info, '{general}', '"Location related to activity stream content, the agent_action location component (inperson / other etc) uses this field to denote the state or province of the agent_action.."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{ActionLog}', 
+            '"If creating an agent_action that has a location component (‘inperson’ ‘other’) use this field to denote the state or province of the agent_action."'
+        ),
+    '{Products}', 
+    '["ActionLog"]'
+)
 WHERE attr_id = 14; -- agent_action_state
 
 UPDATE associated_attrs
-SET product_id = 4,
-	ui_info = jsonb_set(ui_info, '{general}', '"Location related to activity stream content, the agent_action location component (inperson / other etc) uses this field to denote the postal code of the agent_action."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{ActionLog}', 
+            '"If creating an agent_action that has a location component (‘inperson’ ‘other’) use this field to denote the postal code of the agent_action."'
+        ),
+    '{Products}', 
+    '["ActionLog"]'
+)
 WHERE attr_id = 15; -- agent_action_zip
 
 UPDATE associated_attrs
-SET product_id = 11,
-	ui_info = jsonb_set(ui_info, '{general}', '"API and database related information, this is the Unix timestamp for the creation time of the ActionLog entry."')
+SET ui_info = jsonb_set(
+		jsonb_set
+        jsonb_set(
+            ui_info, 
+            '{ActionLog}', 
+            '"This is the Unix timestamp for the creation time of the ActionLog entry."'
+        ),
+    '{Products}', 
+    '["ActionLog"]'
+)
 WHERE attr_id = 16; -- timestamp
 
 UPDATE associated_attrs
-SET product_id = 11,
-	ui_info = jsonb_set(ui_info, '{general}', '"API and database related information, this is the MoxiWorks Platform ID of the ActionLog entry to be deleted. This will be an RFC 4122 compliant UUID."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{ActionLog}', 
+    	    '"Represents the creation time of the ActionLog entry, will be in Unix timestamp format."'
+    ),
+    '{Products}', 
+    '["ActionLog"]'
+)
 WHERE attr_id = 17; -- moxi_works_action_log_id
 
 UPDATE associated_attrs
-SET product_id = 11,
-	ui_info = jsonb_set(ui_info, '{general}', '"API related information referencing the call submitted, which will indicate what the status of the request is."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{ActionLog}', 
+    	    '"This will indicate what the status of the request is."'
+    ), 
+    '{Products}', 
+    '["ActionLog"]'
+)
 WHERE attr_id = 18; -- status
 
 UPDATE associated_attrs
-SET product_id = 11,
-	ui_info = jsonb_set(ui_info, '{general}', '"API related information referencing the call submitted, which will indicate whether the delete request was successful or not."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{ActionLog}', 
+    	    '"This will indicate whether the delete request was successful or not."'
+    ), 
+    '{Products}', 
+    '["ActionLog"]'
+)
 WHERE attr_id = 19; -- deleted
 
 UPDATE associated_attrs
-SET product_id = 11,
-	ui_info = jsonb_set(ui_info, '{general}', '"API related information referencing the call submitted, an object (array of strings). Any messages associated with the delete request status will be contained in this array."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{ActionLog}', 
+    	    '"This is an arrray of strings. Any messages associated with the delete request status will be contained in this array."'
+    ), 
+    '{Products}', 
+    '["ActionLog"]'
+)
 WHERE attr_id = 20; -- messages
 
 UPDATE associated_attrs
-SET product_id = 11,
-	ui_info = jsonb_set(ui_info, '{general}', '"API related information referencing the call submitted, only records created later than this Unix timestamp will be included in the query. The upper bound of the time slice will be the 90 days higher than date_min value or the value of the the date_max; whichever is lower. If no timestamps are provided, records from the last 90 days will be retrieved."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{ActionLog}', 
+    	    '"Only ActionLog records created later than this Unix timestamp will be included in the query. The upper bound of the time slice will be the 90 days higher than date_min value or the value of the the date_max; whichever is lower. If no timestamps are provided, ActionLogs from the last 90 days will be retrieved. The maximum timeframe for data is 90 days. date_min and date_max should be set in 90 day increments to retrieve the data from a specific historical point"'
+    ), 
+    '{Products}', 
+    '["ActionLog"]'
+)
 WHERE attr_id = 21; -- date_min
 
 UPDATE associated_attrs
-SET product_id = 11,
-	ui_info = jsonb_set(ui_info, '{general}', '"API related information referencing the call submitted, only records created before this Unix timestamp will be included in the query. The upper bound of the time slice will be the 90 days higher than date_min value or the value of the the date_max; whichever is lower. If no timestamps are provided, records from the last 90 days will be retrieved."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{ActionLog}', 
+    	    '"Only ActionLog records created earlier than this Unix timestamp will be included in the query. Should be no higher than 90 days past the date_min attribute if it is provided. The maximum timeframe for data is 90 days. date_min and date_max should be set in 90 day increments to retrieve the data from a specific historical point"'
+    ), 
+    '{Products}', 
+    '["ActionLog"]'
+)
 WHERE attr_id = 22; -- date_max
 
 UPDATE associated_attrs
-SET product_id = 11,
-	ui_info = jsonb_set(ui_info, '{general}', '"The actions array contains Dictionary objects representing endpoint entries. These include moxi_works_action_log_id - the unique identifier for the MoxiWorks Platform ActionLog entry. type - a string from an enumerated set representing the type of ActionLog entry it is, formatted in lowercase with an underscore between each word. Individual ActionLog types are outside the scope of this document. timestamp - the Unix timestamp for the creation time of the ActionLog entry. And finally log_data - The actual payload data of the ActionLog entry, structure depending on type selected."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{ActionLog}', 
+    	    '"The actions array contains Dictionary objects representing ActionLog entries, including [moxi_works_action_log_id, type, timestamp, log_data]."'
+    ), 
+    '{Products}', 
+    '["ActionLog"]'
+)
 WHERE attr_id = 23; -- actions
+
+-- **********
 
 UPDATE associated_attrs
 SET product_id = 11,
