@@ -23,14 +23,14 @@ SET ui_info = jsonb_set(
     jsonb_set(
         jsonb_set(
             ui_info, 
-            '{General}', 
+            '{API}', 
             '"This will be an RFC 4122 compliant UUID. If data is being pulled from The MoxiWorks Platform and integrating with your own system in a managed or automated fashion, then using agent_uuid request attribute is preferable. It is guaranteed to be unique and to never change for the lifetime of the account."'
         ), 
         '{Roster}', 
         '"Agent UUID, found on profile page within Roster/Client Manager and is the user account level UUID."'
     ), 
     '{Products}', 
-    '["Roster"]'
+    '["API", "Roster"]'
 )
 WHERE attr_id = 1; -- agent_uuid
 
@@ -39,87 +39,134 @@ SET ui_info = jsonb_set(
     jsonb_set(
         jsonb_set(
             ui_info, 
-            '{General}', 
+            '{API}', 
             '"If you have already existing agent data, agent accounts and your own user interface that agents can use to integrate your account with their MoxiWorks Platform account then you should use the moxi_works_agent_id request attribute. This identifier is guaranteed to be unique, but may be either an alphanumeric string or an email address. It is intended for use cases where integration is managed by end-user interaction."'
         ), 
         '{Roster}', 
         '"This will be the MoxiWorks Platform ID for the agent in question. It may take the form of an email address, or a unique identification string."'
     ), 
     '{Products}', 
-    '["Roster"]'
+    '["API", "Roster"]'
 )
 WHERE attr_id = 2; -- moxi_works_agent_id
 
 UPDATE associated_attrs
 SET ui_info = jsonb_set(
-    jsonb_set(
         jsonb_set(
             ui_info, 
-            '{General}', 
-            '"DEPRECATED"'
-        ), 
-        '{Roster}', 
-        '"N/A Deprecated."'
-    ), 
+            '{API}', 
+            '"If you have access to agent data from the same company source that MoxiWorks uses as an upstream data source then you should use the source_agent_id request attribute. This identifier will be unique only within the scope of a given company or parent_company, and must be used in conjunction with the moxi_works_company_id or parent_company_id request attributes. Please email partners@moxiworks.com for clarification about this request attribute."'
+        ),
     '{Products}', 
-    '["Roster"]'
+    '["API"]'
 )
 WHERE attr_id = 3; -- source_agent_id
 
+UPDATE associated_attrs
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+			'{ActionLog}',
+        	'"Human readable string which would be presented to the Agent as the content of the ActionLog entry."'
+    ), 
+    '{Products}', 
+    '["ActionLog"]'
+)
+WHERE attr_id = 4; -- body
 
+UPDATE associated_attrs
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{API}', 
+            '"This will be an RFC 4122 compliant UUID. This data is required and must reference a valid MoxiWorks Contact ID for your ActionLog Create request to be accepted. This is the same as the moxi_works_contact_id attribute of the Contact response."'
+        ),
+    '{Products}', 
+    '["API"]'
+)
+WHERE attr_id = 5; -- moxi_works_contact_id
+
+UPDATE associated_attrs
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{API}', 
+    	    '"This ID will be associated with a contact, and can be submitted as part of an API call to do things like create ActionLog entries for that contact. The contact record on the MoxiWorks platform should already exist, or can be created using the Contact Create action before attempting to use this contact ID. Failure to do so will result in an error."'
+    ), 
+    '{Products}', 
+    '["API"]'
+)
+WHERE attr_id = 6; -- partner_contact_id
+
+UPDATE associated_attrs
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{ActionLog}', 
+    	    '"Human readable string which would be presented to the Agent as the content of the ActionLog entry."'
+    ), 
+    '{Products}', 
+    '["ActionLog"]'
+)
+WHERE attr_id = 7; -- title
 
 UPDATE associated_attrs
 SET ui_info = jsonb_set(
     jsonb_set(
         jsonb_set(
             ui_info, 
-            '{General}', 
-            '""'
+            '{API}', 
+            '"You can pass either the alphanumeric key (similar to the company name in most cases) or the numeric identifier (numeric_id in the company response)."'
         ), 
-        '{Engage}', 
-        '"Human readable string which would be presented to the Agent as the content of the ActionLog entry."'
+        '{Roster}', 
+        '"Seen within Roster > Client Manager as the associated Company level UUID."'
     ), 
     '{Products}', 
-    '["Engage"]'
+    '["API", "Roster"]'
 )
-WHERE attr_id = 4; -- body
-
--- ***********
-
-UPDATE associated_attrs
-SET product_id = 11,
-	ui_info = jsonb_set(ui_info, '{general}', '"API related data, the Platform ID the action is associated with."')
-WHERE attr_id = 5; -- moxi_works_contact_id
-
-UPDATE associated_attrs
-SET product_id = 11,
-	ui_info = jsonb_set(ui_info, '{general}', '"ID partner passed when creating a contact through the API, the unique identifer in the system utilized by the user that has been associated with the entry."')
-WHERE attr_id = 6; -- partner_contact_id
-
-UPDATE associated_attrs
-SET product_id = 4,
-	ui_info = jsonb_set(ui_info, '{general}', '"Human readable string which would be presented to the Agent as the title of the ActionLog entry."')
-WHERE attr_id = 7; -- title
-
-UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"Seen within Roster/Client Manager as the associated Company level UUID. A valid MoxiWorks Company ID. Use Company Endpoint to determine what moxi_works_company_id you can use."')
 WHERE attr_id = 8; -- moxi_works_company_id
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"Seen within Roster/Client Manager as the associated Parent Company level UUID. This is the numeric_id or moxi_works_company_id of a company that is considered to be a parent company in the MoxiWorks Platform."')
+SET ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{Roster}', 
+            '"This is the numeric_id or moxi_works_company_id of a company that is considered to be a Parent Company in the MoxiWorks Platform."'
+        ), 
+        '{API}', 
+        '"Provides for a broad scope by which partners may be afforded permissions to perform MoxiWorks Platform actions, in scenarios where a partner does business with a parent company in the MoxiWorks System. It also provides broad scope under which agents may be looked up using the source_agent_id request attribute in many scenarios across different MoxiWorks Platform endpoints and actions. Any use of this request attribute must be coordinated with MoxiWorks Platform Partner services. Please reach out to partner services for more information."'
+    ), 
+    '{Products}', 
+    '["API", "Roster"]'
+)
 WHERE attr_id = 9; -- parent_company_id
 
 UPDATE associated_attrs
-SET product_id = 4,
-	ui_info = jsonb_set(ui_info, '{general}', '"Activity Stream content, this is the human readable plain-text string which will be presented to the Agent as the heading of the ActionLog entry. This can be any short, descriptive sentence which would be practical for the agent to see in the history of events associated with a Contact."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{ActionLog}', 
+            '"This is the human readable plain-text string which will be presented to the Agent as the heading of the ActionLog entry."'
+        ),
+    '{Products}', 
+    '["ActionLog"]'
+)
 WHERE attr_id = 10; -- agent_action
 
 UPDATE associated_attrs
-SET product_id = 4,
-	ui_info = jsonb_set(ui_info, '{general}', '"Location related to activity stream content, the agent_action location component (inperson / other etc) uses this field to denote the street address of the agent_action."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{ActionLog}', 
+            '"If creating an agent_action that has a location component (‘inperson’ ‘other’) use this field to denote the street address of the agent_action."'
+        ),
+    '{Products}', 
+    '["ActionLog"]'
+)
 WHERE attr_id = 11; -- agent_action_address
+
+-- **********
 
 UPDATE associated_attrs
 SET product_id = 4,
