@@ -1,5 +1,9 @@
 -- ************************************ Adding or updating UI Information
 
+-- Begin transaction to ensure atomicity
+BEGIN;
+
+-- Inserting the initial record
 INSERT INTO associated_attrs (id, attr_id, request_type, created_at, updated_at, associated_endpoint)
 VALUES (
   1, -- agent_uuid
@@ -7,43 +11,43 @@ VALUES (
   '{}',  -- Empty JSONB object for request_type
   CURRENT_TIMESTAMP,
   CURRENT_TIMESTAMP,
-  '{}'); -- Empty JSONB object for associated_endpoint
+  '{}'  -- Empty JSONB object for associated_endpoint
+);
 
+-- Updating ui_info and associated_endpoint, and setting updated_at
 UPDATE associated_attrs
-SET ui_info = jsonb_set(
-	jsonb_set(
-		jsonb_set(
-			jsonb_set(
-				jsonb_set(
-					jsonb_set(
-						ui_info, 
-						'{API}', -- This is the actual data that displays in relation to the API
-						'"This will be an RFC 4122 compliant UUID. If data is being pulled from The MoxiWorks Platform and integrating with your own system in a managed or automated fashion, then using agent_uuid request attribute is preferable. It is guaranteed to be unique and to never change for the lifetime of the account."'
-					), 
-					'{Roster}', -- This is the actual data that displays in relation to Roster
-					'"Agent UUID, found on profile page within Roster/Client Manager and is the user account level UUID."'
-				), 
-				'{Products}', -- These are the associated products
-				'["API", "Roster"]'
-			),
-			'{ActionLog}', -- These are the product associations that apply for the 'ActionLog' Endpoint
-			'["API", "Roster"]'
-		),
-			'{Agent}', -- These are the product associations that apply for the 'Agent' Endpoint
-			'["API", "Roster"]'
-	),
-		'{Endpoints}', -- These are all of the associated endpoints
-		'["ActionLog", "Agent"]'
-)
+SET 
+  ui_info = jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          jsonb_set(
+            jsonb_set(
+              ui_info, 
+              '{API}', 
+              '"This will be an RFC 4122 compliant UUID. If data is being pulled from The MoxiWorks Platform and integrating with your own system in a managed or automated fashion, then using agent_uuid request attribute is preferable. It is guaranteed to be unique and to never change for the lifetime of the account."'
+            ), 
+            '{Roster}', 
+            '"Agent UUID, found on profile page within Roster/Client Manager and is the user account level UUID."'
+          ), 
+          '{Products}', 
+          '["API", "Roster"]'
+        ),
+        '{ActionLog}', 
+        '["API", "Roster"]'
+      ),
+      '{Agent}', 
+      '["API", "Roster"]'
+    ),
+  associated_endpoint = jsonb_set(
+    associated_endpoint,
+    '{Endpoints}',
+    '["ActionLog", "Agent"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
 WHERE attr_id = 1; -- agent_uuid
 
-UPDATE associated_attrs
-SET associated_endpoint = jsonb_set(
-		associated_endpoint,
-		'{Endpoints}',
-		'["ActionLog", "Agent"]'
-)
-WHERE attr_id = 1; -- agent_uuid
+-- Commit transaction
+COMMIT;
 
 -- **************************************
 
