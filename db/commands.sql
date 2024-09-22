@@ -1,38 +1,51 @@
 -- ************************************ Adding or updating UI Information
 
-UPDATE associated_attrs
-SET ui_info = jsonb_set(
-    jsonb_set(
-        jsonb_set(
-            ui_info, 
-            '{General}', 
-            '"General attribute info that could apply to ANY of the products and endpoints."'
-        ), 
-        '{Product}', 
-        '"This would be specific information that pertains to a product relationship."'
-    ), 
-    '{Products}', 
-    '["These", "Are", "The", "Associated", "Products"]'
-)
-WHERE attr_id = #; -- specific_attribute
-
--- ************************************
+INSERT INTO associated_attrs (id, attr_id, request_type, created_at, updated_at, associated_endpoint)
+VALUES (
+  1, -- agent_uuid
+  1,
+  '{}',  -- Empty JSONB object for request_type
+  CURRENT_TIMESTAMP,
+  CURRENT_TIMESTAMP,
+  '{}'); -- Empty JSONB object for associated_endpoint
 
 UPDATE associated_attrs
 SET ui_info = jsonb_set(
-    jsonb_set(
-        jsonb_set(
-            ui_info, 
-            '{API}', 
-            '"This will be an RFC 4122 compliant UUID. If data is being pulled from The MoxiWorks Platform and integrating with your own system in a managed or automated fashion, then using agent_uuid request attribute is preferable. It is guaranteed to be unique and to never change for the lifetime of the account."'
-        ), 
-        '{Roster}', 
-        '"Agent UUID, found on profile page within Roster/Client Manager and is the user account level UUID."'
-    ), 
-    '{Products}', 
-    '["API", "Roster"]'
+	jsonb_set(
+		jsonb_set(
+			jsonb_set(
+				jsonb_set(
+					jsonb_set(
+						ui_info, 
+						'{API}', -- This is the actual data that displays in relation to the API
+						'"This will be an RFC 4122 compliant UUID. If data is being pulled from The MoxiWorks Platform and integrating with your own system in a managed or automated fashion, then using agent_uuid request attribute is preferable. It is guaranteed to be unique and to never change for the lifetime of the account."'
+					), 
+					'{Roster}', -- This is the actual data that displays in relation to Roster
+					'"Agent UUID, found on profile page within Roster/Client Manager and is the user account level UUID."'
+				), 
+				'{Products}', -- These are the associated products
+				'["API", "Roster"]'
+			),
+			'{ActionLog}', -- These are the product associations that apply for the 'ActionLog' Endpoint
+			'["API", "Roster"]'
+		),
+			'{Agent}', -- These are the product associations that apply for the 'Agent' Endpoint
+			'["API", "Roster"]'
+	),
+		'{Endpoints}', -- These are all of the associated endpoints
+		'["ActionLog", "Agent"]'
 )
 WHERE attr_id = 1; -- agent_uuid
+
+UPDATE associated_attrs
+SET associated_endpoint = jsonb_set(
+		associated_endpoint,
+		'{Endpoints}',
+		'["ActionLog", "Agent"]'
+)
+WHERE attr_id = 1; -- agent_uuid
+
+-- **************************************
 
 UPDATE associated_attrs
 SET ui_info = jsonb_set(
@@ -216,7 +229,6 @@ WHERE attr_id = 15; -- agent_action_zip
 
 UPDATE associated_attrs
 SET ui_info = jsonb_set(
-		jsonb_set
         jsonb_set(
             ui_info, 
             '{ActionLog}', 
@@ -314,308 +326,799 @@ WHERE attr_id = 23; -- actions
 -- **********
 
 UPDATE associated_attrs
-SET product_id = 11,
-	ui_info = jsonb_set(ui_info, '{general}', '"To include access level information for the agent in the response, pass true."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{API}', 
+    	    '"To include access level information for the agent in the response, pass true."'
+    ), 
+    '{Products}', 
+    '["API"]'
+)
 WHERE attr_id = 24; -- include_access_level
 
 UPDATE associated_attrs
-SET product_id = 4,
-	ui_info = jsonb_set(ui_info, '{general}', '"Related to the agent’s GCI goal set within Engage, Pass true to include the agent’s GCI goals and commissions data in the response."')
+SET ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{API}', 
+            '"Pass true to include agent’s GCI goals and commissions data in the response data."'
+        ), 
+        '{Engage}', 
+        '"Engage GCI Goal (gross commission income)"'
+    ), 
+    '{Products}', 
+    '["API", "Engage"]'
+)
 WHERE attr_id = 25; -- include_gci_goals
 
 UPDATE associated_attrs
-SET product_id = 11,
-	ui_info = jsonb_set(ui_info, '{general}', '"To include affiliate data associated with the agent in the response, pass true. Likely not used at all?."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{API}', 
+    	    '"Pass true to include affiliate data associated with the agent in the response."'
+    ), 
+    '{Products}', 
+    '["API"]'
+)
 WHERE attr_id = 26; -- include_partners
 
 UPDATE associated_attrs
-SET product_id = 11,
-	ui_info = jsonb_set(ui_info, '{general}', '"These will populate into Roster, and include reviews from Zillow and Testimonial Tree. To include these ratings and reviews associated with the agent in the response, pass true."')
+SET ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{API}', 
+            '"Pass true to include ratings and reviews associated with the agent in the response."'
+        ), 
+        '{Roster}', 
+        '"Zillow and Testimonial Tree Reviews"'
+    ), 
+    '{Products}', 
+    '["API", "Roster"]'
+)
 WHERE attr_id = 27; -- include_reviews
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"This is an external ID for the Agent in question. This ID will be utilized by the agent’s company or brokerage externally."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{API}', 
+    	    '"This is an external ID related to the Agent, as utilized by their brokerage or company."'
+    ), 
+    '{Products}', 
+    '["API"]'
+)
 WHERE attr_id = 28; -- client_agent_id
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"Found within Roster under the Manage MLS Associations section of an agent account, This is the MLS ID of the Agent as utilized and provided by the MLS."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{Roster}', 
+    	    '"This is the MLS ID of the Agent, as utilized by their primary MLS and seen on the Manage MLS Associations page of Roster."'
+    ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 29; -- mls_agent_id
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"This is the number of the license granted to the agent."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{Roster}', 
+    	    '"This is the number of the license granted to the agent. This is not the Agent MLS ID, see mls_agent_id for that value."'
+    ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 30; -- license
 
 UPDATE associated_attrs
-SET ui_info = jsonb_set(ui_info, '{general}', '"As seen within listings under the MLS field as an example?, this is the name of the primary MLS for the agent."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{Roster}', 
+    	    '"This is the name of the primary MLS for the agent. It will display on the Manage MLS Associations page of Roster."'
+    ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 31; -- mls_name
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"This is the standard abbreviation of the primary MLS utilized by the agent."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{Roster}', 
+    	    '"This is the standard abbreviation of the primary MLS utilized by the agent."'
+    ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 32; -- mls_abbreviation
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"This is the UUID (agent_uuid) of the user in question. This will be an integer. Displays within Roster under personal info > UUID."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{Roster}', 
+    	    '"This will be an integer, and is included as part of the of the agent > available_mls object."'
+    ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 33; -- agent_id
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"Within Roster associated with the Public Key field, this is the MoxiWorks Platform ID of the Office for this Agent. This will be an RFC 4122 compliant UUID."')
+SET ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{API}', 
+            '"This will be an RFC 4122 compliant UUID. Use the Office Index Endpoint for a list of all Office objects associated with a Company, or use the moxi_works_office_id attribute returned in an Agent response."'
+        ), 
+        '{Roster}', 
+        '"A valid MoxiWorks Office ID. Associated with the corresponding Office Public Key field."'
+    ), 
+    '{Products}', 
+    '["API", "Roster"]'
+)
 WHERE attr_id = 34; -- moxi_works_office_id
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"Within Roster associated with the ID field, this is the ID of the Office for this Agent. This will be an integer."')
+SET ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{API}', 
+            '"This is the ID of the Office. This will be an integer."'
+        ), 
+        '{Roster}', 
+        '""'--'"Associated within Roster as the Office Public Key?"'
+    ), 
+    '{Products}', 
+    '["API", "Roster"]'
+)
 WHERE attr_id = 35; -- office_id
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"Within Roster associated with the Internal Office ID field, this is the ID of the Office for this Agent as utilized by their company."')
+SET ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{API}', 
+            '"This is the ID of the Office as utilized by the brokerage / company."'
+        ), 
+        '{Roster}', 
+        '"Roster > Internal Office ID"'
+    ), 
+    '{Products}', 
+    '["API", "Roster"]'
+)
 WHERE attr_id = 36; -- client_office_id
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"Within Roster associated with the Company UUID field, this is the ID of the Company for this Agent. This will be an integer."')
+SET ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{API}', 
+            '"This is the ID of the Company as utilized by that brokerage / company."'
+        ), 
+        '{Roster}', 
+        '"Roster > Company UUID"'
+    ), 
+    '{Products}', 
+    '["API", "Roster"]'
+)
 WHERE attr_id = 37; -- company_id
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"Within Roster associated with the Company ID field, this is the ID of the Company utilized by the brokerage."')
+SET ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{API}', 
+            '"This is the ID of the Company as utilized by that brokerage / company."'
+        ), 
+        '{Roster}', 
+        '"Roster > Company ID"'
+    ), 
+    '{Products}', 
+    '["API", "Roster"]'
+)
 WHERE attr_id = 38; -- client_company_id
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"The street address of the agent’s office. This can be null if there is no data for this attribute. Displays within Roster under the office address section."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{Roster}', 
+            '"The street address of the office. This can be null if there is no data for this attribute. Displays within Roster under the office address section."'
+        ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 39; -- office_address_street
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"The suite or office number of the agent’s office. This can be null if there is no data for this attribute. Displays within Roster under the office address section."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{Roster}', 
+            '"The suite or office number of the office. This can be null if there is no data for this attribute. Displays within Roster under the office address section."'
+        ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 40; -- office_address_street2
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"The city the agent’s office is in. This can be null if there is no data for this attribute. Displays within Roster under the office address section."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{Roster}', 
+            '"The city the office is in. This can be null if there is no data for this attribute. Displays within Roster under the office address section."'
+        ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 41; -- office_address_city
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"The state or provice the agent’s office is in. This can be null if there is no data for this attribute. Displays within Roster under the office address section."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{Roster}', 
+            '"The state or province the office is in. This can be null if there is no data for this attribute. Displays within Roster under the office address section."'
+        ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 42; -- office_address_state
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"The postal code the agent’s office is in. This can be null if there is no data for this attribute. Displays within Roster under the office address section."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{Roster}', 
+            '"The postal code the office is in. This can be null if there is no data for this attribute. Displays within Roster under the office address section."'
+        ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 43; -- office_address_zip
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"The street address of the agent’s office’s mailing address. This can be null if there is no data for this attribute. Displays within Roster under the office address section."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{Roster}', 
+            '"The mailing address for the office. This can be null if there is no data for this attribute."'
+        ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 44; -- office_mailing_address_street
 
+
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"The suite or office number of the agent’s office’s mailing address. This can be null if there is no data for this attribute. Displays within Roster under the office address section."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{Roster}', 
+            '"The suite or office number of the mailing address for the office. This can be null if there is no data for this attribute."'
+        ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 45; -- office_mailing_address_street2
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"The city the agent’s office’s mailing address is in. This can be null if there is no data for this attribute. Displays within Roster under the office address section."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{Roster}', 
+            '"The city where the mailing address for the office is located. This can be null if there is no data for this attribute."'
+        ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 46; -- office_mailing_address_city
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"The state or provice the agent’s office’s mailing address is in. This can be null if there is no data for this attribute. Displays within Roster under the office address section."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{Roster}', 
+            '"The state or province where the mailing address for the office is located. This can be null if there is no data for this attribute."'
+        ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 47; -- office_mailing_address_state
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"The postal code the agent’s office’s mailing address is in. This can be null if there is no data for this attribute. Displays within Roster under the office address section."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{Roster}', 
+            '"The postal code where the mailing address for the office is located. This can be null if there is no data for this attribute."'
+        ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 48; -- office_mailing_address_zip
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"The full name of the agent, contact, or other entity in question, depending on the endpoint selected."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{Roster}', 
+            '"This attribute correlates to different sections of Roster depending on the endpoint selected. It could demonstrate the full name of the Agent, a Team name, a Group name, or a Company name."'
+        ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 49; -- name
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"The first name of the agent, contact, or other entity in question, depending on the endpoint selected."')
+SET ui_info = jsonb_set(
+    jsonb_set(
+		jsonb_set(
+			jsonb_set(
+				ui_info, 
+				'{Roster}', 
+				'"The first name of the agent. This can be null if there is no data for this attribute."'
+			), 
+			'{Engage}', 
+			'"Placeholder"'
+		),
+		'{Websites}',
+		'"Placeholder"'
+    ), 
+    '{Products}', 
+    '["Roster", "Engage", "Websites"]'
+)
 WHERE attr_id = 50; -- first_name
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"The last name of the agent, contact, or other entity in question, depending on the endpoint selected."')
+SET ui_info = jsonb_set(
+    jsonb_set(
+		jsonb_set(
+			jsonb_set(
+				ui_info, 
+				'{Roster}', 
+				'"The last name of the agent. This can be null if there is no data for this attribute."'
+			), 
+			'{Engage}', 
+			'"Placeholder"'
+		),
+		'{Websites}',
+		'"Placeholder"'
+    ), 
+    '{Products}', 
+    '["Roster", "Engage", "Websites"]'
+)
 WHERE attr_id = 51; -- last_name
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"The nickname of the agent, contact, or other entity in question, depending on the endpoint selected."')
+SET ui_info = jsonb_set(
+			jsonb_set(
+				ui_info, 
+				'{Roster}', 
+				'"The nickname of the agent. This can be null if there is no data for this attribute."'
+			),
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id =52; -- nickname
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"This is the main associated phone number. This number should be considered the number to be contacted by, in relation to the endpoint selected."')
+SET ui_info = jsonb_set(
+			jsonb_set(
+				ui_info, 
+				'{Roster}', 
+				'"This is the agent’s main phone number. This number should be considered the number the agent would like to be contacted by. This can be null if there is no data for this attribute."'
+			),
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 53; -- main_phone_number
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"Associated mobile phone number. main_phone_number should be considered higher priority, if not the same, in relation to the endpoint selected."')
+SET ui_info = jsonb_set(
+			jsonb_set(
+				ui_info, 
+				'{Roster}', 
+				'"Mobile phone number of the agent. main_phone_number should be considered higher priority, if not the same. This can be null if there is no data for this attribute."'
+			),
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 54; -- mobile_phone_number
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"Alternate phone number. This should be considered second in priority to main_phone_number, in relation to the endpoint selected."')
+SET ui_info = jsonb_set(
+			jsonb_set(
+				ui_info, 
+				'{Roster}', 
+				'"Alternate phone number for the agent. This should be considered second in priority to main_phone_number. This can be null if there is no data for this attribute."'
+			),
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 55; -- alt_phone_number
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"This is the fax phone number, in relation to the endpoint selected."')
+SET ui_info = jsonb_set(
+			jsonb_set(
+				ui_info, 
+				'{Roster}', 
+				'"This is the agent’s fax phone number. This can be null if there is no data for this attribute."'
+			),
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 56; -- fax_phone_number
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"This is the office phone number, in relation to the endpoint selected."')
+SET ui_info = jsonb_set(
+			jsonb_set(
+				ui_info, 
+				'{Roster}', 
+				'"This is the agent’s office phone number. This can be null if there is no data for this attribute."'
+			),
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 57; -- office_phone_number
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"This is the main email address. This email address should be considered the email address with preference to be contacted by, in relation to the endpoint selected."')
+SET ui_info = jsonb_set(
+			jsonb_set(
+				ui_info, 
+				'{Roster}', 
+				'"This is the agent’s main email address. This email address should be considered the email address the agent would prefer to be contacted by. This can be null if there is no data for this attribute. Displays within Roster > Agent Info > Contact Info."'
+			),
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 58; -- primary_email_address
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"This is the agent’s alternate email address. This email address should be considered a backup email to be contacted by, in the event that the primary_email_address is not functional, in relation to the endpoint selected."')
+SET ui_info = jsonb_set(
+			jsonb_set(
+				ui_info, 
+				'{Roster}', 
+				'"This is the agent’s alternate email address. This email address should be considered the email address the agent would want to be contacted by only if the address in primary_email_address is not functional. This can be null if there is no data for this attribute."'
+			),
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 59; -- secondary_email_address
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"The email_addresses Hash is a Dictionary object holding the email addresses associated with the record, in relation to the endpoint selected."')
+SET ui_info = jsonb_set(
+			jsonb_set(
+				ui_info, 
+				'{Roster}', 
+				'"The email_addresses Hash is a Dictionary object holding the email addresses associated with the Agent record. These include [primary, display, alternate, moxi_sync, lead_routing, zillow], and display within Roster in appropriate sections related to the Agent."'
+			),
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 60; -- email_addresses
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"This is the agent’s lead routing email address. This can be null if there is no data for this attribute."')
+SET ui_info = jsonb_set(
+			jsonb_set(
+				ui_info, 
+				'{Roster}', 
+				'"This is the agent’s lead routing email address. This can be null if there is no data for this attribute."'
+			),
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 61; -- lead_routing_email_address
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"This is the bio of the agent. Array of key/value pairs. Each has a body and header, both strings, which can be null or blank. Displays within Roster under the web info > About Me."')
+SET ui_info = jsonb_set(
+			jsonb_set(
+				ui_info, 
+				'{Roster}', 
+				'"This is the bio of the agent. Array of key/value pairs. Each has a body and header, both strings, which can be null or blank. This displays within Roster > Agent Info > Web Info."'
+			),
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id =62; -- bio
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"This is a string that contains the agent’s designation(s), if any. This can be null if there is no data for this attribute."')
+SET ui_info = jsonb_set(
+			jsonb_set(
+				ui_info, 
+				'{Roster}', 
+				'"This is a string that contains the agent’s designation(s), if any. This can be null if there is no data for this attribute."'
+			),
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 63; -- designations
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"This is an RFC 4122 compliant UUID associated with the agent. This UUID can be used as a unique identifier in determining associations between Agent objects and Listing objects. Displays within Roster under personal info > UUID."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{Roster}', 
+    	    '"UUID associated with the Agent, Team, or other entity."'
+    ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 64; -- uuid
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"Indicates whether the agent has access to MoxiWorks Products. Displays within Roster under Products & Permissions."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{Roster}', 
+    	    '"Indicates whether the agent has access to MoxiWorks Products. This correlates to the Products and Permissions page within Roster."'
+    ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 65; -- has_product_access
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"Indicates whether the agent has access to MoxiWorks Engage."')
+SET ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{Engage}', 
+            '"Indicates whether the agent has access to MoxiWorks Engage."'
+        ), 
+        '{Roster}', 
+        '"This will show on the Products and Permissions page within Roster, and Engage will be accessible if this is true."'
+    ), 
+    '{Products}', 
+    '["Roster", "Engage"]'
+)
 WHERE attr_id = 66; -- has_engage_access
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"The access level of the agent. If include_access_level was passed as true, this can return one of the possible access levels: company-admin, manager, office-admin, office-owner, region-admin, user. Displays within Roster under Products & Permissions > Permission Levels."')
+SET ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{API}', 
+            '"If include_access_level was passed as true, this can return one of the possible access levels: company-admin, manager, office-admin, office-owner, region-admin, user."'
+        ), 
+        '{Roster}', 
+        '"The access level of the agent."'
+    ), 
+    '{Products}', 
+    '["Roster", "API"]'
+)
 WHERE attr_id = 67; -- access_level
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"The view level of the agent. This will return one of the possible view levels: COMPANY_ADMIN, OFFICE_ADMIN, USER."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{Roster}', 
+    	    '"The view level of the agent. This will return one of the possible view levels: COMPANY_ADMIN, OFFICE_ADMIN, USER."'
+    ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 68; -- view_level
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"The teams array contains Dictionary objects representing Team entries. These include name - The human readable name identifying the team entry, uuid - the MoxiWorks Platform ID of the Team, and member_category - The role of the agent in the team.} Within the UI, team info can be found under Management Tools > Agent Teams."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{Roster}', 
+    	    '"The teams array contains Dictionary objects representing Team entries. These include [name, uuid, member_category]. Agent Teams information can be found under Management Tools > Agent Teams."'
+    ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 69; -- teams
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"The base url of the agent’s MoxiWorks agent website. Displays within Roster under Web Info."')
+SET ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{Websites}', 
+            '"The base url of the agent’s MoxiWorks agent website."'
+        ), 
+        '{Roster}', 
+        '"Displays within Agent Info > Web Info."'
+    ), 
+    '{Products}', 
+    '["Websites", "Roster"]'
+)
 WHERE attr_id = 70; -- website_base_url
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"Agent’s Twitter URL. This can be null if there is no data available for this attribute. Displays within Roster under Web Info > Social Media."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{Roster}', 
+    	    '"Agent’s Twitter URL. This can be null if there is no data available for this attribute. Social Media information can be found under Agent Info > Web Info."'
+    ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 71; -- twitter
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"DEPRICATED. Displays within Roster under Web Info > Social Media."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{Roster}', 
+    	    '"Agent’s Google Plus URL. This will be null since there is no data for this attribute, as Google Plus does not exist. Social Media information can be found under Agent Info > Web Info."'
+    ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id =72; -- google_plus
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"Agent’s Facebook page url. This can be null if there is no data for this attribute. Displays within Roster under Web Info > Social Media."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{Roster}', 
+    	    '"Agent’s Facebook page url. This can be null if there is no data for this attribute. Social Media information can be found under Agent Info > Web Info."'
+    ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 73; -- facebook
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"Agent’s website domain. This will be returned without the HTTP(S) prefix. You’ll need to prefix the domain with protocol if using this attribute for an href. This can be null if there is no data for this attribute. Displays within Roster under Web Info."')
+SET ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{Websites}', 
+            '"Agent’s website domain. This will be returned without the HTTP(S) prefix. You’ll need to prefix the domain with protocol if using this attribute for an href. This can be null if there is no data for this attribute."'
+        ), 
+        '{Roster}', 
+        '"Displays within Agent Info > Web Info."'
+    ), 
+    '{Products}', 
+    '["Websites", "Roster"]'
+)
 WHERE attr_id = 74; -- home_page
 
-UPDATE associated_attrs 
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"This is a valid URL for a larger size image for the agent. If no agent image has been uploaded for this agent a default image url will be provided. Displays within Roster under agent info page."')
+UPDATE associated_attrs
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{Roster}', 
+    	    '"This is a valid URL for a larger size image for the agent. If no agent image has been uploaded for this agent a default image url will be provided. Image can be found under Agent Info."'
+    ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 75; -- profile_image_url
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"This is a valid URL for a thumbnail size image for the agent. If no agent image has been uploaded for this agent a default image url will be provided. Displays within Roster under agent info page."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{Roster}', 
+    	    '"This is a valid URL for a thumbnail size image for the agent. If no agent image has been uploaded for this agent a default image url will be provided. Image can be found under Agent Info."'
+    ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 76; -- profile_thumb_url
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"The region the agent’s office is in. This can be null if there is no data for this attribute."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{Roster}', 
+    	    '"The region the agent’s office is in. This can be null if there is no data for this attribute. Region info can be found under Agent Info."'
+    ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 77; -- region
 
 UPDATE associated_attrs
-SET product_id = 4,
-	ui_info = jsonb_set(ui_info, '{general}', '"The agent’s stated gross commission income goal. Displays within Engage in various places as the Gross Commission Income (GCI) Goal."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{Engage}', 
+    	    '"The agent’s stated gross commission income goal. This displays and is referred to within Engage across several sections, including the Goals section most notably."'
+    ), 
+    '{Products}', 
+    '["Engage"]'
+)
 WHERE attr_id = 78; -- gci_goal
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"Percentage commission rate for the agent when acting as a buyer’s agent. Displays within Roster under listing Manager. Also displays on websites."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{Roster}', 
+    	    '"Percentage commission rate for the agent when acting as a buyer’s agent."'
+    ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 79; -- buyer_commission_rate
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"Percentage commission rate for the agent when acting as a seller’s agent. Displays within Roster under listing Manager. Also displays on websites."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{Roster}', 
+    	    '"Percentage commission rate for the agent when acting as a seller’s agent."'
+    ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 80; -- seller_commission_rate
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"A list of the lead service area zip codes covered by the agent."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info,
+	        '{Roster}', 
+    	    '"A list of the lead service area zip codes covered by the agent."'
+    ), 
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 81; -- service_area_zip_codes
 
 UPDATE associated_attrs
-SET product_id = 5,
-	ui_info = jsonb_set(ui_info, '{general}', '"This is an Array that includes the base_url and bio_page_slug of the agent MoxiWorks website."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{Websites}', 
+            '"This includes the base_url and bio_page_slug of the agent MoxiWorks website."'
+        ),
+    '{Products}', 
+    '["Websites"]'
+)
 WHERE attr_id = 82; -- agent_website
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"The alternate_offices array contains Dictionary objects representing AlternateOffice entries."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{Roster}', 
+            '"The alternate_offices array contains Dictionary objects representing associated AlternateOffice entries. These include [moxi_works_office_id, office_id, office_address_street, office_address_street2, office_address_city, office_address_state, office_address_zip, office_phone_number]."'
+        ),
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 83; -- alternate_offices
 
 UPDATE associated_attrs
-SET product_id = 3,
-	ui_info = jsonb_set(ui_info, '{general}', '"The available_mls Array contains Dictionary objects representing MLS entries."')
+SET ui_info = jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{Roster}', 
+            '"The available_mls Array contains Dictionary objects representing MLS entries.. These include [name, display_name, mls_abbreviation, agent_id]."'
+        ),
+    '{Products}', 
+    '["Roster"]'
+)
 WHERE attr_id = 84; -- available_mls
+
+-- **********
 
 UPDATE associated_attrs
 SET product_id = 11,

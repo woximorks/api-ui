@@ -66,10 +66,3 @@ actionlog_attrs = [
 actionlog_attrs.each do |attr_title|
     Attr.find_or_create_by!(attr_title: attr_title)
 end
-
-actionlog_attrs.each do |attr_title|
-    attr = Attr.find_by(attr_title: attr_title)
-    endpoint = Endpoint.find_by(endpoint_title: "ActionLog")
-    product = Product.find_by(product_title: "Unassociated")
-    associated_attr = AssociatedAttr.find_or_create_by!(attr_id: attr.id, endpoint_id: endpoint.id, product_id: product.id)
-end

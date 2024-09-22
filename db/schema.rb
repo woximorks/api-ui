@@ -10,21 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_11_204211) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_22_223024) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "associated_attrs", force: :cascade do |t|
-    t.bigint "endpoint_id", null: false
     t.bigint "attr_id", null: false
-    t.bigint "product_id", null: false
     t.jsonb "request_type", default: {}, null: false
     t.jsonb "ui_info", default: {}, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "associated_endpoint", default: {}, null: false
     t.index ["attr_id"], name: "index_associated_attrs_on_attr_id"
-    t.index ["endpoint_id"], name: "index_associated_attrs_on_endpoint_id"
-    t.index ["product_id"], name: "index_associated_attrs_on_product_id"
   end
 
   create_table "attrs", force: :cascade do |t|
@@ -58,6 +55,4 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_11_204211) do
   end
 
   add_foreign_key "associated_attrs", "attrs"
-  add_foreign_key "associated_attrs", "endpoints"
-  add_foreign_key "associated_attrs", "products"
 end
