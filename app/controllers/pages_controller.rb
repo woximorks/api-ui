@@ -5,7 +5,7 @@ class PagesController < ApplicationController
       @attrs = Attr.all
       @associated_attrs = AssociatedAttr.all
       if params[:keyword].present?
-        @results = @associated_attrs.search(params[:keyword])
+        @results = @associated_attrs.search_by_title(params[:keyword])
       else
         @results = []
       end

@@ -10,8 +10,7 @@
   
   <% if @results.present? %>
     <% @results.each do |result| %>
-        <p>Endpoint: <%= result.endpoint.endpoint_title %></p>
-        <p>Attribute: <%= result.attr.attr_title %></p>
+        <p>Attribute: <%= result.attr_title %></p>
         <p>UI Info: <%=  result.ui_info %></p>
         <hr>
     <% end %>

@@ -26,6 +26,11 @@ SET
     '{Endpoints}', -- all agent_uuid associated endpoints
     '["ActionLog", "Agent"]'
   ),
+  request_type = jsonb_set(
+    request_type,
+    '{ActionLog}', -- all agent_uuid associated request types
+    '["Create Request"]'
+  ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'agent_uuid';
 
@@ -58,6 +63,11 @@ SET
     '{Endpoints}',
     '["ActionLog", "Agent"]'
   ),
+  request_type = jsonb_set(
+    request_type,
+    '{ActionLog}',
+    '["Create Request"]'
+  ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'moxi_works_agent_id';
 
@@ -85,6 +95,11 @@ SET
     associated_endpoint,
     '{Endpoints}',
     '["Agent"]'
+  ),
+  request_type = jsonb_set(
+    request_type,
+    '{ActionLog}',
+    '["Create Request"]'
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'source_agent_id';
@@ -117,6 +132,11 @@ SET
     '{Endpoints}',
     '["ActionLog", "Agent"]'
   ),
+  request_type = jsonb_set(
+    request_type,
+    '{ActionLog}',
+    '["Create Request"]'
+  ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'body';
 
@@ -144,28 +164,16 @@ SET
     '{Endpoints}',
     '["ActionLog"]'
   ),
+  request_type = jsonb_set(
+    request_type,
+    '{ActionLog}',
+    '["Create Request"]'
+  ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'moxi_works_contact_id';
 
 
 
-
-
-UPDATE associated_attrs
-SET ui_info = jsonb_set(
-    jsonb_set(
-        jsonb_set(
-            ui_info, 
-            '{API}', 
-            '"This will be an RFC 4122 compliant UUID."'
-        ), 
-        '{ActionLog}', 
-        '"This data is required and must reference a valid MoxiWorks Contact ID for your ActionLog Create request to be accepted. This is the same as the moxi_works_contact_id attribute of the Contact response."'
-    ), 
-    '{Products}', 
-    '["API", "ActionLog"]'
-)
-WHERE attr_id = 5; -- 
 
 UPDATE associated_attrs
 SET ui_info = jsonb_set(
