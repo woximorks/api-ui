@@ -457,3 +457,126 @@ WHERE attr_title IN (
   'agent_action_state',
   'agent_action_zip'
 );
+
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{APIText}', 
+            '"This is the MoxiWorks Platform ID of the ActionLog entry to be deleted. This will be an RFC 4122 compliant UUID."'
+            ),
+        '{Products}', 
+        '["API"]'
+        ),
+        '{ActionLog}', 
+        '["API"]'
+    ),
+  associated_endpoint = jsonb_set(
+    associated_endpoint,
+    '{Endpoints}',
+    '["ActionLog"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'moxi_works_action_log_id';
+
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{ActionLog}',  -- Specify the path within the JSONB object
+    (COALESCE(request_type->'ActionLog', '[]'::jsonb) || '["Delete Request"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+   'moxi_works_action_log_id',
+   'agent_uuid',
+   'moxi_works_agent_id',
+   'source_agent_id',
+   'moxi_works_company_id',
+   'parent_company_id'
+);
+
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{APIText}', 
+            '"This will indicate what the status of the request is."'
+            ),
+        '{Products}', 
+        '["API"]'
+        ),
+        '{ActionLog}', 
+        '["API"]'
+    ),
+  associated_endpoint = jsonb_set(
+    associated_endpoint,
+    '{Endpoints}',
+    '["ActionLog"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'status';
+
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{APIText}', 
+            '"This will indicate whether the delete request was successful or not."'
+            ),
+        '{Products}', 
+        '["API"]'
+        ),
+        '{ActionLog}', 
+        '["API"]'
+    ),
+  associated_endpoint = jsonb_set(
+    associated_endpoint,
+    '{Endpoints}',
+    '["ActionLog"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'deleted';
+
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{APIText}', 
+            '"This is an arrray of strings. Any messages associated with the delete request status will be contained in this array."'
+            ),
+        '{Products}', 
+        '["API"]'
+        ),
+        '{ActionLog}', 
+        '["API"]'
+    ),
+  associated_endpoint = jsonb_set(
+    associated_endpoint,
+    '{Endpoints}',
+    '["ActionLog"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'messages';
+
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{ActionLog}',  -- Specify the path within the JSONB object
+    (COALESCE(request_type->'ActionLog', '[]'::jsonb) || '["Delete Response"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+   'status',
+   'deleted',
+   'messages'
+);
