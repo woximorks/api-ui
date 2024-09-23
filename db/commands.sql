@@ -1,20 +1,35 @@
--- ************************************ Adding or updating UI Information
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          jsonb_set(
+            jsonb_set(
+              ui_info, 
+              '{API}', -- This displays whenever the 'api' association is called within the agent_uuid associated_attr
+              '"This will be an RFC 4122 compliant UUID. If data is being pulled from The MoxiWorks Platform and integrating with your own system in a managed or automated fashion, then using agent_uuid request attribute is preferable. It is guaranteed to be unique and to never change for the lifetime of the account."'
+            ), 
+            '{Roster}', -- This displays whenver the 'Roster' association is called within the agent_uuid associated_attr
+            '"Agent UUID, found on profile page within Roster/Client Manager and is the user account level UUID."'
+          ), 
+          '{Products}', -- These are all of the products 'agent_uuid' will be associated with
+          '["API", "Roster"]'
+        ),
+        '{ActionLog}', -- agent_uuid > ui_info that is associated with the ActionLog endpoint
+        '["API", "Roster"]'
+      ),
+      '{Agent}', -- agent_uuid > ui_info that is associated with the Agent endpoint
+      '["API", "Roster"]'
+    ),
+  associated_endpoint = jsonb_set(
+    associated_endpoint,
+    '{Endpoints}', -- all agent_uuid associated endpoints
+    '["ActionLog", "Agent"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'agent_uuid';
 
--- Begin transaction to ensure atomicity
-BEGIN;
 
--- Inserting the initial record
-INSERT INTO associated_attrs (id, attr_id, request_type, created_at, updated_at, associated_endpoint)
-VALUES (
-  1, -- agent_uuid
-  1,
-  '{}',  -- Empty JSONB object for request_type
-  CURRENT_TIMESTAMP,
-  CURRENT_TIMESTAMP,
-  '{}'  -- Empty JSONB object for associated_endpoint
-);
-
--- Updating ui_info and associated_endpoint, and setting updated_at
 UPDATE associated_attrs
 SET 
   ui_info = jsonb_set(
@@ -24,10 +39,10 @@ SET
             jsonb_set(
               ui_info, 
               '{API}', 
-              '"This will be an RFC 4122 compliant UUID. If data is being pulled from The MoxiWorks Platform and integrating with your own system in a managed or automated fashion, then using agent_uuid request attribute is preferable. It is guaranteed to be unique and to never change for the lifetime of the account."'
+              '"If you have already existing agent data, agent accounts and your own user interface that agents can use to integrate your account with their MoxiWorks Platform account then you should use the moxi_works_agent_id request attribute. It is intended for use cases where integration is managed by end-user interaction."'
             ), 
             '{Roster}', 
-            '"Agent UUID, found on profile page within Roster/Client Manager and is the user account level UUID."'
+            '"This identifier is guaranteed to be unique, but may be either an alphanumeric string or an email address."'
           ), 
           '{Products}', 
           '["API", "Roster"]'
@@ -44,24 +59,56 @@ SET
     '["ActionLog", "Agent"]'
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_id = 1; -- agent_uuid
+WHERE attr_title = 'moxi_works_agent_id';
 
--- Commit transaction
-COMMIT;
-
--- **************************************
 
 UPDATE associated_attrs
-SET ui_info = jsonb_set(
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
         jsonb_set(
-            ui_info, 
-            '{API}', 
-            '"This will be the MoxiWorks Platform ID for the agent in question. It may take the form of an email address, or a unique identification string. If you have already existing agent data, agent accounts and your own user interface that agents can use to integrate your account with their MoxiWorks Platform account then you should use the moxi_works_agent_id request attribute. This identifier is guaranteed to be unique, but may be either an alphanumeric string or an email address. It is intended for use cases where integration is managed by end-user interaction."'
-    ), 
-    '{Products}', 
-    '["API"]'
-)
-WHERE attr_id = 2; -- moxi_works_agent_id
+            jsonb_set(
+              ui_info, 
+              '{API}', 
+              '"If you have access to agent data from the same company source that MoxiWorks uses as an upstream data source then you should use the source_agent_id request attribute. This identifier will be unique only within the scope of a given company or parent_company, and must be used in conjunction with the moxi_works_company_id or parent_company_id request attributes. Please email partners@moxiworks.com for clarification about this request attribute."'
+            ), 
+          '{Products}', 
+          '["API"]'
+        ),
+        '{ActionLog}', 
+        '["API"]'
+      ),
+      '{Agent}', 
+      '["API"]'
+    ),
+  associated_endpoint = jsonb_set(
+    associated_endpoint,
+    '{Endpoints}',
+    '["Agent"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'source_agent_id';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 UPDATE associated_attrs
 SET ui_info = jsonb_set(

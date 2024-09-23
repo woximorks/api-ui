@@ -3,41 +3,47 @@
 </div>
 
 <div class="associated_attrs">
-
     <div class="product_association" id="api">
-        
         <div class="associated_product">
             <%= image_tag("API.png") %>
             <h3>API</h3>
         </div>
 
         <div class="product_associated_attrs">
-        <% @associated_attrs.each do |associated_attr| %>
-            <ul>
-                <li><h5><%= associated_attr.attr.attr_title %></h5></li>
-                <li><hr></li>
-                <li><h6><%= associated_attr.ui_info["API"] %></h6></li>    
-            </ul>
-        <% end %>
+            <% @associated_attrs.each do |associated_attr| %>
+                <% if associated_attr.associated_endpoint['Endpoints'].is_a?(Array) && associated_attr.associated_endpoint['Endpoints'].include?('ActionLog') %>
+                    <% if associated_attr.ui_info['ActionLog'].is_a?(Array) && associated_attr.ui_info['ActionLog'].include?('API') %>
+                        <ul>
+                            <li><h5><%= associated_attr.attr_title %></h5></li>
+                            <li><hr></li>
+                            <li><h6><%= associated_attr.ui_info['API'] %></h6></li>
+                        </ul>
+                    <% end %>
+                <% end %>
+            <% end %>
         </div>
     </div>
 
     <div class="product_association" id="roster">
-        
         <div class="associated_product">
             <%= image_tag("roster.png") %>
-            <h3>API</h3>
+            <h3>Roster</h3>
         </div>
 
         <div class="product_associated_attrs">
-        <% @associated_attrs.each do |associated_attr| %>
-            <ul>
-                <li><h5><%= associated_attr.attr.attr_title %></h5></li>
-                <li><hr></li>
-                <li><h6><%= associated_attr.ui_info["Roster"] %></h6></li>    
-            </ul>
+            <% @associated_attrs.each do |associated_attr| %>
+                <% if associated_attr.associated_endpoint['Endpoints'].is_a?(Array) && associated_attr.associated_endpoint['Endpoints'].include?('ActionLog') %>
+                    <% if associated_attr.ui_info['ActionLog'].is_a?(Array) && associated_attr.ui_info['ActionLog'].include?('Roster') %>
+                        <ul>
+                            <li><h5><%= associated_attr.attr_title %></h5></li>
+                            <li><hr></li>
+                            <li><h6><%= associated_attr.ui_info['Roster'] %></h6></li>
+                        </ul>
+                    <% end %>
+                <% end %>
+            <% end %>
         </div>
-        <% end %>
     </div>
-
 </div>
+
+<%= render 'shared/nav' %>

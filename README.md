@@ -17,8 +17,10 @@
         - rails g migration RemoveEndpointIdFromAssociatedAttrs endpoint_id
         - rails g migration RemoveProductIdFromAssociatedAttrs product_id
         - rails g migration RemoveAttrIdFromAssociatedAttrs attr_id
+        - rails g migration AddAttrTitleToAssociatedAttrs attr_title
         - Seed files - removed the associations to these endpoint_id and product_id
         - commands file has a template statement that will popluate the information appropriately (when all of it is there)
+        - https://ruby-doc.org/core-2.3.1/Array.html#method-i-dig
     
     - pg_search gem will need to be revisited (it calls db tables that no longer exist)
         - https://github.com/Casecommons/pg_search

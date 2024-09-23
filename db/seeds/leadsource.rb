@@ -9,5 +9,9 @@ lead_source_attrs = [
 ]
 
 lead_source_attrs.each do |attr_title|
-    Attr.find_or_create_by!(attr_title: attr_title)
-end
+    AssociatedAttr.find_or_create_by(attr_title: attr_title) do |attr|
+      # Set other attributes if necessary, for example:
+      attr.request_type = {}
+      attr.associated_endpoint = {}
+    end
+  end
