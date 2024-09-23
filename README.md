@@ -19,8 +19,11 @@
         - rails g migration RemoveAttrIdFromAssociatedAttrs attr_id
         - rails g migration AddAttrTitleToAssociatedAttrs attr_title
         - Seed files - removed the associations to these endpoint_id and product_id
-        - commands file has a template statement that will popluate the information appropriately (when all of it is there)
         - https://ruby-doc.org/core-2.3.1/Array.html#method-i-dig
+        - Commands file now contains 3 starter update statments. 
+            - These now update the info based on the actual attr title, not an ID that was associated in some way through a different table. Yay.
+            - looking at source_agent_id specifically, info related to this attribute will show on the ActionLog (specific to Roster), and more detail on the 'Agent' page is provided (the 'API' related data references the Agent endpoint specifically, so it shows on this page too. It might not make sense for that data to display on the ActionLog page, since it's specific to the Agent endpoint. This isn't the best example, but it demonstrates how this application and the related associations work.)
+            - This is all controlled through the corresponding arrays and data added to 'ui_info' column. The 'ActionLog' array has only 'Roster' associated in the update statement (so Roster related text displays only on the front end), but the 'Agent' array has 'API' and 'Roster' associated (so both associated text values display on the front end).
     
     - pg_search gem will need to be revisited (it calls db tables that no longer exist)
         - https://github.com/Casecommons/pg_search
