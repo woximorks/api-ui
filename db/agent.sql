@@ -57,18 +57,18 @@ SET
           ui_info, 
           '{APIText}', 
           -- Append new text to the existing 'APIText' or create it if it doesn't exist
-          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'To include access level information for the agent in the response, pass true.'))
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'To include access level information for the agent in the response, pass true'))
         ), 
-        '{EngageText}', 
+        '{RosterText}', 
           -- Append new text to the existing 'RosterText2' or create it if it doesn't exist
-          to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'The Gross Commission Income goal, as seen throughout the Engage UI.'))
+          to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'The access level of the agent. This can return one of the possible access levels, as seen within the products and permissions page.'))
       ), 
       '{Products}', 
       -- Ensure new products are added without duplicating existing ones
       (
         SELECT jsonb_agg(DISTINCT value)
         FROM jsonb_array_elements_text(
-          COALESCE(ui_info->'Products', '[]'::jsonb) || '["Engage"]'::jsonb
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Roster"]'::jsonb
         )
       )
     ),
@@ -77,7 +77,48 @@ SET
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["Engage"]'::jsonb
+        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+      )
+    )
+  ),
+  associated_endpoint = jsonb_set(
+    associated_endpoint,
+    '{Endpoints}',
+    '["Agent"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'include_access_level';
+
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, 
+          '{APIText}', 
+          -- Append new text to the existing 'APIText' or create it if it doesn't exist
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'Whether to include agent’s GCI goals and commissions data in the response data.'))
+        ), 
+        '{EngageText}', 
+          -- Append new text to the existing 'RosterText2' or create it if it doesn't exist
+          to_jsonb((COALESCE(ui_info->>'EngageText', '') || 'The Gross Commission Income goal, as seen throughout the Engage UI.'))
+      ), 
+      '{Products}', 
+      -- Ensure new products are added without duplicating existing ones
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Engage"]'::jsonb
+        )
+      )
+    ),
+    '{Agent}', 
+    -- Ensure new UI associations are added without duplicating existing ones
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Engage"]'::jsonb
       )
     )
   ),
