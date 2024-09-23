@@ -89,6 +89,33 @@ SET
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'source_agent_id';
 
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            jsonb_set(
+                ui_info, 
+                '{API}', 
+                '"This can be any arbitrary plain-text string which would be practical for the agent to see in the history of events associated with a Contact. It must be greater than 0 and must be less than 5000 characters (including white space)."'
+                ),
+                '{ActionLog}',
+                '"This is a human readable string which would be presented to the Agent as the content of the ActionLog entry."'
+            ),
+          '{Products}', 
+          '["ActionLog", "API"]'
+        ),
+        '{ActionLog}', 
+        '["ActionLog", "API"]'
+      ),
+  associated_endpoint = jsonb_set(
+    associated_endpoint,
+    '{Endpoints}',
+    '["ActionLog"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'body';
+
 
 
 
