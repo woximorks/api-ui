@@ -580,3 +580,108 @@ WHERE attr_title IN (
    'deleted',
    'messages'
 );
+
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{APIText}', 
+            '"Only ActionLog records created later than this Unix timestamp will be included in the query. The upper bound of the time slice will be the 90 days higher than date_min value or the value of the the date_max; whichever is lower. If no timestamps are provided, ActionLogs from the last 90 days will be retrieved. The maximum timeframe for data is 90 days. date_min and date_max should be set in 90 day increments to retrieve the data from a specific historical point."'
+            ),
+        '{Products}', 
+        '["API"]'
+        ),
+        '{ActionLog}', 
+        '["API"]'
+    ),
+  associated_endpoint = jsonb_set(
+    associated_endpoint,
+    '{Endpoints}',
+    '["ActionLog"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'date_min';
+
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{APIText}', 
+            '"Only ActionLog records created earlier than this Unix timestamp will be included in the query. Should be no higher than 90 days past the date_min attribute if it is provided. The maximum timeframe for data is 90 days. date_min and date_max should be set in 90 day increments to retrieve the data from a specific historical point."'
+            ),
+        '{Products}', 
+        '["API"]'
+        ),
+        '{ActionLog}', 
+        '["API"]'
+    ),
+  associated_endpoint = jsonb_set(
+    associated_endpoint,
+    '{Endpoints}',
+    '["ActionLog"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'date_max';
+
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{ActionLog}',  -- Specify the path within the JSONB object
+    (COALESCE(request_type->'ActionLog', '[]'::jsonb) || '["Index Request"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+  'agent_uuid',
+   'moxi_works_agent_id',
+   'source_agent_id',
+   'moxi_works_contact_id',
+   'partner_contact_id',
+   'moxi_works_company_id',
+   'parent_company_id',
+   'date_min',
+   'date_max'
+);
+
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+            ui_info, 
+            '{APIText}', 
+            '"This is an Array containing any ActionLog entries found for the Index request - [moxi_works_action_log_id, type, timestamp, log_data]."'
+            ),
+        '{Products}', 
+        '["API"]'
+        ),
+        '{ActionLog}', 
+        '["API"]'
+    ),
+  associated_endpoint = jsonb_set(
+    associated_endpoint,
+    '{Endpoints}',
+    '["ActionLog"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'actions';
+
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{ActionLog}',  -- Specify the path within the JSONB object
+    (COALESCE(request_type->'ActionLog', '[]'::jsonb) || '["Index Response"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+   'agent_uuid',
+   'moxi_works_agent_id',
+   'moxi_works_contact_id',
+   'partner_contact_id',
+   'actions'
+);
