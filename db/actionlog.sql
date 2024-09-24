@@ -39,29 +39,101 @@ UPDATE associated_attrs
 SET 
   ui_info = jsonb_set(
     jsonb_set(
+      jsonb_set(
         jsonb_set(
-        jsonb_set(
-            ui_info, 
-            '{APIText}', 
-            '"If you have already existing agent data, agent accounts and your own user interface that agents can use to integrate your account with their MoxiWorks Platform account then you should use the moxi_works_agent_id request attribute. It is intended for use cases where integration is managed by end-user interaction."'
+          ui_info, 
+          '{APIText}',
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'If you have already existing agent data, agent accounts and your own user interface that agents can use to integrate your account with their MoxiWorks Platform account then you should use the moxi_works_agent_id request attribute. It is intended for use cases where integration is managed by end-user interaction.'))
         ), 
-        '{RosterText}', 
-        '"This identifier is guaranteed to be unique, but may be either an alphanumeric string or an email address."'
-        ), 
-        '{Products}', 
-        '["API", "Roster"]'
+        '{RosterText}',
+          to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'This identifier is guaranteed to be unique, but may be either an alphanumeric string or an email address.'))
+      ), 
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+        )
+      )
     ),
-    '{ActionLog}', 
-    '["API", "Roster"]'
-    ),
+    '{Agent}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+      )
+    )
+  ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
     '{Endpoints}',
     '["ActionLog"]'
   ),
-  
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'moxi_works_agent_id';
+
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+      jsonb_set(
+        ui_info, 
+        '{APIText}',
+        to_jsonb((COALESCE(ui_info->>'APIText', '') || 'If you have access to agent data from the same company source that MoxiWorks uses as an upstream data source then you should use the source_agent_id request attribute. This identifier will be unique only within the scope of a given company or parent_company, and must be used in conjunction with the moxi_works_company_id or parent_company_id request attributes. Please email partners@moxiworks.com for clarification about this request attribute.'))
+      ),
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API"]'::jsonb
+        )
+      )
+    ),
+    '{Agent}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API"]'::jsonb
+      )
+    )
+  ),
+  associated_endpoint = jsonb_set(
+    associated_endpoint,
+    '{Endpoints}',
+    '["ActionLog"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'source_agent_id';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 UPDATE associated_attrs
@@ -71,7 +143,7 @@ SET
             jsonb_set(
               ui_info, 
               '{APIText}', 
-              '"If you have access to agent data from the same company source that MoxiWorks uses as an upstream data source then you should use the source_agent_id request attribute. This identifier will be unique only within the scope of a given company or parent_company, and must be used in conjunction with the moxi_works_company_id or parent_company_id request attributes. Please email partners@moxiworks.com for clarification about this request attribute."'
+              '""'
             ), 
           '{Products}', 
           '["API"]'
@@ -84,9 +156,63 @@ SET
     '{Endpoints}',
     '["ActionLog"]'
   ),
-  
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'source_agent_id';
+
+
+
+
+
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, 
+          '{APIText}',
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'This can be any arbitrary plain-text string which would be practical for the agent to see in the history of events associated with a Contact. It must be greater than 0 and must be less than 5000 characters (including white space).'))
+        ), 
+        '{RosterText}',
+          to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'The access level of the agent. This can return one of the possible access levels, as seen within the products and permissions page.'))
+      ), 
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+        )
+      )
+    ),
+    '{Agent}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+      )
+    )
+  ),
+  associated_endpoint = jsonb_set(
+    associated_endpoint,
+    '{Endpoints}',
+    '["Agent"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'include_access_level';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 UPDATE associated_attrs
 SET 
@@ -96,7 +222,7 @@ SET
         jsonb_set(
             ui_info, 
             '{APIText}', 
-            '"This can be any arbitrary plain-text string which would be practical for the agent to see in the history of events associated with a Contact. It must be greater than 0 and must be less than 5000 characters (including white space)."'
+            '""'
         ), 
         '{ActionLogText}',
         '"This is a human readable string which would be presented to the Agent as the content of the ActionLog entry."'
