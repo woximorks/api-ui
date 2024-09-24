@@ -263,7 +263,7 @@ SET
             SELECT jsonb_agg(DISTINCT value)
             FROM jsonb_array_elements_text(
               COALESCE(ui_info->'Products', '[]'::jsonb) 
-              || '["ActionLog", "API"]'::jsonb
+              || '["ActionLog"]'::jsonb
             )
           )
         ),
@@ -272,7 +272,7 @@ SET
         SELECT jsonb_agg(DISTINCT value)
         FROM jsonb_array_elements_text(
           COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
-          || '["ActionLog", "API"]'::jsonb
+          || '["ActionLog"]'::jsonb
         )
       )
     ),
@@ -298,14 +298,14 @@ SET
             to_jsonb(COALESCE(ui_info->>'APIText', '') || 'MoxiWorks Plaform Company entities are your entry-point for determining the established relationships for your organization to companies on the MoxiWorks Platform and for accessing data about those companies. Many requests require a moxi_works_company_id, which can be derived from the Company Index endpoint.')
         ), 
         '{RosterText}',
-        to_jsonb(COALESCE(ui_info->>'ActionLogText', '') || '')
+        to_jsonb(COALESCE(ui_info->>'RosterText', '') || '')
         ), 
         '{Products}',
         (
           SELECT jsonb_agg(DISTINCT value)
           FROM jsonb_array_elements_text(
             COALESCE(ui_info->'Products', '[]'::jsonb) 
-            || '["ActionLog", "API"]'::jsonb
+            || '["API", "Roster"]'::jsonb
           )
         )
       ),
@@ -314,7 +314,7 @@ SET
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
         COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
-        || '["ActionLog", "API"]'::jsonb
+        || '["API", "Roster"]'::jsonb
       )
     )
   ),
@@ -347,7 +347,7 @@ SET
           SELECT jsonb_agg(DISTINCT value)
           FROM jsonb_array_elements_text(
             COALESCE(ui_info->'Products', '[]'::jsonb) 
-            || '["ActionLog", "API"]'::jsonb
+            || '["API", "Roster"]'::jsonb
           )
         )
       ),
@@ -356,7 +356,7 @@ SET
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
         COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
-        || '["ActionLog", "API"]'::jsonb
+        || '["API", "Roster"]'::jsonb
       )
     )
   ),
@@ -385,7 +385,7 @@ SET
           SELECT jsonb_agg(DISTINCT value)
           FROM jsonb_array_elements_text(
             COALESCE(ui_info->'Products', '[]'::jsonb) 
-            || '["ActionLog", "API"]'::jsonb
+            || '["ActionLog"]'::jsonb
           )
         )
       ),
@@ -394,7 +394,7 @@ SET
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
         COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
-        || '["ActionLog", "API"]'::jsonb
+        || '["ActionLog"]'::jsonb
       )
     )
   ),
@@ -423,7 +423,7 @@ SET
           SELECT jsonb_agg(DISTINCT value)
           FROM jsonb_array_elements_text(
             COALESCE(ui_info->'Products', '[]'::jsonb) 
-            || '["ActionLog", "API"]'::jsonb
+            || '["ActionLog"]'::jsonb
           )
         )
       ),
@@ -432,7 +432,7 @@ SET
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
         COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
-        || '["ActionLog", "API"]'::jsonb
+        || '["ActionLog"]'::jsonb
       )
     )
   ),
@@ -461,7 +461,7 @@ SET
           SELECT jsonb_agg(DISTINCT value)
           FROM jsonb_array_elements_text(
             COALESCE(ui_info->'Products', '[]'::jsonb) 
-            || '["ActionLog", "API"]'::jsonb
+            || '["ActionLog"]'::jsonb
           )
         )
       ),
@@ -470,7 +470,7 @@ SET
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
         COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
-        || '["ActionLog", "API"]'::jsonb
+        || '["ActionLog"]'::jsonb
       )
     )
   ),
@@ -499,7 +499,7 @@ SET
           SELECT jsonb_agg(DISTINCT value)
           FROM jsonb_array_elements_text(
             COALESCE(ui_info->'Products', '[]'::jsonb) 
-            || '["ActionLog", "API"]'::jsonb
+            || '["ActionLog"]'::jsonb
           )
         )
       ),
@@ -508,7 +508,7 @@ SET
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
         COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
-        || '["ActionLog", "API"]'::jsonb
+        || '["ActionLog"]'::jsonb
       )
     )
   ),
@@ -537,7 +537,7 @@ SET
           SELECT jsonb_agg(DISTINCT value)
           FROM jsonb_array_elements_text(
             COALESCE(ui_info->'Products', '[]'::jsonb) 
-            || '["ActionLog", "API"]'::jsonb
+            || '["ActionLog"]'::jsonb
           )
         )
       ),
@@ -546,7 +546,7 @@ SET
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
         COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
-        || '["ActionLog", "API"]'::jsonb
+        || '["ActionLog"]'::jsonb
       )
     )
   ),
@@ -575,7 +575,7 @@ SET
           SELECT jsonb_agg(DISTINCT value)
           FROM jsonb_array_elements_text(
             COALESCE(ui_info->'Products', '[]'::jsonb) 
-            || '["ActionLog", "API"]'::jsonb
+            || '["ActionLog"]'::jsonb
           )
         )
       ),
@@ -584,7 +584,7 @@ SET
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
         COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
-        || '["ActionLog", "API"]'::jsonb
+        || '["ActionLog"]'::jsonb
       )
     )
   ),
@@ -625,8 +625,6 @@ WHERE attr_title IN (
     'agent_action_zip'
 );
 
-END $$;
-
 UPDATE associated_attrs
 SET 
   ui_info = jsonb_set(
@@ -634,14 +632,26 @@ SET
         jsonb_set(
             ui_info, 
             '{APIText}', 
-            '"This is the Unix timestamp for the creation time of the ActionLog entry."'
+            to_jsonb(COALESCE(ui_info->>'APIText', '') || 'This is the Unix timestamp for the creation time of the ActionLog entry.')
             ),
-        '{Products}', 
-        '["API", "Engage"]'
-        ),
-        '{ActionLog}', 
-        '["API"]'
-    ),
+        '{Products}',
+        (
+          SELECT jsonb_agg(DISTINCT value)
+          FROM jsonb_array_elements_text(
+            COALESCE(ui_info->'Products', '[]'::jsonb) 
+            || '["API"]'::jsonb
+          )
+        )
+      ),
+    '{ActionLog}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
+        || '["API"]'::jsonb
+      )
+    )
+  ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
     '{Endpoints}', (
@@ -652,8 +662,6 @@ SET
     ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'timestamp';
-
-
 
 UPDATE associated_attrs
 SET
@@ -686,19 +694,34 @@ SET
         jsonb_set(
             ui_info, 
             '{APIText}', 
-            '"This is the MoxiWorks Platform ID of the ActionLog entry to be deleted. This will be an RFC 4122 compliant UUID."'
+            to_jsonb(COALESCE(ui_info->>'APIText', '') || 'This is the MoxiWorks Platform ID of the ActionLog entry to be deleted. This will be an RFC 4122 compliant UUID.')
             ),
-        '{Products}', 
-        '["API"]'
-        ),
-        '{ActionLog}', 
-        '["API"]'
-    ),
+        '{Products}',
+        (
+          SELECT jsonb_agg(DISTINCT value)
+          FROM jsonb_array_elements_text(
+            COALESCE(ui_info->'Products', '[]'::jsonb) 
+            || '["API"]'::jsonb
+          )
+        )
+      ),
+    '{ActionLog}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
+        || '["API"]'::jsonb
+      )
+    )
+  ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
+    '{Endpoints}', (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
+      )
+    ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'moxi_works_action_log_id';
 
@@ -726,19 +749,34 @@ SET
         jsonb_set(
             ui_info, 
             '{APIText}', 
-            '"This will indicate what the status of the request is."'
+            to_jsonb(COALESCE(ui_info->>'APIText', '') || 'This will indicate what the status of the request is.')
             ),
-        '{Products}', 
-        '["API"]'
-        ),
-        '{ActionLog}', 
-        '["API"]'
-    ),
+        '{Products}',
+        (
+          SELECT jsonb_agg(DISTINCT value)
+          FROM jsonb_array_elements_text(
+            COALESCE(ui_info->'Products', '[]'::jsonb) 
+            || '["API"]'::jsonb
+          )
+        )
+      ),
+    '{ActionLog}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
+        || '["API"]'::jsonb
+      )
+    )
+  ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
+    '{Endpoints}', (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
+      )
+    ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'status';
 
@@ -749,19 +787,34 @@ SET
         jsonb_set(
             ui_info, 
             '{APIText}', 
-            '"This will indicate whether the delete request was successful or not."'
+            to_jsonb(COALESCE(ui_info->>'APIText', '') || 'This will indicate whether the delete request was successful or not.')
             ),
-        '{Products}', 
-        '["API"]'
-        ),
-        '{ActionLog}', 
-        '["API"]'
-    ),
+        '{Products}',
+        (
+          SELECT jsonb_agg(DISTINCT value)
+          FROM jsonb_array_elements_text(
+            COALESCE(ui_info->'Products', '[]'::jsonb) 
+            || '["API"]'::jsonb
+          )
+        )
+      ),
+    '{ActionLog}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
+        || '["API"]'::jsonb
+      )
+    )
+  ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
+    '{Endpoints}', (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
+      )
+    ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'deleted';
 
@@ -772,19 +825,34 @@ SET
         jsonb_set(
             ui_info, 
             '{APIText}', 
-            '"This is an arrray of strings. Any messages associated with the delete request status will be contained in this array."'
+            to_jsonb(COALESCE(ui_info->>'APIText', '') || 'This is an arrray of strings. Any messages associated with the delete request status will be contained in this array.')
             ),
-        '{Products}', 
-        '["API"]'
-        ),
-        '{ActionLog}', 
-        '["API"]'
-    ),
+        '{Products}',
+        (
+          SELECT jsonb_agg(DISTINCT value)
+          FROM jsonb_array_elements_text(
+            COALESCE(ui_info->'Products', '[]'::jsonb) 
+            || '["API"]'::jsonb
+          )
+        )
+      ),
+    '{ActionLog}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
+        || '["API"]'::jsonb
+      )
+    )
+  ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
+    '{Endpoints}', (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
+      )
+    ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'messages';
 
@@ -801,6 +869,24 @@ WHERE attr_title IN (
    'deleted',
    'messages'
 );
+
+END $$;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 UPDATE associated_attrs
 SET 
