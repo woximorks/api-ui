@@ -65,11 +65,11 @@ SET
         )
       )
     ),
-    '{Agent}',
+    '{ActionLog}',
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+        COALESCE(ui_info->'ActionLog', '[]'::jsonb) || '["API", "Roster"]'::jsonb
       )
     )
   ),
@@ -101,11 +101,11 @@ SET
         )
       )
     ),
-    '{Agent}',
+    '{ActionLog}',
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API"]'::jsonb
+        COALESCE(ui_info->'ActionLog', '[]'::jsonb) || '["API"]'::jsonb
       )
     )
   ),
@@ -141,11 +141,11 @@ SET
         )
       )
     ),
-    '{Agent}',
+    '{ActionLog}',
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+        COALESCE(ui_info->'ActionLog', '[]'::jsonb) || '["API", "Roster"]'::jsonb
       )
     )
   ),
@@ -160,6 +160,10 @@ SET
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'body';
 
+
+END $$;
+
+
 UPDATE associated_attrs
 SET 
   ui_info = jsonb_set(
@@ -168,10 +172,10 @@ SET
             jsonb_set(
                 ui_info, 
                 '{ActionLogText}', 
-                '"This is the MoxiWorks Platform ID of a Contact an ActionLog object is to be associated with. This data is required and must reference a valid MoxiWorks Contact ID for your ActionLog Create request to be accepted."'
+                to_jsonb((COALESCE(ui_info->>'ActionLogText', '') || 'This is the MoxiWorks Platform ID of a Contact an ActionLog object is to be associated with. This data is required and must reference a valid MoxiWorks Contact ID for your ActionLog Create request to be accepted.'))
                 ),
                 '{APIText}',
-                '"This will be an RFC 4122 compliant UUID, and is the same as the moxi_works_contact_id attribute of the Contact response."'
+                to_jsonb((COALESCE(ui_info->>'APIText', '') || 'This will be an RFC 4122 compliant UUID, and is the same as the moxi_works_contact_id attribute of the Contact response.')
             ),
           '{Products}', 
           '["ActionLog", "API", "Engage"]'
@@ -487,7 +491,7 @@ WHERE attr_title IN (
     'agent_action_state',
     'agent_action_zip'
 );
-END $$;
+
 
 
 
@@ -531,9 +535,12 @@ SET
     ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
+    '{Endpoints}', (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
+      )
+    ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'timestamp';
 
