@@ -1,2 +1,0 @@
-class Endpoint < ApplicationRecord
-end
