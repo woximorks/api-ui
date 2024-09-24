@@ -120,57 +120,6 @@ SET
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'source_agent_id';
 
-
-END $$;
-
-
-
-
-UPDATE associated_attrs
-SET 
-  ui_info = jsonb_set(
-    jsonb_set(
-      jsonb_set(
-        jsonb_set(
-          ui_info, 
-          '{APIText}',
-          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'This can be any arbitrary plain-text string which would be practical for the agent to see in the history of events associated with a Contact. It must be greater than 0 and must be less than 5000 characters (including white space).'))
-        ), 
-        '{RosterText}',
-          to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'The access level of the agent. This can return one of the possible access levels, as seen within the products and permissions page.'))
-      ), 
-      '{Products}',
-      (
-        SELECT jsonb_agg(DISTINCT value)
-        FROM jsonb_array_elements_text(
-          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Roster"]'::jsonb
-        )
-      )
-    ),
-    '{Agent}',
-    (
-      SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Roster"]'::jsonb
-      )
-    )
-  ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
-    '{Endpoints}',
-    '["Agent"]'
-  ),
-  updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'include_access_level';
-
-
-
-
-
-
-
-
-
 UPDATE associated_attrs
 SET 
   ui_info = jsonb_set(
@@ -202,43 +151,14 @@ SET
   ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
-  updated_at = CURRENT_TIMESTAMP
-  WHERE attr_title = 'body';
-
-
-
-
-
-UPDATE associated_attrs
-SET 
-  ui_info = jsonb_set(
-    jsonb_set(
-        jsonb_set(
-        jsonb_set(
-            ui_info, 
-            '{APIText}', 
-            '""'
-        ), 
-        '{ActionLogText}',
-        '"This is a human readable string which would be presented to the Agent as the content of the ActionLog entry."'
-        ), 
-        '{Products}', 
-        '["API", "ActionLog", "Engage"]'
+    '{Endpoints}', (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
+      )
     ),
-    '{ActionLog}', 
-    '["API", "ActionLog"]'
-    ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
-  
   updated_at = CURRENT_TIMESTAMP
-
+WHERE attr_title = 'body';
 
 UPDATE associated_attrs
 SET 
@@ -261,10 +181,12 @@ SET
       ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
-  
+    '{Endpoints}', (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
+      )
+    ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'moxi_works_contact_id';
 
@@ -289,10 +211,12 @@ SET
       ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
-  
+    '{Endpoints}', (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
+      )
+    ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'partner_contact_id';
 
@@ -313,10 +237,12 @@ SET
     ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
-  
+    '{Endpoints}', (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
+      )
+    ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'title';
 
@@ -341,10 +267,12 @@ SET
     ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
-  
+    '{Endpoints}', (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
+      )
+    ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'moxi_works_company_id';
 
@@ -369,10 +297,12 @@ SET
     ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
-  
+    '{Endpoints}', (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
+      )
+    ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'parent_company_id';
 
@@ -393,10 +323,12 @@ SET
     ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
-  
+    '{Endpoints}', (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
+      )
+    ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'agent_action';
 
@@ -417,10 +349,12 @@ SET
     ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
-  
+    '{Endpoints}', (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
+      )
+    ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'agent_action_address';
 
@@ -441,10 +375,12 @@ SET
     ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
-  
+    '{Endpoints}', (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
+      )
+    ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'agent_action_address2';
 
@@ -465,10 +401,12 @@ SET
     ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
-  
+    '{Endpoints}', (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
+      )
+    ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'agent_action_city';
 
@@ -489,9 +427,12 @@ SET
     ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
+    '{Endpoints}', (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
+      )
+    ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'agent_action_state';
 
@@ -512,11 +453,66 @@ SET
     ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
+    '{Endpoints}', (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
+      )
+    ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'agent_action_zip';
+
+UPDATE associated_attrs -- Create Request
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{ActionLog}',
+    (COALESCE(request_type->'ActionLog', '[]'::jsonb) || '["Create Request"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+    'agent_uuid',
+    'moxi_works_agent_id',
+    'source_agent_id',
+    'body',
+    'moxi_works_contact_id',
+    'partner_contact_id',
+    'title',
+    'moxi_works_company_id',
+    'parent_company_id',
+    'agent_action',
+    'agent_action_address',
+    'agent_action_address2',
+    'agent_action_city',
+    'agent_action_state',
+    'agent_action_zip'
+);
+END $$;
+
+
+
+
+
+'{Endpoints}', (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
+      )
+    ),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 UPDATE associated_attrs
 SET 
@@ -541,31 +537,7 @@ SET
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'timestamp';
 
-UPDATE associated_attrs
-SET
-  request_type = jsonb_set(
-    request_type,
-    '{ActionLog}',  -- Specify the path within the JSONB object
-    (COALESCE(request_type->'ActionLog', '[]'::jsonb) || '["Create Request"]'::jsonb)
-  ),
-  updated_at = CURRENT_TIMESTAMP
-WHERE attr_title IN (
-    'agent_uuid',
-    'moxi_works_agent_id',
-    'source_agent_id',
-    'body',
-    'moxi_works_contact_id',
-    'partner_contact_id',
-    'title',
-    'moxi_works_company_id',
-    'parent_company_id',
-    'agent_action',
-    'agent_action_address',
-    'agent_action_address2',
-    'agent_action_city',
-    'agent_action_state',
-    'agent_action_zip'
-);
+
 
 UPDATE associated_attrs
 SET
