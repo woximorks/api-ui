@@ -33,10 +33,10 @@ SET ui_info = jsonb_set
          || '["API", "Roster"]'::jsonb)
         )
       ),
-    associated_endpoint = jsonb_set(associated_endpoint,
+    associated_endpoints = jsonb_set(associated_endpoints,
     '{Endpoints}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoints -> 'Endpoints', '[]'::jsonb)
        || '["ActionLog"]'::jsonb)
       )
     ),
@@ -73,11 +73,11 @@ SET
       )
     )
   ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoints -> 'Endpoints', '[]'::jsonb)
        || '["ActionLog"]'::jsonb)
       )
     ),
@@ -109,11 +109,11 @@ SET
       )
     )
   ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoints -> 'Endpoints', '[]'::jsonb)
        || '["ActionLog"]'::jsonb)
       )
     ),
@@ -151,11 +151,11 @@ SET
       )
     )
   ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoints -> 'Endpoints', '[]'::jsonb)
        || '["ActionLog"]'::jsonb)
       )
     ),
@@ -193,13 +193,13 @@ SET
       )
     )
   ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}', 
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(associated_endpoint->'Endpoints', '[]'::jsonb) 
+        COALESCE(associated_endpoints->'Endpoints', '[]'::jsonb) 
         || '["ActionLog"]'::jsonb
       )
     )
@@ -238,11 +238,11 @@ SET
         )
       )
     ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoints -> 'Endpoints', '[]'::jsonb)
        || '["ActionLog"]'::jsonb)
       )
     ),
@@ -276,11 +276,11 @@ SET
         )
       )
     ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoints -> 'Endpoints', '[]'::jsonb)
        || '["ActionLog"]'::jsonb)
       )
     ),
@@ -318,11 +318,11 @@ SET
       )
     )
   ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoints -> 'Endpoints', '[]'::jsonb)
        || '["ActionLog"]'::jsonb)
       )
     ),
@@ -360,11 +360,11 @@ SET
       )
     )
   ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoints -> 'Endpoints', '[]'::jsonb)
        || '["ActionLog"]'::jsonb)
       )
     ),
@@ -398,11 +398,11 @@ SET
       )
     )
   ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoints -> 'Endpoints', '[]'::jsonb)
        || '["ActionLog"]'::jsonb)
       )
     ),
@@ -436,11 +436,11 @@ SET
       )
     )
   ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoints -> 'Endpoints', '[]'::jsonb)
        || '["ActionLog"]'::jsonb)
       )
     ),
@@ -474,11 +474,11 @@ SET
       )
     )
   ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoints -> 'Endpoints', '[]'::jsonb)
        || '["ActionLog"]'::jsonb)
       )
     ),
@@ -512,11 +512,11 @@ SET
       )
     )
   ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoints -> 'Endpoints', '[]'::jsonb)
        || '["ActionLog"]'::jsonb)
       )
     ),
@@ -550,11 +550,11 @@ SET
       )
     )
   ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoints -> 'Endpoints', '[]'::jsonb)
        || '["ActionLog"]'::jsonb)
       )
     ),
@@ -588,11 +588,11 @@ SET
       )
     )
   ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoints -> 'Endpoints', '[]'::jsonb)
        || '["ActionLog"]'::jsonb)
       )
     ),
@@ -652,11 +652,11 @@ SET
       )
     )
   ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoints -> 'Endpoints', '[]'::jsonb)
        || '["ActionLog"]'::jsonb)
       )
     ),
@@ -714,11 +714,11 @@ SET
       )
     )
   ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoints -> 'Endpoints', '[]'::jsonb)
        || '["ActionLog"]'::jsonb)
       )
     ),
@@ -769,11 +769,11 @@ SET
       )
     )
   ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoints -> 'Endpoints', '[]'::jsonb)
        || '["ActionLog"]'::jsonb)
       )
     ),
@@ -807,11 +807,11 @@ SET
       )
     )
   ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoints -> 'Endpoints', '[]'::jsonb)
        || '["ActionLog"]'::jsonb)
       )
     ),
@@ -845,11 +845,11 @@ SET
       )
     )
   ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoints -> 'Endpoints', '[]'::jsonb)
        || '["ActionLog"]'::jsonb)
       )
     ),
@@ -897,11 +897,11 @@ SET
       )
     )
   ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoints -> 'Endpoints', '[]'::jsonb)
        || '["ActionLog"]'::jsonb)
       )
     ),
@@ -935,11 +935,11 @@ SET
       )
     )
   ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoints -> 'Endpoints', '[]'::jsonb)
        || '["ActionLog"]'::jsonb)
       )
     ),
@@ -993,11 +993,11 @@ SET
       )
     )
   ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoints -> 'Endpoints', '[]'::jsonb)
        || '["ActionLog"]'::jsonb)
       )
     ),

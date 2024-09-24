@@ -1,3 +1,5 @@
+DO $$
+BEGIN
 UPDATE associated_attrs
 SET 
   ui_info = jsonb_set(
@@ -27,8 +29,8 @@ SET
       )
     )
   ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}',
     '["Agent"]'
   ),
@@ -64,8 +66,8 @@ SET
       )
     )
   ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}',
     '["Agent"]'
   ),
@@ -94,8 +96,8 @@ WHERE attr_title IN (
 
 UPDATE associated_attrs
 SET
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}',
     (COALESCE(request_type->'Endpoints', '[]'::jsonb) || '["Agent"]'::jsonb)
   ),
@@ -111,3 +113,5 @@ WHERE attr_title IN (
   'include_partners',
   'include_reviews'
 );
+
+END $$;
