@@ -1,3 +1,5 @@
+DO $$
+BEGIN
 UPDATE associated_attrs
 SET ui_info = jsonb_set
   (jsonb_set
@@ -73,9 +75,12 @@ SET
   ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
+    '{Endpoints}', (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
+      )
+    ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'moxi_works_agent_id';
 
@@ -106,14 +111,17 @@ SET
   ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
+    '{Endpoints}', (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
+      )
+    ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'source_agent_id';
 
 
-
+END $$;
 
 
 
