@@ -1,5 +1,41 @@
 DO $$
 BEGIN
+
+UPDATE associated_attrs
+SET
+  ui_info = jsonb_set(
+    ui_info,
+    '{Agent}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+      )
+    ),
+    true
+  )
+WHERE attr_title IN (
+  'agent_uuid',
+  'moxi_works_agent_id',
+  'moxi_works_company_id',
+  'parent_company_id'
+);
+
+UPDATE associated_attrs
+SET
+  ui_info = jsonb_set(
+    ui_info,
+    '{Agent}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API"]'::jsonb
+      )
+    ),
+    true
+  )
+WHERE attr_title = 'source_agent_id';
+
 UPDATE associated_attrs
 SET 
   ui_info = jsonb_set(
@@ -8,7 +44,7 @@ SET
         jsonb_set(
           ui_info, 
           '{APIText}',
-          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'To include access level information for the agent in the response, pass true'))
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'To include access level information for the agent in the response, pass true.'))
         ), 
         '{RosterText}',
           to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'The access level of the agent. This can return one of the possible access levels, as seen within the products and permissions page.'))
