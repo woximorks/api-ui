@@ -128,10 +128,12 @@ SET
         jsonb_set(
           ui_info, 
           '{APIText}',
-          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'To include access level information for the agent in the response, pass true'))
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'To include access level information for the agent in the response, pass true')
+          )
         ), 
         '{RosterText}',
-          to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'The access level of the agent. This can return one of the possible access levels, as seen within the products and permissions page.'))
+        to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'The access level of the agent. This can return one of the possible access levels, as seen within the products and permissions page.')
+        )
       ), 
       '{Products}',
       (
@@ -160,37 +162,48 @@ SET
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'body';
 
-
-END $$;
-
-
 UPDATE associated_attrs
 SET 
   ui_info = jsonb_set(
     jsonb_set(
+      jsonb_set(
         jsonb_set(
-            jsonb_set(
-                ui_info, 
-                '{ActionLogText}', 
-                to_jsonb((COALESCE(ui_info->>'ActionLogText', '') || 'This is the MoxiWorks Platform ID of a Contact an ActionLog object is to be associated with. This data is required and must reference a valid MoxiWorks Contact ID for your ActionLog Create request to be accepted.'))
-                ),
-                '{APIText}',
-                to_jsonb((COALESCE(ui_info->>'APIText', '') || 'This will be an RFC 4122 compliant UUID, and is the same as the moxi_works_contact_id attribute of the Contact response.')
-            ),
-          '{Products}', 
-          '["ActionLog", "API", "Engage"]'
+          ui_info, 
+          '{ActionLogText}', 
+          to_jsonb(COALESCE(ui_info->>'ActionLogText', '') || 'This is the MoxiWorks Platform ID of a Contact an ActionLog object is to be associated with. This data is required and must reference a valid MoxiWorks Contact ID for your ActionLog Create request to be accepted.')
         ),
-        '{ActionLog}', 
-        '["ActionLog", "API"]'
+        '{APIText}',
+        to_jsonb(COALESCE(ui_info->>'APIText', '') || 'This will be an RFC 4122 compliant UUID, and is the same as the moxi_works_contact_id attribute of the Contact response.')
       ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
-    '{Endpoints}', (
-      SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
-       || '["ActionLog"]'::jsonb)
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) 
+          || '["ActionLog", "API"]'::jsonb
+        )
       )
     ),
+    '{ActionLog}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
+        || '["ActionLog", "API"]'::jsonb
+      )
+    )
+  ),
+  associated_endpoint = jsonb_set(
+    associated_endpoint,
+    '{Endpoints}', 
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(associated_endpoint->'Endpoints', '[]'::jsonb) 
+        || '["ActionLog"]'::jsonb
+      )
+    )
+  ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'moxi_works_contact_id';
 
@@ -201,18 +214,30 @@ SET
         jsonb_set(
             jsonb_set(
                 ui_info, 
-                '{ActionLogText}', 
-                '"This UUID will have already been associated with the Contact the ActionLog entry is created about. The Contact record on the MoxiWorks Platform can be created as necessary using Contact Create before attempting to use this contact ID to create an ActionLog entry. Failure to do so will result in the request being rejected."'
+                '{ActionLogText}',
+                to_jsonb(COALESCE(ui_info->>'ActionLogText', '') || 'This UUID will have already been associated with the Contact the ActionLog entry is created about. The Contact record on the MoxiWorks Platform can be created as necessary using Contact Create before attempting to use this contact ID to create an ActionLog entry. Failure to do so will result in the request being rejected.')
                 ),
                 '{APIText}',
-                '"This is the unique identifer used in the system that will be connecting to the MoxiWorks platform."'
-            ),
-          '{Products}', 
-          '["ActionLog", "API", "Engage"]'
-        ),
-        '{ActionLog}', 
-        '["ActionLog", "API"]'
-      ),
+                to_jsonb(COALESCE(ui_info->>'APIText', '') || 'This is the unique identifer used in the system that will be connecting to the MoxiWorks platform.')
+              ),
+            '{Products}',
+            (
+              SELECT jsonb_agg(DISTINCT value)
+              FROM jsonb_array_elements_text(
+                COALESCE(ui_info->'Products', '[]'::jsonb) 
+                || '["ActionLog", "API"]'::jsonb
+              )
+            )
+          ),
+      '{ActionLog}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
+          || '["ActionLog", "API"]'::jsonb
+        )
+      )
+    ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
     '{Endpoints}', (
@@ -231,13 +256,25 @@ SET
         jsonb_set(
             ui_info, 
             '{ActionLogText}', 
-            '"This is the human readable plain-text string which will be presented to the Agent as the heading of the ActionLog entry. This can be any short, descriptive sentence which would be practical for the agent to see in the history of events associated with a Contact."'
+            to_jsonb(COALESCE(ui_info->>'ActionLogText', '') || 'This is the human readable plain-text string which will be presented to the Agent as the heading of the ActionLog entry. This can be any short, descriptive sentence which would be practical for the agent to see in the history of events associated with a Contact.')
             ),
-        '{Products}', 
-        '["ActionLog", "Engage"]'
+          '{Products}',
+          (
+            SELECT jsonb_agg(DISTINCT value)
+            FROM jsonb_array_elements_text(
+              COALESCE(ui_info->'Products', '[]'::jsonb) 
+              || '["ActionLog", "API"]'::jsonb
+            )
+          )
         ),
-        '{ActionLog}', 
-        '["ActionLog"]'
+      '{ActionLog}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
+          || '["ActionLog", "API"]'::jsonb
+        )
+      )
     ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
@@ -258,17 +295,29 @@ SET
         jsonb_set(
             ui_info, 
             '{APIText}',
-            '"MoxiWorks Plaform Company entities are your entry-point for determining the established relationships for your organization to companies on the MoxiWorks Platform and for accessing data about those companies. Many requests require a moxi_works_company_id, which can be derived from the Company Index endpoint."'
+            to_jsonb(COALESCE(ui_info->>'APIText', '') || 'MoxiWorks Plaform Company entities are your entry-point for determining the established relationships for your organization to companies on the MoxiWorks Platform and for accessing data about those companies. Many requests require a moxi_works_company_id, which can be derived from the Company Index endpoint.')
         ), 
         '{RosterText}',
-        '""'
+        to_jsonb(COALESCE(ui_info->>'ActionLogText', '') || '')
         ), 
         '{Products}',
-        '["API", "Roster"]'
-    ),
+        (
+          SELECT jsonb_agg(DISTINCT value)
+          FROM jsonb_array_elements_text(
+            COALESCE(ui_info->'Products', '[]'::jsonb) 
+            || '["ActionLog", "API"]'::jsonb
+          )
+        )
+      ),
     '{ActionLog}',
-    '["API", "Roster"]'
-    ),
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
+        || '["ActionLog", "API"]'::jsonb
+      )
+    )
+  ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
     '{Endpoints}', (
@@ -285,20 +334,32 @@ SET
   ui_info = jsonb_set(
     jsonb_set(
         jsonb_set(
-        jsonb_set(
-            ui_info, 
-            '{APIText}',
-            '"It provides for a broad scope by which partners may be afforded permissions to perform MoxiWorks Platform actions, in scenarios where a partner does business with a parent company in the MoxiWorks System. It also provides broad scope under which agents may be looked up using the source_agent_id request attribute in many scenarios across different MoxiWorks Platform endpoints and actions."'
-        ), 
-        '{RosterText}',
-        '"This is the numeric_id or moxi_works_company_id of a company that is considered to be a parent company in the MoxiWorks Platform."'
-        ), 
+          jsonb_set(
+              ui_info, 
+              '{APIText}',
+              to_jsonb(COALESCE(ui_info->>'APIText', '') || 'This provides for a broad scope by which partners may be afforded permissions to perform MoxiWorks Platform actions, in scenarios where a partner does business with a parent company in the MoxiWorks System. It also provides broad scope under which agents may be looked up using the source_agent_id request attribute in many scenarios across different MoxiWorks Platform endpoints and actions.')
+            ), 
+          '{RosterText}',
+          to_jsonb(COALESCE(ui_info->>'APIText', '') || 'This is the numeric_id or moxi_works_company_id of a company that is considered to be a parent company in the MoxiWorks Platform.')
+          ), 
         '{Products}',
-        '["API", "Roster"]'
-    ),
+        (
+          SELECT jsonb_agg(DISTINCT value)
+          FROM jsonb_array_elements_text(
+            COALESCE(ui_info->'Products', '[]'::jsonb) 
+            || '["ActionLog", "API"]'::jsonb
+          )
+        )
+      ),
     '{ActionLog}',
-    '["API", "Roster"]'
-    ),
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
+        || '["ActionLog", "API"]'::jsonb
+      )
+    )
+  ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
     '{Endpoints}', (
@@ -317,14 +378,26 @@ SET
         jsonb_set(
             ui_info, 
             '{ActionLogText}', 
-            '"This is the human readable plain-text string which will be presented to the Agent as the heading of the ActionLog entry. This can be any short, descriptive sentence which would be practical for the agent to see in the history of events associated with a Contact."'
+            to_jsonb(COALESCE(ui_info->>'ActionLogText', '') || 'This is the human readable plain-text string which will be presented to the Agent as the heading of the ActionLog entry. This can be any short, descriptive sentence which would be practical for the agent to see in the history of events associated with a Contact.')
             ),
-        '{Products}', 
-        '["ActionLog", "Engage"]'
-        ),
-        '{ActionLog}', 
-        '["ActionLog"]'
-    ),
+        '{Products}',
+        (
+          SELECT jsonb_agg(DISTINCT value)
+          FROM jsonb_array_elements_text(
+            COALESCE(ui_info->'Products', '[]'::jsonb) 
+            || '["ActionLog", "API"]'::jsonb
+          )
+        )
+      ),
+    '{ActionLog}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
+        || '["ActionLog", "API"]'::jsonb
+      )
+    )
+  ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
     '{Endpoints}', (
@@ -343,14 +416,26 @@ SET
         jsonb_set(
             ui_info, 
             '{ActionLogText}', 
-            '"If creating an agent_action that has a location component (‘inperson’ ‘other’) use this field to denote the street address of the agent_action."'
+            to_jsonb(COALESCE(ui_info->>'ActionLogText', '') || 'If creating an agent_action that has a location component (‘inperson’ ‘other’) use this field to denote the street address of the agent_action.')
             ),
-        '{Products}', 
-        '["ActionLog", "Engage"]'
-        ),
-        '{ActionLog}', 
-        '["ActionLog"]'
-    ),
+        '{Products}',
+        (
+          SELECT jsonb_agg(DISTINCT value)
+          FROM jsonb_array_elements_text(
+            COALESCE(ui_info->'Products', '[]'::jsonb) 
+            || '["ActionLog", "API"]'::jsonb
+          )
+        )
+      ),
+    '{ActionLog}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
+        || '["ActionLog", "API"]'::jsonb
+      )
+    )
+  ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
     '{Endpoints}', (
@@ -369,14 +454,26 @@ SET
         jsonb_set(
             ui_info, 
             '{ActionLogText}', 
-            '"If creating an agent_action that has a location component (‘inperson’ ‘other’) use this field to denote the additonal street address info of the agent_action."'
+            to_jsonb(COALESCE(ui_info->>'ActionLogText', '') || 'If creating an agent_action that has a location component (‘inperson’ ‘other’) use this field to denote the additonal street address info of the agent_action.')
             ),
-        '{Products}', 
-        '["ActionLog", "Engage"]'
-        ),
-        '{ActionLog}', 
-        '["ActionLog"]'
-    ),
+        '{Products}',
+        (
+          SELECT jsonb_agg(DISTINCT value)
+          FROM jsonb_array_elements_text(
+            COALESCE(ui_info->'Products', '[]'::jsonb) 
+            || '["ActionLog", "API"]'::jsonb
+          )
+        )
+      ),
+    '{ActionLog}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
+        || '["ActionLog", "API"]'::jsonb
+      )
+    )
+  ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
     '{Endpoints}', (
@@ -395,14 +492,26 @@ SET
         jsonb_set(
             ui_info, 
             '{ActionLogText}', 
-            '"If creating an agent_action that has a location component (‘inperson’ ‘other’) use this field to denote the city or locale of the agent_action."'
+            to_jsonb(COALESCE(ui_info->>'ActionLogText', '') || 'If creating an agent_action that has a location component (‘inperson’ ‘other’) use this field to denote the city or locale of the agent_action.')
             ),
-        '{Products}', 
-        '["ActionLog", "Engage"]'
-        ),
-        '{ActionLog}', 
-        '["ActionLog"]'
-    ),
+        '{Products}',
+        (
+          SELECT jsonb_agg(DISTINCT value)
+          FROM jsonb_array_elements_text(
+            COALESCE(ui_info->'Products', '[]'::jsonb) 
+            || '["ActionLog", "API"]'::jsonb
+          )
+        )
+      ),
+    '{ActionLog}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
+        || '["ActionLog", "API"]'::jsonb
+      )
+    )
+  ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
     '{Endpoints}', (
@@ -421,14 +530,26 @@ SET
         jsonb_set(
             ui_info, 
             '{ActionLogText}', 
-            '"If creating an agent_action that has a location component (‘inperson’ ‘other’) use this field to denote the state or province related info of the agent_action."'
+            to_jsonb(COALESCE(ui_info->>'ActionLogText', '') || 'If creating an agent_action that has a location component (‘inperson’ ‘other’) use this field to denote the state or province related info of the agent_action.')
             ),
-        '{Products}', 
-        '["ActionLog", "Engage"]'
-        ),
-        '{ActionLog}', 
-        '["ActionLog"]'
-    ),
+        '{Products}',
+        (
+          SELECT jsonb_agg(DISTINCT value)
+          FROM jsonb_array_elements_text(
+            COALESCE(ui_info->'Products', '[]'::jsonb) 
+            || '["ActionLog", "API"]'::jsonb
+          )
+        )
+      ),
+    '{ActionLog}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
+        || '["ActionLog", "API"]'::jsonb
+      )
+    )
+  ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
     '{Endpoints}', (
@@ -447,14 +568,26 @@ SET
         jsonb_set(
             ui_info, 
             '{ActionLogText}', 
-            '"If creating an agent_action that has a location component (‘inperson’ ‘other’) use this field to denote the postal code of the agent_action."'
+            to_jsonb(COALESCE(ui_info->>'ActionLogText', '') || 'If creating an agent_action that has a location component (‘inperson’ ‘other’) use this field to denote the postal code of the agent_action.')
             ),
-        '{Products}', 
-        '["ActionLog", "Engage"]'
-        ),
-        '{ActionLog}', 
-        '["ActionLog"]'
-    ),
+        '{Products}',
+        (
+          SELECT jsonb_agg(DISTINCT value)
+          FROM jsonb_array_elements_text(
+            COALESCE(ui_info->'Products', '[]'::jsonb) 
+            || '["ActionLog", "API"]'::jsonb
+          )
+        )
+      ),
+    '{ActionLog}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
+        || '["ActionLog", "API"]'::jsonb
+      )
+    )
+  ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
     '{Endpoints}', (
@@ -492,31 +625,7 @@ WHERE attr_title IN (
     'agent_action_zip'
 );
 
-
-
-
-
-
-'{Endpoints}', (
-      SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
-       || '["ActionLog"]'::jsonb)
-      )
-    ),
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+END $$;
 
 UPDATE associated_attrs
 SET 
