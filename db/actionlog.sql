@@ -663,7 +663,7 @@ SET
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'timestamp';
 
-UPDATE associated_attrs
+UPDATE associated_attrs -- Create Response
 SET
   request_type = jsonb_set(
     request_type,
@@ -725,7 +725,7 @@ SET
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'moxi_works_action_log_id';
 
-UPDATE associated_attrs
+UPDATE associated_attrs -- Delete Request
 SET
   request_type = jsonb_set(
     request_type,
@@ -856,7 +856,7 @@ SET
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'messages';
 
-UPDATE associated_attrs
+UPDATE associated_attrs -- Delete Response
 SET
   request_type = jsonb_set(
     request_type,
@@ -870,24 +870,6 @@ WHERE attr_title IN (
    'messages'
 );
 
-END $$;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 UPDATE associated_attrs
 SET 
   ui_info = jsonb_set(
@@ -895,19 +877,34 @@ SET
         jsonb_set(
             ui_info, 
             '{APIText}', 
-            '"Only ActionLog records created later than this Unix timestamp will be included in the query. The upper bound of the time slice will be the 90 days higher than date_min value or the value of the the date_max; whichever is lower. If no timestamps are provided, ActionLogs from the last 90 days will be retrieved. The maximum timeframe for data is 90 days. date_min and date_max should be set in 90 day increments to retrieve the data from a specific historical point."'
+            to_jsonb(COALESCE(ui_info->>'APIText', '') || 'Only ActionLog records created later than this Unix timestamp will be included in the query. The upper bound of the time slice will be the 90 days higher than date_min value or the value of the the date_max; whichever is lower. If no timestamps are provided, ActionLogs from the last 90 days will be retrieved. The maximum timeframe for data is 90 days. date_min and date_max should be set in 90 day increments to retrieve the data from a specific historical point.')
             ),
-        '{Products}', 
-        '["API"]'
-        ),
-        '{ActionLog}', 
-        '["API"]'
-    ),
+        '{Products}',
+        (
+          SELECT jsonb_agg(DISTINCT value)
+          FROM jsonb_array_elements_text(
+            COALESCE(ui_info->'Products', '[]'::jsonb) 
+            || '["API"]'::jsonb
+          )
+        )
+      ),
+    '{ActionLog}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
+        || '["API"]'::jsonb
+      )
+    )
+  ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
+    '{Endpoints}', (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
+      )
+    ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'date_min';
 
@@ -918,23 +915,38 @@ SET
         jsonb_set(
             ui_info, 
             '{APIText}', 
-            '"Only ActionLog records created earlier than this Unix timestamp will be included in the query. Should be no higher than 90 days past the date_min attribute if it is provided. The maximum timeframe for data is 90 days. date_min and date_max should be set in 90 day increments to retrieve the data from a specific historical point."'
+            to_jsonb(COALESCE(ui_info->>'APIText', '') || 'Only ActionLog records created earlier than this Unix timestamp will be included in the query. Should be no higher than 90 days past the date_min attribute if it is provided. The maximum timeframe for data is 90 days. date_min and date_max should be set in 90 day increments to retrieve the data from a specific historical point.')
             ),
-        '{Products}', 
-        '["API"]'
-        ),
-        '{ActionLog}', 
-        '["API"]'
-    ),
+        '{Products}',
+        (
+          SELECT jsonb_agg(DISTINCT value)
+          FROM jsonb_array_elements_text(
+            COALESCE(ui_info->'Products', '[]'::jsonb) 
+            || '["API"]'::jsonb
+          )
+        )
+      ),
+    '{ActionLog}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
+        || '["API"]'::jsonb
+      )
+    )
+  ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
+    '{Endpoints}', (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
+      )
+    ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'date_max';
 
-UPDATE associated_attrs
+UPDATE associated_attrs -- Index Request
 SET
   request_type = jsonb_set(
     request_type,
@@ -961,23 +973,38 @@ SET
         jsonb_set(
             ui_info, 
             '{APIText}', 
-            '"This is an Array containing any ActionLog entries found for the Index request - [moxi_works_action_log_id, type, timestamp, log_data]."'
+            to_jsonb(COALESCE(ui_info->>'APIText', '') || 'This is an Array containing any ActionLog entries found for the Index request - [moxi_works_action_log_id, type, timestamp, log_data].')
             ),
-        '{Products}', 
-        '["API"]'
-        ),
-        '{ActionLog}', 
-        '["API"]'
-    ),
+        '{Products}',
+        (
+          SELECT jsonb_agg(DISTINCT value)
+          FROM jsonb_array_elements_text(
+            COALESCE(ui_info->'Products', '[]'::jsonb) 
+            || '["API"]'::jsonb
+          )
+        )
+      ),
+    '{ActionLog}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'ActionLog', '[]'::jsonb) 
+        || '["API"]'::jsonb
+      )
+    )
+  ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
+    '{Endpoints}', (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
+      )
+    ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'actions';
 
-UPDATE associated_attrs
+UPDATE associated_attrs -- Index Response
 SET
   request_type = jsonb_set(
     request_type,
@@ -992,3 +1019,5 @@ WHERE attr_title IN (
    'partner_contact_id',
    'actions'
 );
+
+END $$;
