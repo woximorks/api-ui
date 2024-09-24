@@ -1,44 +1,46 @@
 UPDATE associated_attrs
-SET 
-  ui_info = jsonb_set(
-    jsonb_set(
-      jsonb_set(
-        jsonb_set(
-          ui_info, 
-          '{APIText}',
-          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'This will be an RFC 4122 compliant UUID. If data is being pulled from The MoxiWorks Platform and integrating with your own system in a managed or automated fashion, then using agent_uuid request attribute is preferable. It is guaranteed to be unique and to never change for the lifetime of the account.'))
-        ), 
-        '{RosterText}',
-          to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'Agent UUID, found on profile page within Roster/Client Manager and is the user account level UUID.'))
-      ), 
-      '{Products}',
-      (
-        SELECT jsonb_agg(DISTINCT value)
-        FROM jsonb_array_elements_text(
-          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+SET ui_info = jsonb_set
+  (jsonb_set
+    (jsonb_set
+      (jsonb_set
+        (
+        ui_info,
+        '{APIText}',
+        to_jsonb (
+          (COALESCE(ui_info ->> 'APIText', '')
+            || 'This will be an RFC 4122 compliant UUID. If data is being pulled from The MoxiWorks Platform and integrating with your own system in a managed or automated fashion, then using agent_uuid request attribute is preferable. It is guaranteed to be unique and to never change for the lifetime of the account.'
+          )
+        )
+      ),
+      '{RosterText}',
+      to_jsonb (
+        (COALESCE(ui_info ->> 'RosterText', '')
+          || 'Agent UUID, found on profile page within Roster/Client Manager and is the user account level UUID.'
         )
       )
     ),
-    '{ActionLog}',
-    (
+    '{Products}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'ActionLog', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+      FROM jsonb_array_elements_text(COALESCE(ui_info -> 'Products', '[]'::jsonb)
+        || '["API", "Roster"]'::jsonb)
       )
-    )
-  ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
-    '{Endpoints}',
-    (
+    ),
+  '{ActionLog}', (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(COALESCE(ui_info -> 'ActionLog', '[]'::jsonb)
+         || '["API", "Roster"]'::jsonb)
+        )
+      ),
+    associated_endpoint = jsonb_set(associated_endpoint,
+    '{Endpoints}', (
       SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(
-        COALESCE(associated_endpoint->'Endpoints', '[]'::jsonb) || '["ActionLog"]'::jsonb
+      FROM jsonb_array_elements_text(COALESCE(associated_endpoint -> 'Endpoints', '[]'::jsonb)
+       || '["ActionLog"]'::jsonb)
       )
-    )
     ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'agent_uuid';
+WHERE
+attr_title = 'agent_uuid';
 
 UPDATE associated_attrs
 SET 
