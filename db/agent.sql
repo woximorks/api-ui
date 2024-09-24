@@ -91,3 +91,23 @@ WHERE attr_title IN (
   'include_partners',
   'include_reviews'
 );
+
+UPDATE associated_attrs
+SET
+  associated_endpoint = jsonb_set(
+    associated_endpoint,
+    '{Endpoints}',
+    (COALESCE(request_type->'Endpoints', '[]'::jsonb) || '["Agent"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+  'agent_uuid',
+  'moxi_works_agent_id',
+  'source_agent_id',
+  'moxi_works_company_id',
+  'parent_company_id',
+  'include_access_level',
+  'include_gci_goals',
+  'include_partners',
+  'include_reviews'
+);

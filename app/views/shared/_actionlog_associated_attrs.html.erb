@@ -12,7 +12,7 @@
 
         <div class="product_associated_attrs">
             <% @associated_attrs.each do |associated_attr| %>
-                <% if associated_attr.associated_endpoint['Endpoints'].is_a?(Array) && associated_attr.associated_endpoint['Endpoints'].include?('ActionLog') %>
+                <% if associated_attr.associated_endpoints['Endpoints'].is_a?(Array) && associated_attr.associated_endpoints['Endpoints'].include?('ActionLog') %>
                     <% if associated_attr.ui_info['ActionLog'].is_a?(Array) && associated_attr.ui_info['ActionLog'].include?('ActionLog') %>
                         <ul>
                             <li><h5><%= associated_attr.attr_title %></h5></li>
@@ -33,7 +33,7 @@
 
         <div class="product_associated_attrs">
             <% @associated_attrs.each do |associated_attr| %>
-                <% if associated_attr.associated_endpoint['Endpoints'].is_a?(Array) && associated_attr.associated_endpoint['Endpoints'].include?('ActionLog') %>
+                <% if associated_attr.associated_endpoints['Endpoints'].is_a?(Array) && associated_attr.associated_endpoints['Endpoints'].include?('ActionLog') %>
                     <% if associated_attr.ui_info['ActionLog'].is_a?(Array) && associated_attr.ui_info['ActionLog'].include?('API') %>
                         <ul>
                             <li><h5><%= associated_attr.attr_title %></h5></li>
@@ -54,7 +54,7 @@
 
         <div class="product_associated_attrs">
             <% @associated_attrs.each do |associated_attr| %>
-                <% if associated_attr.associated_endpoint['Endpoints'].is_a?(Array) && associated_attr.associated_endpoint['Endpoints'].include?('ActionLog') %>
+                <% if associated_attr.associated_endpoints['Endpoints'].is_a?(Array) && associated_attr.associated_endpoints['Endpoints'].include?('ActionLog') %>
                     <% if associated_attr.ui_info['ActionLog'].is_a?(Array) && associated_attr.ui_info['ActionLog'].include?('Roster') %>
                         <ul>
                             <li><h5><%= associated_attr.attr_title %></h5></li>
