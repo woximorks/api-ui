@@ -1,4 +1,3 @@
-/*
 UPDATE associated_attrs
 SET 
   ui_info = jsonb_set(
@@ -6,65 +5,13 @@ SET
       jsonb_set(
         jsonb_set(
           ui_info, 
-          '{APIText}', 
-          -- Append new text to the existing 'APIText' or create it if it doesn't exist
-          to_jsonb((COALESCE(ui_info->>'APIText', '') || ' Some additional text to append.'))
-        ), 
-        '{RosterText}', 
-          -- Append new text to the existing 'RosterText2' or create it if it doesn't exist
-          to_jsonb((COALESCE(ui_info->>'RosterText', '') || ' Other additional text to append.'))
-      ), 
-      '{Products}', 
-      -- Ensure new products are added without duplicating existing ones
-      (
-        SELECT jsonb_agg(DISTINCT value)
-        FROM jsonb_array_elements_text(
-          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Roster", "Engage"]'::jsonb
-        )
-      )
-    ),
-    '{Agent}', 
-    -- Ensure new UI associations are added without duplicating existing ones
-    (
-      SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Roster", "Engage"]'::jsonb
-      )
-    )
-  ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
-    '{Endpoints}', 
-    -- Add 'Agent' to the existing 'Endpoints' array, skipping duplicates
-    (
-      SELECT jsonb_agg(DISTINCT value)
-      FROM jsonb_array_elements_text(
-        COALESCE(associated_endpoint->'Endpoints', '[]'::jsonb) || '["Agent"]'::jsonb
-      )
-    )
-  ),
-  updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'agent_uuid';
-
-*/
-
-UPDATE associated_attrs
-SET 
-  ui_info = jsonb_set(
-    jsonb_set(
-      jsonb_set(
-        jsonb_set(
-          ui_info, 
-          '{APIText}', 
-          -- Append new text to the existing 'APIText' or create it if it doesn't exist
+          '{APIText}',
           to_jsonb((COALESCE(ui_info->>'APIText', '') || 'To include access level information for the agent in the response, pass true'))
         ), 
-        '{RosterText}', 
-          -- Append new text to the existing 'RosterText2' or create it if it doesn't exist
+        '{RosterText}',
           to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'The access level of the agent. This can return one of the possible access levels, as seen within the products and permissions page.'))
       ), 
-      '{Products}', 
-      -- Ensure new products are added without duplicating existing ones
+      '{Products}',
       (
         SELECT jsonb_agg(DISTINCT value)
         FROM jsonb_array_elements_text(
@@ -72,8 +19,7 @@ SET
         )
       )
     ),
-    '{Agent}', 
-    -- Ensure new UI associations are added without duplicating existing ones
+    '{Agent}',
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
@@ -96,16 +42,13 @@ SET
       jsonb_set(
         jsonb_set(
           ui_info, 
-          '{APIText}', 
-          -- Append new text to the existing 'APIText' or create it if it doesn't exist
+          '{APIText}',
           to_jsonb((COALESCE(ui_info->>'APIText', '') || 'Whether to include agent’s GCI goals and commissions data in the response data.'))
         ), 
-        '{EngageText}', 
-          -- Append new text to the existing 'RosterText2' or create it if it doesn't exist
+        '{EngageText}',
           to_jsonb((COALESCE(ui_info->>'EngageText', '') || 'The Gross Commission Income goal, as seen throughout the Engage UI.'))
       ), 
-      '{Products}', 
-      -- Ensure new products are added without duplicating existing ones
+      '{Products}',
       (
         SELECT jsonb_agg(DISTINCT value)
         FROM jsonb_array_elements_text(
@@ -113,8 +56,7 @@ SET
         )
       )
     ),
-    '{Agent}', 
-    -- Ensure new UI associations are added without duplicating existing ones
+    '{Agent}',
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
@@ -134,7 +76,7 @@ UPDATE associated_attrs
 SET
   request_type = jsonb_set(
     request_type,
-    '{Agent}',  -- Specify the path within the JSONB object
+    '{Agent}',
     (COALESCE(request_type->'Agent', '[]'::jsonb) || '["Create Request"]'::jsonb)
   ),
   updated_at = CURRENT_TIMESTAMP

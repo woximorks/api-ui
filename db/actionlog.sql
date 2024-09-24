@@ -5,21 +5,21 @@ SET
         jsonb_set(
         jsonb_set(
             ui_info, 
-            '{APIText}', -- This displays whenever the 'API' association is called within the agent_uuid instance of associated_attr
+            '{APIText}',
             '"This will be an RFC 4122 compliant UUID. If data is being pulled from The MoxiWorks Platform and integrating with your own system in a managed or automated fashion, then using agent_uuid request attribute is preferable. It is guaranteed to be unique and to never change for the lifetime of the account."'
         ), 
-        '{RosterText}', -- This displays whenver the 'Roster' association is called within the agent_uuid instance of associated_attr
+        '{RosterText}',
         '"Agent UUID, found on profile page within Roster/Client Manager and is the user account level UUID."'
         ), 
-        '{Products}', -- These are all of the products 'agent_uuid' will be associated with
+        '{Products}',
         '["API", "Roster"]'
     ),
-    '{ActionLog}', -- agent_uuid > ui_info that is associated with the ActionLog endpoint
+    '{ActionLog}',
     '["API", "Roster"]'
     ),
   associated_endpoint = jsonb_set(
     associated_endpoint,
-    '{Endpoints}', -- all agent_uuid associated endpoints
+    '{Endpoints}',
     '["ActionLog"]'
   ),
   updated_at = CURRENT_TIMESTAMP
