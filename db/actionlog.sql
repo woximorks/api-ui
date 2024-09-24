@@ -30,8 +30,13 @@ SET
   associated_endpoint = jsonb_set(
     associated_endpoint,
     '{Endpoints}',
-    '["ActionLog"]'
-  ),
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(associated_endpoint->'Endpoints', '[]'::jsonb) || '["ActionLog"]'::jsonb
+      )
+    )
+    ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'agent_uuid';
 
@@ -111,58 +116,6 @@ WHERE attr_title = 'source_agent_id';
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-UPDATE associated_attrs
-SET 
-  ui_info = jsonb_set(
-        jsonb_set(
-            jsonb_set(
-              ui_info, 
-              '{APIText}', 
-              '""'
-            ), 
-          '{Products}', 
-          '["API"]'
-        ),
-        '{ActionLog}', 
-        '["API"]'
-      ),
-  associated_endpoint = jsonb_set(
-    associated_endpoint,
-    '{Endpoints}',
-    '["ActionLog"]'
-  ),
-  updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'source_agent_id';
-
-
-
-
-
 UPDATE associated_attrs
 SET 
   ui_info = jsonb_set(
@@ -208,7 +161,42 @@ WHERE attr_title = 'include_access_level';
 
 
 
-
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, 
+          '{APIText}',
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'To include access level information for the agent in the response, pass true'))
+        ), 
+        '{RosterText}',
+          to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'The access level of the agent. This can return one of the possible access levels, as seen within the products and permissions page.'))
+      ), 
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+        )
+      )
+    ),
+    '{Agent}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+      )
+    )
+  ),
+  associated_endpoint = jsonb_set(
+    associated_endpoint,
+    '{Endpoints}',
+    '["ActionLog"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+  WHERE attr_title = 'body';
 
 
 
@@ -240,7 +228,7 @@ SET
   ),
   
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'body';
+
 
 UPDATE associated_attrs
 SET 
