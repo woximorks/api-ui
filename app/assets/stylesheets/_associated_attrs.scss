@@ -45,6 +45,7 @@
             overflow-y: scroll;
             scrollbar-width: thin;
             padding: 1em;
+            padding-top: 0;
             ul {//each individual attribute, and it's associated info
                 list-style-type: none;
                 margin: 0;
@@ -52,6 +53,7 @@
                 display: flex;
                 width: 100%;
                 justify-content: space-evenly;
+                align-items: center;
                 li {
                     padding: .25em;
                     hr {
