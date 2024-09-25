@@ -18,17 +18,18 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     .product_association {//entire card
-        width: 45%;
+        width: 47%;
         text-align: center;
-        background-color: rgb(240,240,240);        
-        margin: 1em;
+        background-color: rgb(240,240,240);
         border-radius: 15px;
+        margin-top: 1em;
+        margin-bottom: 1em;
         .associated_product {//image and title
-            width: 45%;
-            position: absolute;
+            width: 100%;
             z-index: 1;
             background-color: #5392d7;
             height: 175px;
+            margin-bottom: 0;
             border-bottom: 8px solid #51d8cf;
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
@@ -37,14 +38,12 @@
             }
         }
         .product_associated_attrs {//attribute and info
-            margin-top: 175px;
-            padding-left: 1em;
-            padding-right: 1em;
-            padding-top: .5em;
+            margin-top: 0;
             max-height: 50vh;
             min-height: 50vh;
             overflow-y: scroll;
             scrollbar-width: thin;
+            padding: 1em;
             ul {//each individual attribute, and it's associated info
                 list-style-type: none;
                 margin: 0;
@@ -53,9 +52,8 @@
                 align-items: center;
                 li {
                     padding: .25em;
-                    width: 100%;
                     hr {
-                        width: 100%;
+                        width: 69px;
                         color: black;
                         border-style: solid;
                     }
