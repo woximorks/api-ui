@@ -3,6 +3,28 @@
 </div>
 
 <div class="associated_attrs">
+
+    <div class="product_association" id="present">
+        <div class="associated_product">
+            <%= image_tag("present.png") %>
+            <h3>Present</h3>
+        </div>
+
+        <div class="product_associated_attrs">
+            <% @associated_attrs.each do |associated_attr| %>
+                <% if associated_attr.associated_endpoints['Endpoints'].is_a?(Array) && associated_attr.associated_endpoints['Endpoints'].include?('Brand') %>
+                    <% if associated_attr.ui_info['Brand'].is_a?(Array) && associated_attr.ui_info['Brand'].include?('Present') %>
+                        <ul>
+                            <li id="attrTitle"><h5><%= associated_attr.attr_title %></h5></li>
+                            <li id="attrLine"><hr></li>
+                            <li id="attrText"><h6><%= associated_attr.ui_info['PresentText'] %></h6></li>
+                        </ul>
+                    <% end %>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+
     <div class="product_association" id="api">
         <div class="associated_product">
             <%= image_tag("API.png") %>
@@ -10,46 +32,16 @@
         </div>
 
         <div class="product_associated_attrs">
-            <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "API" }, endpoints: { endpoint_title: "Brand" }).each do |associated_attr| %>
-            <ul>
-                <li><h6><%= associated_attr.ui_info['general'] %></h6></li>
-                <li><hr></li>
-                <li><h5><%= associated_attr.attr.attr_title %></h5></li>
-            </ul>
-            <% end %>
-        </div>
-    </div>
-
-    <div class="product_association" id="engage">
-        <div class="associated_product">
-            <%= image_tag("engage.png") %>
-            <h3>Engage</h3>
-        </div>
-    
-        <div class="product_associated_attrs">
-            <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Engage" }, endpoints: { endpoint_title: "Brand" }).each do |associated_attr| %>
-            <ul>
-                <li><h5><%= associated_attr.attr.attr_title %></h5></li>
-                <li><hr></li>
-                <li><h6><%= associated_attr.ui_info['general'] %></h6></li>
-            </ul>
-            <% end %>
-        </div>
-    </div>
-
-    <div class="product_association" id="present">
-        <div class="associated_product">
-            <%= image_tag("present.png") %>
-            <h3>Present</h3>
-        </div>
-    
-        <div class="product_associated_attrs">
-            <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Present" }, endpoints: { endpoint_title: "Brand" }).each do |associated_attr| %>
-            <ul>
-                <li><h6><%= associated_attr.ui_info['general'] %></h6></li>
-                <li><hr></li>
-                <li><h5><%= associated_attr.attr.attr_title %></h5></li>
-            </ul>
+            <% @associated_attrs.each do |associated_attr| %>
+                <% if associated_attr.associated_endpoints['Endpoints'].is_a?(Array) && associated_attr.associated_endpoints['Endpoints'].include?('Brand') %>
+                    <% if associated_attr.ui_info['Brand'].is_a?(Array) && associated_attr.ui_info['Brand'].include?('API') %>
+                        <ul>
+                            <li id="attrTitle"><h5><%= associated_attr.attr_title %></h5></li>
+                            <li id="attrLine"><hr></li>
+                            <li id="attrText"><h6><%= associated_attr.ui_info['APIText'] %></h6></li>
+                        </ul>
+                    <% end %>
+                <% end %>
             <% end %>
         </div>
     </div>
@@ -59,14 +51,18 @@
             <%= image_tag("roster.png") %>
             <h3>Roster</h3>
         </div>
-    
+
         <div class="product_associated_attrs">
-            <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Roster" }, endpoints: { endpoint_title: "Brand" }).each do |associated_attr| %>
-            <ul>
-                <li><h5><%= associated_attr.attr.attr_title %></h5></li>
-                <li><hr></li>
-                <li><h6><%= associated_attr.ui_info['general'] %></h6></li>                
-            </ul>
+            <% @associated_attrs.each do |associated_attr| %>
+                <% if associated_attr.associated_endpoints['Endpoints'].is_a?(Array) && associated_attr.associated_endpoints['Endpoints'].include?('Brand') %>
+                    <% if associated_attr.ui_info['Brand'].is_a?(Array) && associated_attr.ui_info['Brand'].include?('Roster') %>
+                        <ul>
+                            <li id="attrTitle"><h5><%= associated_attr.attr_title %></h5></li>
+                            <li id="attrLine"><hr></li>
+                            <li id="attrText"><h6><%= associated_attr.ui_info['RosterText'] %></h6></li>
+                        </ul>
+                    <% end %>
+                <% end %>
             <% end %>
         </div>
     </div>
@@ -76,19 +72,22 @@
             <%= image_tag("websites.png") %>
             <h3>Websites</h3>
         </div>
-    
+
         <div class="product_associated_attrs">
-            <% @associated_attrs.joins(:product, :endpoint).where(products: { product_title: "Websites" }, endpoints: { endpoint_title: "Brand" }).each do |associated_attr| %>
-            <ul>
-                <li><h5><%= associated_attr.attr.attr_title %></h5></li>
-                <li><hr></li>
-                <li><h6><%= associated_attr.ui_info['general'] %></h6></li>                
-            </ul>
+            <% @associated_attrs.each do |associated_attr| %>
+                <% if associated_attr.associated_endpoints['Endpoints'].is_a?(Array) && associated_attr.associated_endpoints['Endpoints'].include?('Brand') %>
+                    <% if associated_attr.ui_info['Brand'].is_a?(Array) && associated_attr.ui_info['Brand'].include?('Websites') %>
+                        <ul>
+                            <li id="attrTitle"><h5><%= associated_attr.attr_title %></h5></li>
+                            <li id="attrLine"><hr></li>
+                            <li id="attrText"><h6><%= associated_attr.ui_info['WebsitesText'] %></h6></li>
+                        </ul>
+                    <% end %>
+                <% end %>
             <% end %>
         </div>
     </div>
 
-    
 </div>
 
 <%= render 'shared/nav' %>
