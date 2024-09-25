@@ -30,6 +30,18 @@ WHERE attr_title IN (
     'moxi_works_company_id',
     'parent_company_id'
 );
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{Brand}',
+    (COALESCE(request_type->'Brand', '[]'::jsonb) || '["Show Request"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN ( -- setting the following associated_attrs -> request_type to contain "Show Request"
+    'moxi_works_company_id',
+    'parent_company_id'
+);
 
 UPDATE associated_attrs
 SET 
@@ -603,11 +615,11 @@ UPDATE associated_attrs
 SET
   request_type = jsonb_set(
     request_type,
-    '{Agent}',
-    (COALESCE(request_type->'Brand', '[]'::jsonb) || '["Index Response"]'::jsonb)
+    '{Brand}',
+    (COALESCE(request_type->'Brand', '[]'::jsonb) || '["Show Response"]'::jsonb)
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title IN ( -- setting the following associated_attrs -> request_type to contain "Index Repsonse"
+WHERE attr_title IN ( -- setting the following associated_attrs -> request_type to contain "Show Repsonse"
     'image_logo',
     'cma_authoring_color',
     'background_color',
@@ -654,6 +666,23 @@ SET
     associated_endpoints,
     '{Endpoints}',
     (COALESCE(associated_endpoints->'Endpoints', '[]'::jsonb) || '["Brand"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+  'moxi_works_company_id',
+  'agent_uuid',
+  'moxi_works_agent_id',
+  'source_agent_id',
+  'moxi_works_office_id',
+  'office_id',
+  'parent_company_id'
+);
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{Brand}',
+    (COALESCE(request_type->'Brand', '[]'::jsonb) || '["Index Request"]'::jsonb)
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title IN (
