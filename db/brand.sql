@@ -654,11 +654,24 @@ WHERE attr_title IN ( -- setting the following associated_attrs to have API and 
   'moxi_works_company_id',
   'agent_uuid',
   'moxi_works_agent_id',
-  'source_agent_id',
   'moxi_works_office_id',
   'office_id',
   'parent_company_id'
 );
+
+UPDATE associated_attrs
+SET
+  ui_info = jsonb_set(
+    ui_info,
+    '{Brand}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Brand', '[]'::jsonb) || '["API"]'::jsonb
+      )
+    )
+  )
+WHERE attr_title = 'source_agent_id';
 
 UPDATE associated_attrs
 SET
