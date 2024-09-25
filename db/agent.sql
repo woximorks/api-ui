@@ -133,7 +133,7 @@ SET
   associated_endpoints = jsonb_set(
     associated_endpoints,
     '{Endpoints}',
-    (COALESCE(request_type->'Endpoints', '[]'::jsonb) || '["Agent"]'::jsonb)
+    (COALESCE(associated_endpoints->'Endpoints', '[]'::jsonb) || '["Agent"]'::jsonb)
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title IN (  -- setting the following associated_attrs -> associated_endpoints to contain "Agent"
@@ -2498,4 +2498,3 @@ SET
 WHERE attr_title = 'user_reviews';
 
 END $$;
-
