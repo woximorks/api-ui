@@ -2497,4 +2497,143 @@ SET
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'user_reviews';
 
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{Agent}',
+    (COALESCE(request_type->'Agent', '[]'::jsonb) || '["Index Request"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN ( -- setting the following associated_attrs -> request_type to contain "Index Request"
+    'moxi_works_company_id',
+    'parent_company_id',
+    'moxi_works_office_id',
+    'updated_since',
+    'page_number',
+    'include_access_level',
+    'deactivated',
+    'deactivated_since',
+    'include_partners',
+    'include_company_programs',
+    'include_website',
+    'has_company_programs',
+    'include_reviews',
+    'timestamps_only',
+    'include_bio'
+);
+
+
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, 
+          '{APIText}',
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'This is the Unix timestamp representing the date that this Agent was deactivated in the MoxiWorks system. This will be returned null if the agent is still active.'))
+        ), 
+        '{RosterText}',
+          to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'Will display within Account Info section if user account is deactivated.'))
+      ), 
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+        )
+      )
+    ),
+    '{Agent}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Agent"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'deactivated_timestamp';
+
+
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{Agent}',
+    (COALESCE(request_type->'Agent', '[]'::jsonb) || '["Index Request"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN ( -- setting the following associated_attrs -> request_type to contain "Index Response"
+    'moxi_works_agent_id',
+    'client_agent_id',
+    'mls_agent_id',
+    'license',
+    'mls_name',
+    'mls_abbreviation',
+    'agent_id',
+    'moxi_works_office_id',
+    'office_id',
+    'client_office_id',
+    'company_id',
+    'client_company_id',
+    'office_address_street',
+    'office_address_street2',
+    'office_address_city',
+    'office_address_state',
+    'office_address_zip',
+    'office_mailing_address_street',
+    'office_mailing_address_street2',
+    'office_mailing_address_city',
+    'office_mailing_address_state',
+    'office_mailing_address_zip',
+    'name',
+    'first_name',
+    'last_name',
+    'nickname',
+    'main_phone_number',
+    'mobile_phone_number',
+    'alt_phone_number',
+    'fax_phone_number',
+    'office_phone_number',
+    'primary_email_address',
+    'secondary_email_address',
+    'email_addresses',
+    'lead_routing_email_address',
+    'title',
+    'bio',
+    'designations',
+    'uuid',
+    'has_product_access',
+    'has_engage_access',
+    'access_level',
+    'view_level',
+    'teams',
+    'website_base_url',
+    'twitter',
+    'google_plus',
+    'facebook',
+    'home_page',
+    'profile_image_url',
+    'profile_thumb_url',
+    'region',
+    'service_area_zip_codes',
+    'agent_website',
+    'alternate_offices',
+    'available_mls',
+    'partners',
+    'company_programs',
+    'source_metadata',
+    'created_timestamp',
+    'deactivated_timestamp',
+    'profile_visible_online',
+    'user_reviews'
+);
+
 END $$;
