@@ -695,4 +695,68 @@ WHERE attr_title IN (
   'parent_company_id'
 );
 
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info,
+          '{APIText}',
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'Human readable string identifying the brand.'))
+          ),
+        '{PresentText}',
+          to_jsonb((COALESCE(ui_info->>'PresentText', '') || 'This will be the name that displays related to the associated Brand.'))
+      ), 
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Present"]'::jsonb
+        )
+      )
+    ),
+    '{Brand}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Brand', '[]'::jsonb) || '["API", "Present"]'::jsonb
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Brand"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'name';
+
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{Brand}',
+    (COALESCE(request_type->'Brand', '[]'::jsonb) || '["Index Response"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+  WHERE attr_title IN (
+    'name', -- !!!
+    'image_logo',
+    'cma_authoring_color',
+    'background_color',
+    'background_font_color_primary',
+    'button_background_color',
+    'button_font_color',
+    'copyright',
+    'display_name',
+    'email_element_background_color',
+    'email_background_font_color',
+    'image_cma_pdf_logo_header',
+    'image_email_logo_alt',
+    'image_favicon',
+    'image_pres_cover_logo',
+    'pres_block_background_color',
+    'pres_block_text_color'
+  );
 END $$;
