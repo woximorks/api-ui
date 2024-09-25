@@ -14,7 +14,7 @@ SET
     ),
     true
   )
-WHERE attr_title IN (
+WHERE attr_title IN ( -- setting the following associated_attrs to have API and Roster associations within the Agent Array of ui_info
   'agent_uuid',
   'moxi_works_agent_id',
   'moxi_works_company_id',
@@ -84,7 +84,7 @@ SET
           to_jsonb((COALESCE(ui_info->>'APIText', '') || 'Whether to include agent’s GCI goals and commissions data in the response data.'))
         ), 
         '{EngageText}',
-          to_jsonb((COALESCE(ui_info->>'EngageText', '') || 'The Gross Commission Income goal, as seen throughout the Engage UI.'))
+          to_jsonb((COALESCE(ui_info->>'EngageText', '') || 'This represents the Gross Commission Income goal, as seen throughout the Engage UI.'))
       ), 
       '{Products}',
       (
