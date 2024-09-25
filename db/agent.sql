@@ -2498,6 +2498,113 @@ SET
 WHERE attr_title = 'user_reviews';
 
 UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, 
+          '{APIText}',
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'The email_addresses Hash is a Dictionary object holding the email addresses associated with the Agent record. These include [primary, display, alternate, moxi_sync, lead_routing, zillow].'))
+        ), 
+        '{RosterText}',
+          to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'Some of these will display on the About Me section, including primary, display, moxi sync.'))
+      ), 
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+        )
+      )
+    ),
+    '{Agent}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Agent"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'email_addresses';
+
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, 
+          '{APIText}',
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'To include ratings and reviews associated with the agent in the response, pass true.'))
+        ), 
+        '{RosterText}',
+          to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'Referencing external agent reviews from platforms such as Zillow and Testimonial Tree.'))
+      ), 
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+        )
+      )
+    ),
+    '{Agent}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Agent"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'include_reviews';
+
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, 
+          '{APIText}',
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'To include affiliate data associated with the agent in the response, pass true.'))
+        ), 
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API"]'::jsonb
+        )
+      )
+    ),
+    '{Agent}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API"]'::jsonb
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Agent"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'include_partners';
+
+UPDATE associated_attrs
 SET
   request_type = jsonb_set(
     request_type,
@@ -2567,7 +2674,7 @@ SET
   request_type = jsonb_set(
     request_type,
     '{Agent}',
-    (COALESCE(request_type->'Agent', '[]'::jsonb) || '["Index Request"]'::jsonb)
+    (COALESCE(request_type->'Agent', '[]'::jsonb) || '["Index Response"]'::jsonb)
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title IN ( -- setting the following associated_attrs -> request_type to contain "Index Response"
