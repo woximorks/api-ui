@@ -12,7 +12,6 @@ SET
         COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Roster"]'::jsonb
       )
     ),
-    true
   )
 WHERE attr_title IN ( -- setting the following associated_attrs to have API and Roster associations within the Agent Array of ui_info
   'agent_uuid',
@@ -32,7 +31,6 @@ SET
         COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API"]'::jsonb
       )
     ),
-    true
   )
 WHERE attr_title = 'source_agent_id';
 
