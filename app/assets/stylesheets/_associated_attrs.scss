@@ -18,13 +18,13 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     .product_association {//entire card
-        width: 47%;
+        width: 350px;
         text-align: center;
         background-color: rgb(240,240,240);
         border-radius: 15px;
         margin-top: 1em;
         margin-bottom: 1em;
-        min-width: 450px;
+        min-width: 400px;
         .associated_product {//image and title
             width: 100%;
             z-index: 1;
@@ -61,7 +61,7 @@
                         border-style: solid;
                     }
                     h5 {
-                        font-size: .8em;
+                        font-size: .75em;
                         margin: 0;
                         font-weight: 600;
                     }
@@ -71,14 +71,12 @@
                     }
                 }
                 #attrTitle {
-                    max-width: 40%;
                     text-align: left;
                 }
                 #attrLine {
                     width: 100%;
                 }
                 #attrText {
-                    max-width: 50%;
                 }
             }
         }
