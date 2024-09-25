@@ -11,7 +11,7 @@ SET
       FROM jsonb_array_elements_text(
         COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Roster"]'::jsonb
       )
-    ),
+    )
   )
 WHERE attr_title IN ( -- setting the following associated_attrs to have API and Roster associations within the Agent Array of ui_info
   'agent_uuid',
@@ -30,7 +30,7 @@ SET
       FROM jsonb_array_elements_text(
         COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API"]'::jsonb
       )
-    ),
+    )
   )
 WHERE attr_title = 'source_agent_id';
 
@@ -116,7 +116,7 @@ SET
     (COALESCE(request_type->'Agent', '[]'::jsonb) || '["Create Request"]'::jsonb)
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title IN (
+WHERE attr_title IN ( -- setting the following associated_attrs -> request_type to contain "Create Request"
   'agent_uuid',
   'moxi_works_agent_id',
   'source_agent_id',
@@ -136,7 +136,7 @@ SET
     (COALESCE(request_type->'Endpoints', '[]'::jsonb) || '["Agent"]'::jsonb)
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title IN (
+WHERE attr_title IN (  -- setting the following associated_attrs -> associated_endpoints to contain "Agent"
   'agent_uuid',
   'moxi_works_agent_id',
   'source_agent_id',
