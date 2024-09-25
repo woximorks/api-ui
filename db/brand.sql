@@ -626,4 +626,44 @@ WHERE attr_title IN ( -- setting the following associated_attrs -> request_type 
     'pres_block_text_color'
 );
 
+UPDATE associated_attrs
+SET
+  ui_info = jsonb_set(
+    ui_info,
+    '{Brand}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Brand', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+      )
+    )
+  )
+WHERE attr_title IN ( -- setting the following associated_attrs to have API and Roster associations within the Brand Array of ui_info
+  'moxi_works_company_id',
+  'agent_uuid',
+  'moxi_works_agent_id',
+  'source_agent_id',
+  'moxi_works_office_id',
+  'office_id',
+  'parent_company_id'
+);
+
+UPDATE associated_attrs
+SET
+  associated_endpoints = jsonb_set( -- setting the following associated_endpoints to have Brand associations within the Endpoints Array
+    associated_endpoints,
+    '{Endpoints}',
+    (COALESCE(associated_endpoints->'Endpoints', '[]'::jsonb) || '["Brand"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+  'moxi_works_company_id',
+  'agent_uuid',
+  'moxi_works_agent_id',
+  'source_agent_id',
+  'moxi_works_office_id',
+  'office_id',
+  'parent_company_id'
+);
+
 END $$;
