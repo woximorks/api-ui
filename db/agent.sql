@@ -1367,9 +1367,8 @@ SET
           '{APIText}',
           to_jsonb((COALESCE(ui_info->>'APIText', '') || 'This can be null if there is no data for this attribute.'))
         ), 
-        '{RosterText}',
-          to_jsonb((COALESCE(ui_info->>'EngageText', '') || 'This is the agent’s lead routing email address. This can be null if there is no data for this attribute.
-        '))
+        '{EngageText}',
+          to_jsonb((COALESCE(ui_info->>'EngageText', '') || 'This is the agent’s lead routing email address. This can be null if there is no data for this attribute.'))
       ), 
       '{Products}',
       (
@@ -1394,5 +1393,301 @@ SET
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'lead_routing_email_address';
+
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, 
+          '{APIText}',
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'This can be null if there is no data for this attribute.'))
+        ), 
+        '{RosterText}',
+          to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'This is the business title of the agent.'))
+      ), 
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+        )
+      )
+    ),
+    '{Agent}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Agent"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'title';
+
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, 
+          '{APIText}',
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'Array of key/value pairs. Each has a body and header, both strings, which can be null or blank.'))
+        ), 
+        '{RosterText}',
+          to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'This is the bio of the agent, as seen on the about me > web info page.'))
+      ), 
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+        )
+      )
+    ),
+    '{Agent}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Agent"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'bio';
+
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, 
+          '{APIText}',
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'This is a string that contains the agent’s designation(s), if any. This can be null if there is no data for this attribute.'))
+        ), 
+        '{RosterText}',
+          to_jsonb((COALESCE(ui_info->>'RosterText', '') || ''))
+      ), 
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+        )
+      )
+    ),
+    '{Agent}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Agent"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'designations';
+
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, 
+          '{APIText}',
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'This is an RFC 4122 compliant UUID. This UUID can be used as a unique identifier in determining associations between Agent objects and Listing objects.'))
+        ), 
+        '{RosterText}',
+          to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'Displays within the about me section.'))
+      ), 
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+        )
+      )
+    ),
+    '{Agent}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Agent"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'uuid';
+
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, 
+          '{APIText}',
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'Indicates whether the agent has access to MoxiWorks Products.'))
+        ), 
+        '{RosterText}',
+          to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'Referring to each individual Moxi product offered, such as Engage, Present, Impress etc.'))
+      ), 
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+        )
+      )
+    ),
+    '{Agent}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Agent"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'has_product_access';
+
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, 
+          '{APIText}',
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'Indicates whether the agent has access to MoxiWorks Engage Product.'))
+        ), 
+        '{EngageText}',
+          to_jsonb((COALESCE(ui_info->>'EngageText', '') || 'Referencing the agent’s ability to access Engage as a product.'))
+      ), 
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Engage"]'::jsonb
+        )
+      )
+    ),
+    '{Agent}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Engage"]'::jsonb
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Agent"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'has_engage_access';
+
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, 
+          '{APIText}',
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'If include_access_level was passed as true, this can return one of the possible access levels.'))
+        ), 
+        '{RosterText}',
+          to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'Related to the products and permissions page, specific to user account permissions section.'))
+      ), 
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+        )
+      )
+    ),
+    '{Agent}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Agent"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'access_level';
+
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, 
+          '{APIText}',
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'This will return one of the possible view levels.'))
+        ), 
+        '{RosterText}',
+          to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'The view level of the agent.'))
+      ), 
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+        )
+      )
+    ),
+    '{Agent}',
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Agent"]'
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'view_level';
 
 END $$;
