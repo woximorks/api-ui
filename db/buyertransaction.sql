@@ -1220,4 +1220,48 @@ WHERE attr_title IN ( -- setting the following associated_attrs -> request_type 
   'promote_transaction'
 );
 
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{BuyerTransaction}',
+    (COALESCE(request_type->'BuyerTransaction', '[]'::jsonb) || '["Update Response"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+  WHERE attr_title IN (
+    'agent_uuid',
+    'moxi_works_agent_id',
+    'moxi_works_transaction_id',
+    'moxi_works_contact_id',
+    'partner_contact_id',
+    'transaction_name',
+    'notes',
+    'stage',
+    'stage_name',
+    'address',
+    'city',
+    'state',
+    'zip_code',
+    'min_sqft',
+    'max_sqft',
+    'min_beds',
+    'max_beds',
+    'min_baths',
+    'max_baths',
+    'area_of_interest',
+    'is_mls_transaction',
+    'mls_number',
+    'start_timestamp',
+    'commission_percentage',
+    'commission_flat_fee',
+    'sales_volume_percentage'
+    'sales_volume_flat_fee'
+    'target_price',
+    'min_price',
+    'max_price',
+    'closing_price',
+    'closing_timestamp',
+    'state_changed_at'
+  );
+
 END $$;
