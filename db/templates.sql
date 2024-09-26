@@ -93,6 +93,7 @@ WHERE attr_title = '#attribute_title'; -- Attribute name, ie agent_uuid, email_a
 
 END $$;
 
+-- Establish Request Type relationship
 UPDATE associated_attrs
 SET
   request_type = jsonb_set(
