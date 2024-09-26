@@ -1228,7 +1228,132 @@ SET
     (COALESCE(request_type->'BuyerTransaction', '[]'::jsonb) || '["Update Response"]'::jsonb)
   ),
   updated_at = CURRENT_TIMESTAMP
-  WHERE attr_title IN (
+WHERE attr_title IN (
+  'agent_uuid',
+  'moxi_works_agent_id',
+  'moxi_works_transaction_id',
+  'moxi_works_contact_id',
+  'partner_contact_id',
+  'transaction_name',
+  'notes',
+  'stage',
+  'stage_name',
+  'address',
+  'city',
+  'state',
+  'zip_code',
+  'min_sqft',
+  'max_sqft',
+  'min_beds',
+  'max_beds',
+  'min_baths',
+  'max_baths',
+  'area_of_interest',
+  'is_mls_transaction',
+  'mls_number',
+  'start_timestamp',
+  'commission_percentage',
+  'commission_flat_fee',
+  'sales_volume_percentage'
+  'sales_volume_flat_fee'
+  'target_price',
+  'min_price',
+  'max_price',
+  'closing_price',
+  'closing_timestamp',
+  'state_changed_at'
+);
+
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{BuyerTransaction}',
+    (COALESCE(request_type->'BuyerTransaction', '[]'::jsonb) || '["Show Request"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+  'agent_uuid',
+  'moxi_works_agent_id',
+  'source_agent_id',
+  'moxi_works_transaction_id',
+  'moxi_works_company_id',
+  'parent_company_id'
+);
+
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{BuyerTransaction}',
+    (COALESCE(request_type->'BuyerTransaction', '[]'::jsonb) || '["Show Response"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+  'agent_uuid',
+  'moxi_works_agent_id',
+  'moxi_works_transaction_id',
+  'moxi_works_contact_id',
+  'partner_contact_id',
+  'transaction_name',
+  'notes',
+  'stage',
+  'stage_name',
+  'address',
+  'city',
+  'state',
+  'zip_code',
+  'min_sqft',
+  'max_sqft',
+  'min_beds',
+  'max_beds',
+  'min_baths',
+  'max_baths',
+  'area_of_interest',
+  'is_mls_transaction',
+  'mls_number',
+  'start_timestamp',
+  'commission_percentage',
+  'commission_flat_fee',
+  'sales_volume_percentage',
+  'sales_volume_flat_fee',
+  'target_price',
+  'min_price',
+  'max_price',
+  'closing_price',
+  'closing_timestamp',
+  'state_changed_at'
+);
+
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{BuyerTransaction}',
+    (COALESCE(request_type->'BuyerTransaction', '[]'::jsonb) || '["Index Request"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+  'agent_uuid',
+  'moxi_works_agent_id',
+  'source_agent_id',
+  'moxi_works_company_id',
+  'parent_company_id',
+  'moxi_works_contact_id',
+  'partner_contact_id',
+  'page_number',
+  'timestamps_only'
+);
+
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{BuyerTransaction}',
+    (COALESCE(request_type->'BuyerTransaction', '[]'::jsonb) || '["Index Response"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
     'agent_uuid',
     'moxi_works_agent_id',
     'moxi_works_transaction_id',
@@ -1254,14 +1379,14 @@ SET
     'start_timestamp',
     'commission_percentage',
     'commission_flat_fee',
-    'sales_volume_percentage'
-    'sales_volume_flat_fee'
+    'sales_volume_percentage',
+    'sales_volume_flat_fee',
     'target_price',
     'min_price',
     'max_price',
     'closing_price',
     'closing_timestamp',
     'state_changed_at'
-  );
+);
 
 END $$;
