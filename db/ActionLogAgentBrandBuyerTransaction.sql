@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 15.7 (Homebrew)
--- Dumped by pg_dump version 15.7 (Homebrew)
+-- Dumped from database version 14.13 (Ubuntu 14.13-0ubuntu0.22.04.1)
+-- Dumped by pg_dump version 14.13 (Ubuntu 14.13-0ubuntu0.22.04.1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -21,7 +21,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: aaron
+-- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: root
 --
 
 CREATE TABLE public.ar_internal_metadata (
@@ -32,10 +32,10 @@ CREATE TABLE public.ar_internal_metadata (
 );
 
 
-ALTER TABLE public.ar_internal_metadata OWNER TO aaron;
+ALTER TABLE public.ar_internal_metadata OWNER TO root;
 
 --
--- Name: associated_attrs; Type: TABLE; Schema: public; Owner: aaron
+-- Name: associated_attrs; Type: TABLE; Schema: public; Owner: root
 --
 
 CREATE TABLE public.associated_attrs (
@@ -49,10 +49,10 @@ CREATE TABLE public.associated_attrs (
 );
 
 
-ALTER TABLE public.associated_attrs OWNER TO aaron;
+ALTER TABLE public.associated_attrs OWNER TO root;
 
 --
--- Name: associated_attrs_id_seq; Type: SEQUENCE; Schema: public; Owner: aaron
+-- Name: associated_attrs_id_seq; Type: SEQUENCE; Schema: public; Owner: root
 --
 
 CREATE SEQUENCE public.associated_attrs_id_seq
@@ -63,17 +63,17 @@ CREATE SEQUENCE public.associated_attrs_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.associated_attrs_id_seq OWNER TO aaron;
+ALTER TABLE public.associated_attrs_id_seq OWNER TO root;
 
 --
--- Name: associated_attrs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aaron
+-- Name: associated_attrs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
 
 ALTER SEQUENCE public.associated_attrs_id_seq OWNED BY public.associated_attrs.id;
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: aaron
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: root
 --
 
 CREATE TABLE public.schema_migrations (
@@ -81,10 +81,10 @@ CREATE TABLE public.schema_migrations (
 );
 
 
-ALTER TABLE public.schema_migrations OWNER TO aaron;
+ALTER TABLE public.schema_migrations OWNER TO root;
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: aaron
+-- Name: users; Type: TABLE; Schema: public; Owner: root
 --
 
 CREATE TABLE public.users (
@@ -99,10 +99,10 @@ CREATE TABLE public.users (
 );
 
 
-ALTER TABLE public.users OWNER TO aaron;
+ALTER TABLE public.users OWNER TO root;
 
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: aaron
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: root
 --
 
 CREATE SEQUENCE public.users_id_seq
@@ -113,31 +113,31 @@ CREATE SEQUENCE public.users_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.users_id_seq OWNER TO aaron;
+ALTER TABLE public.users_id_seq OWNER TO root;
 
 --
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aaron
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
 
 ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: associated_attrs id; Type: DEFAULT; Schema: public; Owner: aaron
+-- Name: associated_attrs id; Type: DEFAULT; Schema: public; Owner: root
 --
 
 ALTER TABLE ONLY public.associated_attrs ALTER COLUMN id SET DEFAULT nextval('public.associated_attrs_id_seq'::regclass);
 
 
 --
--- Name: users id; Type: DEFAULT; Schema: public; Owner: aaron
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: root
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
 
 
 --
--- Data for Name: ar_internal_metadata; Type: TABLE DATA; Schema: public; Owner: aaron
+-- Data for Name: ar_internal_metadata; Type: TABLE DATA; Schema: public; Owner: root
 --
 
 COPY public.ar_internal_metadata (key, value, created_at, updated_at) FROM stdin;
@@ -146,40 +146,10 @@ environment	development	2024-09-25 23:32:20.009115	2024-09-25 23:32:20.009119
 
 
 --
--- Data for Name: associated_attrs; Type: TABLE DATA; Schema: public; Owner: aaron
+-- Data for Name: associated_attrs; Type: TABLE DATA; Schema: public; Owner: root
 --
 
 COPY public.associated_attrs (id, request_type, ui_info, created_at, updated_at, associated_endpoints, attr_title) FROM stdin;
-117	{}	{}	2024-09-25 23:32:20.312859	2024-09-25 23:32:20.312859	{}	transaction_name
-118	{}	{}	2024-09-25 23:32:20.315063	2024-09-25 23:32:20.315063	{}	notes
-119	{}	{}	2024-09-25 23:32:20.317077	2024-09-25 23:32:20.317077	{}	address
-120	{}	{}	2024-09-25 23:32:20.318747	2024-09-25 23:32:20.318747	{}	city
-121	{}	{}	2024-09-25 23:32:20.320399	2024-09-25 23:32:20.320399	{}	state
-122	{}	{}	2024-09-25 23:32:20.322008	2024-09-25 23:32:20.322008	{}	zip_code
-123	{}	{}	2024-09-25 23:32:20.323594	2024-09-25 23:32:20.323594	{}	min_sqft
-124	{}	{}	2024-09-25 23:32:20.325188	2024-09-25 23:32:20.325188	{}	max_sqft
-125	{}	{}	2024-09-25 23:32:20.326721	2024-09-25 23:32:20.326721	{}	min_beds
-126	{}	{}	2024-09-25 23:32:20.32831	2024-09-25 23:32:20.32831	{}	max_beds
-127	{}	{}	2024-09-25 23:32:20.329901	2024-09-25 23:32:20.329901	{}	min_baths
-128	{}	{}	2024-09-25 23:32:20.331498	2024-09-25 23:32:20.331498	{}	max_baths
-129	{}	{}	2024-09-25 23:32:20.333096	2024-09-25 23:32:20.333096	{}	area_of_interest
-130	{}	{}	2024-09-25 23:32:20.334705	2024-09-25 23:32:20.334705	{}	is_mls_transaction
-131	{}	{}	2024-09-25 23:32:20.336214	2024-09-25 23:32:20.336214	{}	mls_number
-132	{}	{}	2024-09-25 23:32:20.338175	2024-09-25 23:32:20.338175	{}	start_timestamp
-133	{}	{}	2024-09-25 23:32:20.339855	2024-09-25 23:32:20.339855	{}	commission_percentage
-134	{}	{}	2024-09-25 23:32:20.34152	2024-09-25 23:32:20.34152	{}	commission_flat_fee
-135	{}	{}	2024-09-25 23:32:20.343184	2024-09-25 23:32:20.343184	{}	sales_volume_percentage
-136	{}	{}	2024-09-25 23:32:20.344802	2024-09-25 23:32:20.344802	{}	sales_volume_flat_fee
-137	{}	{}	2024-09-25 23:32:20.346384	2024-09-25 23:32:20.346384	{}	target_price
-138	{}	{}	2024-09-25 23:32:20.348073	2024-09-25 23:32:20.348073	{}	min_price
-139	{}	{}	2024-09-25 23:32:20.349765	2024-09-25 23:32:20.349765	{}	max_price
-140	{}	{}	2024-09-25 23:32:20.351448	2024-09-25 23:32:20.351448	{}	stage
-141	{}	{}	2024-09-25 23:32:20.353882	2024-09-25 23:32:20.353882	{}	moxi_works_transaction_id
-142	{}	{}	2024-09-25 23:32:20.357692	2024-09-25 23:32:20.357692	{}	stage_name
-143	{}	{}	2024-09-25 23:32:20.368898	2024-09-25 23:32:20.368898	{}	closing_price
-144	{}	{}	2024-09-25 23:32:20.370612	2024-09-25 23:32:20.370612	{}	closing_timestamp
-145	{}	{}	2024-09-25 23:32:20.372234	2024-09-25 23:32:20.372234	{}	state_changed_at
-146	{}	{}	2024-09-25 23:32:20.388134	2024-09-25 23:32:20.388134	{}	promote_transaction
 147	{}	{}	2024-09-25 23:32:20.427661	2024-09-25 23:32:20.427661	{}	numeric_id
 148	{}	{}	2024-09-25 23:32:20.430294	2024-09-25 23:32:20.430294	{}	public_partner_attrs
 149	{}	{}	2024-09-25 23:32:20.434026	2024-09-25 23:32:20.434026	{}	per_page
@@ -438,14 +408,11 @@ COPY public.associated_attrs (id, request_type, ui_info, created_at, updated_at,
 18	{"ActionLog": ["Delete Response"]}	{"APIText": "This will indicate what the status of the request is.", "Products": ["API"], "ActionLog": ["API"]}	2024-09-25 23:32:20.125031	2024-09-25 16:32:36.225769	{"Endpoints": ["ActionLog"]}	status
 19	{"ActionLog": ["Delete Response"]}	{"APIText": "This will indicate whether the delete request was successful or not.", "Products": ["API"], "ActionLog": ["API"]}	2024-09-25 23:32:20.127225	2024-09-25 16:32:36.225769	{"Endpoints": ["ActionLog"]}	deleted
 20	{"ActionLog": ["Delete Response"]}	{"APIText": "This is an arrray of strings. Any messages associated with the delete request status will be contained in this array.", "Products": ["API"], "ActionLog": ["API"]}	2024-09-25 23:32:20.12894	2024-09-25 16:32:36.225769	{"Endpoints": ["ActionLog"]}	messages
-3	{"Agent": ["Create Request"], "Brand": ["Index Request"], "ActionLog": ["Create Request", "Delete Request", "Index Request"]}	{"Agent": ["API"], "Brand": ["API"], "APIText": "If you have access to agent data from the same company source that MoxiWorks uses as an upstream data source then you should use the source_agent_id request attribute. This identifier will be unique only within the scope of a given company or parent_company, and must be used in conjunction with the moxi_works_company_id or parent_company_id request attributes. Please email partners@moxiworks.com for clarification about this request attribute.", "Products": ["API"], "ActionLog": ["API"]}	2024-09-25 23:32:20.089515	2024-09-25 16:32:51.912998	{"Endpoints": ["ActionLog", "Agent", "Brand"]}	source_agent_id
 21	{"ActionLog": ["Index Request"]}	{"APIText": "Only ActionLog records created later than this Unix timestamp will be included in the query. The upper bound of the time slice will be the 90 days higher than date_min value or the value of the the date_max; whichever is lower. If no timestamps are provided, ActionLogs from the last 90 days will be retrieved. The maximum timeframe for data is 90 days. date_min and date_max should be set in 90 day increments to retrieve the data from a specific historical point.", "Products": ["API"], "ActionLog": ["API"]}	2024-09-25 23:32:20.133135	2024-09-25 16:32:36.225769	{"Endpoints": ["ActionLog"]}	date_min
 22	{"ActionLog": ["Index Request"]}	{"APIText": "Only ActionLog records created earlier than this Unix timestamp will be included in the query. Should be no higher than 90 days past the date_min attribute if it is provided. The maximum timeframe for data is 90 days. date_min and date_max should be set in 90 day increments to retrieve the data from a specific historical point.", "Products": ["API"], "ActionLog": ["API"]}	2024-09-25 23:32:20.134666	2024-09-25 16:32:36.225769	{"Endpoints": ["ActionLog"]}	date_max
-5	{"ActionLog": ["Create Request", "Create Response", "Index Request", "Index Response"]}	{"APIText": "This will be an RFC 4122 compliant UUID, and is the same as the moxi_works_contact_id attribute of the Contact response.", "Products": ["API", "ActionLog"], "ActionLog": ["API", "ActionLog"], "ActionLogText": "This is the MoxiWorks Platform ID of a Contact an ActionLog object is to be associated with. This data is required and must reference a valid MoxiWorks Contact ID for your ActionLog Create request to be accepted."}	2024-09-25 23:32:20.093372	2024-09-25 16:32:36.225769	{"Endpoints": ["ActionLog"]}	moxi_works_contact_id
-6	{"ActionLog": ["Create Request", "Create Response", "Index Request", "Index Response"]}	{"APIText": "This is the unique identifer used in the system that will be connecting to the MoxiWorks platform.", "Products": ["API", "ActionLog"], "ActionLog": ["API", "ActionLog"], "ActionLogText": "This UUID will have already been associated with the Contact the ActionLog entry is created about. The Contact record on the MoxiWorks Platform can be created as necessary using Contact Create before attempting to use this contact ID to create an ActionLog entry. Failure to do so will result in the request being rejected."}	2024-09-25 23:32:20.095392	2024-09-25 16:32:36.225769	{"Endpoints": ["ActionLog"]}	partner_contact_id
+87	{"Agent": ["Create Response", "Index Response"]}	{"Agent": ["API"], "APIText": "A list of the source-specific user identifiers.", "Products": ["API"]}	2024-09-25 23:32:20.232988	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent"]}	source_metadata
 23	{"ActionLog": ["Index Response"]}	{"APIText": "This is an Array containing any ActionLog entries found for the Index request - [moxi_works_action_log_id, type, timestamp, log_data].", "Products": ["API"], "ActionLog": ["API"]}	2024-09-25 23:32:20.137577	2024-09-25 16:32:36.225769	{"Endpoints": ["ActionLog"]}	actions
 25	{"Agent": ["Create Request"]}	{"Agent": ["API", "Engage"], "APIText": "Whether to include agent’s GCI goals and commissions data in the response data.", "Products": ["API", "Engage"], "EngageText": "This represents the Gross Commission Income goal, as seen throughout the Engage UI."}	2024-09-25 23:32:20.142799	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent", "Agent"]}	include_gci_goals
-1	{"Agent": ["Create Request"], "Brand": ["Index Request"], "ActionLog": ["Create Request", "Create Response", "Delete Request", "Index Request", "Index Response"]}	{"Agent": ["API", "Roster"], "Brand": ["API", "Roster"], "APIText": "This will be an RFC 4122 compliant UUID. If data is being pulled from The MoxiWorks Platform and integrating with your own system in a managed or automated fashion, then using agent_uuid request attribute is preferable. It is guaranteed to be unique and to never change for the lifetime of the account.", "Products": ["API", "Roster"], "ActionLog": ["API", "Roster"], "RosterText": "Agent UUID, found on profile page within Roster/Client Manager and is the user account level UUID."}	2024-09-25 23:32:20.085531	2024-09-25 16:32:51.912998	{"Endpoints": ["ActionLog", "Agent", "Brand"]}	agent_uuid
 78	{"Agent": ["Create Response"]}	{"Agent": ["Engage"], "Products": ["Engage"], "EngageText": "This is the agent’s Gross Commission Income goal, as seen throughout the Engage UI."}	2024-09-25 23:32:20.219621	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent"]}	gci_goal
 79	{"Agent": ["Create Response"]}	{"Agent": ["Roster"], "Products": ["Roster"], "RosterText": "Percentage commission rate for the agent when acting as a buyer’s agent."}	2024-09-25 23:32:20.221358	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent"]}	buyer_commission_rate
 80	{"Agent": ["Create Response"]}	{"Agent": ["Roster"], "Products": ["Roster"], "RosterText": "Percentage commission rate for the agent when acting as a seller’s agent."}	2024-09-25 23:32:20.222865	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent"]}	seller_commission_rate
@@ -454,11 +421,9 @@ COPY public.associated_attrs (id, request_type, ui_info, created_at, updated_at,
 24	{"Agent": ["Create Request", "Index Request"]}	{"Agent": ["API", "Roster"], "APIText": "To include access level information for the agent in the response, pass true.", "Products": ["API", "Roster"], "RosterText": "The access level of the agent. This can return one of the possible access levels, as seen within the products and permissions page."}	2024-09-25 23:32:20.141422	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent", "Agent"]}	include_access_level
 26	{"Agent": ["Create Request", "Index Request"]}	{"Agent": ["API"], "APIText": "To include affiliate data associated with the agent in the response, pass true.", "Products": ["API"]}	2024-09-25 23:32:20.144115	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent"]}	include_partners
 92	{"Agent": ["Index Request"]}	{"Agent": ["API"], "APIText": "Any Agent objects updated after this Unix timestamp will be returned in the response. If no updated_since parameter is included in the request, by default only Agent objects updated in the last seven days will be returned.", "Products": ["API"]}	2024-09-25 23:32:20.241577	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent"]}	updated_since
-93	{"Agent": ["Index Request"]}	{"Agent": ["API"], "APIText": "For queries with multi-page responses, use the page_number parameter to return data for specific pages. Data for page 1 is returned if this parameter is not included. Use this parameter if total_pages indicates that there is more than one page of data available.", "Products": ["API"]}	2024-09-25 23:32:20.243079	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent"]}	page_number
 94	{"Agent": ["Index Request"]}	{"Agent": ["API"], "APIText": "To find Agent accounts deactivated within the specified timeframe, pass true for this boolean parameter.", "Products": ["API"]}	2024-09-25 23:32:20.244854	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent"]}	deactivated
 96	{"Agent": ["Index Request"]}	{"Agent": ["API"], "APIText": "To include company specific programs associated with the agent in the response, pass true.", "Products": ["API"]}	2024-09-25 23:32:20.248039	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent"]}	include_company_programs
 98	{"Agent": ["Index Request"]}	{"Agent": ["API"], "APIText": "To include only Agent objects associated with company specific programs pass true.", "Products": ["API"]}	2024-09-25 23:32:20.250845	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent"]}	has_company_programs
-99	{"Agent": ["Index Request"]}	{"Agent": ["API"], "APIText": "If supplied then the results will exclude all data except primary identifiers and a unix timestamp (last_updated) & iso8601 timestamp (modification_timestamp) of the last time this record was updated.", "Products": ["API"]}	2024-09-25 23:32:20.252573	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent"]}	timestamps_only
 100	{"Agent": ["Index Request"]}	{"Agent": ["API", "Roster"], "APIText": "To include bio associated with the agent in the response, pass true.", "Products": ["API", "Roster"], "RosterText": "This references the bio of the agent, as seen on the about me > web info page."}	2024-09-25 23:32:20.253972	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent"]}	include_bio
 97	{"Agent": ["Index Request"]}	{"Agent": ["API", "Websites"], "APIText": "To include the base url (website_base_url) of the agent’s MoxiWorks website pass true.", "Products": ["API", "Websites"], "WebsitesText": "This references the website url for the agent."}	2024-09-25 23:32:20.249447	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent"]}	include_website
 95	{"Agent": ["Index Request"]}	{"Agent": ["API"], "APIText": "Any Agent objects deactivated after this Unix timestamp will be returned in the response. If no deactivated_since parameter is included in the request, only Agent objects deactivated in the last seven days will be returned.", "Products": ["API"]}	2024-09-25 23:32:20.246308	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent"]}	deactivated_since
@@ -514,7 +479,6 @@ COPY public.associated_attrs (id, request_type, ui_info, created_at, updated_at,
 84	{"Agent": ["Create Response", "Index Response"]}	{"Agent": ["API", "Roster"], "APIText": "The available_mls Array contains Dictionary objects representing MLS entries. These include [name, display_name, mls_abbreviation, agent_id].", "Products": ["API", "Roster"], "RosterText": "Agent’s alternate offices, as seen within the additional offices page."}	2024-09-25 23:32:20.228875	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent"]}	available_mls
 85	{"Agent": ["Create Response", "Index Response"]}	{"Agent": ["API"], "APIText": "Existence of objects in the partners data structure is dependent upon external relationships existing between the agent represented by this Agent and the affiliate. Documented entities in the `partners` data structure may or may not be returned based on agent relationship. Your logic should be engineered to handle cases where the entity you are interested in is returned and where an empty data structure is returned.", "Products": ["API"]}	2024-09-25 23:32:20.230276	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent"]}	partners
 86	{"Agent": ["Create Response", "Index Response"]}	{"Agent": ["API"], "APIText": "A list of the company specific program names in which the agent participates or is a member.", "Products": ["API"]}	2024-09-25 23:32:20.231597	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent"]}	company_programs
-87	{"Agent": ["Create Response", "Index Response"]}	{"Agent": ["API"], "APIText": "A list of the source-specific user identifiers.", "Products": ["API"]}	2024-09-25 23:32:20.232988	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent"]}	source_metadata
 88	{"Agent": ["Create Response", "Index Response"]}	{"Agent": ["API"], "APIText": "This is the Unix timestamp representing the date that this Agent was created in the MoxiWorks system.", "Products": ["API"]}	2024-09-25 23:32:20.234398	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent"]}	created_timestamp
 90	{"Agent": ["Index Response"]}	{"Agent": ["API", "Roster"], "APIText": "True corresponds to Yes (visible online); false corresponds to No (not visible online).", "Products": ["API", "Roster"], "RosterText": "Indicates the “Profile Visible Online” value for this Agent."}	2024-09-25 23:32:20.237436	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent"]}	profile_visible_online
 91	{"Agent": ["Create Response", "Index Response"]}	{"Agent": ["API", "Roster"], "APIText": "Existence of objects in the user_reviews data structure is dependent upon external sources, i.e. Zillow, Testimonial Tree. Documented entities in the `user_reviews` data structure may or may not be returned when `include_reviews=true` is passed. Your logic should be engineered to handle cases where the entity you are interested in is returned and where an empty data structure is returned. Included in this - [source_name, agg_rating, reviews_count]", "Products": ["API", "Roster"], "RosterText": "External agent reviews from platforms such as Zillow and Testimonial Tree."}	2024-09-25 23:32:20.239145	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent"]}	user_reviews
@@ -522,10 +486,7 @@ COPY public.associated_attrs (id, request_type, ui_info, created_at, updated_at,
 89	{"Agent": ["Index Response"]}	{"Agent": ["API", "Roster"], "APIText": "This is the Unix timestamp representing the date that this Agent was deactivated in the MoxiWorks system. This will be returned null if the agent is still active.This is the Unix timestamp representing the date that this Agent was deactivated in the MoxiWorks system. This will be returned null if the agent is still active.", "Products": ["API", "Roster"], "RosterText": "Will display within Account Info section if user account is deactivated."}	2024-09-25 23:32:20.235994	2024-09-25 16:32:43.185022	{"Endpoints": ["Agent"]}	deactivated_timestamp
 101	{"Brand": ["Show Response", "Index Response"]}	{"Brand": ["Present"], "Products": ["Present"], "PresentText": "This is the logo associated with the Brokerage or Company."}	2024-09-25 23:32:20.277975	2024-09-25 16:32:51.912998	{"Endpoints": ["Brand"]}	image_logo
 105	{"Brand": ["Show Response", "Index Response"]}	{"Brand": ["Present"], "Products": ["Present"], "PresentText": "Within a Presentation, this is the background color of associated buttons."}	2024-09-25 23:32:20.28371	2024-09-25 16:32:51.912998	{"Endpoints": ["Brand"]}	button_background_color
-8	{"Agent": ["Create Request", "Index Request"], "Brand": ["Show Request", "Index Request"], "ActionLog": ["Create Request", "Delete Request", "Index Request"]}	{"Agent": ["API", "Roster"], "Brand": ["API", "Roster"], "APIText": "MoxiWorks Plaform Company entities are your entry-point for determining the established relationships for your organization to companies on the MoxiWorks Platform and for accessing data about those companies. Many requests require a moxi_works_company_id, which can be derived from the Company Index endpoint.", "Products": ["API", "Roster"], "ActionLog": ["API", "Roster"], "RosterText": ""}	2024-09-25 23:32:20.099024	2024-09-25 16:32:51.912998	{"Endpoints": ["ActionLog", "Agent", "Brand", "Brand"]}	moxi_works_company_id
 35	{"Agent": ["Create Response", "Index Response"], "Brand": ["Index Request"]}	{"Agent": ["API"], "Brand": ["API", "Roster"], "APIText": "This is the ID of the office for this Agent. This will be an integer.", "Products": ["API"]}	2024-09-25 23:32:20.157765	2024-09-25 16:32:51.912998	{"Endpoints": ["Agent", "Brand"]}	office_id
-9	{"Agent": ["Create Request", "Index Request"], "Brand": ["Show Request", "Index Request"], "ActionLog": ["Create Request", "Delete Request", "Index Request"]}	{"Agent": ["API", "Roster"], "Brand": ["API", "Roster"], "APIText": "This provides for a broad scope by which partners may be afforded permissions to perform MoxiWorks Platform actions, in scenarios where a partner does business with a parent company in the MoxiWorks System. It also provides broad scope under which agents may be looked up using the source_agent_id request attribute in many scenarios across different MoxiWorks Platform endpoints and actions.", "Products": ["API", "Roster"], "ActionLog": ["API", "Roster"], "RosterText": "This is the numeric_id or moxi_works_company_id of a company that is considered to be a parent company in the MoxiWorks Platform."}	2024-09-25 23:32:20.100796	2024-09-25 16:32:51.912998	{"Endpoints": ["ActionLog", "Agent", "Brand", "Brand"]}	parent_company_id
-2	{"Agent": ["Create Request", "Create Response", "Index Response"], "Brand": ["Index Request"], "ActionLog": ["Create Request", "Create Response", "Delete Request", "Index Request", "Index Response"]}	{"Agent": ["API", "Roster"], "Brand": ["API", "Roster"], "APIText": "If you have already existing agent data, agent accounts and your own user interface that agents can use to integrate your account with their MoxiWorks Platform account then you should use the moxi_works_agent_id request attribute. It is intended for use cases where integration is managed by end-user interaction.", "Products": ["API", "Roster"], "ActionLog": ["API", "Roster"], "RosterText": "This identifier is guaranteed to be unique, but may be either an alphanumeric string or an email address."}	2024-09-25 23:32:20.087543	2024-09-25 16:32:51.912998	{"Endpoints": ["ActionLog", "Agent", "Brand"]}	moxi_works_agent_id
 34	{"Agent": ["Create Response", "Index Request", "Index Response"], "Brand": ["Index Request"]}	{"Agent": ["API", "Roster"], "Brand": ["API", "Roster"], "APIText": "This will be an RFC 4122 compliant UUID.", "Products": ["API", "Roster"], "RosterText": "This is the MoxiWorks Platform ID of the office for this Agent."}	2024-09-25 23:32:20.156445	2024-09-25 16:32:51.912998	{"Endpoints": ["Agent", "Brand"]}	moxi_works_office_id
 102	{"Brand": ["Show Response", "Index Response"]}	{"Brand": ["API", "Present"], "APIText": "Accent color.", "Products": ["API", "Present"], "PresentText": "Within a Presentation, this will be the accent color."}	2024-09-25 23:32:20.279396	2024-09-25 16:32:51.912998	{"Endpoints": ["Brand"]}	cma_authoring_color
 103	{"Brand": ["Show Response", "Index Response"]}	{"Brand": ["Present"], "Products": ["Present"], "PresentText": "Within a Presentation, this will be the background color of a page."}	2024-09-25 23:32:20.280871	2024-09-25 16:32:51.912998	{"Endpoints": ["Brand"]}	background_color
@@ -542,11 +503,50 @@ COPY public.associated_attrs (id, request_type, ui_info, created_at, updated_at,
 115	{"Brand": ["Show Response", "Index Response"]}	{"Brand": ["API", "Present"], "APIText": "Block element background color for web view presentations.", "Products": ["API", "Present"], "PresentText": "Within a Presentation - specifically web view, this is the background color that displays."}	2024-09-25 23:32:20.29873	2024-09-25 16:32:51.912998	{"Endpoints": ["Brand"]}	pres_block_background_color
 116	{"Brand": ["Show Response", "Index Response"]}	{"Brand": ["API", "Present"], "APIText": "Font color intended to overlay pres_block_background_color attribute.", "Products": ["API", "Present"], "PresentText": "Within a Presentation - specifically web view, this is the font color for related text."}	2024-09-25 23:32:20.300414	2024-09-25 16:32:51.912998	{"Endpoints": ["Brand"]}	pres_block_text_color
 49	{"Agent": ["Create Response", "Index Response"], "Brand": ["Index Response"]}	{"Agent": ["API", "Roster"], "Brand": ["API", "Present"], "APIText": "This can be null if there is no data for this attribute.Human readable string identifying the brand.", "Products": ["API", "Present", "Roster"], "RosterText": "The full name of the agent.", "PresentText": "This will be the name that displays related to the associated Brand."}	2024-09-25 23:32:20.177732	2024-09-25 16:32:51.912998	{"Endpoints": ["Brand"]}	name
+146	{"BuyerTransaction": ["Update Request"]}	{"APIText": "If this is set to true then The MoxiWorks Platform will promote this transaction to the next stage.", "Products": ["API"], "BuyerTransaction": ["API"]}	2024-09-25 23:32:20.388134	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	promote_transaction
+93	{"Agent": ["Index Request"], "BuyerTransaction": ["Index Request"]}	{"Agent": ["API"], "APIText": "For queries with multi-page responses, use the page_number parameter to return data for specific pages. Data for page 1 is returned if this parameter is not included. Use this parameter if total_pages indicates that there is more than one page of data available.", "Products": ["API"]}	2024-09-25 23:32:20.243079	2024-09-26 12:37:50.632951	{"Endpoints": ["Agent"]}	page_number
+99	{"Agent": ["Index Request"], "BuyerTransaction": ["Index Request"]}	{"Agent": ["API"], "APIText": "If supplied then the results will exclude all data except primary identifiers and a unix timestamp (last_updated) & iso8601 timestamp (modification_timestamp) of the last time this record was updated.", "Products": ["API"]}	2024-09-25 23:32:20.252573	2024-09-26 12:37:50.632951	{"Endpoints": ["Agent"]}	timestamps_only
+3	{"Agent": ["Create Request"], "Brand": ["Index Request"], "ActionLog": ["Create Request", "Delete Request", "Index Request"], "BuyerTransaction": ["Create Request", "Update Request", "Show Request", "Index Request"]}	{"Agent": ["API"], "Brand": ["API"], "APIText": "If you have access to agent data from the same company source that MoxiWorks uses as an upstream data source then you should use the source_agent_id request attribute. This identifier will be unique only within the scope of a given company or parent_company, and must be used in conjunction with the moxi_works_company_id or parent_company_id request attributes. Please email partners@moxiworks.com for clarification about this request attribute.", "Products": ["API"], "ActionLog": ["API"]}	2024-09-25 23:32:20.089515	2024-09-26 12:37:50.632951	{"Endpoints": ["ActionLog", "Agent", "Brand", "BuyerTransaction"]}	source_agent_id
+8	{"Agent": ["Create Request", "Index Request"], "Brand": ["Show Request", "Index Request"], "ActionLog": ["Create Request", "Delete Request", "Index Request"], "BuyerTransaction": ["Create Request", "Update Request", "Show Request", "Index Request"]}	{"Agent": ["API", "Roster"], "Brand": ["API", "Roster"], "APIText": "MoxiWorks Plaform Company entities are your entry-point for determining the established relationships for your organization to companies on the MoxiWorks Platform and for accessing data about those companies. Many requests require a moxi_works_company_id, which can be derived from the Company Index endpoint.", "Products": ["API", "Roster"], "ActionLog": ["API", "Roster"], "RosterText": "", "BuyerTransaction": ["API", "Roster"]}	2024-09-25 23:32:20.099024	2024-09-26 12:37:50.632951	{"Endpoints": ["ActionLog", "Agent", "Brand", "Brand", "BuyerTransaction"]}	moxi_works_company_id
+9	{"Agent": ["Create Request", "Index Request"], "Brand": ["Show Request", "Index Request"], "ActionLog": ["Create Request", "Delete Request", "Index Request"], "BuyerTransaction": ["Create Request", "Update Request", "Show Request", "Index Request"]}	{"Agent": ["API", "Roster"], "Brand": ["API", "Roster"], "APIText": "This provides for a broad scope by which partners may be afforded permissions to perform MoxiWorks Platform actions, in scenarios where a partner does business with a parent company in the MoxiWorks System. It also provides broad scope under which agents may be looked up using the source_agent_id request attribute in many scenarios across different MoxiWorks Platform endpoints and actions.", "Products": ["API", "Roster"], "ActionLog": ["API", "Roster"], "RosterText": "This is the numeric_id or moxi_works_company_id of a company that is considered to be a parent company in the MoxiWorks Platform.", "BuyerTransaction": ["API", "Roster"]}	2024-09-25 23:32:20.100796	2024-09-26 12:37:50.632951	{"Endpoints": ["ActionLog", "Agent", "Brand", "Brand", "BuyerTransaction"]}	parent_company_id
+137	{"BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Show Response", "Index Response"]}	{"Products": ["Engage"], "EngageText": "The desired purchase price for a property if using target rather than range.", "BuyerTransaction": ["Engage"]}	2024-09-25 23:32:20.346384	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	target_price
+136	{"BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Show Response", "Index Response"]}	{"APIText": "If payment for the transaction is based on a flat fee derived from sales volume, use this attribute.", "Products": ["API", "Engage"], "EngageText": "In relation to a Buyer Transaction, the total commission for the transaction based on percentage of purchase price.", "BuyerTransaction": ["API", "Engage"]}	2024-09-25 23:32:20.344802	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	sales_volume_flat_fee
+135	{"BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Show Response", "Index Response"]}	{"APIText": "If the payment for the transaction is based on percentage of sales volume, use this attribute.", "Products": ["API", "Engage"], "EngageText": "In relation to a Buyer Transaction, the total commission for the transaction based on sales volume percentage.", "BuyerTransaction": ["API", "Engage"]}	2024-09-25 23:32:20.343184	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	sales_volume_percentage
+120	{"BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Update Response", "Show Response", "Index Response"]}	{"APIText": "This should be populated if this BuyerTransaction is_mls_transaction is false.", "Products": ["API", "Engage"], "EngageText": "In relation to a Buyer Transaction, this will be the city or township of the property being purchased.", "BuyerTransaction": ["API", "Engage"]}	2024-09-25 23:32:20.318747	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	city
+140	{"BuyerTransaction": ["Create Request", "Create Response", "Update Response", "Show Response", "Index Response"]}	{"APIText": "The stage that the BuyerTransaction should be placed into.", "Products": ["API"], "BuyerTransaction": ["API"]}	2024-09-25 23:32:20.351448	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	stage
+142	{"BuyerTransaction": ["Create Response", "Update Response", "Show Response", "Index Response"]}	{"APIText": "When created through the MoxiWorks Platform, BuyerTransaction objects will automatically be configured as active transactions. For more information about BuyerTransaction stages, see the MoxiCloud documentation, specific to BuyerTransaction Stages.", "Products": ["API", "Engage"], "EngageText": "For Buyer Transactions, this attribute displays the name or title that is associated with the current stage of the transaction.", "BuyerTransaction": ["API", "Engage"]}	2024-09-25 23:32:20.357692	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	stage_name
+145	{"BuyerTransaction": ["Create Response", "Update Response", "Show Response", "Index Response"]}	{"APIText": "The stage that the BuyerTransaction should be placed into.", "Products": ["API"], "BuyerTransaction": ["API"]}	2024-09-25 23:32:20.372234	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	state_changed_at
+121	{"BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Update Response", "Show Response", "Index Response"]}	{"APIText": "This should be populated if this BuyerTransaction is_mls_transaction is false.", "Products": ["API", "Engage"], "EngageText": "In relation to a Buyer Transaction, this will be the state or province of the property being purchased.", "BuyerTransaction": ["API", "Engage"]}	2024-09-25 23:32:20.320399	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	state
+130	{"BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Update Response", "Show Response", "Index Response"]}	{"APIText": "This should be false for paperwork-only, for sale by owner, off-market, or pocket listing type transactions or any transactions that will not be tracked through an MLS.", "Products": ["API", "Engage"], "EngageText": "In relation to a Buyer Transaction, this attribute indictates whether the property being purchased is listed on an MLS.", "BuyerTransaction": ["API", "Engage"]}	2024-09-25 23:32:20.334705	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	is_mls_transaction
+143	{"BuyerTransaction": ["Create Response", "Update Request", "Update Response", "Show Response", "Index Response"]}	{"APIText": "This should be null if the BuyerTransaction is not yet in complete state.", "Products": ["API", "Engage"], "EngageText": "This is the closing price for the transaction.", "BuyerTransaction": ["API", "Engage"]}	2024-09-25 23:32:20.368898	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	closing_price
+118	{"BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Update Response", "Show Response", "Index Response"]}	{"APIText": "Brief, human readable content that will be shown to the agent as notes about the BuyerTransaction that you are creating.", "Products": ["API", "Engage"], "EngageText": "For Buyer Transactions, these will be the related notes.", "BuyerTransaction": ["API", "Engage"]}	2024-09-25 23:32:20.315063	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	notes
+117	{"BuyerTransaction": ["Create Response", "Update Request", "Update Response", "Show Response", "Index Response"]}	{"APIText": "A brief, human readable title that will be shown to the agent as the subject of the BuyerTransaction that you are creating.", "Products": ["API", "Engage"], "EngageText": "For Buyer Transactions, this will be the name or title of the transaction in question.", "BuyerTransaction": ["API", "Engage"]}	2024-09-25 23:32:20.312859	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	transaction_name
+119	{"BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Update Response", "Show Response", "Index Response"]}	{"APIText": "This should be populated if this BuyerTransaction is_mls_transaction is false.", "Products": ["API", "Engage"], "EngageText": "In relation to a Buyer Transaction, this is the street address of the property being purchased.", "BuyerTransaction": ["API", "Engage"]}	2024-09-25 23:32:20.317077	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	address
+122	{"BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Update Response", "Show Response", "Index Response"]}	{"APIText": "This should be populated if this BuyerTransaction is_mls_transaction is false.", "Products": ["API", "Engage"], "EngageText": "In relation to a Buyer Transaction, this will be the postal code of the property being purchased.", "BuyerTransaction": ["API", "Engage"]}	2024-09-25 23:32:20.322008	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	zip_code
+123	{"BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Update Response", "Show Response", "Index Response"]}	{"Products": ["Engage"], "EngageText": "In relation to a Buyer Transaction, the minimum desired living area for prospective properties.", "BuyerTransaction": ["Engage"]}	2024-09-25 23:32:20.323594	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	min_sqft
+124	{"BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Update Response", "Show Response", "Index Response"]}	{"Products": ["Engage"], "EngageText": "In relation to a Buyer Transaction, the maximum desired living area for prospective properties.", "BuyerTransaction": ["Engage"]}	2024-09-25 23:32:20.325188	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	max_sqft
+125	{"BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Update Response", "Show Response", "Index Response"]}	{"Products": ["Engage"], "EngageText": "In relation to a Buyer Transaction, the minimum number of bedrooms for prospective properties.", "BuyerTransaction": ["Engage"]}	2024-09-25 23:32:20.326721	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	min_beds
+126	{"BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Update Response", "Show Response", "Index Response"]}	{"Products": ["Engage"], "EngageText": "In relation to a Buyer Transaction, the maximum number of bedrooms for prospective properties.", "BuyerTransaction": ["Engage"]}	2024-09-25 23:32:20.32831	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	max_beds
+127	{"BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Update Response", "Show Response", "Index Response"]}	{"Products": ["Engage"], "EngageText": "In relation to a Buyer Transaction, the minimum number of bathrooms for prospective properties.", "BuyerTransaction": ["Engage"]}	2024-09-25 23:32:20.329901	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	min_baths
+128	{"BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Update Response", "Show Response", "Index Response"]}	{"Products": ["Engage"], "EngageText": "In relation to a Buyer Transaction, the maximum number of bathrooms for prospective properties.", "BuyerTransaction": ["Engage"]}	2024-09-25 23:32:20.331498	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	max_baths
+129	{"BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Update Response", "Show Response", "Index Response"]}	{"Products": ["Engage"], "EngageText": "In relation to a Buyer Transaction, the name of a locality representing an area of interest for prospective properties.", "BuyerTransaction": ["Engage"]}	2024-09-25 23:32:20.333096	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	area_of_interest
+131	{"BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Update Response", "Show Response", "Index Response"]}	{"APIText": "mls_number should be populated only if is_mls_transaction is true. If no commission (either commission_percentage or commission_flat_fee) is supplied during creation, commission_percentage is set to the default commission_percentage for the associated Agent.", "Products": ["API", "Engage"], "EngageText": "In relation to a Buyer Transaction, the MLS number of the the property being purchased.", "BuyerTransaction": ["API", "Engage"]}	2024-09-25 23:32:20.336214	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	mls_number
+132	{"BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Update Response", "Show Response", "Index Response"]}	{"APIText": "This is the Unix timestamp representing the date that the agent initiated transaction discussions with the client.", "Products": ["API", "Engage"], "EngageText": "In relation to a Buyer Transaction, this would be considered the date and time when the Agent first initiated transaction discussions with the client.", "BuyerTransaction": ["API", "Engage"]}	2024-09-25 23:32:20.338175	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	start_timestamp
+134	{"BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Update Response", "Show Response", "Index Response"]}	{"APIText": "If the commission for the transaction is based on a flat dollar amount, use this attribute.", "Products": ["API", "Engage"], "EngageText": "In relation to a Buyer Transaction, this is the dollar amount of the total commission for the transaction.", "BuyerTransaction": ["API", "Engage"]}	2024-09-25 23:32:20.34152	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	commission_flat_fee
+133	{"BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Update Response", "Show Response", "Index Response"]}	{"APIText": "If the commission for the transaction is based on a percentage of the purchase amount, use this attribute. If no commission (either commission_percentage or commission_flat_fee) is supplied during creation, commission_percentage is set to the default commission_percentage for the associated Agent.", "Products": ["API", "Engage"], "EngageText": "In relation to a Buyer Transaction, the total commission for the transaction based on this percentage of the purchase price.", "BuyerTransaction": ["API", "Engage"]}	2024-09-25 23:32:20.339855	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	commission_percentage
+138	{"BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Update Response", "Show Response", "Index Response"]}	{"Products": ["Engage"], "EngageText": "The minimum price range for a property if using a price range rather than target price.", "BuyerTransaction": ["Engage"]}	2024-09-25 23:32:20.348073	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	min_price
+139	{"BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Update Response", "Show Response", "Index Response"]}	{"Products": ["Engage"], "EngageText": "The maximum price range for a property if using a price range rather than target price.", "BuyerTransaction": ["Engage"]}	2024-09-25 23:32:20.349765	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	max_price
+144	{"BuyerTransaction": ["Create Response", "Update Request", "Update Response", "Show Response", "Index Response"]}	{"APIText": "A Unix timestamp. This should be null if the BuyerTransaction is not yet in complete state.", "Products": ["API", "Engage"], "EngageText": "For a Buyer Transaction, this represents the point in time when the transaction was completed.", "BuyerTransaction": ["API", "Engage"]}	2024-09-25 23:32:20.370612	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	closing_timestamp
+141	{"BuyerTransaction": ["Create Response", "Update Request", "Update Response", "Show Request", "Show Response", "Index Response"]}	{"APIText": "This is the MoxiWorks Platform ID of the BuyerTransaction which you have created. This will be an RFC 4122 compliant UUID. This ID should be recorded on response as it is the key ID for updating the BuyerTransaction.", "Products": ["API"], "BuyerTransaction": ["API"]}	2024-09-25 23:32:20.353882	2024-09-26 12:37:50.632951	{"Endpoints": ["BuyerTransaction"]}	moxi_works_transaction_id
+5	{"ActionLog": ["Create Request", "Create Response", "Index Request", "Index Response"], "BuyerTransaction": ["Create Request", "Create Response", "Update Response", "Show Response", "Index Request", "Index Response"]}	{"APIText": "This will be an RFC 4122 compliant UUID, and is the same as the moxi_works_contact_id attribute of the Contact response.", "Products": ["API", "ActionLog"], "ActionLog": ["API", "ActionLog"], "ActionLogText": "This is the MoxiWorks Platform ID of a Contact an ActionLog object is to be associated with. This data is required and must reference a valid MoxiWorks Contact ID for your ActionLog Create request to be accepted."}	2024-09-25 23:32:20.093372	2024-09-26 12:37:50.632951	{"Endpoints": ["ActionLog", "BuyerTransaction"]}	moxi_works_contact_id
+6	{"ActionLog": ["Create Request", "Create Response", "Index Request", "Index Response"], "BuyerTransaction": ["Create Request", "Create Response", "Update Response", "Show Response", "Index Request", "Index Response"]}	{"APIText": "This is the unique identifer used in the system that will be connecting to the MoxiWorks platform.", "Products": ["API", "ActionLog"], "ActionLog": ["API", "ActionLog"], "ActionLogText": "This UUID will have already been associated with the Contact the ActionLog entry is created about. The Contact record on the MoxiWorks Platform can be created as necessary using Contact Create before attempting to use this contact ID to create an ActionLog entry. Failure to do so will result in the request being rejected."}	2024-09-25 23:32:20.095392	2024-09-26 12:37:50.632951	{"Endpoints": ["ActionLog", "BuyerTransaction"]}	partner_contact_id
+1	{"Agent": ["Create Request"], "Brand": ["Index Request"], "ActionLog": ["Create Request", "Create Response", "Delete Request", "Index Request", "Index Response"], "BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Update Response", "Show Request", "Show Response", "Index Request", "Index Response"]}	{"Agent": ["API", "Roster"], "Brand": ["API", "Roster"], "APIText": "This will be an RFC 4122 compliant UUID. If data is being pulled from The MoxiWorks Platform and integrating with your own system in a managed or automated fashion, then using agent_uuid request attribute is preferable. It is guaranteed to be unique and to never change for the lifetime of the account.", "Products": ["API", "Roster"], "ActionLog": ["API", "Roster"], "RosterText": "Agent UUID, found on profile page within Roster/Client Manager and is the user account level UUID.", "BuyerTransaction": ["API", "Roster"]}	2024-09-25 23:32:20.085531	2024-09-26 12:37:50.632951	{"Endpoints": ["ActionLog", "Agent", "Brand", "BuyerTransaction"]}	agent_uuid
+2	{"Agent": ["Create Request", "Create Response", "Index Response"], "Brand": ["Index Request"], "ActionLog": ["Create Request", "Create Response", "Delete Request", "Index Request", "Index Response"], "BuyerTransaction": ["Create Request", "Create Response", "Update Request", "Update Response", "Show Request", "Show Response", "Index Request", "Index Response"]}	{"Agent": ["API", "Roster"], "Brand": ["API", "Roster"], "APIText": "If you have already existing agent data, agent accounts and your own user interface that agents can use to integrate your account with their MoxiWorks Platform account then you should use the moxi_works_agent_id request attribute. It is intended for use cases where integration is managed by end-user interaction.", "Products": ["API", "Roster"], "ActionLog": ["API", "Roster"], "RosterText": "This identifier is guaranteed to be unique, but may be either an alphanumeric string or an email address.", "BuyerTransaction": ["API", "Roster"]}	2024-09-25 23:32:20.087543	2024-09-26 12:37:50.632951	{"Endpoints": ["ActionLog", "Agent", "Brand", "BuyerTransaction"]}	moxi_works_agent_id
 \.
 
 
 --
--- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: aaron
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: root
 --
 
 COPY public.schema_migrations (version) FROM stdin;
@@ -566,7 +566,7 @@ COPY public.schema_migrations (version) FROM stdin;
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: aaron
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: root
 --
 
 COPY public.users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, created_at, updated_at) FROM stdin;
@@ -574,21 +574,21 @@ COPY public.users (id, email, encrypted_password, reset_password_token, reset_pa
 
 
 --
--- Name: associated_attrs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aaron
+-- Name: associated_attrs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
 SELECT pg_catalog.setval('public.associated_attrs_id_seq', 392, true);
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aaron
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
 SELECT pg_catalog.setval('public.users_id_seq', 1, false);
 
 
 --
--- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: aaron
+-- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
 ALTER TABLE ONLY public.ar_internal_metadata
@@ -596,7 +596,7 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 
 --
--- Name: associated_attrs associated_attrs_pkey; Type: CONSTRAINT; Schema: public; Owner: aaron
+-- Name: associated_attrs associated_attrs_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
 ALTER TABLE ONLY public.associated_attrs
@@ -604,7 +604,7 @@ ALTER TABLE ONLY public.associated_attrs
 
 
 --
--- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: aaron
+-- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
 ALTER TABLE ONLY public.schema_migrations
@@ -612,7 +612,7 @@ ALTER TABLE ONLY public.schema_migrations
 
 
 --
--- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: aaron
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
 ALTER TABLE ONLY public.users
@@ -620,14 +620,14 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: aaron
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: root
 --
 
 CREATE UNIQUE INDEX index_users_on_email ON public.users USING btree (email);
 
 
 --
--- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: aaron
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: root
 --
 
 CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING btree (reset_password_token);
