@@ -5,7 +5,7 @@ UPDATE associated_attrs
 SET
   ui_info = jsonb_set(
     ui_info,
-    '{BuyerTransacction}',
+    '{BuyerTransaction}',
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
