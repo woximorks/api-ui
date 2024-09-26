@@ -1,24 +1,24 @@
-DO $$
-BEGIN
+
 
 -- Set Product associations to the attribute on a local (endpoint specific) level
 -- This is useful when the attribute already has associated info that applies to a new endpoint
     -- #Endpoint
     -- ["#Product1", "#Product2", "#Product3"]
     -- ("Attribute1", "Attribute2", "Attribute3", "Attribute4")
-UPDATE associated_attrs
+    -- #database_column_name
+UPDATE #database_table
 SET
-  ui_info = jsonb_set(
-    ui_info,
+  #database_column_name = jsonb_set(
+    #database_column_name,
     '{#Endpoint}',
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'#Endpoint', '[]'::jsonb) || '["#Product1", "#Product2", "#Product3"]'::jsonb
+        COALESCE(#database_column_name->'#Endpoint', '[]'::jsonb) || '["#Product1", "#Product2", "#Product3"]'::jsonb
       )
     )
   )
-WHERE attr_title IN (
+WHERE #database_column_name IN (
   "#Attribute1",
   "#Attribute2",
   "#Attribute3",
@@ -28,22 +28,24 @@ WHERE attr_title IN (
   -- Set Product associations to the attribute on a global level
   -- This is useful when the attribute already has associated info that applies to a new endpoint
     -- #Endpoint
-    -- ("Attribute1", "Attribute2", "Attribute3", "Attribute4")
-UPDATE associated_attrs
+    -- ("#Attribute1", "#Attribute2", "#Attribute3", "#Attribute4")
+    -- #database_column_name
+UPDATE #database_table
 SET
-  associated_endpoints = jsonb_set( -- setting the following associated_endpoints to have Brand associations within the Endpoints Array
-    associated_endpoints,
+  #database_column_name = jsonb_set( -- setting the following associated_endpoints to have #endpoint associations within the Endpoints Array
+    #database_column_name,
     '{Endpoints}',
-    (COALESCE(associated_endpoints->'Endpoints', '[]'::jsonb) || '["#Endpoint"]'::jsonb)
+    (COALESCE(#database_column_name->'Endpoints', '[]'::jsonb) || '["#Endpoint"]'::jsonb)
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title IN (
+WHERE #database_column_name IN (
     '#Attribute1',
     '#Attribute2',
     '#Attribute3'
 );
 
 -- Update 2 text fields demonstrating the attribute's association to a Moxi Product
+  -- #database_table
   -- #database_column_name
   -- #Product1Text
     -- #Some string with info...
@@ -54,24 +56,25 @@ WHERE attr_title IN (
 -- Set Product associations to the attribute on a global level
   -- #Endpoint
     -- ["#Product1", "#Product2"]
+-- #attribute_title (the actual associated_attr to be updated)
 UPDATE #database_table -- The name of the database table
 SET 
-  ui_info = jsonb_set(
+  #database_column_name = jsonb_set(
     jsonb_set(
       jsonb_set(
         jsonb_set(
           #database_column_name, -- The corresponding column name of the field to be updated
         '{#Product1Text}', -- To add text information about the attribute and how it associates to a product
-          to_jsonb((COALESCE(ui_info->>'#Product1Text', '') || '#Some string with information about the association to product1.'))
+          to_jsonb((COALESCE(#database_column_name->>'#Product1Text', '') || '#Some string with information about the association to product1.'))
       ), -- APIText, RosterText, and the actual string value. COALESCE allows the data to append to existing data without overwriting.
       '{#Product2Text}',
-          to_jsonb((COALESCE(ui_info->>'Product1Text', '') || '#Some string with information about the association to product2.'))
+          to_jsonb((COALESCE(#database_column_name->>'Product2Text', '') || '#Some string with information about the association to product2.'))
       ),
       '{Products}',
       (
         SELECT jsonb_agg(DISTINCT value)
         FROM jsonb_array_elements_text(
-          COALESCE(ui_info->'Products', '[]'::jsonb) || '["#Product1", "#Product2"]'::jsonb -- The product name, ie API, Roster
+          COALESCE(#database_column_name->'Products', '[]'::jsonb) || '["#Product1", "#Product2"]'::jsonb -- The product name, ie API, Roster
         )
       )
     ),
@@ -79,27 +82,25 @@ SET
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'#Endpoint', '[]'::jsonb) || '["#Product1", "#Product2"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+        COALESCE(#database_column_name->'#Endpoint', '[]'::jsonb) || '["#Product1", "#Product2"]'::jsonb -- Endpoint name, Product name, ie API, Roster
       )
     )
   ),
-  associated_endpoints = jsonb_set(
-    associated_endpoints,
+  #database_column_name = jsonb_set(
+    #database_column_name,
     '{Endpoints}',
     '["#Endpoint"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = '#attribute_title'; -- Attribute name, ie agent_uuid, email_addresses, etc
-
-END $$;
+WHERE #database_column_name = '#attribute_title'; -- Attribute name, ie agent_uuid, email_addresses, etc
 
 -- Establish Request Type relationship
-UPDATE associated_attrs
+UPDATE #database_column_name
 SET
-  request_type = jsonb_set(
-    request_type,
+  #database_column_name = jsonb_set(
+    #database_column_name,
     '{#Endpoint}',
-    (COALESCE(request_type->'#Endpoint', '[]'::jsonb) || '["#Request Type"]'::jsonb)
+    (COALESCE(#database_column_name->'#Endpoint', '[]'::jsonb) || '["#Request Type"]'::jsonb)
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title IN ( -- setting the following associated_attrs -> request_type to contain "#Request Type"
@@ -108,6 +109,10 @@ WHERE attr_title IN ( -- setting the following associated_attrs -> request_type 
     '#Attribute3'
 );
 
+DO $$
+BEGIN
+
+END $$;
 
 
 
