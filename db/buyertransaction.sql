@@ -9,7 +9,7 @@ SET
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'BuyerTransaction', '[]'::jsonb) || '["API", "#Roster"]'::jsonb
+        COALESCE(ui_info->'BuyerTransaction', '[]'::jsonb) || '["API", "Roster"]'::jsonb
       )
     )
   )
@@ -926,9 +926,15 @@ SET
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'stage';
 
-
-
-    Existing
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{BuyerTransaction}',
+    (COALESCE(request_type->'BuyerTransaction', '[]'::jsonb) || '["Create Response"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN ( -- setting the following associated_attrs -> request_type to contain "#Request Type"
     'agent_uuid',
     'moxi_works_agent_id',
     'moxi_works_contact_id',
@@ -957,12 +963,188 @@ WHERE attr_title = 'stage';
     'target_price',
     'min_price',
     'max_price',
-
-    New
     'moxi_works_transaction_id',
     'stage_name',
     'closing_price',
     'closing_timestamp',
     'state_changed_at'
+);
+
+UPDATE associated_attrs -- The name of the database table
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+          ui_info, -- The corresponding column name of the field to be updated 
+      '{APIText}',
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'This is the MoxiWorks Platform ID of the BuyerTransaction which you have created. This will be an RFC 4122 compliant UUID. This ID should be recorded on response as it is the key ID for updating the BuyerTransaction.'))
+      ),
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API"]'::jsonb -- The product name, ie API, Roster
+        )
+      )
+    ),
+    '{BuyerTransaction}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'BuyerTransaction', '[]'::jsonb) || '["API"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["BuyerTransaction"]' -- Set attribute association to the endpoint on a global level
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'moxi_works_transaction_id';
+
+UPDATE associated_attrs -- The name of the database table
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, -- The corresponding column name of the field to be updated
+        '{APIText}', -- To add text information about the attribute and how it associates to a product
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'When created through the MoxiWorks Platform, BuyerTransaction objects will automatically be configured as active transactions. For more information about BuyerTransaction stages, see the MoxiCloud documentation, specific to BuyerTransaction Stages.'))
+      ), -- APIText, RosterText, and the actual string value. COALESCE allows the data to append to existing data without overwriting.
+      '{EngageText}',
+          to_jsonb((COALESCE(ui_info->>'EngageText', '') || 'For Buyer Transactions, this attribute displays the name or title that is associated with the current stage of the transaction.'))
+      ),
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- The product name, ie API, Roster
+        )
+      )
+    ),
+    '{BuyerTransaction}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'BuyerTransaction', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["BuyerTransaction"]' -- Set attribute association to the endpoint on a global level
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'stage_name';
+
+UPDATE associated_attrs -- The name of the database table
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, -- The corresponding column name of the field to be updated
+        '{APIText}', -- To add text information about the attribute and how it associates to a product
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'This should be null if the BuyerTransaction is not yet in complete state.'))
+      ), -- APIText, RosterText, and the actual string value. COALESCE allows the data to append to existing data without overwriting.
+      '{EngageText}',
+          to_jsonb((COALESCE(ui_info->>'EngageText', '') || 'This is the closing price for the transaction.'))
+      ),
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- The product name, ie API, Roster
+        )
+      )
+    ),
+    '{BuyerTransaction}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'BuyerTransaction', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["BuyerTransaction"]' -- Set attribute association to the endpoint on a global level
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'closing_price';
+
+UPDATE associated_attrs -- The name of the database table
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, -- The corresponding column name of the field to be updated
+        '{APIText}', -- To add text information about the attribute and how it associates to a product
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'A Unix timestamp. This should be null if the BuyerTransaction is not yet in complete state.'))
+      ), -- APIText, RosterText, and the actual string value. COALESCE allows the data to append to existing data without overwriting.
+      '{EngageText}',
+          to_jsonb((COALESCE(ui_info->>'EngageText', '') || 'For a Buyer Transaction, this represents the point in time when the transaction was completed.'))
+      ),
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- The product name, ie API, Roster
+        )
+      )
+    ),
+    '{BuyerTransaction}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'BuyerTransaction', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["BuyerTransaction"]' -- Set attribute association to the endpoint on a global level
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'closing_timestamp';
+
+UPDATE associated_attrs -- The name of the database table
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+        jsonb_set(
+          ui_info, -- The corresponding column name of the field to be updated 
+      '{APIText}',
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'The stage that the BuyerTransaction should be placed into.'))
+      ),
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API"]'::jsonb -- The product name, ie API, Roster
+        )
+      )
+    ),
+    '{BuyerTransaction}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'BuyerTransaction', '[]'::jsonb) || '["API"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["BuyerTransaction"]' -- Set attribute association to the endpoint on a global level
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'state_changed_at';
 
 END $$;
