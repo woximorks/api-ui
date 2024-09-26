@@ -93,9 +93,19 @@ WHERE attr_title = '#attribute_title'; -- Attribute name, ie agent_uuid, email_a
 
 END $$;
 
-
-
-
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{#Endpoint}',
+    (COALESCE(request_type->'#Endpoint', '[]'::jsonb) || '["#Request Type"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN ( -- setting the following associated_attrs -> request_type to contain "#Request Type"
+    '#Attribute1',
+    '#Attribute2',
+    '#Attribute3'
+);
 
 
 
@@ -117,7 +127,7 @@ Something comparable to mixins for sass comes to mind. What do you recommend?
     This approach reduces redundancy and makes your code more maintainable.
 
 You can call this procedure with different sets of parameters as needed, just like using mixins in Sass."
-*/
+
 
 -- It throws an error read the above comment
 CREATE OR REPLACE PROCEDURE update_associated_attrs(
@@ -204,3 +214,4 @@ CALL update_associated_attrs(
     '#database_column_name',
     '#attribute_title'
 );
+*/

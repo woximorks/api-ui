@@ -25,7 +25,7 @@ WHERE attr_title IN (
 
 UPDATE associated_attrs
 SET
-  associated_endpoints = jsonb_set( -- setting the following associated_endpoints to have Brand associations within the Endpoints Array
+  associated_endpoints = jsonb_set( -- setting the following associated_endpoints to have BuyerTransaction associations within the Endpoints Array
     associated_endpoints,
     '{Endpoints}',
     (COALESCE(associated_endpoints->'Endpoints', '[]'::jsonb) || '["BuyerTransaction"]'::jsonb)
@@ -39,6 +39,47 @@ WHERE attr_title IN (
     'partner_contact_id',
     'moxi_works_company_id',
     'parent_company_id'
+);
+
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{BuyerTransaction}',
+    (COALESCE(request_type->'BuyerTransaction', '[]'::jsonb) || '["Create Request"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN ( -- setting the following associated_attrs -> request_type to contain "#Request Type"
+    'agent_uuid',
+    'moxi_works_agent_id',
+    'source_agent_id',
+    'moxi_works_contact_id',
+    'partner_contact_id',
+    'moxi_works_company_id',
+    'parent_company_id',
+    'notes',
+    'address',
+    'city',
+    'state',
+    'zip_code',
+    'min_sqft',
+    'max_sqft',
+    'min_beds',
+    'max_beds',
+    'min_baths',
+    'max_baths',
+    'area_of_interest',
+    'is_mls_transaction',
+    'mls_number',
+    'start_timestamp',
+    'commission_percentage',
+    'commission_flat_fee',
+    'sales_volume_percentage',
+    'sales_volume_flat_fee',
+    'target_price',
+    'min_price',
+    'max_price',
+    'stage'
 );
 
 UPDATE associated_attrs -- The name of the database table
@@ -884,5 +925,44 @@ SET
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'stage';
+
+
+
+    Existing
+    'agent_uuid',
+    'moxi_works_agent_id',
+    'moxi_works_contact_id',
+    'partner_contact_id',
+    'transaction_name',
+    'notes',
+    'stage',
+    'address',
+    'city',
+    'state',
+    'zip_code',
+    'min_sqft',
+    'max_sqft',
+    'min_beds',
+    'max_beds',
+    'min_baths',
+    'max_baths',
+    'area_of_interest',
+    'is_mls_transaction',
+    'mls_number',
+    'start_timestamp',
+    'commission_percentage',
+    'commission_flat_fee',
+    'sales_volume_percentage',
+    'sales_volume_flat_fee',
+    'target_price',
+    'min_price',
+    'max_price',
+
+    New
+    'moxi_works_transaction_id',
+    'stage_name',
+    'closing_price',
+    'closing_timestamp',
+    'state_changed_at'
 
 END $$;
