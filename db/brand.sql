@@ -682,13 +682,11 @@ SET
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title IN (
-  'moxi_works_company_id',
   'agent_uuid',
   'moxi_works_agent_id',
   'source_agent_id',
   'moxi_works_office_id',
-  'office_id',
-  'parent_company_id'
+  'office_id'
 );
 UPDATE associated_attrs
 SET

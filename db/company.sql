@@ -1,60 +1,54 @@
 DO $$
 BEGIN
 
-UPDATE #database_table
+UPDATE associated_attrs
 SET
-  #database_column_name = jsonb_set(
-    #database_column_name,
+  ui_info = jsonb_set(
+    ui_info,
     '{Company}',
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(#database_column_name->'Company', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+        COALESCE(ui_info->'Company', '[]'::jsonb) || '["API", "Roster"]'::jsonb
       )
     )
   )
-WHERE #database_column_name = "moxi_works_company_id";
+WHERE attr_title = 'moxi_works_company_id';
 
-UPDATE #database_table
+UPDATE associated_attrs
 SET
-  #database_column_name = jsonb_set( -- setting the following associated_endpoints to have Company associations within the Endpoints Array
-    #database_column_name,
+  associated_endpoints = jsonb_set( -- setting the following associated_endpoints to have Brand associations within the Endpoints Array
+    associated_endpoints,
     '{Endpoints}',
-    (COALESCE(#database_column_name->'Endpoints', '[]'::jsonb) || '["Company"]'::jsonb)
+    (COALESCE(associated_endpoints->'Endpoints', '[]'::jsonb) || '["Company"]'::jsonb)
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE #database_column_name = 'moxi_works_company_id';
+WHERE attr_title = 'moxi_works_company_id';
 
-UPDATE #database_column_name
+UPDATE associated_attrs
 SET
-  #database_column_name = jsonb_set(
-    #database_column_name,
+  request_type = jsonb_set(
+    request_type,
     '{Company}',
-    (COALESCE(#database_column_name->'Company', '[]'::jsonb) || '["Show Request"]'::jsonb)
+    (COALESCE(request_type->'Company', '[]'::jsonb) || '["Show Request"]'::jsonb)
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title IN ( -- setting the following associated_attrs -> request_type to contain "Show Request"
-    'moxi_works_company_id'
-);
+WHERE attr_title = 'moxi_works_company_id';
 
-UPDATE #database_table -- The name of the database table
+UPDATE associated_attrs -- The name of the database table
 SET 
-  #database_column_name = jsonb_set(
-    jsonb_set(
+  ui_info = jsonb_set(
       jsonb_set(
         jsonb_set(
-          #database_column_name, -- The corresponding column name of the field to be updated
-        '{#Product1Text}', -- To add text information about the attribute and how it associates to a product
-          to_jsonb((COALESCE(#database_column_name->>'#Product1Text', '') || '#Some string with information about the association to product1.'))
-      ), -- APIText, RosterText, and the actual string value. COALESCE allows the data to append to existing data without overwriting.
-      '{#Product2Text}',
-          to_jsonb((COALESCE(#database_column_name->>'Product2Text', '') || '#Some string with information about the association to product2.'))
+          ui_info, -- The corresponding column name of the field to be updated
+        '{RosterText}', -- To add text information about the attribute and how it associates to a product
+          to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'This is a human readable name of the company which this Company object represents.'))
       ),
       '{Products}',
       (
         SELECT jsonb_agg(DISTINCT value)
         FROM jsonb_array_elements_text(
-          COALESCE(#database_column_name->'Products', '[]'::jsonb) || '["#Product1", "#Product2"]'::jsonb -- The product name, ie API, Roster
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["Roster"]'::jsonb -- The product name, ie API, Roster
         )
       )
     ),
@@ -62,34 +56,17 @@ SET
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(#database_column_name->'Company', '[]'::jsonb) || '["#Product1", "#Product2"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+        COALESCE(ui_info->'Company', '[]'::jsonb) || '["Roster"]'::jsonb -- Endpoint name, Product name, ie API, Roster
       )
     )
   ),
-  #database_column_name = jsonb_set(
-    #database_column_name,
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
     '{Endpoints}',
     '["Company"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE #database_column_name = 'name'; -- Attribute name, ie agent_uuid, email_addresses, etc
-
-
-UPDATE #database_column_name
-SET
-  #database_column_name = jsonb_set(
-    #database_column_name,
-    '{Company}',
-    (COALESCE(#database_column_name->'Company', '[]'::jsonb) || '["Show Response"]'::jsonb)
-  ),
-  updated_at = CURRENT_TIMESTAMP
-WHERE attr_title IN ( -- setting the following associated_attrs -> request_type to contain "Show Response"
-    'moxi_works_company_id',
-    'name',
-    'numeric_id',
-    'client_company_id',
-    'partners',
-    'public_partner_attrs'
-);
+WHERE attr_title = 'name'; -- Attribute name, ie agent_uuid, email_addresses, etc
 
 END $$;
+

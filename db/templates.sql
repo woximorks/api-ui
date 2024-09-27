@@ -54,7 +54,7 @@ WHERE attr_title IN (
 -- Set Product associations to the attribute on a global level
   -- #Endpoint
     -- ["#Product1", "#Product2"]
-UPDATE #database_table -- The name of the database table
+UPDATE associated_attrs -- The name of the database table
 SET 
   ui_info = jsonb_set(
     jsonb_set(
@@ -65,7 +65,7 @@ SET
           to_jsonb((COALESCE(ui_info->>'#Product1Text', '') || '#Some string with information about the association to product1.'))
       ), -- APIText, RosterText, and the actual string value. COALESCE allows the data to append to existing data without overwriting.
       '{#Product2Text}',
-          to_jsonb((COALESCE(ui_info->>'Product1Text', '') || '#Some string with information about the association to product2.'))
+          to_jsonb((COALESCE(ui_info->>'Product2Text', '') || '#Some string with information about the association to product2.'))
       ),
       '{Products}',
       (
