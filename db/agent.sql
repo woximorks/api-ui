@@ -953,21 +953,17 @@ WHERE attr_title = 'office_mailing_address_zip';
 UPDATE associated_attrs
 SET 
   ui_info = jsonb_set(
-    jsonb_set(
       jsonb_set(
         jsonb_set(
           ui_info, 
           '{APIText}',
-          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'This can be null if there is no data for this attribute.'))
-        ), 
-        '{RosterText}',
-          to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'The full name of the agent.'))
-      ), 
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'This name attribute is shared between several endpoints, and generally represents the full name of the entity.'))
+        ),
       '{Products}',
       (
         SELECT jsonb_agg(DISTINCT value)
         FROM jsonb_array_elements_text(
-          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API"]'::jsonb
         )
       )
     ),
@@ -975,7 +971,7 @@ SET
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+        COALESCE(ui_info->'Agent', '[]'::jsonb) || '["API"]'::jsonb
       )
     )
   ),
