@@ -711,13 +711,9 @@ WHERE attr_title IN (
 UPDATE associated_attrs
 SET 
   ui_info = jsonb_set(
-    jsonb_set(
       jsonb_set(
         jsonb_set(
           ui_info,
-          '{APIText}',
-          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'Human readable string identifying the brand.'))
-          ),
         '{PresentText}',
           to_jsonb((COALESCE(ui_info->>'PresentText', '') || 'This will be the name that displays related to the associated Brand.'))
       ), 
@@ -725,7 +721,7 @@ SET
       (
         SELECT jsonb_agg(DISTINCT value)
         FROM jsonb_array_elements_text(
-          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Present"]'::jsonb
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["Present"]'::jsonb
         )
       )
     ),
@@ -733,7 +729,7 @@ SET
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'Brand', '[]'::jsonb) || '["API", "Present"]'::jsonb
+        COALESCE(ui_info->'Brand', '[]'::jsonb) || '["Present"]'::jsonb
       )
     )
   ),
