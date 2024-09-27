@@ -128,18 +128,18 @@ SET
         jsonb_set(
           ui_info, 
           '{APIText}',
-          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'To include access level information for the agent in the response, pass true')
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'This can be any arbitrary plain-text string which would be practical for the agent to see in the history of events associated with a Contact. It must be greater than 0 and must be less than 5000 characters (including white space).')
           )
         ), 
         '{RosterText}',
-        to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'The access level of the agent. This can return one of the possible access levels, as seen within the products and permissions page.')
+        to_jsonb((COALESCE(ui_info->>'ActionLogText', '') || 'The text that displays as the content of the message in relation to the ActionLog entry.')
         )
       ), 
       '{Products}',
       (
         SELECT jsonb_agg(DISTINCT value)
         FROM jsonb_array_elements_text(
-          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "ActionLog"]'::jsonb
         )
       )
     ),
@@ -147,7 +147,7 @@ SET
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'ActionLog', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+        COALESCE(ui_info->'ActionLog', '[]'::jsonb) || '["API", "ActionLog"]'::jsonb
       )
     )
   ),

@@ -19,3 +19,14 @@
         - associated_endpoint: Supplemental information related to which endpoints the attribute is associated with. Using this to control when stuff displays on the front end.
         - attr_title: The title of the attribute, as it can be called within the API and displays within the documentation
         - created and updated columns are self explanatory
+
+
+
+
+
+
+* To Do:
+    - These are things that need to be addressed - a list of non critical issues that can be addressed in a single commit moving forward
+    - A:
+    - B:
+    - C: 
