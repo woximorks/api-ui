@@ -122,7 +122,6 @@ WHERE attr_title IN ( -- setting the following associated_attrs -> request_type 
   'source_agent_id',
   'moxi_works_company_id',
   'parent_company_id',
-  'include_access_level',
   'include_gci_goals',
   'include_partners',
   'include_reviews'
@@ -143,7 +142,6 @@ WHERE attr_title IN (  -- setting the following associated_attrs -> associated_e
   'moxi_works_company_id',
   'parent_company_id',
   'include_access_level',
-  'include_gci_goals',
   'include_partners',
   'include_reviews'
 );

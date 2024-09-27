@@ -338,8 +338,8 @@ UPDATE associated_attrs
 SET
   request_type = jsonb_set(
     request_type,
-    '{#Endpoint}',
-    (COALESCE(request_type->'#Endpoint', '[]'::jsonb) || '["Search Request"]'::jsonb)
+    '{Company}',
+    (COALESCE(request_type->'Company', '[]'::jsonb) || '["Search Request"]'::jsonb)
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title IN ( -- setting the following associated_attrs -> request_type to contain "#Request Type"
@@ -353,8 +353,8 @@ UPDATE associated_attrs
 SET
   request_type = jsonb_set(
     request_type,
-    '{#Endpoint}',
-    (COALESCE(request_type->'#Endpoint', '[]'::jsonb) || '["Search Response"]'::jsonb)
+    '{Company}',
+    (COALESCE(request_type->'Company', '[]'::jsonb) || '["Search Response"]'::jsonb)
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title IN ( -- setting the following associated_attrs -> request_type to contain "#Request Type"
