@@ -35,7 +35,7 @@ SET
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'moxi_works_company_id';
 
-UPDATE associated_attrs -- The name of the database table
+UPDATE associated_attrs 
 SET 
   ui_info = jsonb_set(
       jsonb_set(
@@ -66,7 +66,173 @@ SET
     '["Company"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'name'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'name';
+
+
+UPDATE associated_attrs 
+SET 
+  ui_info = jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, -- The corresponding column name of the field to be updated
+        '{APIText}', -- To add text information about the attribute and how it associates to a product
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'This is the numeric company id that is interchangeable with the moxi_works_agent_id in all request scenarios.'))
+      ), -- APIText, RosterText, and the actual string value. COALESCE allows the data to append to existing data without overwriting.
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API"]'::jsonb -- The product name, ie API, Roster
+        )
+      )
+    ),
+    '{Company}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Company', '[]'::jsonb) || '["API"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Company"]' -- Set attribute association to the endpoint on a global level
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'numeric_id';
+
+UPDATE associated_attrs 
+SET 
+  ui_info = jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, -- The corresponding column name of the field to be updated
+        '{APIText}', -- To add text information about the attribute and how it associates to a product
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'This is a client-specified identifier of the company which this Company object represents, or null if absent.'))
+      ), -- APIText, RosterText, and the actual string value. COALESCE allows the data to append to existing data without overwriting.
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API"]'::jsonb -- The product name, ie API, Roster
+        )
+      )
+    ),
+    '{Company}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Company', '[]'::jsonb) || '["API"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Company"]' -- Set attribute association to the endpoint on a global level
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'client_company_id';
+
+UPDATE associated_attrs 
+SET 
+  ui_info = jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, -- The corresponding column name of the field to be updated
+        '{RosterText}', -- To add text information about the attribute and how it associates to a product
+          to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'Integrated partner data associated with this company.')) -- When I start adding actual product level association text this can be moved to ui_info->Company array. This is the first good example of needing to scale even further and I'm going to ignore it for now because I want to finish this project before 2085
+      ), -- APIText, RosterText, and the actual string value. COALESCE allows the data to append to existing data without overwriting.
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["Roster"]'::jsonb -- The product name, ie API, Roster
+        )
+      )
+    ),
+    '{Company}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Company', '[]'::jsonb) || '["Roster"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Company"]' -- Set attribute association to the endpoint on a global level
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'partners';
+
+UPDATE associated_attrs 
+SET 
+  ui_info = jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, -- The corresponding column name of the field to be updated
+        '{APIText}', -- To add text information about the attribute and how it associates to a product
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'Exposed company attributes.'))
+      ), -- APIText, RosterText, and the actual string value. COALESCE allows the data to append to existing data without overwriting.
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API"]'::jsonb -- The product name, ie API, Roster
+        )
+      )
+    ),
+    '{Company}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Company', '[]'::jsonb) || '["API"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Company"]' -- Set attribute association to the endpoint on a global level
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'public_partner_attrs';
+
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{Company}',
+    (COALESCE(request_type->'Company', '[]'::jsonb) || '["Show Response", "]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title in (
+    'moxi_works_company_id',
+    'name',
+    'numeric_id',
+    'client_company_id',
+    'partners',
+    'public_partner_attrs'
+);
+
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{Company}',
+    (COALESCE(request_type->'Company', '[]'::jsonb) || '["Index Request"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title in (
+    'moxi_works_company_id',
+    'name',
+    'numeric_id',
+    'client_company_id',
+    'public_partner_attrs'
+);
 
 END $$;
 

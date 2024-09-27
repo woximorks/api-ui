@@ -60,7 +60,7 @@ SET
     jsonb_set(
       jsonb_set(
         jsonb_set(
-          #database_column_name, -- The corresponding column name of the field to be updated
+          ui_info, -- The corresponding column name of the field to be updated
         '{#Product1Text}', -- To add text information about the attribute and how it associates to a product
           to_jsonb((COALESCE(ui_info->>'#Product1Text', '') || '#Some string with information about the association to product1.'))
       ), -- APIText, RosterText, and the actual string value. COALESCE allows the data to append to existing data without overwriting.
