@@ -7,6 +7,7 @@ module ApplicationHelper
         "APIText" => "API Info",
         "Brand" => "Brand Products",
         "BuyerTransaction" => "BuyerTransaction Products",
+        "Company" => "Company Products",
         "EngageText" => "Engage Info",
         "Products" => "All Product Associations",
         "PresentText" => "Present Info",
