@@ -1,22 +1,31 @@
+<div class="search_box">
+
 <%= form_tag(index_path, method: :get) do %>
-    <%= label_tag(:keyword, "Search for:") %>
-    <%= text_field_tag(:keyword) %>
-    <%= submit_tag("Search") %>
-  <% end %>
-  
-  <% if flash[:alert].present? %>
-    <p><%= flash[:alert] %></p>
-  <% end %>
-  
-  <% if @results.present? %>
-    <% @results.each do |result| %>
-        <p>Attribute: <%= result.attr_title %></p>
-        <p>UI Info: <%=  result.ui_info %></p>
-        <hr>
-    <% end %>
-  <% else %>
-    <p>No results to display</p>
-  <% end %>
+  <%= label_tag(:keyword, "Search for:") %>
+  <%= text_field_tag(:keyword, params[:keyword]) %>
+  <%= submit_tag("Search") %>
+<% end %>
 
+</div>
 
+<% if @results.present? %>
+  <% @results.each do |result| %>
+    <div class="result" id="searchResult">
+      <h5><%= result.attr_title %></h5>
+      <ul>
+        <% result.ui_info.each do |key, value| %>
+          <li>
+            <h6>
+            <strong><%= display_name_for_ui_info_key(key) %>:</strong> 
+            <%= value.is_a?(Array) ? value.join(", ") : value %>
+            </h6>
+          </li>
+        <% end %>
+      </ul>
+      <hr>
+    </div>
+  <% end %>
+<% else %>
+  <p>No results to display</p>
+<% end %>
 <%= render 'shared/nav' %>

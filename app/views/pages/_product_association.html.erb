@@ -1,0 +1,20 @@
+<div class="product_association" id="<%= product_name %>">
+  <div class="associated_product">
+    <%= image_tag("#{product_name}.png") %>
+    <h3><%= product_name %></h3>
+  </div>
+
+  <div class="product_associated_attrs">
+    <% @associated_attrs.each do |associated_attr| %>
+      <% if associated_attr.associated_endpoints['Endpoints'].is_a?(Array) && associated_attr.associated_endpoints['Endpoints'].include?(endpoint) %>
+        <% if associated_attr.ui_info[endpoint].is_a?(Array) && associated_attr.ui_info[endpoint].include?(product_name) %>
+          <ul>
+            <li id="attrTitle"><h5><%= associated_attr.attr_title %></h5></li>
+            <li id="attrLine"><hr></li>
+            <li id="attrText"><h6><%= associated_attr.ui_info["#{product_name}Text"] %></h6></li>
+          </ul>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

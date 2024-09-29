@@ -109,7 +109,10 @@ WHERE attr_title IN ( -- setting the following associated_attrs -> request_type 
 );
 
 
-
+SELECT *
+FROM associated_attrs
+WHERE (ui_info ? 'Agent')
+WHERE (ui_info->'Products' @> '["API"]');
 
 
 /*

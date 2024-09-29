@@ -131,7 +131,7 @@ SET
           to_jsonb((COALESCE(ui_info->>'APIText', '') || 'This can be any arbitrary plain-text string which would be practical for the agent to see in the history of events associated with a Contact. It must be greater than 0 and must be less than 5000 characters (including white space).')
           )
         ), 
-        '{RosterText}',
+        '{ActionLogText}',
         to_jsonb((COALESCE(ui_info->>'ActionLogText', '') || 'The text that displays as the content of the message in relation to the ActionLog entry.')
         )
       ), 

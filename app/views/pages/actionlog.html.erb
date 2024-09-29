@@ -1,1 +1,13 @@
-<%= render "shared/actionlog_associated_attrs" %>
+
+
+<div class="endpoint_title">
+  <h1>ActionLog</h1>
+</div>
+
+<div class="associated_attrs">
+  <%= render_product_association('ActionLog', 'ActionLog') %>
+  <%= render_product_association('ActionLog', 'API') %>
+  <%= render_product_association('ActionLog', 'Roster') %>
+</div>
+
+<%= render 'shared/nav' %>
