@@ -1,11 +1,9 @@
 <div class="search_box">
-
-<%= form_tag(index_path, method: :get) do %>
-  <%= label_tag(:keyword, "Search for:") %>
-  <%= text_field_tag(:keyword, params[:keyword]) %>
-  <%= submit_tag("Search") %>
-<% end %>
-
+  <%= form_tag(index_path, method: :get) do %>
+    <%= label_tag(:keyword, "Search for:") %>
+    <%= text_field_tag(:keyword, params[:keyword]) %>
+    <%= submit_tag("Search") %>
+  <% end %>
 </div>
 
 <% if @results.present? %>
@@ -13,11 +11,39 @@
     <div class="result" id="searchResult">
       <h5><%= result.attr_title %></h5>
       <ul>
-        <% result.ui_info.each do |key, value| %>
+        <% 
+          # Extract strings, "Products" array, and other arrays
+          string_fields = result.ui_info.select { |_key, value| !value.is_a?(Array) }
+          products_field = result.ui_info.select { |key, _value| key == 'Products' }
+          other_arrays = result.ui_info.select { |key, value| value.is_a?(Array) && key != 'Products' }.sort.to_h
+        %>
+
+        <% # Display all string fields first %>
+        <% string_fields.each do |key, value| %>
           <li>
             <h6>
-            <strong><%= display_name_for_ui_info_key(key) %>:</strong> 
-            <%= value.is_a?(Array) ? value.join(", ") : value %>
+              <strong><%= display_name_for_ui_info_key(key) %>:</strong> 
+              <%= value %>
+            </h6>
+          </li>
+        <% end %>
+
+        <% # Display the "Products" array next %>
+        <% products_field.each do |key, value| %>
+          <li>
+            <h6>
+              <strong><%= display_name_for_ui_info_key(key) %>:</strong> 
+              <%= value.join(", ") %>
+            </h6>
+          </li>
+        <% end %>
+
+        <% # Display other arrays, sorted alphabetically %>
+        <% other_arrays.each do |key, value| %>
+          <li>
+            <h6>
+              <strong><%= display_name_for_ui_info_key(key) %>:</strong> 
+              <%= value.join(", ") %>
             </h6>
           </li>
         <% end %>
@@ -28,4 +54,5 @@
 <% else %>
   <p>No results to display</p>
 <% end %>
+
 <%= render 'shared/nav' %>

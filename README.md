@@ -21,12 +21,7 @@
         - created and updated columns are self explanatory
 
 * Update Notes
-    - Agent page added, 
-    - All image files updated to match casing of endpoints.
     - 
-
-
-
 
 * To Do:
     - These are things that need to be addressed - a list of non critical issues that can be addressed in a single commit moving forward

@@ -5,6 +5,11 @@ module ApplicationHelper
         "ActionLogText" => "ActionLog Info",
         "Agent" => "Agent Products",
         "APIText" => "API Info",
+        "Brand" => "Brand Products",
+        "BuyerTransaction" => "BuyerTransaction Products",
+        "EngageText" => "Engage Info",
+        "Products" => "All Product Associations",
+        "PresentText" => "Present Info",
         "RosterText" => "Roster Info",
         "WebsitesText" => "Websites Info"
       }[key] || key

@@ -1,1 +1,11 @@
-<%= render "shared/buyertransaction_associated_attrs" %>
+<div class="endpoint_title">
+  <h1>BuyerTransaction</h1>
+</div>
+
+<div class="associated_attrs">
+  <%= render_product_association('BuyerTransaction', 'API') %>
+  <%= render_product_association('BuyerTransaction', 'Engage') %>
+  <%= render_product_association('BuyerTransaction', 'Roster') %>
+</div>
+
+<%= render 'shared/nav' %>
