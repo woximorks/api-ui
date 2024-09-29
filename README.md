@@ -20,7 +20,10 @@
         - attr_title: The title of the attribute, as it can be called within the API and displays within the documentation
         - created and updated columns are self explanatory
 
-
+* Update Notes
+    - Agent page added, 
+    - All image files updated to match casing of endpoints.
+    - 
 
 
 

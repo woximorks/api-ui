@@ -1,10 +1,12 @@
 module ApplicationHelper
     def display_name_for_ui_info_key(key)
       {
-        "ActionLog" => "ActionLog products",
-        "ActionLogText" => "ActionLog info",
-        "APIText" => "API info",
-        "RosterText" => "Roster info"
+        "ActionLog" => "ActionLog Products",
+        "ActionLogText" => "ActionLog Info",
+        "Agent" => "Agent Products",
+        "APIText" => "API Info",
+        "RosterText" => "Roster Info",
+        "WebsitesText" => "Websites Info"
       }[key] || key
     end
 
