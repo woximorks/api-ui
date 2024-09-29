@@ -9,8 +9,8 @@
         - After searching, product related information populates for each attr that is associated in some way.
             - Logic related to the order / how this returned content displays can be set on the index.html.erb file.
                 - Updates to the corresponding titles representing this information on that index file can be set within the application_helper.rb file.
-    /{#Endpoint}
-        - Infographic containing each attribute associated with that {#Endpoint}, and what product it associates to.
+   - /{#endpoint}
+        - Infographic containing each attribute associated with that {#endpoint}, and what product it associates to.
 
 * Databasics
     - To create and populate the database
@@ -36,8 +36,11 @@
             - associated_endpoint: Supplemental information related to which endpoints the attribute is associated with. Using this to control when stuff displays on the front end.
             - attr_title: The title of the attribute, as it can be called within the API and displays within the documentation
             - created and updated columns are self explanatory
+    
+    -
 
 * Update Notes
+    
     - 
 
 * To Do:
