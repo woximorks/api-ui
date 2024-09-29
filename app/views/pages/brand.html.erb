@@ -1,1 +1,12 @@
-<%= render "shared/brand_associated_attrs" %>
+<div class="endpoint_title">
+  <h1>Brand</h1>
+</div>
+
+<div class="associated_attrs">
+  <%= render_product_association('Brand', 'API') %>
+  <%= render_product_association('Brand', 'Engage') %>
+  <%= render_product_association('Brand', 'Roster') %>
+  <%= render_product_association('Brand', 'Websites') %>
+</div>
+
+<%= render 'shared/nav' %>
