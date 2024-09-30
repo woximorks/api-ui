@@ -9,6 +9,7 @@
 </div>
 
 <hr>
+
 <div class="search_results_container">
   <% if @results.present? %>
     <% @results.each do |result| %>
@@ -24,6 +25,7 @@
           <li class="search_attr_title">
             <h5 style="padding: 1em;"><%= result.attr_title %></h5>
           </li>
+
           <% string_fields.each do |key, value| %>
             <li class="search_attr_body">
               <h6>
@@ -33,13 +35,11 @@
             </li>
           <% end %>
 
-          <li id="product_container">
           <li class="product_heading">
             <h5>Product Associations</h5>
           </li>
           
           <div class="product_body" id="allProductAssociations">
-            <% # Display the "Products" array next %>
             <% if products_field.present? %>
               <% products_field.each do |product| %>
                 <li>
@@ -49,13 +49,11 @@
               <% end %>
             <% end %>
           </div>
-          </li>
 
           <li class="request_heading">
             <h5>Request Types</h5>
           </li>
 
-          <% # Display Request Type, sorted alphabetically %>
           <% request_info.each do |key, value| %>
             <li class="request_body">
               <h6>

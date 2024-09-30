@@ -2,36 +2,36 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    
+  
     .result {
       display: flex;
-      flex-direction: column; // Make the .result container a flex column
-      flex: 1 1 390px; // Allow flex-grow, flex-shrink, and set the base width
+      flex-direction: column;
+      flex: 1 1 390px;
       margin: 0.5em;
     }
-    
-    
-
+  
     ul {
       background-color: rgb(240,240,240);
-      list-style-type: none;
+      list-style: none;
       padding: 0;
       border-radius: 15px;
-      flex: 1; // Make the ul take up the remaining height in the .result container
+      flex: 1;
       display: flex;
-      flex-direction: column; // Ensure ul content is arranged in a column
+      flex-direction: column;
+  
       li {
         h5 {
-            font-weight: 600;
+          font-weight: 600;
         }
+  
         img {
           width: 50px;
           height: auto;
         }
       }
+  
       #allProductAssociations {
         display: flex;
-        flex-direction: row;
       }
     }
   
@@ -41,17 +41,16 @@
       color: white;
       height: 100px;
     }
-
-    .search_attr_body {
-        margin: .5em;
-        margin-bottom: 0;
+  
+    .search_attr_body,
+    .product_body,
+    .request_body {
+      margin: 0.5em;
     }
-    .product_heading, .request_heading {
-        margin: 1em;
-        margin-bottom: 0;   
+  
+    .product_heading,
+    .request_heading {
+      margin: 1em 1em 0;
     }
-    .product_body, .request_body {
-        margin: .5em;
-        
-    }
-  }  
+  }
+  
