@@ -9,25 +9,23 @@
 </div>
 
 <hr>
-<div id="searchResultContainer">
+<div class="search_results_container">
   <% if @results.present? %>
     <% @results.each do |result| %>
       <div class="result" id="searchResult">
-        
         <ul>
-        <% 
-        # Extract strings, "Products" array, and other arrays
-        string_fields = result.ui_info.select { |_key, value| !value.is_a?(Array) }
-        products_field = result.ui_info['Products']
-        other_arrays = result.ui_info.select { |key, value| value.is_a?(Array) && key != 'Products' }.sort.to_h
-        request_info = result.request_type.select { |key, value| value.is_a?(Array) }.sort.to_h
-        %>
-          <li>
-            <h5><%= result.attr_title %></h5>
+          <% 
+            # Extract strings, "Products" array, and other arrays
+            string_fields = result.ui_info.select { |_key, value| !value.is_a?(Array) }
+            products_field = result.ui_info['Products']
+            other_arrays = result.ui_info.select { |key, value| value.is_a?(Array) && key != 'Products' }.sort.to_h
+            request_info = result.request_type.select { |key, value| value.is_a?(Array) }.sort.to_h
+          %>
+          <li class="search_attr_title">
+            <h5 style="padding: 1em;"><%= result.attr_title %></h5>
           </li>
-          <% # Display all string fields first %>
           <% string_fields.each do |key, value| %>
-            <li>
+            <li class="search_attr_body">
               <h6>
                 <strong><%= display_name_for_ui_info_key(key, :ui_info) %> - </strong>
                 <%= value %>
@@ -35,41 +33,41 @@
             </li>
           <% end %>
 
-          <li>
-          <h6 id="moarBigger">Product Associations</h6>
+          <li id="product_container">
+          <li class="product_heading">
+            <h5>Product Associations</h5>
           </li>
           
-          <div id="allProducts">
+          <div class="product_body" id="allProductAssociations">
             <% # Display the "Products" array next %>
             <% if products_field.present? %>
               <% products_field.each do |product| %>
                 <li>
-                    <%= image_tag("#{product}.png", title: product) %> <!-- Adding image with the title attribute -->
-                  <h6>
-                    <%= product %>
-                  </h6>
+                  <%= image_tag("#{product}.png", title: product) %>
+                  <h6 style="text-align: center;"><%= product %></h6>
                 </li>
               <% end %>
             <% end %>
           </div>
-          
-          <li>
-          <h6 id="moarBigger">Request Types</h6>
+          </li>
+
+          <li class="request_heading">
+            <h5>Request Types</h5>
           </li>
 
           <% # Display Request Type, sorted alphabetically %>
           <% request_info.each do |key, value| %>
-            <li>
+            <li class="request_body">
               <h6>
-                <strong><%= display_name_for_ui_info_key(key, :request_type) %> - </strong> 
+                <strong><%= display_name_for_ui_info_key(key, :request_type) %> - </strong>
                 <%= value.join(", ") %>
               </h6>
             </li>
           <% end %>
         </ul>
-        
       </div>
     <% end %>
   <% else %>
-<% end %>
+    <p>No results to display</p>
+  <% end %>
 </div>
