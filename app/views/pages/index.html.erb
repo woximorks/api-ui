@@ -8,62 +8,68 @@
   <% end %>
 </div>
 
-<% if @results.present? %>
-  <% @results.each do |result| %>
-    <div class="result" id="searchResult">
-      <h5><%= result.attr_title %></h5>
-      <ul>
-        <% 
-          # Extract strings, "Products" array, and other arrays
-          string_fields = result.ui_info.select { |_key, value| !value.is_a?(Array) }
-          products_field = result.ui_info.select { |key, _value| key == 'Products' }
-          other_arrays = result.ui_info.select { |key, value| value.is_a?(Array) && key != 'Products' }.sort.to_h
-          request_info = result.request_type.select { |key, value| value.is_a?(Array) }.sort.to_h
-        %>
-
-        <% # Display all string fields first %>
-        <% string_fields.each do |key, value| %>
-          <li>
-            <h6>
-              <strong><%= display_name_for_ui_info_key(key, :ui_info) %>:</strong>
-              <%= value %>
-            </h6>
-          </li>
-        <% end %>
-
-        <% # Display the "Products" array next %>
-        <% products_field.each do |key, value| %>
-          <li>
-            <h6>
-              <strong><%= display_name_for_ui_info_key(key, :ui_info) %>:</strong> 
-              <%= value.join(", ") %>
-            </h6>
-          </li>
-        <% end %>
-
-        <% # Display other arrays, sorted alphabetically %>
-        <% other_arrays.each do |key, value| %>
-          <li>
-            <h6>
-              <strong><%= display_name_for_ui_info_key(key, :ui_info) %>:</strong> 
-              <%= value.join(", ") %>
-            </h6>
-          </li>
-        <% end %>
+<hr>
+<div id="searchResultContainer">
+  <% if @results.present? %>
+    <% @results.each do |result| %>
+      <div class="result" id="searchResult">
         
-        <% # Display Request Type, sorted alphabetically %>
-        <% request_info.each do |key, value| %>
+        <ul>
+        <% 
+        # Extract strings, "Products" array, and other arrays
+        string_fields = result.ui_info.select { |_key, value| !value.is_a?(Array) }
+        products_field = result.ui_info['Products']
+        other_arrays = result.ui_info.select { |key, value| value.is_a?(Array) && key != 'Products' }.sort.to_h
+        request_info = result.request_type.select { |key, value| value.is_a?(Array) }.sort.to_h
+        %>
           <li>
-            <h6>
-              <strong><%= display_name_for_ui_info_key(key, :request_type) %>:</strong> 
-              <%= value.join(", ") %>
-            </h6>
+            <h5><%= result.attr_title %></h5>
           </li>
-        <% end %>
-      </ul>
-      <hr>
-    </div>
-  <% end %>
-<% else %>
-  <p>No results to display</p>
+          <% # Display all string fields first %>
+          <% string_fields.each do |key, value| %>
+            <li>
+              <h6>
+                <strong><%= display_name_for_ui_info_key(key, :ui_info) %> - </strong>
+                <%= value %>
+              </h6>
+            </li>
+          <% end %>
+
+          <li>
+          <h6 id="moarBigger">Product Associations</h6>
+          </li>
+          
+          <div id="allProducts">
+            <% # Display the "Products" array next %>
+            <% if products_field.present? %>
+              <% products_field.each do |product| %>
+                <li>
+                    <%= image_tag("#{product}.png", title: product) %> <!-- Adding image with the title attribute -->
+                  <h6>
+                    <%= product %>
+                  </h6>
+                </li>
+              <% end %>
+            <% end %>
+          </div>
+          
+          <li>
+          <h6 id="moarBigger">Request Types</h6>
+          </li>
+
+          <% # Display Request Type, sorted alphabetically %>
+          <% request_info.each do |key, value| %>
+            <li>
+              <h6>
+                <strong><%= display_name_for_ui_info_key(key, :request_type) %> - </strong> 
+                <%= value.join(", ") %>
+              </h6>
+            </li>
+          <% end %>
+        </ul>
+        
+      </div>
+    <% end %>
+  <% else %>
 <% end %>
+</div>

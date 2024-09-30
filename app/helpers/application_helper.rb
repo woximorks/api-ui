@@ -2,38 +2,38 @@ module ApplicationHelper
   def display_name_for_ui_info_key(key, context)
     ui_info_labels = {
       "ActionLog" => "ActionLog Products",
-      "ActionLogText" => "ActionLog Info",
+      "ActionLogText" => "ActionLog Product Info",
       "Agent" => "Agent Products",
-      "APIText" => "API Info",
+      "APIText" => "API Product Info",
       "Brand" => "Brand Products",
       "BuyerTransaction" => "BuyerTransaction Products",
       "Company" => "Company Products",
-      "EngageText" => "Engage Info",
+      "EngageText" => "Engage Product Info",
       "Products" => "All Product Associations",
-      "PresentText" => "Present Info",
-      "RosterText" => "Roster Info",
-      "WebsitesText" => "Websites Info"
+      "PresentText" => "Present Product Info",
+      "RosterText" => "Roster Product Info",
+      "WebsitesText" => "Websites Product Info"
     }
     
     request_type_labels = {
-      "ActionLog" => "Request Type - ActionLog",
-      "Agent" => "Request Type - Agent",
-      "Brand" => "Request Type - Brand",
-      "BuyerTransaction" => "Request Type - BuyerTransaction",
-      "Company" => "Request Type - Company",
-      "Contact" => "Request Type - Contact",
-      "EmailCampaign" => "Request Type - EmailCampaign",
-      "Event" => "Request Type - Event",
-      "Gallery" => "Request Type - Gallery",
-      "Group" => "Request Type - Group",
-      "LeadSource" => "Request Type - LeadSource",
-      "Listing" => "Request Type - Listing",
-      "Office" => "Request Type - Office",
-      "PresentationLog" => "Request Type - PresentationLog",
-      "SoldListing" => "Request Type - SoldListing",
-      "Task" => "Request Type - Task",
-      "Team" => "Request Type - Team",
-      "WebUser" => "Request Type - WebUser"
+      "ActionLog" => "ActionLog",
+      "Agent" => "Agent",
+      "Brand" => "Brand",
+      "BuyerTransaction" => "BuyerTransaction",
+      "Company" => "Company",
+      "Contact" => "Contact",
+      "EmailCampaign" => "EmailCampaign",
+      "Event" => "Event",
+      "Gallery" => "Gallery",
+      "Group" => "Group",
+      "LeadSource" => "LeadSource",
+      "Listing" => "Listing",
+      "Office" => "Office",
+      "PresentationLog" => "PresentationLog",
+      "SoldListing" => "SoldListing",
+      "Task" => "Task",
+      "Team" => "Team",
+      "WebUser" => "WebUser"
     }
     
     if context == :ui_info
