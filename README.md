@@ -12,6 +12,10 @@
    - /{#endpoint}
         - Infographic containing each attribute associated with that {#endpoint}, and what product it associates to.
 
+* API Support
+    - use /api/{#attr_title} to call the related API data for an attribute and it's associations.
+        - #attr_title is the attr_title as seen in the associated_attrs table.
+        
 * Databasics
     - To create and populate the database
         - There is a backup file in the db/ folder, created with pg_dump, titled {#endpoint}-{#endpoint}.sql
