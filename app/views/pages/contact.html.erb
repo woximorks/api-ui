@@ -1,1 +1,11 @@
-<%= render "shared/contact_associated_attrs" %>
+<div class="endpoint_title">
+  <h1>Contact</h1>
+</div>
+
+<div class="associated_attrs">
+  <%= render_product_association('Contact', 'API') %>
+  <%= render_product_association('Contact', 'Engage') %>
+  <%= render_product_association('Contact', 'Roster') %>
+</div>
+
+<%= render 'shared/nav' %>
