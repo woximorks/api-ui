@@ -2318,24 +2318,7 @@ WHERE attr_title = 'groups';
 
 END $$;
 /*
-Create Response New -
 
- 	String
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Existing
 agent_uuid* 	String
 moxi_works_agent_id* 	String
 partner_contact_id 	String
@@ -2390,3 +2373,14 @@ spouse_or_partner 	String or null
 category_names 	String or null
 groups 	Array
 */
+
+
+
+Show Request - 
+agent_uuid* 	String 	255
+moxi_works_agent_id* 	String 	255
+source_agent_id* 	String 	255
+partner_contact_id † 	String 	255
+moxi_works_contact_id † 	String 	255
+moxi_works_company_id 	String 	
+parent_company_id 	String 	255
