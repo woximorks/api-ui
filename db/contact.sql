@@ -1919,8 +1919,8 @@ SET
     jsonb_set(
         jsonb_set(
           ui_info, -- The corresponding column name of the field to be updated
-      '{EngageText}',
-          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'This is the MoxiWorks Platform ID of this Contact. This will be an RFC 4122 compliant UUID.'))
+      '{APIText}',
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || ''))
       ),
       '{Products}',
       (
