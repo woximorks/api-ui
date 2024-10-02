@@ -105,7 +105,7 @@ SET
     '["Company"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'contact_name'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'contact_name';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -282,7 +282,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'gender'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'gender';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -319,7 +319,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'label_name'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'label_name';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -356,7 +356,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'home_street_address'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'home_street_address';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -393,7 +393,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'home_city'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'home_city';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -430,7 +430,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'home_state'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'home_state';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -467,7 +467,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'home_zip'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'home_zip';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -504,7 +504,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'home_country'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'home_country';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -539,7 +539,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'is_not_lead'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'is_not_lead';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -574,7 +574,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'skip_agent_notification'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'skip_agent_notification';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -607,7 +607,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'job_title'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'job_title';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -640,7 +640,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'occupation'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'occupation';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -677,7 +677,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'property_url'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'property_url';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -714,7 +714,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'property_mls_id'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'property_mls_id';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -751,7 +751,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'property_street_address'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'property_street_address';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -788,7 +788,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'property_city'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'property_city';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -825,7 +825,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'property_state'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'property_state';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -862,7 +862,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'property_zip'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'property_zip';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -899,7 +899,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'property_beds'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'property_beds';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -936,7 +936,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'property_baths'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'property_baths';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -973,7 +973,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'property_list_price'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'property_list_price';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -1010,7 +1010,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'property_listing_status'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'property_listing_status';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -1047,7 +1047,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'property_photo_url'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'property_photo_url';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -1084,7 +1084,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'search_city'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'search_city';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -1121,7 +1121,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'search_state'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'search_state';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -1158,7 +1158,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'search_zip'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'search_zip';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -1195,7 +1195,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'search_min_baths'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'search_min_baths';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -1232,7 +1232,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'search_min_beds'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'search_min_beds';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -1269,7 +1269,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'search_min_price'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'search_min_price';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -1306,7 +1306,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'search_max_price'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'search_max_price';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -1343,7 +1343,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'search_min_sq_ft'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'search_min_sq_ft';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -1380,7 +1380,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'search_max_sq_ft'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'search_max_sq_ft';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -1417,7 +1417,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'search_min_lot_size'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'search_min_lot_size';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -1454,7 +1454,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'search_max_lot_size'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'search_max_lot_size';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -1491,7 +1491,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'search_min_year_built'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'search_min_year_built';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -1528,7 +1528,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'search_max_year_built'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'search_max_year_built';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -1565,7 +1565,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'search_property_types'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'search_property_types';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -1602,7 +1602,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'note'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'note';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -1635,7 +1635,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'websites'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'websites';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -1672,7 +1672,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'birthday'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'birthday';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -1709,7 +1709,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'home_purchase_anniversaries'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'home_purchase_anniversaries';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -1742,7 +1742,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'spouse_or_partner'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'spouse_or_partner';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -1779,7 +1779,7 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'category_names'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'category_names';
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -1812,8 +1812,82 @@ SET
     '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'company'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'company';
+
+
 
 END $$;
+/*
+Create Response New -
 
+moxi_works_lead_source_id 	String
+original_lead_source
+is_deleted
+moxi_works_contact_id
+contact_name
+first_name
+middle_name
+last_name
+suffix
+email_addresses
+is_new_contact
+anniversary
+home_purchase_anniversary
+social_media_profiles
+groups
 
+Existing
+agent_uuid* 	String
+moxi_works_agent_id* 	String
+partner_contact_id 	String
+moxi_works_contact_id 	String
+contact_name 	String or null
+gender 	String or null
+label_name 	String or null
+primary_email_address 	String or null
+secondary_email_address 	String or null
+primary_phone_number 	String or null
+secondary_phone_number 	String or null
+phone_numbers 	Array
+home_city 	String or null
+home_state 	String or null
+home_zip 	String or null
+home_country 	String or null
+job_title 	String or null
+occupation 	String or null
+birthday 	Integer or null
+home_purchase_anniversary 	Integer or null
+social_media_profiles 	Array
+property_url 	String or null
+property_mls_id 	String or null
+property_street_address 	String or null
+property_city 	String or null
+property_state 	String or null
+property_zip 	String or null
+property_beds 	String or null
+property_baths 	String or null
+property_list_price 	String or null
+property_listing_status 	String or null
+property_photo_url 	String or null
+search_city 	String or null
+search_state 	String or null
+search_zip 	String or null
+search_min_baths 	String or null
+search_min_beds 	String or null
+search_min_price 	String or null
+search_max_price 	String or null
+search_min_sq_ft 	String or null
+search_max_sq_ft 	String or null
+search_min_lot_size 	String or null
+search_max_lot_size 	String or null
+search_min_year_built 	String or null
+search_max_year_built 	String or null
+search_property_types 	String or null
+note 	String or null
+websites 	Array
+home_purchase_anniversaries 	Array
+company 	String or null
+spouse_or_partner 	String or null
+category_names 	String or null
+groups 	Array
+*/
