@@ -7,7 +7,7 @@ BEGIN
     -- ["#Product1", "#Product2", "#Product3"]
     -- ("Attribute1", "Attribute2", "Attribute3", "Attribute4")
 
--- Existing Contact Create attrs
+-- Existing attrs that need to be associated with API and Roster as Contact attrs. These are from the create request stack.
 UPDATE associated_attrs
 SET
   ui_info = jsonb_set(
@@ -2453,4 +2453,309 @@ WHERE attr_title IN (
     'groups'
 );
 
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{Contact}',
+    (COALESCE(request_type->'Contact', '[]'::jsonb) || '["Update Request"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN ( -- setting the following associated_attrs -> request_type to contain "#Request Type"
+    'agent_uuid',
+    'moxi_works_agent_id',
+    'source_agent_id',
+    'partner_contact_id',
+    'moxi_works_company_id',
+    'parent_company_id',
+    'contact_name',
+    'gender',
+    'label_name',
+    'primary_email_address',
+    'secondary_email_address',
+    'primary_phone_number',
+    'secondary_phone_number',
+    'home_street_address',
+    'home_city',
+    'home_state',
+    'home_zip',
+    'home_country',
+    'job_title',
+    'occupation',
+    'property_url',
+    'property_mls_id',
+    'property_street_address',
+    'property_city',
+    'property_state',
+    'property_zip',
+    'property_beds',
+    'property_baths',
+    'property_list_price',
+    'property_listing_status',
+    'property_photo_url',
+    'search_city',
+    'search_state',
+    'search_zip',
+    'search_min_baths',
+    'search_min_beds',
+    'search_min_price',
+    'search_max_price',
+    'search_min_sq_ft',
+    'search_max_sq_ft',
+    'search_min_lot_size',
+    'search_max_lot_size',
+    'search_min_year_built',
+    'search_max_year_built',
+    'search_property_types',
+    'note',
+    'websites',
+    'birthday',
+    'home_purchase_anniversaries',
+    'company',
+    'spouse_or_partner',
+    'category_names'
+);
+
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{Contact}',
+    (COALESCE(request_type->'Contact', '[]'::jsonb) || '["Update Response"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+    'agent_uuid',
+    'moxi_works_agent_id',
+    'partner_contact_id',
+    'moxi_works_contact_id',
+    'moxi_works_lead_source_id',
+    'moxi_works_origin_lead_source_id',
+    'is_deleted',
+    'contact_name',
+    'first_name',
+    'middle_name',
+    'last_name',
+    'suffix',
+    'gender',
+    'label_name',
+    'primary_email_address',
+    'secondary_email_address',
+    'email_addresses',
+    'primary_phone_number',
+    'secondary_phone_number',
+    'phone_numbers',
+    'home_street_address',
+    'home_city',
+    'home_state',
+    'home_zip',
+    'home_country',
+    'job_title',
+    'occupation',
+    'is_new_contact',
+    'birthday',
+    'anniversary',
+    'home_purchase_anniversary',
+    'social_media_profiles',
+    'property_url',
+    'property_mls_id',
+    'property_street_address',
+    'property_city',
+    'property_state',
+    'property_zip',
+    'property_beds',
+    'property_baths',
+    'property_list_price',
+    'property_listing_status',
+    'property_photo_url',
+    'search_city',
+    'search_state',
+    'search_zip',
+    'search_min_baths',
+    'search_min_beds',
+    'search_min_price',
+    'search_max_price',
+    'search_min_sq_ft',
+    'search_max_sq_ft',
+    'search_min_lot_size',
+    'search_max_lot_size',
+    'search_min_year_built',
+    'search_max_year_built',
+    'search_property_types',
+    'note',
+    'websites',
+    'home_purchase_anniversaries',
+    'company',
+    'spouse_or_partner',
+    'category_names',
+    'groups'
+);
+
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{Contact}',
+    (COALESCE(request_type->'Contact', '[]'::jsonb) || '["Show Request"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+    'agent_uuid',
+    'moxi_works_agent_id',
+    'source_agent_id',
+    'partner_contact_id',
+    'moxi_works_contact_id',
+    'moxi_works_company_id',
+    'parent_company_id'
+);
+
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{Contact}',
+    (COALESCE(request_type->'Contact', '[]'::jsonb) || '["Show Response"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+    'agent_uuid',
+    'moxi_works_agent_id',
+    'partner_contact_id',
+    'moxi_works_contact_id',
+    'moxi_works_lead_source_id',
+    'moxi_works_origin_lead_source_id',
+    'is_deleted',
+    'contact_name',
+    'first_name',
+    'middle_name',
+    'last_name',
+    'suffix',
+    'gender',
+    'label_name',
+    'primary_email_address',
+    'secondary_email_address',
+    'email_addresses',
+    'primary_phone_number',
+    'secondary_phone_number',
+    'phone_numbers',
+    'home_street_address',
+    'home_city',
+    'home_state',
+    'home_zip',
+    'home_country',
+    'job_title',
+    'occupation',
+    'company',
+    'websites',
+    'spouse_or_partner',
+    'is_new_contact',
+    'birthday',
+    'anniversary',
+    'home_purchase_anniversary',
+    'social_media_profiles',
+    'groups',
+    'property_url',
+    'property_mls_id',
+    'property_street_address',
+    'property_city',
+    'property_state',
+    'property_zip',
+    'property_beds',
+    'property_baths',
+    'property_list_price',
+    'property_listing_status',
+    'property_photo_url',
+    'search_city',
+    'search_state',
+    'search_zip',
+    'search_min_baths',
+    'search_min_beds',
+    'search_min_price',
+    'search_max_price',
+    'search_min_sq_ft',
+    'search_max_sq_ft',
+    'search_min_lot_size',
+    'search_max_lot_size',
+    'search_min_year_built',
+    'search_max_year_built',
+    'search_property_types',
+    'note',
+    'websites',
+    'home_purchase_anniversaries',
+    'company',
+    'spouse_or_partner',
+    'category_names',
+    'groups'
+);
+
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{Contact}',
+    (COALESCE(request_type->'Contact', '[]'::jsonb) || '["Index Request"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+    'agent_uuid',
+    'moxi_works_agent_id',
+    'source_agent_id',
+    'moxi_works_company_id',
+    'parent_company_id',
+    'contact_name',
+    'page_number',
+    'timestamps_only'
+);
+
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{Contact}',
+    (COALESCE(request_type->'Contact', '[]'::jsonb) || '["Index Response"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+    'page_number',
+    'total_pages',
+    'contacts'
+);
+
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{Contact}',
+    (COALESCE(request_type->'Contact', '[]'::jsonb) || '["Delete Request"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+    'agent_uuid',
+    'moxi_works_agent_id',
+    'source_agent_id',
+    'partner_contact_id',
+    'moxi_works_company_id',
+    'parent_company_id'
+);
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{Contact}',
+    (COALESCE(request_type->'Contact', '[]'::jsonb) || '["Delete Response"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+    'status',
+    'deleted',
+    'messages'
+);
+
 END $$;
+
+new -
+'only_business_contacts',
+'email_address',
+'phone_number',
+'updated_since',
+'result'
