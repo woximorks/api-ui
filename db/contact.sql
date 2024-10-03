@@ -46,8 +46,6 @@ WHERE attr_title IN (
     'secondary_email_address'
 );
 
-
-
 UPDATE associated_attrs
 SET
   associated_endpoints = jsonb_set( -- setting the following associated_endpoints to have Brand associations within the Endpoints Array
@@ -67,8 +65,6 @@ WHERE attr_title IN (
     'parent_company_id',
     'company'
 );
-
-
 
 UPDATE associated_attrs
 SET 
@@ -91,18 +87,18 @@ SET
         )
       )
     ),
-    '{Company}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    '{Contact}', -- Set Product associations to the attribute association on a local (endpoint specific) level
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'Company', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+        COALESCE(ui_info->'Contact', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
       )
     )
   ),
   associated_endpoints = jsonb_set(
     associated_endpoints,
     '{Endpoints}',
-    '["Company"]' -- Set attribute association to the endpoint on a global level
+    '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'contact_name';
@@ -128,18 +124,18 @@ SET
         )
       )
     ),
-    '{Company}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    '{Contact}', -- Set Product associations to the attribute association on a local (endpoint specific) level
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'Company', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+        COALESCE(ui_info->'Contact', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
       )
     )
   ),
   associated_endpoints = jsonb_set(
     associated_endpoints,
     '{Endpoints}',
-    '["Company"]' -- Set attribute association to the endpoint on a global level
+    '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'primary_phone_number';
@@ -165,18 +161,18 @@ SET
         )
       )
     ),
-    '{Company}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    '{Contact}', -- Set Product associations to the attribute association on a local (endpoint specific) level
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'Company', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+        COALESCE(ui_info->'Contact', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
       )
     )
   ),
   associated_endpoints = jsonb_set(
     associated_endpoints,
     '{Endpoints}',
-    '["Company"]' -- Set attribute association to the endpoint on a global level
+    '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'secondary_phone_number';
@@ -198,18 +194,18 @@ SET
         )
       )
     ),
-    '{Company}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    '{Contact}', -- Set Product associations to the attribute association on a local (endpoint specific) level
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'Company', '[]'::jsonb) || '["API"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+        COALESCE(ui_info->'Contact', '[]'::jsonb) || '["API"]'::jsonb -- Endpoint name, Product name, ie API, Roster
       )
     )
   ),
   associated_endpoints = jsonb_set(
     associated_endpoints,
     '{Endpoints}',
-    '["Company"]' -- Set attribute association to the endpoint on a global level
+    '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'moxi_works_lead_source_id';
@@ -231,18 +227,18 @@ SET
         )
       )
     ),
-    '{Company}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    '{Contact}', -- Set Product associations to the attribute association on a local (endpoint specific) level
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'Company', '[]'::jsonb) || '["API"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+        COALESCE(ui_info->'Contact', '[]'::jsonb) || '["API"]'::jsonb -- Endpoint name, Product name, ie API, Roster
       )
     )
   ),
   associated_endpoints = jsonb_set(
     associated_endpoints,
     '{Endpoints}',
-    '["Company"]' -- Set attribute association to the endpoint on a global level
+    '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'original_lead_source';
@@ -1967,18 +1963,18 @@ SET
         )
       )
     ),
-    '{Company}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    '{Contact}', -- Set Product associations to the attribute association on a local (endpoint specific) level
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'Company', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+        COALESCE(ui_info->'Contact', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
       )
     )
   ),
   associated_endpoints = jsonb_set(
     associated_endpoints,
     '{Endpoints}',
-    '["Company"]' -- Set attribute association to the endpoint on a global level
+    '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'first_name';
@@ -2004,18 +2000,18 @@ SET
         )
       )
     ),
-    '{Company}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    '{Contact}', -- Set Product associations to the attribute association on a local (endpoint specific) level
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'Company', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+        COALESCE(ui_info->'Contact', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
       )
     )
   ),
   associated_endpoints = jsonb_set(
     associated_endpoints,
     '{Endpoints}',
-    '["Company"]' -- Set attribute association to the endpoint on a global level
+    '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'middle_name';
@@ -2041,18 +2037,18 @@ SET
         )
       )
     ),
-    '{Company}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    '{Contact}', -- Set Product associations to the attribute association on a local (endpoint specific) level
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'Company', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+        COALESCE(ui_info->'Contact', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
       )
     )
   ),
   associated_endpoints = jsonb_set(
     associated_endpoints,
     '{Endpoints}',
-    '["Company"]' -- Set attribute association to the endpoint on a global level
+    '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'last_name';
@@ -2078,18 +2074,18 @@ SET
         )
       )
     ),
-    '{Company}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    '{Contact}', -- Set Product associations to the attribute association on a local (endpoint specific) level
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'Company', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+        COALESCE(ui_info->'Contact', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
       )
     )
   ),
   associated_endpoints = jsonb_set(
     associated_endpoints,
     '{Endpoints}',
-    '["Company"]' -- Set attribute association to the endpoint on a global level
+    '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'suffix';
@@ -2115,18 +2111,18 @@ SET
         )
       )
     ),
-    '{Company}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    '{Contact}', -- Set Product associations to the attribute association on a local (endpoint specific) level
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'Company', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+        COALESCE(ui_info->'Contact', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
       )
     )
   ),
   associated_endpoints = jsonb_set(
     associated_endpoints,
     '{Endpoints}',
-    '["Company"]' -- Set attribute association to the endpoint on a global level
+    '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'email_addresses';
@@ -2152,18 +2148,18 @@ SET
         )
       )
     ),
-    '{Company}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    '{Contact}', -- Set Product associations to the attribute association on a local (endpoint specific) level
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'Company', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+        COALESCE(ui_info->'Contact', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
       )
     )
   ),
   associated_endpoints = jsonb_set(
     associated_endpoints,
     '{Endpoints}',
-    '["Company"]' -- Set attribute association to the endpoint on a global level
+    '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'is_new_contact';
@@ -2189,18 +2185,18 @@ SET
         )
       )
     ),
-    '{Company}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    '{Contact}', -- Set Product associations to the attribute association on a local (endpoint specific) level
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'Company', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+        COALESCE(ui_info->'Contact', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
       )
     )
   ),
   associated_endpoints = jsonb_set(
     associated_endpoints,
     '{Endpoints}',
-    '["Company"]' -- Set attribute association to the endpoint on a global level
+    '["Contact"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'anniversary';
@@ -2316,196 +2312,145 @@ SET
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'groups';
 
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{Contact}',
+    (COALESCE(request_type->'Contact', '[]'::jsonb) || '["Create Request"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+    'agent_uuid',
+    'moxi_works_agent_id',
+    'source_agent_id',
+    'partner_contact_id',
+    'contact_name',
+    'primary_email_address',
+    'secondary_email_address',
+    'primary_phone_number',
+    'secondary_phone_number',
+    'moxi_works_company_id',
+    'parent_company_id',
+    'moxi_works_lead_source_id',
+    'original_lead_source',
+    'gender',
+    'label_name',
+    'home_street_address',
+    'home_city',
+    'home_state',
+    'home_zip',
+    'home_country',
+    'is_not_lead',
+    'skip_agent_notification',
+    'job_title',
+    'occupation',
+    'property_url',
+    'property_mls_id',
+    'property_street_address',
+    'property_city',
+    'property_state',
+    'property_zip',
+    'property_beds',
+    'property_baths',
+    'property_list_price',
+    'property_listing_status',
+    'property_photo_url',
+    'search_city',
+    'search_state',
+    'search_zip',
+    'search_min_baths',
+    'search_min_beds',
+    'search_min_price',
+    'search_max_price',
+    'search_min_sq_ft',
+    'search_max_sq_ft',
+    'search_min_lot_size',
+    'search_max_lot_size',
+    'search_min_year_built',
+    'search_max_year_built',
+    'search_property_types',
+    'note',
+    'websites',
+    'birthday',
+    'home_purchase_anniversaries',
+    'company',
+    'spouse_or_partner',
+    'category_names'
+);
+
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{Contact}',
+    (COALESCE(request_type->'Contact', '[]'::jsonb) || '["Create Response"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+    'agent_uuid',
+    'moxi_works_agent_id',
+    'moxi_works_lead_source_id',
+    'original_lead_source',
+    'is_deleted',
+    'partner_contact_id',
+    'moxi_works_contact_id',
+    'contact_name',
+    'first_name',
+    'middle_name',
+    'last_name',
+    'suffix',
+    'gender',
+    'label_name',
+    'primary_email_address',
+    'secondary_email_address',
+    'email_addresses',
+    'primary_phone_number',
+    'secondary_phone_number',
+    'phone_numbers',
+    'home_city',
+    'home_state',
+    'home_zip',
+    'home_country',
+    'job_title',
+    'occupation',
+    'is_new_contact',
+    'birthday',
+    'anniversary',
+    'home_purchase_anniversary',
+    'social_media_profiles',
+    'property_url',
+    'property_mls_id',
+    'property_street_address',
+    'property_city',
+    'property_state',
+    'property_zip',
+    'property_beds',
+    'property_baths',
+    'property_list_price',
+    'property_listing_status',
+    'property_photo_url',
+    'search_city',
+    'search_state',
+    'search_zip',
+    'search_min_baths',
+    'search_min_beds',
+    'search_min_price',
+    'search_max_price',
+    'search_min_sq_ft',
+    'search_max_sq_ft',
+    'search_min_lot_size',
+    'search_max_lot_size',
+    'search_min_year_built',
+    'search_max_year_built',
+    'search_property_types',
+    'note',
+    'websites',
+    'home_purchase_anniversaries',
+    'company',
+    'spouse_or_partner',
+    'category_names',
+    'groups'
+);
+
 END $$;
-
-"agent_uuid',
-    "moxi_works_agent_id',
-    "source_agent_id',
-    "partner_contact_id',
-    "contact_name',
-    "primary_email_address',
-    "secondary_email_address',
-    "primary_phone_number',
-    "secondary_phone_number',
-    "moxi_works_company_id',
-    "parent_company_id',
-    "moxi_works_lead_source_id',
-    "original_lead_source',
-    "gender',
-    "label_name',
-    "home_street_address',
-    "home_city',
-    "home_state',
-    "home_zip',
-    "home_country',
-    "is_not_lead',
-    "skip_agent_notification',
-    "job_title',
-    "occupation',
-    "property_url',
-    "property_mls_id',
-    "property_street_address',
-    "property_city',
-    "property_state',
-    "property_zip',
-    "property_beds',
-    "property_baths',
-    "property_list_price',
-    "property_listing_status',
-    "property_photo_url',
-    "search_city',
-    "search_state',
-    "search_zip',
-    "search_min_baths',
-    "search_min_beds',
-    "search_min_price',
-    "search_max_price',
-    "search_min_sq_ft',
-    "search_max_sq_ft',
-    "search_min_lot_size',
-    "search_max_lot_size',
-    "search_min_year_built',
-    "search_max_year_built',
-    "search_property_types',
-    "note',
-    "websites',
-    "birthday',
-    "home_purchase_anniversaries',
-    "company',
-    "spouse_or_partner',
-    "category_names',
-
-
-    #--Response
-    "agent_uuid',
-    "moxi_works_agent_id',
-    "moxi_works_lead_source_id',
-    "original_lead_source',
-    "is_deleted',
-    "partner_contact_id',
-    "moxi_works_contact_id',
-    "contact_name',
-    "first_name',
-    "middle_name',
-    "last_name',
-    "suffix',
-    "gender',
-    "label_name',
-    "primary_email_address',
-    "secondary_email_address',
-    "email_addresses',
-    "primary_phone_number',
-    "secondary_phone_number',
-    "phone_numbers',
-    "home_city',
-    "home_state',
-    "home_zip',
-    "home_country',
-    "job_title',
-    "occupation',
-    "is_new_contact',
-    "birthday',
-    "anniversary',
-    "home_purchase_anniversary',
-    "social_media_profiles',
-    "property_url',
-    "property_mls_id',
-    "property_street_address',
-    "property_city',
-    "property_state',
-    "property_zip',
-    "property_beds',
-    "property_baths',
-    "property_list_price',
-    "property_listing_status',
-    "property_photo_url',
-    "search_city',
-    "search_state',
-    "search_zip',
-    "search_min_baths',
-    "search_min_beds',
-    "search_min_price',
-    "search_max_price',
-    "search_min_sq_ft',
-    "search_max_sq_ft',
-    "search_min_lot_size',
-    "search_max_lot_size',
-    "search_min_year_built',
-    "search_max_year_built',
-    "search_property_types',
-    "note',
-    "websites',
-    "home_purchase_anniversaries',
-    "company',
-    "spouse_or_partner',
-    "category_names',
-    "groups'
-
-
-/*
-
-agent_uuid* 	String
-moxi_works_agent_id* 	String
-partner_contact_id 	String
-moxi_works_contact_id 	String
-contact_name 	String or null
-gender 	String or null
-label_name 	String or null
-primary_email_address 	String or null
-secondary_email_address 	String or null
-primary_phone_number 	String or null
-secondary_phone_number 	String or null
-phone_numbers 	Array
-home_city 	String or null
-home_state 	String or null
-home_zip 	String or null
-home_country 	String or null
-job_title 	String or null
-occupation 	String or null
-birthday 	Integer or null
-home_purchase_anniversary 	Integer or null
-social_media_profiles 	Array
-property_url 	String or null
-property_mls_id 	String or null
-property_street_address 	String or null
-property_city 	String or null
-property_state 	String or null
-property_zip 	String or null
-property_beds 	String or null
-property_baths 	String or null
-property_list_price 	String or null
-property_listing_status 	String or null
-property_photo_url 	String or null
-search_city 	String or null
-search_state 	String or null
-search_zip 	String or null
-search_min_baths 	String or null
-search_min_beds 	String or null
-search_min_price 	String or null
-search_max_price 	String or null
-search_min_sq_ft 	String or null
-search_max_sq_ft 	String or null
-search_min_lot_size 	String or null
-search_max_lot_size 	String or null
-search_min_year_built 	String or null
-search_max_year_built 	String or null
-search_property_types 	String or null
-note 	String or null
-websites 	Array
-home_purchase_anniversaries 	Array
-company 	String or null
-spouse_or_partner 	String or null
-category_names 	String or null
-groups 	Array
-*/
-
-
-
-Show Request - 
-agent_uuid* 	String 	255
-moxi_works_agent_id* 	String 	255
-source_agent_id* 	String 	255
-partner_contact_id † 	String 	255
-moxi_works_contact_id † 	String 	255
-moxi_works_company_id 	String 	
-parent_company_id 	String 	255
