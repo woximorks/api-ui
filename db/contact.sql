@@ -2094,20 +2094,16 @@ UPDATE associated_attrs
 SET 
   ui_info = jsonb_set(
     jsonb_set(
-      jsonb_set(
         jsonb_set(
           ui_info, -- The corresponding column name of the field to be updated
-        '{APIText}', -- To add text information about the attribute and how it associates to a product
-          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'Only email fields present in this Contact record will be returned. This is an object - [key, address].'))
-      ), -- APIText, RosterText, and the actual string value. COALESCE allows the data to append to existing data without overwriting.
       '{EngageText}',
-          to_jsonb((COALESCE(ui_info->>'EngageText', '') || 'These email addresses correspond to agent created Contact entities.'))
+          to_jsonb((COALESCE(ui_info->>'EngageText', '') || 'These email addresses correspond to agent created Contact entities. Only email fields present in this Contact record will be returned. This is an object - [key, address].')) -- This could be added to actual contact array at some point. Removing conflicting API association for now.
       ),
       '{Products}',
       (
         SELECT jsonb_agg(DISTINCT value)
         FROM jsonb_array_elements_text(
-          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- The product name, ie API, Roster
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["Engage"]'::jsonb -- The product name, ie API, Roster
         )
       )
     ),
@@ -2115,7 +2111,7 @@ SET
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'Contact', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+        COALESCE(ui_info->'Contact', '[]'::jsonb) || '["Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
       )
     )
   ),
@@ -2130,21 +2126,18 @@ WHERE attr_title = 'email_addresses';
 UPDATE associated_attrs
 SET 
   ui_info = jsonb_set(
-    jsonb_set(
       jsonb_set(
         jsonb_set(
           ui_info, -- The corresponding column name of the field to be updated
         '{APIText}', -- To add text information about the attribute and how it associates to a product
           to_jsonb((COALESCE(ui_info->>'APIText', '') || 'Indicates if the contact was recently added to the Agent’s database.'))
       ), -- APIText, RosterText, and the actual string value. COALESCE allows the data to append to existing data without overwriting.
-      '{EngageText}',
-          to_jsonb((COALESCE(ui_info->>'EngageText', '') || ''))
-      ),
+
       '{Products}',
       (
         SELECT jsonb_agg(DISTINCT value)
         FROM jsonb_array_elements_text(
-          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- The product name, ie API, Roster
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API"]'::jsonb -- The product name, ie API, Roster
         )
       )
     ),
@@ -2152,7 +2145,7 @@ SET
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'Contact', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+        COALESCE(ui_info->'Contact', '[]'::jsonb) || '["API"]'::jsonb -- Endpoint name, Product name, ie API, Roster
       )
     )
   ),
@@ -2753,9 +2746,11 @@ WHERE attr_title IN (
 
 END $$;
 
+/*
 new -
 'only_business_contacts',
 'email_address',
 'phone_number',
 'updated_since',
 'result'
+*/
