@@ -2744,13 +2744,169 @@ WHERE attr_title IN (
     'messages'
 );
 
-END $$;
+UPDATE associated_attrs -- The name of the database table
+SET 
+  ui_info = jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, -- The corresponding column name of the field to be updated
+        '{APIText}', -- To add text information about the attribute and how it associates to a product
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'Whether to only include Contact records for contacts that are neither considered personal contacts nor work collaborators in the payload response. By default all Contact records will be returned. Use the personal_contact and collaborator response attributes to determine the status of any given contact.'))
+      ), -- APIText, RosterText, and the actual string value. COALESCE allows the data to append to existing data without overwriting.
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API"]'::jsonb -- The product name, ie API, Roster
+        )
+      )
+    ),
+    '{#Endpoint}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Contact', '[]'::jsonb) || '["API"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Company"]' -- Set attribute association to the endpoint on a global level
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'only_business_contacts'; -- Attribute name, ie agent_uuid, email_addresses, etc
 
-/*
-new -
-'only_business_contacts',
-'email_address',
-'phone_number',
-'updated_since',
-'result'
-*/
+UPDATE associated_attrs -- The name of the database table
+SET 
+  ui_info = jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, -- The corresponding column name of the field to be updated
+        '{EngageText}', -- To add text information about the attribute and how it associates to a product
+          to_jsonb((COALESCE(ui_info->>'EngageText', '') || 'An email address associated with the Contact record.'))
+      ), -- APIText, RosterText, and the actual string value. COALESCE allows the data to append to existing data without overwriting.
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["Engage"]'::jsonb -- The product name, ie API, Roster
+        )
+      )
+    ),
+    '{#Endpoint}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Contact', '[]'::jsonb) || '["Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Company"]' -- Set attribute association to the endpoint on a global level
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'email_address'; -- Attribute name, ie agent_uuid, email_addresses, etc
+
+UPDATE associated_attrs -- The name of the database table
+SET 
+  ui_info = jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, -- The corresponding column name of the field to be updated
+        '{EngageText}', -- To add text information about the attribute and how it associates to a product
+          to_jsonb((COALESCE(ui_info->>'EngageText', '') || 'A phone number associated with the Contact record.'))
+      ), -- APIText, RosterText, and the actual string value. COALESCE allows the data to append to existing data without overwriting.
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["Engage"]'::jsonb -- The product name, ie API, Roster
+        )
+      )
+    ),
+    '{#Endpoint}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Contact', '[]'::jsonb) || '["Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Company"]' -- Set attribute association to the endpoint on a global level
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'phone_number'; -- Attribute name, ie agent_uuid, email_addresses, etc
+
+UPDATE associated_attrs -- The name of the database table
+SET 
+  ui_info = jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, -- The corresponding column name of the field to be updated
+        '{EngageText}', -- To add text information about the attribute and how it associates to a product
+          to_jsonb((COALESCE(ui_info->>'EngageText', '') || 'Paged responses of all Contact objects updated after this Unix timestamp will be returned in the response.'))
+      ), -- APIText, RosterText, and the actual string value. COALESCE allows the data to append to existing data without overwriting.
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["Engage"]'::jsonb -- The product name, ie API, Roster
+        )
+      )
+    ),
+    '{#Endpoint}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Contact', '[]'::jsonb) || '["Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Company"]' -- Set attribute association to the endpoint on a global level
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'updated_since'; -- Attribute name, ie agent_uuid, email_addresses, etc
+
+UPDATE associated_attrs -- The name of the database table
+SET 
+  ui_info = jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, -- The corresponding column name of the field to be updated
+        '{EngageText}', -- To add text information about the attribute and how it associates to a product
+          to_jsonb((COALESCE(ui_info->>'EngageText', '') || 'The resulting Contact object associated with this Delete request.'))
+      ), -- APIText, RosterText, and the actual string value. COALESCE allows the data to append to existing data without overwriting.
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["Engage"]'::jsonb -- The product name, ie API, Roster
+        )
+      )
+    ),
+    '{#Endpoint}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Contact', '[]'::jsonb) || '["Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Company"]' -- Set attribute association to the endpoint on a global level
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'result'; -- Attribute name, ie agent_uuid, email_addresses, etc
+
+END $$;
