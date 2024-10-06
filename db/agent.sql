@@ -1391,13 +1391,9 @@ WHERE attr_title = 'lead_routing_email_address';
 UPDATE associated_attrs
 SET 
   ui_info = jsonb_set(
-    jsonb_set(
       jsonb_set(
         jsonb_set(
-          ui_info, 
-          '{APIText}',
-          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'This can be null if there is no data for this attribute.'))
-        ), 
+          ui_info,
         '{RosterText}',
           to_jsonb((COALESCE(ui_info->>'RosterText', '') || 'This is the business title of the agent.'))
       ), 
@@ -1405,7 +1401,7 @@ SET
       (
         SELECT jsonb_agg(DISTINCT value)
         FROM jsonb_array_elements_text(
-          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Roster"]'::jsonb
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["Roster"]'::jsonb
         )
       )
     ),
