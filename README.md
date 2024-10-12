@@ -44,6 +44,7 @@
 * Authentication
     - Devise Gem Implemented, users/sign_up to create an account
         - Account must be approved by someone with DB access before user can actually log in
+        - Once approved, user can make changes to associated_attrs from the front end as necessary using associated_attrs index
 
 * Update Notes
     

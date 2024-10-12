@@ -1,0 +1,24 @@
+<h1>Associated Attribute Details</h1>
+
+<p>
+  <strong>Request Type:</strong>
+  <%= @associated_attr.request_type.to_json %>
+</p>
+
+<p>
+  <strong>UI Info:</strong>
+  <%= @associated_attr.ui_info.to_json %>
+</p>
+
+<p>
+  <strong>Associated Endpoints:</strong>
+  <%= @associated_attr.associated_endpoints.to_json %>
+</p>
+
+<p>
+  <strong>Attribute Title:</strong>
+  <%= @associated_attr.attr_title %>
+</p>
+
+<%= link_to 'Edit', edit_associated_attr_path(@associated_attr) %> |
+<%= link_to 'Back', associated_attrs_path %>

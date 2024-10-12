@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  resources :associated_attrs
   get 'pages/index'
   get 'home', to: 'pages#home'
   get 'search', to: 'pages#index'
@@ -17,6 +18,8 @@ Rails.application.routes.draw do
   get 'listing', to: 'pages#listing'
   get 'office', to: 'pages#office'
   get 'index', to: 'pages#index'
+
+
 
   namespace :api do
     get ':attr_title', to: 'associated_attrs#show'

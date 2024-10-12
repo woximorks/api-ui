@@ -1,0 +1,37 @@
+<%= form_with(model: @associated_attr, local: true) do |form| %>
+    <% if @associated_attr.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@associated_attr.errors.count, "error") %> prohibited this associated_attr from being saved:</h2>
+        <ul>
+          <% @associated_attr.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="field">
+      <%= form.label :request_type %>
+      <%= form.text_area :request_type, value: JSON.pretty_generate(@associated_attr.request_type), rows: 5 %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :ui_info %>
+      <%= form.text_area :ui_info, value: JSON.pretty_generate(@associated_attr.ui_info), rows: 5 %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :associated_endpoints %>
+      <%= form.text_area :associated_endpoints, value: JSON.pretty_generate(@associated_attr.associated_endpoints), rows: 5 %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :attr_title %>
+      <%= form.text_field :attr_title, value: @associated_attr.attr_title %>
+    </div>
+  
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+  
