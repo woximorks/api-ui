@@ -69,3 +69,4 @@ end
 gem 'bootstrap', '~> 5.3.3'
 gem 'dartsass-sprockets'
 gem 'pg_search'
+gem "devise", "~> 4.9"

@@ -41,7 +41,9 @@
             - attr_title: The title of the attribute, as it can be called within the API and displays within the documentation
             - created and updated columns are self explanatory
     
-    -
+* Authentication
+    - Devise Gem Implemented, users/sign_up to create an account
+        - Account must be approved by someone with DB access before user can actually log in
 
 * Update Notes
     
