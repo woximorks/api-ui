@@ -16,8 +16,6 @@ Rails.application.routes.draw do
   get 'listing', to: 'pages#listing'
   get 'office', to: 'pages#office'
   get 'index', to: 'pages#index'
-  devise_for :users
-
 
   namespace :api do
     get ':attr_title', to: 'associated_attrs#show'
