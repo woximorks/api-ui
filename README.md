@@ -11,8 +11,6 @@ This project demonstrates the available endpoints in the MoxiCloud API and how t
 
 ## Features and Information
 
-### Endpoints
-
 - **`/index`**
   - Search box checks against the database within `associated_attr` -> [attr_title, ui_info, associated_endpoints]. 
     - This scope can be updated in the `associated_attr.rb` model file.
