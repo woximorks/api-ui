@@ -56,7 +56,8 @@ This project demonstrates the available endpoints in the MoxiCloud API and how t
 
 ## Authentication
 
-- **Devise Gem Implemented**
+- **Devise Gem**
+  - [Devise](https://github.com/heartcombo/devise)
   - Users can sign up at `/users/sign_up` to create an account.
   - Accounts must be approved by someone with database access before the user can log in.
   - Once approved, users can make changes to `associated_attrs` from the front end as necessary using the `associated_attrs` index.
