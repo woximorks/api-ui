@@ -8,8 +8,6 @@ This project demonstrates the available endpoints in the MoxiCloud API and how t
 - [API Support](#api-support)
 - [Database](#database)
 - [Authentication](#authentication)
-- [Update Notes](#update-notes)
-- [To Do](#to-do)
 
 ## Features and Information
 
