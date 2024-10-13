@@ -1,1 +1,10 @@
-<%= render "shared/event_associated_attrs" %>
+<div class="endpoint_title">
+  <h1>Event</h1>
+</div>
+
+<div class="associated_attrs">
+  <%= render_product_association('Event', 'API') %>
+  <%= render_product_association('Event', 'Engage') %>
+</div>
+
+<%= render 'shared/nav' %>
