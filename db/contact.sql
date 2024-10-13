@@ -2761,7 +2761,7 @@ SET
         )
       )
     ),
-    '{#Endpoint}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    '{Contact}', -- Set Product associations to the attribute association on a local (endpoint specific) level
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
@@ -2794,7 +2794,7 @@ SET
         )
       )
     ),
-    '{#Endpoint}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    '{Contact}', -- Set Product associations to the attribute association on a local (endpoint specific) level
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
@@ -2893,7 +2893,7 @@ SET
         )
       )
     ),
-    '{#Endpoint}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    '{Contact}', -- Set Product associations to the attribute association on a local (endpoint specific) level
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
@@ -2908,5 +2908,43 @@ SET
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title = 'result'; -- Attribute name, ie agent_uuid, email_addresses, etc
+
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{Contact}',
+    (COALESCE(request_type->'Contact', '[]'::jsonb) || '["Index Request"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+    'agent_uuid',
+    'moxi_works_agent_id',
+    'source_agent_id',
+    'moxi_works_company_id',
+    'parent_company_id',
+    'contact_name',
+    'email_address',
+    'phone_number',
+    'updated_since',
+    'page_number',
+    'only_business_contacts',
+    'timestamps_only'
+);
+
+/*
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{Contact}',
+    (COALESCE(request_type->'Contact', '[]'::jsonb) || '["Index Response"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+    '',
+    ''
+);
+*/
 
 END $$;

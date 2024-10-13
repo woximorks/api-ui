@@ -1,1 +1,10 @@
-<%= render "shared/emailcampaign_associated_attrs" %>
+<div class="endpoint_title">
+  <h1>EmailCampaign</h1>
+</div>
+
+<div class="associated_attrs">
+  <%= render_product_association('EmailCampaign', 'API') %>
+  <%= render_product_association('EmailCampaign', 'Engage') %>
+</div>
+
+<%= render 'shared/nav' %>
