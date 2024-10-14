@@ -208,11 +208,5 @@ WHERE attr_title IN ( -- setting the following associated_attrs -> request_type 
     'ListingImages'
 );
 
-#Show
-    #--Request
-    
-
-    #--Response
-    
     
 END $$;
