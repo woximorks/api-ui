@@ -1,6 +1,5 @@
 <nav class="main_nav">
   <ul class="nav_links">
-    <li><%= link_to "Search", "search" %></li>
     <li><%= link_to "ActionLog", "actionlog" %></li>
     <li><%= link_to "Agent", "agent" %></li>
     <li><%= link_to "Brand", "brand" %></li>
@@ -14,6 +13,7 @@
     <li><%= link_to "LeadSource", "leadsource" %></li>
   </ul>
   <div class="nav_user">
+    <%= link_to "Home", "search" %>
     <%= render "shared/navuser" %>
   </div>
 </nav>
