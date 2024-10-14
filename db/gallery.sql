@@ -178,4 +178,41 @@ WHERE attr_title IN (  -- setting the following associated_attrs -> associated_e
   'parent_company_id'
 );
 
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{Gallery}',
+    (COALESCE(request_type->'Gallery', '[]'::jsonb) || '["Show Request"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN ( -- setting the following associated_attrs -> request_type to contain "#Request Type"
+    'agent_uuid',
+    'moxi_works_agent_id',
+    'source_agent_id',
+    'moxi_works_company_id',
+    'parent_company_id'
+);
+
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{Gallery}',
+    (COALESCE(request_type->'Gallery', '[]'::jsonb) || '["Show Response"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN ( -- setting the following associated_attrs -> request_type to contain "#Request Type"
+    'ListingID',
+    'ListOfficeAOR',
+    'ListingImages'
+);
+
+#Show
+    #--Request
+    
+
+    #--Response
+    
+    
 END $$;

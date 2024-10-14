@@ -19,10 +19,10 @@ SET
     )
   )
 WHERE attr_title IN (
-  "#Attribute1",
-  "#Attribute2",
-  "#Attribute3",
-  "#Attribute4"
+  '#Attribute1',
+  '#Attribute2',
+  '#Attribute3',
+  '#Attribute4'
 );
 
   -- Set Product associations to the attribute on a global level

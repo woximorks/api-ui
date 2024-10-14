@@ -1,1 +1,11 @@
-<%= render "shared/group_associated_attrs" %>
+<div class="endpoint_title">
+  <h1>Group</h1>
+</div>
+
+<div class="associated_attrs">
+  <%= render_product_association('Group', 'API') %>
+  <%= render_product_association('Group', 'Engage') %>
+  <%= render_product_association('Group', 'Roster') %>
+</div>
+
+<%= render 'shared/nav' %>
