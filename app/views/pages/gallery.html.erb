@@ -1,1 +1,10 @@
-<%= render "shared/gallery_associated_attrs" %>
+<div class="endpoint_title">
+  <h1>Gallery</h1>
+</div>
+
+<div class="associated_attrs">
+  <%= render_product_association('Gallery', 'API') %>
+  <%= render_product_association('Gallery', 'Roster') %>
+</div>
+
+<%= render 'shared/nav' %>

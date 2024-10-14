@@ -2686,25 +2686,6 @@ SET
   request_type = jsonb_set(
     request_type,
     '{Contact}',
-    (COALESCE(request_type->'Contact', '[]'::jsonb) || '["Index Request"]'::jsonb)
-  ),
-  updated_at = CURRENT_TIMESTAMP
-WHERE attr_title IN (
-    'agent_uuid',
-    'moxi_works_agent_id',
-    'source_agent_id',
-    'moxi_works_company_id',
-    'parent_company_id',
-    'contact_name',
-    'page_number',
-    'timestamps_only'
-);
-
-UPDATE associated_attrs
-SET
-  request_type = jsonb_set(
-    request_type,
-    '{Contact}',
     (COALESCE(request_type->'Contact', '[]'::jsonb) || '["Index Response"]'::jsonb)
   ),
   updated_at = CURRENT_TIMESTAMP
@@ -2808,7 +2789,7 @@ SET
     '["Company"]' -- Set attribute association to the endpoint on a global level
   ),
   updated_at = CURRENT_TIMESTAMP
-WHERE attr_title = 'email_address'; -- Attribute name, ie agent_uuid, email_addresses, etc
+WHERE attr_title = 'email_address'; 
 
 UPDATE associated_attrs -- The name of the database table
 SET 
@@ -2932,7 +2913,29 @@ WHERE attr_title IN (
     'timestamps_only'
 );
 
+
 /*
+UPDATE associated_attrs
+SET
+  request_type = jsonb_set(
+    request_type,
+    '{Contact}',
+    (COALESCE(request_type->'Contact', '[]'::jsonb) || '["Index Request"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+    'agent_uuid',
+    'moxi_works_agent_id',
+    'source_agent_id',
+    'moxi_works_company_id',
+    'parent_company_id',
+    'contact_name',
+    'page_number',
+    'timestamps_only'
+);
+
+
+
 UPDATE associated_attrs
 SET
   request_type = jsonb_set(
@@ -2947,4 +2950,80 @@ WHERE attr_title IN (
 );
 */
 
+UPDATE associated_attrs
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, -- The corresponding column name of the field to be updated
+        '{APIText}', -- To add text information about the attribute and how it associates to a product
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || '[key, number]'))
+      ), -- APIText, RosterText, and the actual string value. COALESCE allows the data to append to existing data without overwriting.
+      '{EngageText}',
+          to_jsonb((COALESCE(ui_info->>'EngageText', '') || 'These phone numbers correspond to agent created Contact entities. Only phone fields present in this Contact record will be returned.'))
+      ),
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- The product name, ie API, Roster
+        )
+      )
+    ),
+    '{Contact}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Contact', '[]'::jsonb) || '["API", "Engage"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Contact"]' -- Set attribute association to the endpoint on a global level
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'phone_numbers';
+
+UPDATE associated_attrs -- The name of the database table
+SET 
+  ui_info = jsonb_set(
+      jsonb_set(
+        jsonb_set(
+          ui_info, -- The corresponding column name of the field to be updated
+        '{APIText}', -- To add text information about the attribute and how it associates to a product
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'This is used to keep track of the original lead source for this Contact record. This field will not be displayed in MoxiEngage, and is for the parter’s own tracking purposes. This key will be associated with valid moxi_works_lead_source_id. Send a LeadSource index request for a full list of applicable lead sources and their ids.'))
+      ), -- APIText, RosterText, and the actual string value. COALESCE allows the data to append to existing data without overwriting.
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API"]'::jsonb -- The product name, ie API, Roster
+        )
+      )
+    ),
+    '{Contact}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'Contact', '[]'::jsonb) || '["API"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["Company"]' -- Set attribute association to the endpoint on a global level
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'moxi_works_origin_lead_source_id'; -- Attribute name, ie agent_uuid, email_addresses, etc
+
 END $$;
+
+only_business_contacts
+
+total_pages
+contacts
+result

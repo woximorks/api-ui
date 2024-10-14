@@ -689,6 +689,105 @@ SET
 WHERE attr_title = 'nn_property_type';
 
 
+UPDATE associated_attrs -- The name of the database table
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+      jsonb_set(
+          ui_info, -- The corresponding column name of the field to be updated
+        '{APIText}', -- To add text information about the attribute and how it associates to a product
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || 'Boolean representing whether email subscription is a listing announcement for listed homes.'))
+      ), -- APIText, RosterText, and the actual string value. COALESCE allows the data to append to existing data without overwriting
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API"]'::jsonb -- The product name, ie API, Roster
+        )
+      )
+    ),
+    '{EmailCampaign}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'EmailCampaign', '[]'::jsonb) || '["API"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["EmailCampaign"]' -- Set attribute association to the endpoint on a global level
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'listed';
+
+UPDATE associated_attrs -- The name of the database table
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+      jsonb_set(
+          ui_info, -- The corresponding column name of the field to be updated
+        '{APIText}', -- To add text information about the attribute and how it associates to a product
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || ''))
+      ), -- APIText, RosterText, and the actual string value. COALESCE allows the data to append to existing data without overwriting
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API"]'::jsonb -- The product name, ie API, Roster
+        )
+      )
+    ),
+    '{EmailCampaign}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'EmailCampaign', '[]'::jsonb) || '["API"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["EmailCampaign"]' -- Set attribute association to the endpoint on a global level
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'zipcode';
+
+UPDATE associated_attrs -- The name of the database table
+SET 
+  ui_info = jsonb_set(
+    jsonb_set(
+      jsonb_set(
+          ui_info, -- The corresponding column name of the field to be updated
+        '{APIText}', -- To add text information about the attribute and how it associates to a product
+          to_jsonb((COALESCE(ui_info->>'APIText', '') || ''))
+      ), -- APIText, RosterText, and the actual string value. COALESCE allows the data to append to existing data without overwriting
+      '{Products}',
+      (
+        SELECT jsonb_agg(DISTINCT value)
+        FROM jsonb_array_elements_text(
+          COALESCE(ui_info->'Products', '[]'::jsonb) || '["API"]'::jsonb -- The product name, ie API, Roster
+        )
+      )
+    ),
+    '{EmailCampaign}', -- Set Product associations to the attribute association on a local (endpoint specific) level
+    (
+      SELECT jsonb_agg(DISTINCT value)
+      FROM jsonb_array_elements_text(
+        COALESCE(ui_info->'EmailCampaign', '[]'::jsonb) || '["API"]'::jsonb -- Endpoint name, Product name, ie API, Roster
+      )
+    )
+  ),
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    '["EmailCampaign"]' -- Set attribute association to the endpoint on a global level
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title = 'zipcode';
+
 
 UPDATE associated_attrs
 SET
@@ -726,3 +825,6 @@ WHERE attr_title IN ( -- setting the following associated_attrs -> request_type 
 );
 
 END $$;
+
+
+
