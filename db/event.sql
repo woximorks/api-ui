@@ -672,4 +672,20 @@ WHERE attr_title IN ( -- setting the following associated_attrs -> request_type 
     'date_end'
 );
 
+UPDATE associated_attrs
+SET
+  associated_endpoints = jsonb_set(
+    associated_endpoints,
+    '{Endpoints}',
+    (COALESCE(associated_endpoints->'Endpoints', '[]'::jsonb) || '["Event"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (  -- setting the following associated_attrs -> associated_endpoints to contain "Agent"
+  'agent_uuid',
+  'moxi_works_agent_id',
+  'source_agent_id',
+  'moxi_works_company_id',
+  'parent_company_id'
+);
+
 END $$;
