@@ -1,13 +1,4 @@
-<%= render 'shared/nav' %>
-
-<div class="search_box">
-  <%= form_tag(index_path, method: :get, class: "search_form") do %>
-    <%= label_tag(:keyword, "Search for:", class: "search_label") %>
-    <%= text_field_tag(:keyword, params[:keyword], class: "search_input") %>
-    <%= submit_tag("Search", class: "search_button") %>
-  <% end %>
-</div>
-
+<%= render 'shared/search' %>
 <div class="search_results_container">
   <% if @results.present? %>
     <% @results.each do |result| %>
@@ -21,7 +12,7 @@
             request_info = result.request_type.select { |key, value| value.is_a?(Array) }.sort.to_h
           %>
           <li class="search_attr_title">
-            <h5 style="padding: 1em;"><%= result.attr_title %></h5>
+            <h1 style="padding: 1em;"><%= result.attr_title %></h1>
           </li>
 
           <% string_fields.each do |key, value| %>
@@ -67,3 +58,4 @@
     <p>No results to display</p>
   <% end %>
 </div>
+<%= render 'shared/nav' %>

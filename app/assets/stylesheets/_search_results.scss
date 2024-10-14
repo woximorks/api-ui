@@ -1,8 +1,13 @@
 .search_box {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   padding: 1em;
   background-color: #5392d7;
+  position: fixed;     // Make the nav fixed
+  top: 0;          // Stick it to the bottom
+  left: 0;            // Align to the left of the viewport
+  right: 0;           // Align to the right of the viewport
+  z-index: 1000;      // Optional: Ensure it's above other content
 
   .search_form {
     display: flex;
@@ -58,8 +63,8 @@
     flex-direction: column;
 
     li {
-      h5 {
-        font-weight: 600;
+      h1 {
+        text-align: right;
       }
 
       img {
@@ -90,4 +95,8 @@
   .request_heading {
     margin: 1em 1em 0;
   }
+}
+
+.search_box_spacer {
+  margin: 4.5em;
 }

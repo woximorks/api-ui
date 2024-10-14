@@ -1,0 +1,8 @@
+<div class="search_box">
+  <%= form_tag(index_path, method: :get, class: "search_form") do %>
+    <%= label_tag(:keyword, "Search for:", class: "search_label") %>
+    <%= text_field_tag(:keyword, params[:keyword], class: "search_input") %>
+    <%= submit_tag("Search", class: "search_button") %>
+  <% end %>
+</div>
+<div class="search_box_spacer"></div>

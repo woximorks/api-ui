@@ -26,51 +26,58 @@ body {
 }
 
 .main_nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  background-color: #5392d7;
+  position: fixed;     // Make the nav fixed
+  bottom: 0;          // Stick it to the bottom
+  left: 0;            // Align to the left of the viewport
+  right: 0;           // Align to the right of the viewport
+  z-index: 1000;      // Optional: Ensure it's above other content
+
+  .nav_links {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1em;
-    background-color: #5392d7;
-  
-    .nav_links {
-      display: flex;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-  
-      li {
-        margin-right: 1em;
-  
-        a {
-          text-decoration: none;
-          color: white;
-          padding: 0.5em;
-          transition: color 0.3s ease;
-  
-          &:hover {
-            color: #51d8cf;
-          }
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+
+    li {
+      margin-right: 1em;
+
+      a {
+        text-decoration: none;
+        color: white;
+        padding: 0.5em;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: #51d8cf;
         }
       }
     }
-  
-    .nav_user {
-      display: flex;
-      align-items: center;
-  
-      .nav_button, .nav_link {
-        padding: 0.5em 1em;
-        background-color: #51d8cf;
-        color: black;
-        border: none;
-        border-radius: 50px;
-        cursor: pointer;
-        text-decoration: none;
-        transition: background-color 0.3s ease;
-  
-        &:hover {
-          background-color: #4178a9;
-        }
+  }
+}
+
+
+  .nav_user {
+    display: flex;
+    align-items: center;
+
+    .nav_button, .nav_link {
+      padding: 0.5em 1em;
+      background-color: #51d8cf;
+      color: black;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #4178a9;
       }
     }
   }
