@@ -5,11 +5,11 @@ UPDATE associated_attrs
 SET
   ui_info = jsonb_set(
     ui_info,
-    '{LeadSoource}',
+    '{LeadSource}',
     (
       SELECT jsonb_agg(DISTINCT value)
       FROM jsonb_array_elements_text(
-        COALESCE(ui_info->'LeadSource', '[]'::jsonb) || '["API", "Engage"]'::jsonb
+        COALESCE(ui_info->'LeadSource', '[]'::jsonb) || '["API"]'::jsonb
       )
     )
   )
@@ -18,6 +18,18 @@ WHERE attr_title IN (
   'moxi_works_agent_id'
 );
 
+UPDATE associated_attrs
+SET
+  associated_endpoints = jsonb_set( -- setting the following associated_endpoints to have Brand associations within the Endpoints Array
+    associated_endpoints,
+    '{Endpoints}',
+    (COALESCE(associated_endpoints->'Endpoints', '[]'::jsonb) || '["LeadSource"]'::jsonb)
+  ),
+  updated_at = CURRENT_TIMESTAMP
+WHERE attr_title IN (
+    'moxi_works_lead_source_id',
+  'moxi_works_agent_id'
+);
 
 UPDATE associated_attrs -- The name of the database table
 SET 
