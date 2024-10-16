@@ -7,6 +7,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 
 ### Added
+- listing.sql
+
+### Changed
+- Pulled data from listing seed file and manipululated as necesary
+- Applied Template -- Establish Request Type relationship
+- Bingo Bango Dodge Durango&#8482 the database now has Request Type relationship for all listing associated_attrs
+
+### Fixed
+- 
+
+## [Unreleased]
+
+### Added
 - Initial setup of project structure.
 - Endpoint `/index` with search functionality.
 - Endpoint `/{#endpoint}` infographic.
@@ -18,9 +31,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - 
 
 ### Fixed
-- 
-
-## [0.0.0] - YYYY-MM-DD
-
-### Added
 - 
