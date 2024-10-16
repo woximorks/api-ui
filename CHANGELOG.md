@@ -7,12 +7,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 
 ### Added
+- 
+
+### Changed
+- Separated new associated_attrs on listings.sql
+    - These need the template that starts on line 57 of 'templates.sql' file applied
+
+### Fixed
+- 
+
+## [Unreleased]
+
+### Added
 - listing.sql
 
 ### Changed
 - Pulled data from listing seed file and manipululated as necesary
 - Applied Template -- Establish Request Type relationship
-- Bingo Bango Dodge Durango&#8482 the database now has Request Type relationship for all listing associated_attrs
+- Bingo Bango Dodge Durango&#8482; the database now has Request Type relationship for all listing associated_attrs
 
 ### Fixed
 - 

@@ -16,6 +16,12 @@ WHERE attr_title IN ( -- setting the following associated_attrs -> request_type 
     'underscore_response'
 );
 
+-- new
+/*
+moxi_works_listing_id
+underscore_response
+*/
+
 UPDATE associated_attrs
 SET
   request_type = jsonb_set(
@@ -25,7 +31,6 @@ SET
   ),
   updated_at = CURRENT_TIMESTAMP
 WHERE attr_title IN ( -- setting the following associated_attrs -> request_type to contain "#Request Type"
-    #--Response
     'LotSizeAcres',
     'BathroomsFull',
     'BathroomsHalf',
@@ -50,7 +55,7 @@ WHERE attr_title IN ( -- setting the following associated_attrs -> request_type 
     'AssociationFee',
     'ListOfficeName',
     'ListPrice',
-    'ListingID',
+    'ListingID', 
     'ListAgentFullName',
     'ListAgentUUID',
     'ListAgentOfficeID',
@@ -58,10 +63,10 @@ WHERE attr_title IN ( -- setting the following associated_attrs -> request_type 
     'SecondaryListAgentFullName',
     'SecondaryListAgentUUID',
     'SchoolDistrict',
-    'Address',
+    'Address', 
     'Address2',
-    'City',
-    'CountyOrParish',
+    'City', 
+    'CountyOrParish', 
     'Latitude',
     'Longitude',
     'StateOrProvince',
@@ -81,7 +86,7 @@ WHERE attr_title IN ( -- setting the following associated_attrs -> request_type 
     'ViewYN',
     'YearBuilt',
     'OnMarket',
-    'Status',
+    'Status', 
     'MoxiWorksListingId',
     'AgentCreatedListing',
     'VirtualTourURL',
@@ -92,10 +97,79 @@ WHERE attr_title IN ( -- setting the following associated_attrs -> request_type 
     'CompanyListingAttributes',
     'OpenHouse',
     'ImagesLastModified',
-    'ListingImages',
+    'ListingImages', 
     'BuyerCommissionType',
     'BuyerCommissionValue'
     );
+
+-- new
+/*
+    'LotSizeAcres',
+    'BathroomsFull',
+    'BathroomsHalf',
+    'BathroomsOneQuarter',
+    'BathroomsPartial',
+    'BathroomsThreeQuarter',
+    'BathroomsTotalInteger',
+    'BathroomsTotal',
+    'BedroomsTotal',
+    'PublicTitle',
+    'PublicRemarks',
+    'ModificationTimestamp',
+    'StatusChangeDate',
+    'InternetAddressDisplayYN',
+    'DaysOnMarket',
+    'ListingContractDate',
+    'CreatedDate',
+    'ElementarySchool',
+    'GarageSpaces',
+    'WaterfrontYN',
+    'HighSchool',
+    'AssociationFee',
+    'ListOfficeName',
+    'ListPrice',
+    'ListAgentFullName',
+    'ListAgentUUID',
+    'ListAgentOfficeID',
+    'ListAgentMoxiWorksOfficeID',
+    'SecondaryListAgentFullName',
+    'SecondaryListAgentUUID',
+    'SchoolDistrict',
+    'Address2',
+    'City',
+    'CountyOrParish', 
+    'Latitude',
+    'Longitude',
+    'StateOrProvince',
+    'PostalCode',
+    'Community',
+    'LotSizeSquareFeet',
+    'InternetEntireListingDisplayYN',
+    'MiddleOrJuniorSchool',
+    'ListOfficeAOR',
+    'ListOfficeAORArea',
+    'PoolYN',
+    'PropertyType',
+    'TaxAnnualAmount',
+    'TaxYear',
+    'SingleStory',
+    'LivingArea',
+    'ViewYN',
+    'YearBuilt',
+    'OnMarket',
+    'MoxiWorksListingId',
+    'AgentCreatedListing',
+    'VirtualTourURL',
+    'SharedPartnerData',
+    'TaxParcelId',
+    'ListingURL',
+    'PropertyFeatures',
+    'CompanyListingAttributes',
+    'OpenHouse',
+    'ImagesLastModified',
+    'BuyerCommissionType',
+    'BuyerCommissionValue'
+*/
 
 UPDATE associated_attrs
 SET
@@ -144,7 +218,7 @@ WHERE attr_title IN (
     'AssociationFee',
     'ListOfficeName',
     'ListPrice',
-    'ListingID',
+    'ListingID', 
     'ListAgentFullName',
     'ListAgentUUID',
     'ListAgentOfficeID',
@@ -152,7 +226,7 @@ WHERE attr_title IN (
     'SecondaryListAgentFullName',
     'SecondaryListAgentUUID',
     'SchoolDistrict',
-    'Address',
+    'Address', 
     'Address2',
     'City',
     'CountyOrParish',
@@ -175,7 +249,7 @@ WHERE attr_title IN (
     'ViewYN',
     'YearBuilt',
     'OnMarket',
-    'Status',
+    'Status', 
     'MoxiWorksListingId',
     'AgentCreatedListing',
     'VirtualTourURL',
@@ -186,7 +260,7 @@ WHERE attr_title IN (
     'CompanyListingAttributes',
     'OpenHouse',
     'ImagesLastModified',
-    'ListingImages',
+    'ListingImages', 
     'BuyerCommissionType',
     'BuyerCommissionValue'
     );
@@ -213,9 +287,19 @@ WHERE attr_title IN ( -- setting the following associated_attrs -> request_type 
     'property_types',
     'only_agent_created',
     'coming_soon',
-    'underscore_response',
+    'underscore_response', 
     'timestamps_only'
     );
+
+-- new
+/*
+    'last_moxi_works_listing_id', -- new
+    'shared_partner_data_updated_since', --new
+    'market_status', -- new
+    'property_types', -- new
+    'only_agent_created', -- new
+    'coming_soon', -- new
+*/
 
 UPDATE associated_attrs
 SET
@@ -229,5 +313,11 @@ WHERE attr_title IN ( -- setting the following associated_attrs -> request_type 
     'FinalPage',
     'Listings'
 );
+
+-- new
+/*
+    'FinalPage',
+    'Listings'
+*/
 
 END $$;
